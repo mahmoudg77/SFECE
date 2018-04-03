@@ -60,6 +60,14 @@
                                 </a>
                             </div>
                         </div>
+                        <hr/>
+
+                        <div class="form-group">
+                          <label for="password-confirm" class="col-md-4 control-label"></label>
+                          <a href="/facebook" class="btn btn-primary btn-lg">Login with Facebook</a>
+                          <a href="/twitter" class="btn btn-success btn-lg">Login with Twitter</a>
+                        </div>
+
                     </form>
                 </div>
             </div>
