@@ -73,14 +73,22 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
                         <div class="form-group">
+
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
                             </div>
                         </div>
+                        <hr/>
+                        
+                        <div class="form-group">
+                          <label for="password-confirm" class="col-md-4 control-label"></label>
+                          <a href="/facebook" class="btn btn-primary btn-lg">Login with Facebook</a>
+                          <a href="/twitter" class="btn btn-success btn-lg">Login with Twitter</a>
+                        </div>
+
                     </form>
                 </div>
             </div>
