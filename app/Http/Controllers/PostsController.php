@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Post;
 use Illuminate\Http\Request;
+use App\Post;
 use Form;
 
 class PostsController extends Controller
@@ -19,15 +19,17 @@ class PostsController extends Controller
     }
     public function edit($id)
     {
+      $ajax=\Request::ajax();
       $post=Post::find($id);
-      return view("posts.edit",compact('post'));
+       //$request=Request;
+      return view("posts.edit",compact('post','ajax'));
     }
     public function update($id,Request $data){
         $post=Post::find($id);
         $post->title=$data->input("title");
         $post->body=$data->input("body");
         $post->save();
-      
+
     }
 
 }

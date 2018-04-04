@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Torann\GeoIP\Facades\GeoIP;
 class HomeController extends Controller
 {
@@ -25,6 +24,6 @@ class HomeController extends Controller
     {
       $location=geoip()->getLocation(\Request::ip());
 
-        return view('home');
+      return view('home');
     }
 }
