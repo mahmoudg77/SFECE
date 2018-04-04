@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/dashboard',function(){
+  echo "TTTTTT";
+  return view("dashboard.dashboard");
+});
 
 Route::get('/', function () {
     return view('welcome');

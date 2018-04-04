@@ -1,3 +1,7 @@
+
+
+ @if(!Request::ajax())
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -70,11 +74,15 @@
                 </div>
             </div>
         </nav>
+@endif
+
 
         @yield('content')
+@if(!Request::ajax())
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+@endif

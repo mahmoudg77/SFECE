@@ -1,10 +1,8 @@
 
 
-@if($ajax)
-          @extends('layouts.app')
+@extends('layouts.admin')
 
-          @section('content')
-@endif
+@section('content')
 
   {{Form::model($post, ['route' => ['Post.update', $post],"method"=>"PUT"])}}
   {{Form::text("title")}}
@@ -13,6 +11,4 @@
   {{Form::submit("Save")}}
   {{Form::close()}}
 
-@if($ajax)
-  @endsection
-@endif
+@endsection

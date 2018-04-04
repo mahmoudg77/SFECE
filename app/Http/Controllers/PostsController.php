@@ -19,10 +19,10 @@ class PostsController extends Controller
     }
     public function edit($id)
     {
-      $ajax=\Request::ajax();
+
       $post=Post::find($id);
        //$request=Request;
-      return view("posts.edit",compact('post','ajax'));
+      return view("posts.edit",compact('post'));
     }
     public function update($id,Request $data){
         $post=Post::find($id);
