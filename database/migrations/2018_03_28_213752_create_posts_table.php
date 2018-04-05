@@ -17,7 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string("title");
             $table->text("body");
-            $table->date("pub_date");
+            $table->datetime("pub_date");
+            $table->integer("post_type_id");
             $table->integer('category_id')->nullable();
             $table->boolean("is_published");
             $table->integer("created_by")->nullable();;

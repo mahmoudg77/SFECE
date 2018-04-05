@@ -13,7 +13,7 @@ class CreatePosttypsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posttypes', function (Blueprint $table) {
+        Schema::create('post_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string("name");
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreatePosttypsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posttypes');
+        Schema::dropIfExists('post_types');
     }
 }

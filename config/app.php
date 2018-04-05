@@ -179,6 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
     ],
 
     /*
@@ -231,7 +232,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'GeoIP'=> Torann\GeoIP\Facades\GeoIP::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Func' => App\Extra\Functions::class,
     ],
 
 ];

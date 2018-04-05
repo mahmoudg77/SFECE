@@ -35,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -144,7 +144,7 @@ class RegisterController extends Controller
          }
 
 
-              return redirect('/');
+              return redirect($this->redirectTo);
 
 
      }
@@ -171,7 +171,7 @@ class RegisterController extends Controller
               session()->forget('req');
               return redirect($request);
           }else{*/
-               return redirect('/');
+               return redirect($this->redirectTo);
           // }
 
       }

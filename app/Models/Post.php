@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Collective\Html\Eloquent\FormAccessible;
-
+use App\Models\Category;
+use App\Models\PostType;
 class Post extends Model
 {
     //
@@ -12,12 +13,13 @@ class Post extends Model
 
     public function PostType()
     {
-      return $this->belongsTo("App\PostType");
+      return $this->belongsTo("App\Models\PostType");
     }
 
-    public function getTitle()
+    public function Category()
     {
-      return $this->title."ttttt";
+      return $this->belongsTo("App\Models\Category");
     }
+
 
 }

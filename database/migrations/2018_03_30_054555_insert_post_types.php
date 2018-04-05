@@ -14,7 +14,7 @@ class InsertPosttypes extends Migration
     public function up()
     {
         //
-        DB::table('posttypes')->insert(
+        DB::table('post_types')->insert(
             [
               ['id'=>1,'name' => 'Pages','created_at'=>date("Y-m-d H:i:n")],
               ['id'=>2,'name' => 'Posts','created_at'=>date("Y-m-d H:i:n")],
@@ -31,7 +31,7 @@ class InsertPosttypes extends Migration
     public function down()
     {
         //
-      DB::table('posttypes')->whereIn('id',[1,2,3])->delete();
+      DB::table('post_types')->whereIn('id',[1,2,3])->delete();
 
     }
 }
