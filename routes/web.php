@@ -11,7 +11,6 @@
 |
 */
 Route::get('/dashboard',function(){
-  echo "TTTTTT";
   return view("dashboard.dashboard");
 });
 

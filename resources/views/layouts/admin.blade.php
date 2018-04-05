@@ -12,18 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin | @yield('title', 'Dashboard')</title>
+    <title>Admin | @yield('title', 'cpanel')</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('cpanel/css/style.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
-    <link href="{{ asset('dashboard/css/jquery-ui.css')}}" rel="stylesheet" />
-    <link href="{{ asset('dashboard/css/jquery.datetimepicker.css')}}" rel="stylesheet" />
-    <link href="{{ asset('dashboard/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
-    <link href="{{ asset('dashboard/css/buttons.dataTables.min.css')}}" rel="stylesheet" />
-    <link href="{{ asset('dashboard/css/iziToast.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cpanel/css/jquery-ui.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cpanel/css/jquery.datetimepicker.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cpanel/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cpanel/css/buttons.dataTables.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cpanel/css/iziToast.min.css')}}" rel="stylesheet" />
 
     @yield('css')
    </head>
@@ -42,7 +42,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url('/admin') }}">Dashboard</a></li>
+            <li class="active"><a href="{{ url('/admin') }}">cpanel</a></li>
             <li><a href="{{ url ('/admin/category')}}">Sections</a></li>
             <li><a href="posts.html">Posts</a></li>
             <li><a href="users.html">Users</a></li>
@@ -66,7 +66,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard <small>Manage Your Site</small></h1>
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel <small>Manage Your Site</small></h1>
           </div>
 {{--           <div class="col-md-2">
             <div class="dropdown create">
@@ -89,7 +89,7 @@
     {{-- <section id="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="active">Dashboard</li>
+          <li class="active">cpanel</li>
         </ol>
       </div>
     </section> --}}
@@ -100,7 +100,7 @@
           <div class="col-md-3">
             <div class="list-group">
               <a class="list-group-item active main-color-bg">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
               </a>
               <a href="/admin/category" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
               <a href="/admin/customer" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Customers <span class="badge">12</span></a>
@@ -149,10 +149,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{ asset('dashboard/js/jquery.form.js')}}"></script>
-    <script src="{{ asset('dashboard/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('dashboard/js/jquery.datetimepicker.full.js')}}"></script>
-    <script src="{{ asset('dashboard/js/iziToast.min.js')}}"></script>
+    <script src="{{ asset('cpanel/js/jquery.form.js')}}"></script>
+    <script src="{{ asset('cpanel/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('cpanel/js/jquery.datetimepicker.full.js')}}"></script>
+    <script src="{{ asset('cpanel/js/iziToast.min.js')}}"></script>
     <script>
       $(function(){
         $(".btnEditAjax").click(function(e){
@@ -161,7 +161,7 @@
                e.preventDefault();
 
               $('#myModal').modal('show');
-              $("#myModal .modal-body").html("<div class='text-center'><img src='{{asset('dashboard/images/loading-bar.gif')}}'/></div>");
+              $("#myModal .modal-body").html("<div class='text-center'><img src='{{asset('cpanel/images/loading-bar.gif')}}'/></div>");
 
               $("#myModal .modal-body").load(btn.attr("href"), function (data, status, xhr) {
 
