@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PostType extends Model
+class PostType extends IModel
 {
     //
-    public function PostType()
+    public function Posts()
     {
-      return $this->hasMany("App\Models\Post");
+      return $this->hasMany('App\Models\Post');
     }
 }

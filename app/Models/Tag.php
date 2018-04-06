@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends IModel
+class Tag extends IModel
 {
     //
     public function Posts()
     {
-      return $this->hasMany('App\Models\Post');
+      return $this->belongsToMany('App\Models\Post');
     }
-
 }

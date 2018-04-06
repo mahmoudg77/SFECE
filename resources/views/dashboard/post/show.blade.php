@@ -25,6 +25,16 @@
               {{$post->body}}
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Files</label>
+            <div class="col-md-10">
+                <ul>
+                  @foreach($post->Files as $file)
+                      <li><a href="{{$file->path}}">{{$file->name}} - {{$post->size/100}} KB -{{$file->RelatedObject->name()}}</a></li>
+                  @endforeach
+              </ul>
+            </div>
+        </div>
 
 
     </div>

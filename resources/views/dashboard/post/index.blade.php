@@ -18,7 +18,7 @@
           <td>{{$post->title}}</td>
           <td>{{$post->postType->name}}</td>
           <td>{{$post->pub_date}}</td>
-          <td>{{$post->created_by}}</td>
+          <td>{{$post->Creator->name()}}</td>
           <td>
             <a href="/posts/{{$post->id}}/edit" class="btn btn-primary edit">Edit</a>
             {{Form::open(["url"=>"/posts/".$post->id,"method"=>"DELETE","class"=>"ajax-delete"])}}

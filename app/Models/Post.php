@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Collective\Html\Eloquent\FormAccessible;
 use App\Models\Category;
 use App\Models\PostType;
-class Post extends Model
+
+class Post extends IModel
 {
     //
-    use FormAccessible;
+    protected $nameField="title";
 
     public function PostType()
     {
@@ -21,5 +22,18 @@ class Post extends Model
       return $this->belongsTo("App\Models\Category");
     }
 
+    public function Tags()
+    {
+      return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function Files()
+    {
+      return $this->hasMany("App\Models\File","model_id","id");
+    }
+    public function MediaFiles()
+    {
+      return $this->hasMany("App\Models\MediaFile","model_id","id");
+    }
 
 }
