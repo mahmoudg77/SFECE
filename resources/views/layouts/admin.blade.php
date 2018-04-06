@@ -121,7 +121,7 @@
 
               <a class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>Users <strong></a>
               @foreach(App\Models\AccountLevel::all() as $level)
-                <a href="/users?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
+                <a href="/user?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
               @endforeach
 
              </div>
