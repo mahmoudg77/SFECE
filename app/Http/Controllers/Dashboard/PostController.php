@@ -13,10 +13,15 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $posts=Post::all();
+        if($request->has("type")){
+          $posts=Post::where('post_type_id',$request->get("type"))->get();
+        }else{
+          $posts=Post::all();
+        }
+
         return view('dashboard.post.index',compact('posts'));
     }
 

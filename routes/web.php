@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/posts','Dashboard\PostController');
+Route::resource('/account-level','Dashboard\AccountLevelController');
+Route::resource('/post-type','Dashboard\PostTypeController');
+Route::resource('/category','Dashboard\CategoryController');
+Route::resource('/comment','Dashboard\CommentController');
+Route::resource('/file','Dashboard\FileController');
+Route::resource('/media-file','Dashboard\MediaFileController');
+Route::resource('/tag','Dashboard\TagController');
 // Route::get('/posts/edit/{id}','PostsController@edit')->name("Post.edit");
 // Route::put('/posts/edit/{id}','PostsController@update')->name("Post.update");
 

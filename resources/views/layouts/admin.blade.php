@@ -114,10 +114,17 @@
               </a>
               <a href="/admin/category" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
               <a href="/admin/customer" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Customers <span class="badge">12</span></a>
-              <a href="/posts" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
-              <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
-              <a href="/posts/edit/1" class="btnEditAjax  list-group-item edit">Edit Ajax</a>
-            </div>
+
+              @foreach(App\Models\PostType::all() as $posttype)
+                <a href="/posts?type={{$posttype->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <strong>{{$posttype->name}}</strong>  <span class="badge">{{count($posttype->Posts)}}</span></a>
+              @endforeach
+
+              <a class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>Users <strong></a>
+              @foreach(App\Models\AccountLevel::all() as $level)
+                <a href="/users?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
+              @endforeach
+
+             </div>
 
 
           </div>

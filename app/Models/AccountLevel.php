@@ -17,6 +17,6 @@ class AccountLevel extends IModel
     }
     public function Accounts()
     {
-      return $this->hasMany('App\Users');
+      return $this->hasMany('App\User');
     }
 }
