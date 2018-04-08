@@ -25,6 +25,7 @@ Route::resource('/file','Dashboard\FileController');
 Route::resource('/media-file','Dashboard\MediaFileController');
 Route::resource('/tag','Dashboard\TagController');
 Route::resource('/user','Dashboard\UserController');
+Route::resource('/menu','Dashboard\MenuController');
 // Route::get('/posts/edit/{id}','PostsController@edit')->name("Post.edit");
 // Route::put('/posts/edit/{id}','PostsController@update')->name("Post.update");
 

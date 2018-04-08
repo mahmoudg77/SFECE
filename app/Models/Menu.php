@@ -8,7 +8,7 @@ class Menu extends IModel
 {
     public function Links()
     {
-      return $this->hasMany("App\Models\Menu");
+      return $this->hasMany("App\Models\MenuLink");
     }
-    
+
 }

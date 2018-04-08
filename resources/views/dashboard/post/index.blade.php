@@ -20,11 +20,12 @@
           <td>{{$post->pub_date}}</td>
           <td>{{$post->Creator->name()}}</td>
           <td>
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary edit">Edit</a>
             {{Form::open(["url"=>"/posts/".$post->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
             {{Form::submit("Delete",["class"=>"btn btn-danger"])}}
-            {{Form::close()}}
+            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary edit">Edit</a>
             <a href="/posts/{{$post->id}}" class="btn btn-default view">View</a>
+            {{Form::close()}}
+
           </td>
       </tr>
     @endforeach
