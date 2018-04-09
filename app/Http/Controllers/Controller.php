@@ -7,12 +7,89 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    function view($view,$data){
-      $data=array_merege(['isAjax'=>\Request::ajax()],(array)$data);
-      parent::view($view,$data);
+
+    protected $model;
+
+    function myview(){
+      global $request;
+       $args=func_get_args();
+
+       if(count($args)==0){
+          $view='';
+          $arr=[];
+        }elseif(count($args)==1){
+            if(is_array($args[0])){
+                $view='';
+                $arr=$args[0];
+            }else{
+                $view=$args[0];
+                $arr=[];
+            }
+        }else{
+            $view=$args[0];
+            $arr=$args[1];
+        }
+
+
+        if($view==''){
+          $trace = debug_backtrace();
+          $method = Route::getCurrentRoute()->getActionName();//$trace[1]['function'];
+          $method=explode('@',$method)[1];
+          // $method = $trace[1]['function'];
+          $cntrl= get_called_class();
+          $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
+          $cntrl=str_replace("\\",".",$cntrl);
+          $cntrl=str_replace("Controller","",$cntrl);
+          $cntrl=mb_strtolower($cntrl);
+
+         $view=$cntrl.".$method";
+
+        }
+        elseif(count(explode("/",$view))<2){
+          $cntrl= get_called_class();
+          $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
+          $cntrl=str_replace("\\",".",$cntrl);
+          $cntrl=str_replace("Controller","",$cntrl);
+          $cntrl=mb_strtolower($cntrl);
+            $view=$cntrl.".".$view;
+            $view=str_replace("App\\Http\\Controllers\\","",$view);
+        }
+        $view=str_replace("App\\Http\\Controllers\\","",$view);
+        $view=str_replace(".","\\",$view);
+
+       if(!file_exists(resource_path('views')."/".str_replace("App\\Http\\Controllers\\","",$view).'.blade.php')){
+          // $cntrl= get_called_class();
+          // $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
+          // $cntrl=str_replace("\\",".",$cntrl);
+          // $cntrl=str_replace("Controller","",$cntrl);
+          // $cntrl=mb_strtolower($cntrl);
+          $method = Route::getCurrentRoute()->getActionName();//$trace[1]['function'];
+          $method=explode('@',$method)[1];
+
+          // echo $cntrl;
+          // $view=$cntrl."/".$view;
+
+          $view="base.$method";
+      }
+
+        return view($view,$arr);
+     }
+    public function index()
+    {
+      $class=new $this->model();
+      $data=$class->all();
+      return $this->myview(compact('data'));
+    }
+    public function edit($id)
+    {
+      $class=new $this->model();
+      $data=$class->find($id);
+      return $this->myview(compact('data'));
     }
 }

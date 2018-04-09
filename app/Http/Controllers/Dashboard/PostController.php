@@ -8,21 +8,23 @@ use App\Models\Post;
 use Func;
 class PostController extends Controller
 {
+  protected $model="App\Models\Post";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
-        if($request->has("type")){
-          $posts=Post::where('post_type_id',$request->get("type"))->get();
+        //Request $request
+        if(request()->has("type")){
+          $data=Post::where('post_type_id',request()->get("type"))->get();
         }else{
-          $posts=Post::all();
+          $data=Post::all();
         }
 
-        return view('dashboard.post.index',compact('posts'));
+        return view('dashboard.post.index',compact('data'));
     }
 
     /**
@@ -82,12 +84,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-        $post=Post::find($id);
-        return view("dashboard.post.edit",compact('post'));
-    }
+    // public function edit($id)
+    // {
+    //     //
+    //     $post=Post::find($id);
+    //     return view("dashboard.post.edit",compact('post'));
+    // }
 
     /**
      * Update the specified resource in storage.
