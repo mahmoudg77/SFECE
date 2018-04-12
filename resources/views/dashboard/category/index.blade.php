@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="/category/create">Create New</a>
+  <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create')}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
@@ -16,10 +16,10 @@
           <td>{{$item->title}}</td>
           <td>@if($item->Parent){{$item->Parent->title}}@endif</td>
           <td>
-            {{Form::open(["url"=>"/category/".$item->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
+            {{Form::open(['route'=>["cp.category.destroy",$item->id],"method"=>"DELETE","class"=>"ajax-delete"])}}
             {{Form::submit("Delete",["class"=>"btn btn-danger"])}}
-            <a href="/category/{{$item->id}}/edit" class="btn btn-primary edit">Edit</a>
-            <a href="/category/{{$item->id}}" class="btn btn-default view">View</a>
+            <a href="{{route('cp.category.edit',$item->id)}}" class="btn btn-primary edit">Edit</a>
+            <a href="{{route('cp.category.show',$item->id)}}" class="btn btn-default view">View</a>
             {{Form::close()}}
 
           </td>

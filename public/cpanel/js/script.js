@@ -35,7 +35,7 @@ function Info(message) {
 }
 
 $(function(){
-  $("body").on("click", ".edit, .delete, .view", function (e) {
+  $("body").on("click", ".edit, .delete, .view, .addnew", function (e) {
      var btn = $(this);
 
          e.preventDefault();
@@ -84,7 +84,7 @@ $(function(){
                 error: function (data, status, xhr) {
                     // var obj = JSON.parse(data.responseText);
                     Error( data.status + " " + xhr);
-                     
+
                 }
             });
 

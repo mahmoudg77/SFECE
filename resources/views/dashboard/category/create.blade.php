@@ -9,7 +9,7 @@
 
     <div class="modal-body">
       <div class="row">
-      {!! Form::open(['method'=>'POST', 'url'=>"/category"]) !!}
+      {!! Form::open(['method'=>'POST', 'route'=>["cp.category.store"]]) !!}
         <div class="form-group col-sm-6">
           {!! Form::label('Title') !!}
           {!! Form::text('title', null, array('required', 'class'=>'form-control', 'placeholder'=>'Ad new title ....')) !!}

@@ -9,10 +9,10 @@
 
     <div class="modal-body">
       <div class="row">
-      {!! Form::model($data, array('method' => 'PATCH', 'url' => "/category/".$data->id, 'files'=>true)) !!}
+        {!! Form::open(['method'=>'PATCH', 'route'=>["cp.category.update",$data->id]]) !!}
         <div class="form-group col-sm-6">
           {!! Form::label('Title') !!}
-          {!! Form::text('title', null, array('required', 'class'=>'form-control', 'placeholder'=>'Ad new title ....')) !!}
+          {!! Form::text('title', $data->title, array('required', 'class'=>'form-control', 'placeholder'=>'Ad new title ....')) !!}
         </div>
 
         <div class="form-group col-sm-6">
@@ -25,7 +25,7 @@
 
         <div class="form-group col-sm-12">
           {!! Form::label('Description') !!}
-          {!! Form::textarea('description', null, array('required', 'name'=>'editor1', 'class'=>'form-control')) !!}
+          {!! Form::textarea('description', $data->description, array('required', 'class'=>'form-control editor')) !!}
         </div>
 
         <hr/>

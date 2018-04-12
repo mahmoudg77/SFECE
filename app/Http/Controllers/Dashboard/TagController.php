@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\IController;
 
-class TagController extends Controller
+class TagController extends IController
 {
   protected $model="App\Models\Tag";
 }

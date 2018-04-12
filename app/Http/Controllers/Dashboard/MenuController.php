@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\IController;
 
-class MenuController extends Controller
+class MenuController extends IController
 {
   protected $model="App\Models\Menu";
 }

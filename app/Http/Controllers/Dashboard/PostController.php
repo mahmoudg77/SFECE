@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\IController;
 use App\Models\Post;
 use Func;
-class PostController extends Controller
+class PostController extends IController
 {
   protected $model="App\Models\Post";
     /**
@@ -33,9 +33,9 @@ class PostController extends Controller
 
 
         if(Post::insert($data)){
-          return  Func::Success("Save Success",$data);
+          return  $this->Success("Save Success",$data);
         }else{
-          return  Func::Error("Error while saving data !!");
+          return  $this->Error("Error while saving data !!");
         }
 
     }

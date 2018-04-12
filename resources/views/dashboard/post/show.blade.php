@@ -10,13 +10,13 @@
         <div class="form-group">
             <label class="control-label col-md-2">Category</label>
             <div class="col-md-10">
-              {{$data->Category->title}}
+              @if($data->Category){{$data->Category->title}}@endif
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Post Type</label>
             <div class="col-md-10">
-              {{$data->PostType->name}}
+              @if($data->PostType){{$data->PostType->name}}@endif
             </div>
         </div>
         <div class="form-group">

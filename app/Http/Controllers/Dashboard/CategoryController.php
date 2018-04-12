@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\IController;
 use App\Models\Category;
-class CategoryController extends Controller
+class CategoryController extends IController
 {
   protected $model="App\Models\Category";
   public function index()

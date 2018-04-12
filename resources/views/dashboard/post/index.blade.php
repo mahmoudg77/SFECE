@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="/posts/create">Create New</a>
+  <a class="btn btn-success pull-right" href="{{route('cp.posts.create')}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
@@ -20,10 +20,10 @@
           <td>{{$post->pub_date}}</td>
           <td>{{$post->Creator->name()}}</td>
           <td>
-            {{Form::open(["url"=>"/posts/".$post->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
+            {{Form::open(['route'=>[ "cp.posts.destroy",$post->id],"method"=>"DELETE","class"=>"ajax-delete"])}}
             {{Form::submit("Delete",["class"=>"btn btn-danger"])}}
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary edit">Edit</a>
-            <a href="/posts/{{$post->id}}" class="btn btn-default view">View</a>
+            <a href="{{route('cp.posts.edit',$post->id)}}" class="btn btn-primary edit">Edit</a>
+            <a href="{{route('cp.posts.show',$post->id)}}" class="btn btn-default view">View</a>
             {{Form::close()}}
 
           </td>

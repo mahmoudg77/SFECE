@@ -42,8 +42,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url('/admin') }}">cpanel</a></li>
-            <li><a href="{{ url ('/admin/category')}}">Sections</a></li>
+            <li class="active"><a href="{{ url (CP_URL)}}">cpanel</a></li>
+            <li><a href="{{ url (CP_URL.'/category')}}">Sections</a></li>
             <li><a href="posts.html">Posts</a></li>
             <li><a href="users.html">Users</a></li>
           </ul>
@@ -112,16 +112,16 @@
               <a class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
               </a>
-              <a href="/admin/category" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
+              <a href="{{ route('cp.category.index')}}" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
               <a href="/admin/customer" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Customers <span class="badge">12</span></a>
 
               @foreach(App\Models\PostType::all() as $posttype)
-                <a href="/posts?type={{$posttype->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <strong>{{$posttype->name}}</strong>  <span class="badge">{{count($posttype->Posts)}}</span></a>
+                <a href="{{ route('cp.posts.index')}}?type={{$posttype->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <strong>{{$posttype->name}}</strong>  <span class="badge">{{count($posttype->Posts)}}</span></a>
               @endforeach
 
               <a class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>Users <strong></a>
               @foreach(App\Models\AccountLevel::all() as $level)
-                <a href="/user?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
+                <a href="{{ route('cp.user.index')}}?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
               @endforeach
 
              </div>

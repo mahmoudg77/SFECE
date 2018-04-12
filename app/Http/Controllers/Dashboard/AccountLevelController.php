@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\IController;
 
-class AccountLevelController extends Controller
+class AccountLevelController extends IController
 {
     protected $model="App\Models\AccountLevel";
 }
