@@ -2,28 +2,24 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="/posts/create">Create New</a>
+  <a class="btn btn-success pull-right" href="/category/create">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
         <th>Title</th>
-        <th>Type</th>
-        <th>Publish Date</th>
-        <th>Author</th>
+        <th>Parent</th>
         <th></th>
       </tr>
     </thead>
-    @foreach($posts as $post)
+    @foreach($data as $item)
       <tr>
-          <td>{{$post->title}}</td>
-          <td>{{$post->postType->name}}</td>
-          <td>{{$post->pub_date}}</td>
-          <td>{{$post->Creator->name()}}</td>
+          <td>{{$item->title}}</td>
+          <td>{{$item->Parent->title}}</td>
           <td>
-            {{Form::open(["url"=>"/posts/".$post->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
+            {{Form::open(["url"=>"/category/".$item->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
             {{Form::submit("Delete",["class"=>"btn btn-danger"])}}
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-primary edit">Edit</a>
-            <a href="/posts/{{$post->id}}" class="btn btn-default view">View</a>
+            <a href="/category/{{$item->id}}/edit" class="btn btn-primary edit">Edit</a>
+            <a href="/category/{{$item->id}}" class="btn btn-default view">View</a>
             {{Form::close()}}
 
           </td>

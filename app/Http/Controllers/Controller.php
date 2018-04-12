@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 // use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
-
+use Func;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -92,4 +92,82 @@ class Controller extends BaseController
       $data=$class->find($id);
       return $this->myview(compact('data'));
     }
+    public function create()
+    {
+        //
+        return $this->myview();
+
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        $class=new $this->model();
+        $data=$class->find($id);
+         return $this->myview(compact('data'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+        $class=new $this->model();
+        $data=$class->find($id);
+          if($data->destroy($id)){
+            return  Func::Success("Delete Success",$data);
+          }else{
+            return  Func::Error("Error while delete data !!");
+          }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $class=new $this->model();
+        $data=$class->find($id);
+
+        if($data->update($request->all())){
+          return  Func::Success("Save Success",$data);
+        }else{
+          return  Func::Error("Error while save data !!");
+        }
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+            $data=new $this->model();
+
+
+        if($data->insert($request->all())){
+          return  Func::Success("Save Success",$data);
+        }else{
+          return  Func::Error("Error while save data !!");
+        }
+
+    }
+
 }

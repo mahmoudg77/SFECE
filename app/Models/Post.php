@@ -10,21 +10,22 @@ use App\Models\PostType;
 class Post extends IModel
 {
     //
+
     protected $nameField="title";
 
     public function PostType()
     {
-      return $this->belongsTo("App\Models\PostType");
+      return $this->belongsTo("App\Models\PostType","post_type_id");
     }
 
     public function Category()
     {
-      return $this->belongsTo("App\Models\Category");
+      return $this->belongsTo("App\Models\Category","category_id");
     }
 
     public function Tags()
     {
-      return $this->belongsToMany('App\Models\Tag');
+      return $this->belongsToMany("App\Models\Tag");
     }
 
     public function Files()

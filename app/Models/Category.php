@@ -11,5 +11,12 @@ class Category extends IModel
     {
       return $this->hasMany('App\Models\Post');
     }
-
+    public function Parent()
+    {
+      return $this->belongsTo(Category::class,"parent_id");
+    }
+    public function Chields()
+    {
+      return $this->hasMany(Category::class,"parent_id");
+    }
 }
