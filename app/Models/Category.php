@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Category extends IModel
 {
+  use softDeletes;
     //
     public function Posts()
     {

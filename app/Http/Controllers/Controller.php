@@ -139,13 +139,14 @@ class Controller extends BaseController
     public function update(Request $request, $id)
     {
         //
+
         $class=new $this->model();
         $data=$class->find($id);
 
-        if($data->update($request->all())){
-          return  Func::Success("Save Success",$data);
+        if($data->update($request->except(['_token']))){
+          return  $this->Success("Save Success",$data);
         }else{
-          return  Func::Error("Error while save data !!");
+          return  $this->Error("Error while save data !!");
         }
 
     }
@@ -162,12 +163,37 @@ class Controller extends BaseController
             $data=new $this->model();
 
 
-        if($data->insert($request->all())){
-          return  Func::Success("Save Success",$data);
+        if($data->insert($request->except(['_token']))){
+          return  $this->Success("Save Success",$data);
         }else{
-          return  Func::Error("Error while save data !!");
+          return  $this->Error("Error while save data !!");
         }
 
+    }
+
+    public static function Success($message='',$object=null)
+    {
+       if(\Request::ajax()){
+         $response['type']='success';
+         $response['message']=$message;
+         $response['data']=$object;
+         return json_encode($response);
+       }else{
+         return back();
+         //return "<div class='alert alert-success'>".$message."</div>";
+       }
+    }
+    public static function Error($message='',$object=null)
+    {
+      if(\Request::ajax()){
+        $response['type']='error';
+        $response['message']=$message;
+        $response['data']=$object;
+        return json_encode($response);
+      }else{
+
+        return "<div class='alert alert-danger'>".$message."</div>";
+      }
     }
 
 }

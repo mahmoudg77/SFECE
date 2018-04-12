@@ -9,7 +9,7 @@ class IModel extends Model
 
   protected $nameField="name";
   protected $dbFileds=[];
-  protected $fillable=[];
+  protected $fillable;
   protected $relationMethods=[];
   protected $fields=[];
   public function __construct()
@@ -21,7 +21,7 @@ class IModel extends Model
       //print_r( $this->dbFileds);
 
       foreach ($this->dbFileds as $key => $field) {
-        if(!in_array($field->Field,['created_at','updated_at','deleted_at'])){
+        if(!in_array($field->Field,['id','created_at','updated_at','deleted_at'])){
 
          $this->fillable[]=$field->Field;
          $size=count(explode('(',$field->Type))>1?str_replace(')','',explode('(',$field->Type)[1]):0;
@@ -34,6 +34,7 @@ class IModel extends Model
            'null'=>$field->Null
          ];
         }
+        //print_r($this->fillable);
       }
 
       //get relations data

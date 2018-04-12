@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 class Functions
 {
-    public static function Success($message='',$object=null)
+    public static function Success($message='',$object=null,$next="")
     {
        if(\Request::ajax()){
          $response['type']='success';
@@ -13,6 +13,7 @@ class Functions
          $response['data']=$object;
          return json_encode($response);
        }else{
+         if($next!="") return redirect($next);
          return "<div class='alert alert-success'>".$message."</div>";
        }
     }
@@ -24,6 +25,7 @@ class Functions
         $response['data']=$object;
         return json_encode($response);
       }else{
+
         return "<div class='alert alert-danger'>".$message."</div>";
       }
     }

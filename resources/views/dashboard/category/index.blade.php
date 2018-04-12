@@ -14,7 +14,7 @@
     @foreach($data as $item)
       <tr>
           <td>{{$item->title}}</td>
-          <td>{{$item->Parent->title}}</td>
+          <td>@if($item->Parent){{$item->Parent->title}}@endif</td>
           <td>
             {{Form::open(["url"=>"/category/".$item->id,"method"=>"DELETE","class"=>"ajax-delete"])}}
             {{Form::submit("Delete",["class"=>"btn btn-danger"])}}

@@ -24,5 +24,20 @@ class PostController extends Controller
 
         return parent::myview(compact('data'));
     }
+    public function store(Request $request)
+    {
+        $data=$request->except(['_token']);
+        $data['pub_date']=date('Y-m-d H:i:n');
+        $data['is_published']=1;
+        $data['created_by']=1;
+
+
+        if(Post::insert($data)){
+          return  Func::Success("Save Success",$data);
+        }else{
+          return  Func::Error("Error while saving data !!");
+        }
+
+    }
 
 }
