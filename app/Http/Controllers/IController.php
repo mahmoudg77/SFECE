@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 // use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
-
+use Auth;
 class IController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -122,11 +122,18 @@ class IController extends BaseController
         //
         $class=new $this->model();
         $data=$class->find($id);
-          if($data->destroy($id)){
-            return  $this->Success("Delete Success",$data);
-          }else{
-            return  $this->Error("Error while delete data !!");
-          }
+
+        $fields=$class->getFields();
+        if(array_key_exists("deleted_by", $fields)){
+          $data->deleted_by=Auth::user()->id;
+        }
+        $data->save();
+
+        if($data->destroy($id)){
+          return  $this->Success("Delete Success",$data);
+        }else{
+          return  $this->Error("Error while delete data !!");
+        }
     }
 
     /**
@@ -142,8 +149,12 @@ class IController extends BaseController
 
         $class=new $this->model();
         $data=$class->find($id);
-
-        if($data->update($request->except(['_token']))){
+        $inputs=$request->except(['_token']);
+        $fields=$class->getFields();
+        if(array_key_exists("updated_by", $fields)){
+          $inputs['updated_by']=Auth::user()->id;
+        }
+        if($data->update($inputs)){
           return  $this->Success("Save Success",$data);
         }else{
           return  $this->Error("Error while save data !!");
@@ -160,11 +171,15 @@ class IController extends BaseController
     public function store(Request $request)
     {
         //
-            $data=new $this->model();
+        $class=new $this->model();
+        $inputs=$request->except(['_token']);
+        $fields=$class->getFields();
 
-
-        if($data->insert($request->except(['_token']))){
-          return  $this->Success("Save Success",$data);
+        if(array_key_exists("created_by", $fields)){
+          $inputs['created_by']=Auth::user()->id;
+        }
+         if($this->model::insert($inputs)){
+          return  $this->Success("Save Success",$class);
         }else{
           return  $this->Error("Error while save data !!");
         }

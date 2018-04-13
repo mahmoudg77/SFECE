@@ -10,7 +10,8 @@ class IModel extends Model
   protected $nameField="name";
   protected $dbFileds=[];
   protected $fillable;
-  protected $relationMethods=[];
+
+  //protected $relationMethods=[];
   protected $fields=[];
   public function __construct()
   {
@@ -19,7 +20,7 @@ class IModel extends Model
       if(!count($this->dbFileds)) return;
 
       //print_r( $this->dbFileds);
-
+      //$this->fillable=[];
       foreach ($this->dbFileds as $key => $field) {
         if(!in_array($field->Field,['id','created_at','updated_at','deleted_at'])){
 
@@ -48,6 +49,10 @@ class IModel extends Model
       // print_r($this->relationMethods);
 
 
+  }
+  public function getFields()
+  {
+    return $this->fields;
   }
   public function getRelationData($methodName)
   {

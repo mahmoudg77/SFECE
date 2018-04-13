@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-{{Form::model($data, ['url' => "/posts/".$data->id,"method"=>"PUT"])}}
+{{Form::model($data, ['route'=>["cp.posts.update",$data->id],"method"=>"PUT"])}}
 <?php //`title`, `body`, `pub_date`,`post_type_id`, `category_id`, `is_published`, `created_by`, `updated_by`, `created_at`, `updated_at` ?>
 <div class="form-horizontal">
         <div class="form-group">

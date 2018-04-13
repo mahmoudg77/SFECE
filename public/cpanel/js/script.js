@@ -123,4 +123,27 @@ $(function(){
 
   });
 
+  $(".ajax-delete").ajaxForm({
+    dataType:"json",
+    beforeSubmit:function(){
+      return confirm("Are you sure you wont to delete this item?");
+    },
+    success:function(d, statusText, xhr,form){
+      if(d.type=="success"){
+          Success(d.message);
+          form.closest(form.attr("elm-parent")).remove();
+      }else{
+          Error(d.message);
+      }
+    },
+    error: function (data, status, xhr) {
+        Error( data.status + " " + xhr);
+    }
+  });
+  $('.list-group-item').on('click', function() {
+    $('.glyphicon', this)
+      .toggleClass('glyphicon-chevron-right')
+      .toggleClass('glyphicon-chevron-down');
+  });
+
 });

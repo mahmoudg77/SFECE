@@ -3,54 +3,73 @@
 @section('content')
 <div class="">
   <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create')}}">Create New</a>
-  <table class="table datatable">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Parent</th>
-        <th></th>
-      </tr>
-    </thead>
-    @foreach($data as $item)
-      <tr>
-          <td>{{$item->title}}</td>
-          <td>@if($item->Parent){{$item->Parent->title}}@endif</td>
-          <td>
-            {{Form::open(['route'=>["cp.category.destroy",$item->id],"method"=>"DELETE","class"=>"ajax-delete"])}}
-            {{Form::submit("Delete",["class"=>"btn btn-danger"])}}
-            <a href="{{route('cp.category.edit',$item->id)}}" class="btn btn-primary edit">Edit</a>
-            <a href="{{route('cp.category.show',$item->id)}}" class="btn btn-default view">View</a>
-            {{Form::close()}}
-
-          </td>
-      </tr>
-    @endforeach
-
-  </table>
+  <div class="clearfix"></div>
 </div>
+  <div class="list-group" >
+      @foreach($data as $item)
+      @if(count($item->Chields)>0)
+        <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}}
+        </a>
+      @else
+        <div class="list-group-item">{{$item->title}} 
+          <div class="col col-sm-4 pull-right">
+             {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+          </div>
+            <div class="clearfix"></div>
+        </div>
+      @endif
+      @if(count($item->Chields)>0)
+        <div class="list-group collapse" id="{{$item->id}}">
+          @foreach($item->Chields as $subitem)
+          <div  class="list-group-item">{{$subitem->title}}
+              <div class="col col-sm-4 pull-right">
+                {!!Func::actionLinks('category',$subitem->id,".list-group-item")!!}
+            </div>
+              <div class="clearfix"></div>
+          </div>
+          @endforeach
+        </div>
+      @endif
+      @endforeach
+    </div>
 
 @endsection
+@section('css')
+<style>
+.just-padding {
+  padding: 15px;
+}
 
-@section('js')
-<script>
-$(function(){
-  $(".ajax-delete").ajaxForm({
-    dataType:"json",
-    beforeSubmit:function(){
-      return confirm("Are you sure you wont to delete this item?");
-    },
-    success:function(d, statusText, xhr,form){
-      if(d.type=="success"){
-          Success(d.message);
-          form.closest("tr").remove();
-      }else{
-          Error(d.message);
-      }
-    },
-    error: function (data, status, xhr) {
-        Error( data.status + " " + xhr);
-    }
-  });
-});
-</script>
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+
+.list-group-item .glyphicon {
+  margin-right: 5px;
+}
+</style>
 @endsection
