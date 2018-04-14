@@ -30,9 +30,9 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Models\AccountLevel');
     }
-    public function hasRole($value='')
+    public function hasRoles($value)
     {
-      return $this->AccountLevel->hasRole();
+      return $this->AccountLevel->hasRoles($value);
     }
     public function name()
     {

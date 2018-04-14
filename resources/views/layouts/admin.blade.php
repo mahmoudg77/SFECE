@@ -4,6 +4,13 @@
     @yield('js')
 @else
 
+<?php
+  $mainmenu=DASHMENU;
+  $qmenu=app('request')->input('menu');
+  //if(!$qmenu)$qmenu="Category";
+  ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,14 +45,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AdminStrap</a>
+          <a class="navbar-brand" href="{{ url (CP_URL)}}">Dashboard</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url (CP_URL)}}">cpanel</a></li>
-            <li><a href="{{ url (CP_URL.'/category')}}">Sections</a></li>
-            <li><a href="posts.html">Posts</a></li>
-            <li><a href="users.html">Users</a></li>
+            <li class="{{$qmenu==null?'active':''}}"><a href="{{ url (CP_URL)}}">cpanel</a></li>
+            @foreach($mainmenu as $key=>$menu)
+              @if(Auth::user()->hasRoles($menu['roles']))
+                <li class="{{$qmenu==$key?'active':''}}"><a  href="{{$menu['url']}}">{{$key}}</a></li>
+              @endif
+            @endforeach
+            <!-- <li><a href="{{ route ('cp.category.index')}}">Sections</a></li>
+            <li><a href="{{ route ('cp.posts.index')}}">Posts</a></li>
+            <li><a href="{{ route ('cp.user.index')}}">Users</a></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
@@ -107,9 +119,10 @@
     <section id="main" style="min-height: 600px;">
       <div class="container">
         <div class="row">
+          @if($qmenu)
           <div class="col-md-3">
             <div class="list-group">
-              <a class="list-group-item active main-color-bg">
+              <!-- <a class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
               </a>
               <a href="{{ route('cp.category.index')}}" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
@@ -122,14 +135,26 @@
               <a class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>Users <strong></a>
               @foreach(App\Models\AccountLevel::all() as $level)
                 <a href="{{ route('cp.user.index')}}?level={{$level->id}}" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{$level->name}}<span class="badge">{{count($level->Accounts)}}</span></a>
+              @endforeach -->
+
+              <a class="list-group-item active main-color-bg">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
+              </a>
+
+              @foreach($mainmenu[$qmenu]['submenu'] as $key=>$menu)
+                @if(Auth::user()->hasRoles($menu['roles']))
+                  <a href="{{$menu['url']}}" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {{$key}} </a>
+                @endif
               @endforeach
 
              </div>
 
-
           </div>
-          <div id="page-container" class="col-md-9">
 
+          <div id="page-container" class="col-md-9">
+            @else
+            <div id="page-container" class="col-md-12">
+            @endif
             @yield('content')
 
 
