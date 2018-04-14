@@ -15,7 +15,10 @@ class IController extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $model;
-
+    public function __construct()
+    {
+        $this->middleware('access');
+    }
     function myview(){
       global $request;
        $args=func_get_args();
