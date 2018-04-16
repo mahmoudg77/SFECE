@@ -5,7 +5,7 @@
 @else
 
 <?php
-  $mainmenu=DASHMENU;
+  $mainmenu=$cp_menu;
   $qmenu=app('request')->input('menu');
   //if(!$qmenu)$qmenu="Category";
   ?>
