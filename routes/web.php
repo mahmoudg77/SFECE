@@ -52,42 +52,42 @@ Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTw
 #Dashboard Routes
 Route::get('/dashboard','Dashboard\DashboardController@index');
 
-$cp_menu=[
-  'Category'=>[
-    'url'=>route('cp.category.index',['menu'=>'Category']),
-    'roles'=>['admin'],
-    'submenu'=>[
-      'All Category'=>['url'=>route('cp.category.index',['menu'=>'Category']),'roles'=>['admin'],'submenu'=>null],
-      'New Category'=>['url'=>route('cp.category.create',['menu'=>'Category']),'roles'=>['admin'],'submenu'=>null]
-    ]
-]];
-foreach (\App\Models\PostType::all() as $key => $value) {
-  $cp_menu[$value->name]=[
-    'url'=>route('cp.posts.index',['type'=>$value->id,'menu'=>$value->name]),
-    'roles'=>['admin'],
-    'submenu'=>[
-      'All '.$value->name=>['url'=>route('cp.posts.index',['type'=>$value->id,'menu'=>$value->name]),'roles'=>['admin'],'submenu'=>null],
-      'New '.$value->name=>['url'=>route('cp.posts.create',['type'=>$value->id,'menu'=>$value->name]),'roles'=>['admin'],'submenu'=>null]
-    ]];
-}
-$cp_menu['Menus']=[
-  'url'=>route('cp.menu.index',['menu'=>'Menus']),
-  'roles'=>['admin'],
-  'submenu'=>[
-    'All Menus'=>['url'=>route('cp.menu.index',['menu'=>'Menus']),'roles'=>['admin'],'submenu'=>null],
-    'New Menu'=>['url'=>route('cp.menu.create',['menu'=>'Menus']),'roles'=>['admin'],'submenu'=>null]
-  ]];
- $cp_menu['Comments']=[
-  'url'=>route('cp.comment.index',['menu'=>'Comments']),
-  'roles'=>['admin'],
-  'submenu'=>[
-    'All Comments'=>['url'=>route('cp.comment.index',['menu'=>'Comments']),'roles'=>['admin'],'submenu'=>null],
-  ]];
-  $cp_menu['Users']=[
-   'url'=>route('cp.user.index',['menu'=>'Users']),
-   'roles'=>['admin'],
-   'submenu'=>[
-     'All Users'=>['url'=>route('cp.user.index',['menu'=>'Users']),'roles'=>['admin'],'submenu'=>null],
-   ]];
-
- define('DASHMENU',$cp_menu);
+ $cp_menu=[
+              'Category'=>[
+                'url'=>route('cp.category.index',['menu'=>'Category']),
+                'roles'=>['admin'],
+                'submenu'=>[
+                  'All Category'=>['url'=>route('cp.category.index',['menu'=>'Category']),'roles'=>['admin'],'submenu'=>null],
+                  'New Category'=>['url'=>route('cp.category.create',['menu'=>'Category']),'roles'=>['admin'],'submenu'=>null]
+                ]
+            ]];
+            foreach (\App\Models\PostType::all() as $key => $value) {
+              $cp_menu[$value->name]=[
+                'url'=>route('cp.posts.index',['type'=>$value->id,'menu'=>$value->name]),
+                'roles'=>['admin'],
+                'submenu'=>[
+                  'All '.$value->name=>['url'=>route('cp.posts.index',['type'=>$value->id,'menu'=>$value->name]),'roles'=>['admin'],'submenu'=>null],
+                  'New '.$value->name=>['url'=>route('cp.posts.create',['type'=>$value->id,'menu'=>$value->name]),'roles'=>['admin'],'submenu'=>null]
+                ]];
+            }
+            $cp_menu['Menus']=[
+              'url'=>route('cp.menu.index',['menu'=>'Menus']),
+              'roles'=>['admin'],
+              'submenu'=>[
+                'All Menus'=>['url'=>route('cp.menu.index',['menu'=>'Menus']),'roles'=>['admin'],'submenu'=>null],
+                'New Menu'=>['url'=>route('cp.menu.create',['menu'=>'Menus']),'roles'=>['admin'],'submenu'=>null]
+              ]];
+             $cp_menu['Comments']=[
+              'url'=>route('cp.comment.index',['menu'=>'Comments']),
+              'roles'=>['admin'],
+              'submenu'=>[
+                'All Comments'=>['url'=>route('cp.comment.index',['menu'=>'Comments']),'roles'=>['admin'],'submenu'=>null],
+              ]];
+              $cp_menu['Users']=[
+               'url'=>route('cp.user.index',['menu'=>'Users']),
+               'roles'=>['admin'],
+               'submenu'=>[
+                 'All Users'=>['url'=>route('cp.user.index',['menu'=>'Users']),'roles'=>['admin'],'submenu'=>null],
+               ]];
+//const consDASHMENU=$cp_menu;
+//define('DASHMENU',$cp_menu);

@@ -18,6 +18,7 @@ class IController extends BaseController
     public function __construct()
     {
         $this->middleware('access');
+        
     }
     function myview(){
       global $request;
@@ -181,7 +182,7 @@ class IController extends BaseController
         if(array_key_exists("created_by", $fields)){
           $inputs['created_by']=Auth::user()->id;
         }
-         if($this->model::insert($inputs)){
+         if($class->insert($inputs)){
           return  $this->Success("Save Success",$class);
         }else{
           return  $this->Error("Error while save data !!");
