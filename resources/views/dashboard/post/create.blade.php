@@ -24,7 +24,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Content</label>
             <div class="col-md-10">
-              {{Form::textarea("body","",['class'=>'form-control'])}}
+              {{Form::textarea("body","",['class'=>'form-control editor'])}}
             </div>
         </div>
 

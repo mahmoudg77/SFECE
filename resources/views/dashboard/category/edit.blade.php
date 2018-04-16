@@ -25,7 +25,7 @@
 
         <div class="form-group col-sm-12">
           {!! Form::label('Description') !!}
-          {!! Form::textarea('description', $data->description, array('required', 'class'=>'form-control editor')) !!}
+          {!! Form::textarea('description', $data->description, array('required', 'class'=>'form-control editor ')) !!}
         </div>
 
         <hr/>

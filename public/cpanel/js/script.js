@@ -146,4 +146,29 @@ $(function(){
       .toggleClass('glyphicon-chevron-down');
   });
 
+
+  if ( typeof CKEDITOR == 'undefined' )
+  		{
+  		document.write(
+  			'<strong><span style="color: #ff0000">Error</span>: CKEditor not found</strong>.' +
+  			'This sample assumes that CKEditor (not included with CKFinder) is installed in' +
+  			'the "/ckeditor/" path. If you have it installed in a different place, just edit' +
+  			'this file, changing the wrong paths in the &lt;head&gt; (line 5) and the "BasePath"' +
+  			'value (line 32).' ) ;
+  		}
+  		else
+  		{
+  			$(".editor").each(function(){
+
+  				var editor = CKEDITOR.replace($(this).attr("name"));
+
+
+  				// Just call CKFinder.setupCKEditor and pass the CKEditor instance as the first argument.
+  				// The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
+  				CKFinder.setupCKEditor( editor, '/cpanel/js/ckfinder/' ) ;
+
+  				// It is also possible to pass an object with selected CKFinder properties as a second argument.
+  				// CKFinder.setupCKEditor( editor, { basePath : 'js/ckfinder/', skin : 'v1' } ) ;
+  			});
+  		}
 });

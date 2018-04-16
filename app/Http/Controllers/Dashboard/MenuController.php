@@ -8,4 +8,5 @@ use App\Http\Controllers\IController;
 class MenuController extends IController
 {
   protected $model="App\Models\Menu";
+  
 }
