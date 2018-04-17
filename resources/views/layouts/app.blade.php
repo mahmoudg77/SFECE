@@ -107,7 +107,7 @@
                 </div>
             </div>
         </nav>
-
+@endif
         @yield('content')
 
         <div style="clear:both;display:block">
@@ -128,9 +128,7 @@
     </div>
 </div>
     
-@endif
 
-@yield('content')
     
 @if(!Request::ajax())
 </div>
