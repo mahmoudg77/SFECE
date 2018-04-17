@@ -1,96 +1,112 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+  <div class="camera_wrap camera_azure_skin" id="camera_wrap_1" style="padding-top:10px;">
+    <div data-thumb="../images/slides/thumbs/s1.jpg" data-src="../images/slides/s1.jpg"></div>
+    <div data-thumb="../images/slides/thumbs/s3.jpg" data-src="../images/slides/s3.jpg"></div>
+    <div data-thumb="../images/slides/thumbs/s4.jpg" data-src="../images/slides/s4.jpg"></div>
+    <div data-thumb="../images/slides/thumbs/s5.jpg" data-src="../images/slides/s5.jpg"></div>
+  </div><!-- #camera_wrap_1 -->
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url(CP_URL) }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
+  <div class="row" style="padding: 0 15px;;margin--bottom: 20px;">
+    <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                
             </div>
-
+        </div>  
+    </div>
+    
+    <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
+                </div>
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+      
+      <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
+                </div>
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+      
+      <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
+                </div>
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+      
+      <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
+                </div>
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+      
+      <div class="col-sm-4">
+        <div class="panel panel-default blog">
+            <div class="panel-body" style="padding:0;">
+                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
+                    <h4 class="media-heading" style="color:#fff">7 قواعد ذهبيّة لتربي طفلك بشكلٍ صحيح</h4>
+                </div>
+                <div class="blog-content">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                </div>
+                
+            </div>
+        </div>  
+    </div>
+      
+      
+      <section class="about-us">
+        <div class="col-xs-12" style="background-color:#414042;height:150px;">
+          <h2 style="color: #fff;text-align: center;">من نحن ؟</h2>
+          <p style="color: #fff;font-size: 14px;font-weight: bold;line-height: 30px;">الموقع الخاص والرسمي للدكتور/ محمد خليفة إسماعيل متولي، أستاذ وخبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية البريطانية لتربية الطفولة المبكرة (الولادة حتى 8 سنوات)</p>
         </div>
-    </body>
-</html>
+      </section>
+      
+<!--
+      <section class="contact-us">
+        <div class="col-xs-12" style="height:150px;background-color:#008993">
+          <h2 style="color: #fff;text-align: center;">اتصل بنا</h2>
+        </div>
+      </section>
+-->
+  </div>
+@endsection
