@@ -32,8 +32,14 @@
         <div class="header-top">
             <div class="pull-right">
               <ul class="list-inline">
-                <li><a href="#" class="btn btn-link"><i class="fa fa-user"></i> تسجيل الدخول</a></li>
-                <li><a href="#" class="btn btn-link"><i class="fa fa-user-plus"></i> حساب جديد</a></li>
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> تسجيل الدخول</a></li>
+                    <li><a href="{{ url('/register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> حساب جديد</a></li>
+                @else
+                    <li><a href="#" class="btn btn-link"><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
+                    <li><a href="{{ url('/dashboard') }}"><i class="fa fa-btn fa-th-large"></i> Control Panel</a></li>
+                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
+                @endif
               </ul>
             </div>
             <div class="pull-left">
@@ -44,19 +50,13 @@
                 </div>
             </div>
           </div>
-        
+          <div class="clear-fix"></div>
           <div class="header">
-              <div class="row">
-                <div class="col-sm-6">
-                    <div class="header-img"><a class="navbar-brand" href="{{ url('/') }}">
-                      <img src="../images/logo.png" class="img-responsive" alt="" title=""/></a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                  <h3>المؤسسة العلمية للطفولة المبكرة</ h3>
-                    <!-- <h5>Scientific Foundation For Early Childhood Education</h5> -->
-                </div>
+              <div class="col-xs-12">
+                <img src="../images/logo.png" class="img-responsive center-block" alt="" title=""/>
+                <h3>المؤسسة العلمية للطفولة المبكرة</ h3>
               </div>
+                
           </div>
 
         <nav class="navbar navbar--default navbar-static-top navbar-inverse">
@@ -86,11 +86,10 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+<!--
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
                         @if (Auth::guest())
-                            {{-- <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li> --}}
+                            
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -104,6 +103,7 @@
                             </li>
                         @endif
                     </ul>
+-->
                 </div>
             </div>
         </nav>

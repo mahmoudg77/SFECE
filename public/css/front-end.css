@@ -1,3 +1,4 @@
+@impor-t url(https://fonts.googleapis.com/css?family=Dosis:300,400);
 body{
 	direction: rtl;
     background--color: #f2e6e2;;
@@ -12,6 +13,8 @@ body{
   	-o-background-size: cover;
   	background--size: cover;*/
   	background--size: 100% 100%;
+    
+    font--family: 'Dosis', sans-serif;
 }
 html{
 	height: 100%;
@@ -35,8 +38,9 @@ html{
 }
 /*start header*/
 .header{
-	height: 120px;
+	height: 150px;
 	background: #ddd;
+    posit-ion: relative;
 }
 .header .header-h>h3{
     position: absolute;
@@ -44,9 +48,9 @@ html{
     right: 260px;
 }
 .header img{
-	width: 120px;
-    position: absolute;
-    top: 0px;
+	width: 100px;
+    posit-ion: absolute;
+    top: 10px;
     left: 60px;
     z-index: 9999;
 }
@@ -54,7 +58,8 @@ html{
 	color: #1e4e54;
     font-weight: bold;
     text-align: center;
-    padding: 16px 0;
+    paddi-ng: 16px 0;
+    margin-top:0;
 }
 .header-h ul{
 	padding:30px;
@@ -72,12 +77,39 @@ html{
 	text-decoration: none;
     font-size:12px;
 }
+.header-top a:hover, .header-top a:focus{
+    color:#eee;
+    text-decoration: none;
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 2s infinite;
+}
+a.site--login:hover {
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 2s infinite;
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
 .header-top .social-media{
     padding: 4px 20px;
 }
 .header-top .social-media i{
     color:#fff;
     padding:0 3px;
+}
+.header-top .social-media a:hover{
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 2s infinite;
 }
 /*end header*/
 
@@ -140,6 +172,17 @@ html{
 	color:#555;
 }
 /*end home content*/
+
+/**start login-page**/
+.login-page, .register-page{
+    margin: 40px 0;
+}
+.login-page h1, .register-page h1{
+    background-color: #224668;
+    padding: 5px;
+    color: #fff;
+}
+/**end login-page**/
 
 /*start footer*/
 .footer{

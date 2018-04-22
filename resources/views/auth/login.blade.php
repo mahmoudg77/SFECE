@@ -2,12 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row login-page">
         <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center"><i class="glyphicon glyphicon-user"></i> Login</h1>
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+<!--                <div class="panel-heading">Login</div>-->
 
                 <div class="panel-body">
+                   
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -48,29 +50,36 @@
                                 </div>
                             </div>
                         </div>
-
+<hr/>
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+                            <div class="col-md-12 col-md--offset-4 text-center">
+                                <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                                <a href="/facebook" class="btn btn-primary btn-sm">Login with Facebook</a>
+                                <a href="/twitter" class="btn btn-success btn-sm">Login with Twitter</a>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                                <a class="btn btn-link" href="{{ route('password.request') }}">Forgot Your Password?</a>
                             </div>
                         </div>
                         <hr/>
+                        
+                        <div class="col-xs-12">Don't have an account! <a href="{{ url('/register') }}" class="btn btn-link">Sign Up Here</a></div> 
 
+<!--
                         <div class="form-group">
                           <label for="password-confirm" class="col-md-4 control-label"></label>
-                          <a href="/facebook" class="btn btn-primary btn-lg">Login with Facebook</a>
-                          <a href="/twitter" class="btn btn-success btn-lg">Login with Twitter</a>
+                          <a href="/facebook" class="btn btn-primary btn-sm">Login with Facebook</a>
+                          <a href="/twitter" class="btn btn-success btn-sm">Login with Twitter</a>
                         </div>
+-->
 
                     </form>
+                    
+                    
+                    
                 </div>
             </div>
+            
+            
         </div>
     </div>
 </div>

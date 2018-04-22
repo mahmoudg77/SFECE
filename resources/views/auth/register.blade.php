@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row register-page">
         <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center"><i class="fa fa-user-plus"></i> Register</h1>
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+<!--                <div class="panel-heading">Register</div>-->
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -73,21 +74,22 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <hr/>
                         <div class="form-group">
-
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                            <div class="col-md-10 col-md-offset-2 text-center">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                                <a href="/facebook" class="btn btn-primary">Login with Facebook</a>
+                                <a href="/twitter" class="btn btn-success">Login with Twitter</a>
                             </div>
                         </div>
-                        <hr/>
                         
+                        
+<!--
                         <div class="form-group">
                           <label for="password-confirm" class="col-md-4 control-label"></label>
-                          <a href="/facebook" class="btn btn-primary btn-lg">Login with Facebook</a>
-                          <a href="/twitter" class="btn btn-success btn-lg">Login with Twitter</a>
+                          
                         </div>
+-->
 
                     </form>
                 </div>
