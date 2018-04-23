@@ -107,6 +107,15 @@
                 </div>
             </div>
         </nav>
+        
+        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1" style="padding-top:10px;">
+    <div data-thumb="{{URL::asset('/images/slides/thumbs/s1.jpg')}}" data-src="{{URL::asset('/images/slides/s1.jpg')}}"></div>
+    <div data-thumb="{{URL::asset('/images/slides/thumbs/s3.jpg')}}" data-src="{{URL::asset('/images/slides/s3.jpg')}}"></div>
+    <div data-thumb="{{URL::asset('/images/slides/thumbs/s4.jpg')}}" data-src="{{URL::asset('/images/slides/s4.jpg')}}"></div>
+    <div data-thumb="{{URL::asset('/images/slides/thumbs/s5.jpg')}}" data-src="{{URL::asset('/images/slides/s5.jpg')}}"></div>
+  </div><!-- #camera_wrap_1 -->
+        
+        
 @endif
         @yield('content')
 
@@ -139,8 +148,9 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 
-    <script src="{{ asset('js/camera.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mobile.customized.min') }}"></script>
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ asset('js/camera.min.js') }}"></script>
     <script>
         jQuery(function(){
 

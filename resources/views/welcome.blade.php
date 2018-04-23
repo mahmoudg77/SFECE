@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="camera_wrap camera_azure_skin" id="camera_wrap_1" style="padding-top:10px;">
-    <div data-thumb="../images/slides/thumbs/s1.jpg" data-src="../images/slides/s1.jpg"></div>
-    <div data-thumb="../images/slides/thumbs/s3.jpg" data-src="../images/slides/s3.jpg"></div>
-    <div data-thumb="../images/slides/thumbs/s4.jpg" data-src="../images/slides/s4.jpg"></div>
-    <div data-thumb="../images/slides/thumbs/s5.jpg" data-src="../images/slides/s5.jpg"></div>
-  </div><!-- #camera_wrap_1 -->
+  
 
   <div class="row" style="padding: 0 15px;;margin--bottom: 20px;">
     <div class="col-sm-4">
