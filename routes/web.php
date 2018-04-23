@@ -1,5 +1,8 @@
 <?php
 define('CP_URL', '/dashboard');
+if(request()->lang <> ''){
+           app()->setLocale(request()->lang);
+  }
 
 
 /*
@@ -15,7 +18,11 @@ define('CP_URL', '/dashboard');
 
 
 
-Route::get('/', function () {
+Route::get('/{lang?}', function ($lang='') {
+
+  if($lang ==''){
+             return redirect('/en');
+    }
     return view('welcome');
 });
 

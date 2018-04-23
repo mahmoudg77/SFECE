@@ -1,6 +1,6 @@
 
 
- @if(!Request::ajax())
+
 
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -16,17 +16,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
-    
+
 </head>
 <body>
 <div id="app">
-        
+
 <div class="container">
     <div class="row" style="background-color: #eee">
         <div class="header-top">
@@ -56,7 +56,7 @@
                 <img src="../images/logo.png" class="img-responsive center-block" alt="" title=""/>
                 <h3>المؤسسة العلمية للطفولة المبكرة</ h3>
               </div>
-                
+
           </div>
 
         <nav class="navbar navbar--default navbar-static-top navbar-inverse">
@@ -89,7 +89,7 @@
 <!--
                     <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
-                            
+
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </nav>
-@endif
+
         @yield('content')
 
         <div style="clear:both;display:block">
@@ -127,24 +127,20 @@
         </footer>
     </div>
 </div>
-    
 
-    
-@if(!Request::ajax())
-</div>
+
+
+ </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/camera.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-    <script>
-        jQuery(function(){
 
-            jQuery('#camera_wrap_1').camera({
+    <script>
+        $(function(){
+             $('#camera_wrap_1').camera({
                 thumbnails: true,
                 height: '400px',
             });
@@ -159,4 +155,3 @@
     </script>
 </body>
 </html>
-@endif
