@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" >
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +17,17 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
+    @if(app()->getLocale()=='ar')
+  <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
+    @else
     <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
 
+
+
+    @endif
+
 </head>
-<body>
+<body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
 <div id="app">
 
 <div class="container">

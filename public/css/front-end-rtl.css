@@ -1,6 +1,6 @@
 @impor-t url(https://fonts.googleapis.com/css?family=Dosis:300,400);
 body{
-	direction: ltr;
+	direction: rtl;
     background--color: #f2e6e2;;
     font-family: droid arabic kufi,tahoma,verdana,Arial;
 	backgr-ound: url(../images/bk1.png) fixed;
@@ -23,7 +23,7 @@ html{
 	margin-bottom: 0px;
 }
 .navbar-nav > li{
-    float:left !important; /*LANG*/
+    float:right !important;
     background--color: #c1272d;
 	margi-n: 0 2px;
 }
