@@ -187,13 +187,14 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <!-- jQuery library -->
+    <script src="{{ asset('js/jquery.min.js')}}"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <!--Ajax Form library-->
     <script src="{{ asset('cpanel/js/jquery.form.js')}}"></script>
+
     <script src="{{ asset('cpanel/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('cpanel/js/jquery.datetimepicker.full.js')}}"></script>
     <script src="{{ asset('cpanel/js/iziToast.min.js')}}"></script>

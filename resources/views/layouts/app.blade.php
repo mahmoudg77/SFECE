@@ -33,11 +33,11 @@
 <div class="container">
     <div class="row" style="background-color: #eee">
         <div class="header-top">
-            <div class="pull-right">
+            <div class="pull-{{(app()->getLocale()=='ar')?'right':'left'}}">
               <ul class="list-inline">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> تسجيل الدخول</a></li>
-                    <li><a href="{{ url('/register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> حساب جديد</a></li>
+                    <li><a href="{{ url('/login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
+                    <li><a href="{{ url('/register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
                 @else
                     <li><a href="#" class="btn btn-link"><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
                     <li><a href="{{ url('/dashboard') }}"><i class="fa fa-btn fa-th-large"></i> Control Panel</a></li>
@@ -45,8 +45,10 @@
                 @endif
               </ul>
             </div>
-            <div class="pull-left">
+            <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
                 <div class="social-media">
+                  <a href="/{{(app()->getLocale()=='ar')?'en':'ar'}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
+
                     <i class="fa fa-facebook-square fa-lg"></i>
                     <i class="fa fa-twitter-square fa-lg"></i>
                     <i class="fa fa-youtube-square fa-lg"></i>
@@ -76,9 +78,9 @@
                     <!-- <a class="navbar-brand" href="{{ url('/') }}">SFECE</a> -->
                 </div>
 
-                <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse pull-{{(app()->getLocale()=='ar')?'right':'left'}}" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
                         <li class="active"><a href="{{ url('/home') }}" >الرئيسية</a></li>
                         <li><a href="{{ url('/home') }}">الدورات</a></li>
                         <li><a href="{{ url('/home') }}">المقالات</a></li>

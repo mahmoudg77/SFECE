@@ -13,16 +13,21 @@ define('CP_URL', '/dashboard');
 |
 */
 
+if (in_array(Request::segment(1), ['ar','en'])) {
+    App::setLocale(Request::segment(1));
+ }else{
+   App::setLocale('en');
+ }
 
+Route::group(['prefix' => app()->getLocale()], function()
+{
+  Route::get('/', function () {
+      return view('welcome');
+  });//->where('lang', '[ar|en]');
 
-Route::get('/{lang?}', function ($lang='') {
-
-  if($lang ==''){
-             return redirect('/en');
-    }
-    app()->setLocale($lang);
-
-    return view('welcome');
+});
+Route::get('/', function () {
+    return redirect('/ar');
 });
 
 Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
@@ -36,6 +41,7 @@ Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
   Route::resource('/tag','Dashboard\TagController',['as'=>'cp']);
   Route::resource('/user','Dashboard\UserController',['as'=>'cp']);
   Route::resource('/menu','Dashboard\MenuController',['as'=>'cp']);
+  Route::resource('/menu-link','Dashboard\MenuLinkController',['as'=>'cp']);
 });
 
 

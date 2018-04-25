@@ -45,13 +45,13 @@ html{
 .header .header-h>h3{
     position: absolute;
     top: 50px;
-    right: 260px;
+    left: 260px;
 }
 .header img{
 	width: 100px;
     posit-ion: absolute;
     top: 10px;
-    left: 60px;
+    right: 60px;
     z-index: 9999;
 }
 .header h3, .header h5{
@@ -140,7 +140,7 @@ a.site--login:hover {
 .camera_pag{
     position: absolute;
     top: 350px;
-    left: 530px;
+    right: 530px;
 }
 #camera_wrap_1{
     margin-bottom: 30px !important;
