@@ -9,6 +9,7 @@ use Auth;
 class CategoryController extends IController
 {
   protected $model="App\Models\Category";
+  
   public function index()
   {
     $data=Category::where("id","<>",0)->where("parent_id",0)->get();
@@ -23,13 +24,11 @@ class CategoryController extends IController
   public function store(Request $request)
   {
       //
-      $category=new Category();
-      $category->title=$request->input("title");
-      $category->description=$request->input("description");
-      $category->parent_id=$request->input("parent_id");
-      $category->created_by=Auth::user()->id;
+      $category=$request->all();
+      $category['created_by']=Auth::user()->id;
+      print_r($category);
 
-      if($category->save()){
+      if(Category::create($category)){
         return  $this->Success("Save Success",$category);
       }else{
         return  $this->Error("Error while save data !!");

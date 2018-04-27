@@ -66,6 +66,17 @@ return [
 
     'timezone' => 'UTC',
 
+
+    'locales' => [
+        'en'=>'English',
+        'ar'=>'عربي',
+        /*'es' => [
+            'MX', // mexican spanish
+            'CO', // colombian spanish
+        ],*/
+    ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

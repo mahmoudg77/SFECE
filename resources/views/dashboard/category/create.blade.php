@@ -10,20 +10,36 @@
     <div class="modal-body">
       <div class="row">
       {!! Form::open(['method'=>'POST', 'route'=>["cp.category.store"]]) !!}
-        <div class="form-group col-sm-6">
-          {!! Form::label('Title') !!}
-          {!! Form::text('title', null, array('required', 'class'=>'form-control', 'placeholder'=>'Ad new title ....')) !!}
+      <ul class="nav nav-tabs">
+        @foreach(config('translatable.locales') as $key)
+        <li class="{{($key==app()->getLocale())?'active':''}}"><a data-toggle="tab" href="#data_{{$key}}">{{$key}}</a></li>
+        @endforeach
+
+      </ul>
+
+      <div class="tab-content">
+        @foreach(config('translatable.locales') as $key)
+        <div id="data_{{$key}}" class="tab-pane fade in {{($key==app()->getLocale())?'active':''}}">
+          <div class="form-group col-sm-6">
+            {!! Form::label('Title ('.$key.')') !!}
+            {!! Form::text($key.'[title]', null, ['required', 'class'=>'form-control', 'placeholder'=>'Add new title ....']) !!}
+          </div>
+
+          <div class="form-group col-sm-12">
+            {!! Form::label('Description ('.$key.')') !!}
+            {!! Form::textarea($key.'[description]', null, ['required', 'class'=>'form-control editor', 'placeholder'=>'Add description ....']) !!}
+          </div>
         </div>
+        @endforeach
+
+      </div>
+
 
         <div class="form-group col-sm-6">
           {!! Form::label('Parent?') !!}
-          {!! Form::select('parent_id', App\Models\Category::pluck('title','id'), null, array('class'=>'form-control', 'placeholder'=>'Select parent')) !!}
+          {!! Form::select('parent_id', App\Models\Category::listsTranslations('title')->pluck('title','id'), null, array('class'=>'form-control', 'placeholder'=>'Select parent')) !!}
         </div>
 
-        <div class="form-group col-sm-12">
-          {!! Form::label('Description') !!}
-          {!! Form::textarea('description', null, array('required', 'class'=>'form-control editor', 'placeholder'=>'Add description ....')) !!}
-        </div>
 
         <hr/>
         <div class="model-footer form-group col-sm-12">
