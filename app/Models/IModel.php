@@ -9,34 +9,35 @@ class IModel extends Model
 
   protected $nameField="name";
   protected $dbFileds=[];
-//  protected $fillable;
+  protected $fillable;
 
   //protected $relationMethods=[];
   protected $fields=[];
   public function __construct()
   {
       parent::__construct();
+
       $this->dbFileds=DB::select("describe ".$this->getTable());
-      // if(!count($this->dbFileds)) return;
+      if(!count($this->dbFileds)) return;
       //
       // //print_r( $this->dbFileds);
       // //$this->fillable=[];
-      // foreach ($this->dbFileds as $key => $field) {
-      //   if(!in_array($field->Field,['id','created_at','updated_at','deleted_at'])){
-      //
-      //    //$this->fillable[]=$field->Field;
-      //    $size=count(explode('(',$field->Type))>1?str_replace(')','',explode('(',$field->Type)[1]):0;
-      //    $this->fields[$field->Field]=[
-      //      'name'=>ucwords(str_replace("_"," ",$field->Field)),
-      //      'type'=>$field->Type,
-      //      'model'=>"",
-      //      'forgkey'=>"",
-      //      'size'=>$size,
-      //      'null'=>$field->Null
-      //    ];
-      //   }
-        //print_r($this->fillable);
-      // }
+      foreach ($this->dbFileds as $key => $field) {
+        if(!in_array($field->Field,['id','created_at','updated_at','deleted_at'])){
+
+         //$this->fillable[]=$field->Field;
+         $size=count(explode('(',$field->Type))>1?str_replace(')','',explode('(',$field->Type)[1]):0;
+         $this->fields[$field->Field]=[
+           'name'=>ucwords(str_replace("_"," ",$field->Field)),
+           'type'=>$field->Type,
+           'model'=>"",
+           'forgkey'=>"",
+           'size'=>$size,
+           'null'=>$field->Null
+         ];
+        }
+        // print_r($this->fillable);
+      }
 
       //get relations data
       // $this->relationMethods=get_class_methods(get_called_class());

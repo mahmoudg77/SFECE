@@ -144,13 +144,13 @@ class IController extends BaseController
      }
     public function index()
     {
-      $class=new $this->model();
+      $class=new $this->model;
       $data=$class->all();
       return $this->myview(compact('data'));
     }
     public function edit($id)
     {
-      $class=new $this->model();
+      $class=new $this->model;
       $data=$class->find($id);
       return $this->myview(compact('data'));
     }
@@ -169,7 +169,7 @@ class IController extends BaseController
     public function show($id)
     {
         //
-        $class=new $this->model();
+        $class=new $this->model;
         $data=$class->find($id);
          return $this->myview(compact('data'));
     }
@@ -182,7 +182,7 @@ class IController extends BaseController
     public function destroy($id)
     {
         //
-        $class=new $this->model();
+        $class=new $this->model;
         $data=$class->find($id);
 
         $fields=$class->getFields();
@@ -209,7 +209,7 @@ class IController extends BaseController
     {
         //
 
-        $class=new $this->model();
+        $class=new $this->model;
         $data=$class->find($id);
         $inputs=$request->except(['_token']);
         $fields=$class->getFields();
@@ -233,14 +233,14 @@ class IController extends BaseController
     public function store(Request $request)
     {
         //
-        $class=new $this->model();
+        $class=new $this->model;
         $inputs=$request->except(['_token']);
         $fields=$class->getFields();
 
         if(array_key_exists("created_by", $fields)){
           $inputs['created_by']=Auth::user()->id;
         }
-         if($class->insert($inputs)){
+         if($this->model::create($inputs)){
           return  $this->Success("Save Success",$class);
         }else{
           return  $this->Error("Error while save data !!");

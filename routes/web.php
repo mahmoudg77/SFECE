@@ -25,6 +25,8 @@ Route::group(['prefix' => app()->getLocale()], function()
   });//->where('lang', '[ar|en]');
 
   Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
+    #Dashboard Routes
+    Route::get('/','Dashboard\DashboardController@index')->name('cp.dashboard');
     Route::resource('/posts','Dashboard\PostController',['as'=>'cp']);
     Route::resource('/account-level','Dashboard\AccountLevelController',['as'=>'cp']);
     Route::resource('/post-type','Dashboard\PostTypeController',['as'=>'cp']);
@@ -60,6 +62,3 @@ Route::get('/facebook-callback','Auth\RegisterController@handleProviderCallback'
 //twitter
 Route::get('/twitter','Auth\RegisterController@redirectToProviderTwitter');
 Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTwitter');
-
-#Dashboard Routes
-Route::get('/dashboard','Dashboard\DashboardController@index');
