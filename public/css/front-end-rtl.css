@@ -181,8 +181,15 @@ a.site--login:hover {
     background-color: #224668;
     padding: 5px;
     color: #fff;
+    margin: 0;
 }
 /**end login-page**/
+
+/*start register-page*/
+.register-page lable{
+    text-align: right !immportant;
+}
+/*end register-page*/
 
 /*start footer*/
 .footer{

@@ -12,15 +12,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    @if(app()->getLocale()=='ar')
+        <!-- Load Bootstrap RTL theme from RawGit -->
+        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+        <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
+    @else
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
+    @endif
+    
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     
-    @if(app()->getLocale()=='ar')
-        <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
-    @else
-        <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
-    @endif
+    
 
 </head>
 <body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
@@ -76,8 +80,17 @@
                 <div class="collapse navbar-collapse pull-{{(app()->getLocale()=='ar')?'right':'left'}}" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
-                        <li class="active"><a href="{{ url('/home') }}" >الرئيسية</a></li>
-                        <li><a href="{{ url('/home') }}">الدورات</a></li>
+                        <li class="active"><a href="{{ url('/') }}" >الرئيسية</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                من نحن ؟ <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li>الرؤية والإهداف</li>
+                              <li>مجلس الامناء</li>
+                              <li>المجلس الاستشارى</li>
+                              <li>اصداراتنا</li>
+                            </ul>
+                        </li>
                         <li><a href="{{ url('/home') }}">المقالات</a></li>
                         <li><a href="{{ url('/home') }}">طلب بحث</a></li>
                         <li><a href="{{ url('/home') }}">بحث</a></li>
