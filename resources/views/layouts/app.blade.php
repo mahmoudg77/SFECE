@@ -36,13 +36,17 @@
             <div class="pull-{{(app()->getLocale()=='ar')?'right':'left'}}">
               <ul class="list-inline">
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
-                    <li><a href="{{ route('register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
+                    <li><a href="{{ route('login') }}" class="site-login">
+                        <i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
+                    <li><a href="{{ route('register') }}" class="site-login">
+                        <i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
                 @else
-                    <li><a href="#" class="btn btn-link"><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
+                    <li><a href="#" class=""><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
                     <li><a href="{{ url('/dashboard') }}"><i class="fa fa-btn fa-th-large"></i> Control Panel</a></li>
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                 @endif
+                  <li><a href="#" class="">طلب نشر</a></li>
+                  <li><a href="#" class="">رئيس المؤسسة</a></li>
               </ul>
             </div>
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
@@ -85,16 +89,24 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 من نحن ؟ <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li>الرؤية والإهداف</li>
-                              <li>مجلس الامناء</li>
-                              <li>المجلس الاستشارى</li>
-                              <li>اصداراتنا</li>
+                              <li><a href="#" class="">الرؤية والإهداف</a></li>
+                              <li><a href="#" class="">مجلس الامناء</a></li>
+                              <li><a href="#" class="">المجلس الاستشارى</a></li>
+                              <li><a href="#" class="">اصداراتنا</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/home') }}">المقالات</a></li>
-                        <li><a href="{{ url('/home') }}">طلب بحث</a></li>
-                        <li><a href="{{ url('/home') }}">بحث</a></li>
-                        <li><a href="{{ url('/home') }}">اصداراتنا</a></li>
+                        <li><a href="{{ url('/home') }}">المركز</a></li>
+                        <li><a href="{{ url('/home') }}">المجلة</a></li>
+                        <li><a href="{{ url('/home') }}">الأكاديمية</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                الفعاليات السنوية <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#" class="">المنتدى</a></li>
+                              <li><a href="#" class="">المؤتمر</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url('/home') }}">الاباء والامهات</a></li>
                         <li><a href="{{ url('/home') }}">اتصل بنا</a></li>
                     </ul>
 
@@ -126,9 +138,7 @@
         <div style="clear:both;display:block">
         <!-- Footer -->
         <footer class="footer">
-            <div class="col-sm-6">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-            </div>
+            
             <div class="col-sm-6 footer-list">
                 <ul class="list-inline">
                     <li><a href="{{ url('/home') }}">الدورات</a></li>
@@ -136,6 +146,10 @@
                     <li><a href="{{ url('/home') }}">اصداراتنا</a></li>
                     <li><a href="{{ url('/home') }}">اتصل بنا</a></li>
                 </ul>
+            </div>
+            
+            <div class="col-sm-6">
+                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
         </footer>
     </div>
