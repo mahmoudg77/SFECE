@@ -7,23 +7,19 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SFECE') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
+    
     @if(app()->getLocale()=='ar')
-  <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
     @else
-    <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
-
-
-
+        <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
     @endif
 
 </head>
@@ -47,8 +43,7 @@
             </div>
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
                 <div class="social-media">
-                  <a href="/{{(app()->getLocale()=='ar')?'en':'ar'}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
-
+                    <a href="/{{(app()->getLocale()=='ar')?'en':'ar'}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
                     <i class="fa fa-facebook-square fa-lg"></i>
                     <i class="fa fa-twitter-square fa-lg"></i>
                     <i class="fa fa-youtube-square fa-lg"></i>
