@@ -17,7 +17,7 @@
 
         <div class="form-group col-sm-12">
           {!! Form::label('Location') !!}
-          {!! Form::textarea('description', $data->location, array('required', 'class'=>'form-control editor ')) !!}
+          {!! Form::text('description', $data->location, array('required', 'class'=>'form-control')) !!}
         </div>
 
         <hr/>

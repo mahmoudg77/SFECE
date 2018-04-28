@@ -16,15 +16,16 @@ class IModel extends Model
   public function __construct()
   {
       parent::__construct();
+
       $this->dbFileds=DB::select("describe ".$this->getTable());
       if(!count($this->dbFileds)) return;
-
-      //print_r( $this->dbFileds);
-      //$this->fillable=[];
+      //
+      // //print_r( $this->dbFileds);
+      // //$this->fillable=[];
       foreach ($this->dbFileds as $key => $field) {
         if(!in_array($field->Field,['id','created_at','updated_at','deleted_at'])){
 
-         $this->fillable[]=$field->Field;
+         //$this->fillable[]=$field->Field;
          $size=count(explode('(',$field->Type))>1?str_replace(')','',explode('(',$field->Type)[1]):0;
          $this->fields[$field->Field]=[
            'name'=>ucwords(str_replace("_"," ",$field->Field)),
@@ -35,7 +36,7 @@ class IModel extends Model
            'null'=>$field->Null
          ];
         }
-        //print_r($this->fillable);
+        // print_r($this->fillable);
       }
 
       //get relations data
@@ -54,50 +55,50 @@ class IModel extends Model
   {
     return $this->fields;
   }
-  public function getRelationData($methodName)
-  {
-      $returned=[];
-      $c_name=get_called_class();
-
-      $func = new \ReflectionMethod($c_name,$methodName);
-      $filename = $func->getFileName();
-      $start_line = $func->getStartLine() + 1; // it's actually - 1, otherwise you wont get the function() block
-      $end_line = $func->getEndLine()-1;
-      $length = $end_line - $start_line;
-
-
-      $source = file($filename);
-      $body = implode("", array_slice($source, $start_line, $length));
-
-      if(strpos($body,"this->belongsToMany")>0)
-        $returned['type']="belongsToMany";
-      elseif(strpos($body,"this->belongsTo")>0)
-        $returned['type']="belongsTo";
-      elseif(strpos($body,"this->hasMany")>0)
-        $returned['type']="hasMany";
-      else return null;
-
-	  $strleft=substr($body, strpos($body, $returned['type']."(")+strlen($returned['type']."(")+1);
- 	  $str_params=substr($strleft, 0,strpos($strleft, ")"));
-
-      //echo $str_params;
-      $rel_params=explode(",",$str_params);
-      $returned['model']=str_replace(['"',"'"],"",$rel_params[0]);
-      $returned['name']=$methodName;
-      if($returned['type']=="belongsTo"){
-        $returned['forgkey']=count($rel_params)>1?str_replace(['"',"'"],"",$rel_params[1]):"";
-        print_r($this->fields);
-        $returned['size']=($returned['forgkey']!="")?$this->fields[$returned['forgkey']]['size']:0;
-        $returned['null']=($returned['forgkey']!="")?$this->fields[$returned['forgkey']]['null']:"NO";
-      }else{
-        $returned['forgkey']="";
-        $returned['size']=0;
-        $returned['null']="Yes";
-      }
-
-       return $returned;
-
-  }
+  // public function getRelationData($methodName)
+  // {
+  //     $returned=[];
+  //     $c_name=get_called_class();
+  //
+  //     $func = new \ReflectionMethod($c_name,$methodName);
+  //     $filename = $func->getFileName();
+  //     $start_line = $func->getStartLine() + 1; // it's actually - 1, otherwise you wont get the function() block
+  //     $end_line = $func->getEndLine()-1;
+  //     $length = $end_line - $start_line;
+  //
+  //
+  //     $source = file($filename);
+  //     $body = implode("", array_slice($source, $start_line, $length));
+  //
+  //     if(strpos($body,"this->belongsToMany")>0)
+  //       $returned['type']="belongsToMany";
+  //     elseif(strpos($body,"this->belongsTo")>0)
+  //       $returned['type']="belongsTo";
+  //     elseif(strpos($body,"this->hasMany")>0)
+  //       $returned['type']="hasMany";
+  //     else return null;
+  //
+	//   $strleft=substr($body, strpos($body, $returned['type']."(")+strlen($returned['type']."(")+1);
+ 	//   $str_params=substr($strleft, 0,strpos($strleft, ")"));
+  //
+  //     //echo $str_params;
+  //     $rel_params=explode(",",$str_params);
+  //     $returned['model']=str_replace(['"',"'"],"",$rel_params[0]);
+  //     $returned['name']=$methodName;
+  //     if($returned['type']=="belongsTo"){
+  //       $returned['forgkey']=count($rel_params)>1?str_replace(['"',"'"],"",$rel_params[1]):"";
+  //       print_r($this->fields);
+  //       $returned['size']=($returned['forgkey']!="")?$this->fields[$returned['forgkey']]['size']:0;
+  //       $returned['null']=($returned['forgkey']!="")?$this->fields[$returned['forgkey']]['null']:"NO";
+  //     }else{
+  //       $returned['forgkey']="";
+  //       $returned['size']=0;
+  //       $returned['null']="Yes";
+  //     }
+  //
+  //      return $returned;
+  //
+  // }
 
 
   private function filed_exists($name)
@@ -137,7 +138,7 @@ class IModel extends Model
     return new User();
   }
 
-
+/*
 
   function draw($field,$widget="",$mode="",$attrs=[],$useCollective=true){
 	    //global $context;
@@ -286,7 +287,7 @@ class IModel extends Model
         }
 
 
-	}
+	}*/
 
 }
 
