@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "7e8c6c544434b6a2d6008ef09517e99c",
@@ -2493,16 +2493,16 @@
     "packages-dev": [
         {
             "name": "crestapps/laravel-code-generator",
-            "version": "v2.2.8",
+            "version": "v2.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CrestApps/laravel-code-generator.git",
-                "reference": "1a40cce9206b5b91078b90d0adf84f65fa1201a1"
+                "reference": "595441bc1a655695ced6e788ac8885cedd169c28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CrestApps/laravel-code-generator/zipball/1a40cce9206b5b91078b90d0adf84f65fa1201a1",
-                "reference": "1a40cce9206b5b91078b90d0adf84f65fa1201a1",
+                "url": "https://api.github.com/repos/CrestApps/laravel-code-generator/zipball/595441bc1a655695ced6e788ac8885cedd169c28",
+                "reference": "595441bc1a655695ced6e788ac8885cedd169c28",
                 "shasum": ""
             },
             "require": {
@@ -2537,7 +2537,7 @@
                 "Alhayek",
                 "CrestApps",
                 "Majd Alhayek",
-                "Mike Alhayek",
+                "Mike CallCompleterFullNameAlhayek",
                 "code generator",
                 "code-generator",
                 "controller creator",
@@ -2555,7 +2555,7 @@
                 "routes creator",
                 "views creator"
             ],
-            "time": "2018-03-20T05:43:51+00:00"
+            "time": "2018-04-25T14:28:36+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2745,7 +2745,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },

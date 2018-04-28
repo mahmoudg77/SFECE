@@ -40,6 +40,22 @@ Route::group(['prefix' => app()->getLocale()], function()
     Route::resource('/menu-link','Dashboard\MenuLinkController',['as'=>'cp']);
   });
 
+  
+	// Authentication Routes...
+	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+	Route::post('login', 'Auth\LoginController@login');
+	Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+	// Registration Routes...
+	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('register', 'Auth\RegisterController@register');
+
+	// Password Reset Routes...
+	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
 });
 Route::get('/', function () {
     return redirect('/ar');
@@ -52,7 +68,10 @@ Route::get('/', function () {
 // Route::put('/posts/edit/{id}','PostsController@update')->name("Post.update");
 
 #Auth Routes
-Auth::routes();
+//Auth::routes();
+
+
+
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 #Socialite Routes

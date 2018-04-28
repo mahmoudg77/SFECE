@@ -36,8 +36,8 @@
             <div class="pull-{{(app()->getLocale()=='ar')?'right':'left'}}">
               <ul class="list-inline">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
-                    <li><a href="{{ url('/register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
+                    <li><a href="{{ route('login') }}" class="btn btn-link site-login"><i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
+                    <li><a href="{{ route('register') }}" class="btn btn-link site-login"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
                 @else
                     <li><a href="#" class="btn btn-link"><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
                     <li><a href="{{ url('/dashboard') }}"><i class="fa fa-btn fa-th-large"></i> Control Panel</a></li>
