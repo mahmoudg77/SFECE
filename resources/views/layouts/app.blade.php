@@ -23,6 +23,7 @@
     
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     
     
 
@@ -42,8 +43,9 @@
                         <i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
                 @else
                     <li><a href="#" class=""><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
-                    <li><a href="{{ url('/dashboard') }}"><i class="fa fa-btn fa-th-large"></i> Control Panel</a></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
+                  <li><a href="{{ url('/logout') }}">{{trans('app.logout')}}</a></li>
+                    <li><a href="{{ url('/dashboard') }}">{{trans('app.control panel')}}</a></li>
+                    
                 @endif
                   <li><a href="#" class="">طلب نشر</a></li>
                   <li><a href="#" class="">رئيس المؤسسة</a></li>
@@ -164,6 +166,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/camera.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
 
     <script>
         $(function(){
@@ -171,7 +174,7 @@
                 thumbnails: true,
                 height: '400px',
             });
-
+            //new WOW().init();
             // jQuery('#camera_wrap_2').camera({
             //     height: '400px',
             //     loader: 'bar',
@@ -180,5 +183,23 @@
             // });
         });
     </script>
+    
+    <script>
+        wow = new WOW(
+          {
+            animateClass: 'animated',
+            offset:       100,
+            callback:     function(box) {
+              console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+            }
+          }
+        );
+        wow.init();
+        document.getElementById('moar').onclick = function() {
+          var section = document.createElement('section');
+          section.className = 'section--purple wow fadeInDown';
+          this.parentNode.insertBefore(section, this);
+        };
+  </script>
 </body>
 </html>

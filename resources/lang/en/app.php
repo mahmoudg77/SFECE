@@ -15,5 +15,6 @@ return [
     'new-account'=>'Don\'t have an account',
     'name'=>'Name',
     'phone'=>'Phone',
+    'control panel'=>'Control Panel',
     
 ];

@@ -15,5 +15,6 @@ return [
     'new-account'=>'ليس لديك حساب',
     'name'=>'اسمك',
     'phone'=>'تليفونك',
+    'control panel'=>'لوحة التحكم',
     
 ];
