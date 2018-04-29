@@ -37,13 +37,13 @@ return [
     'facebook'=>[
         'client_id'=>'214362155985885',
         'client_secret'=>'f55a96cd26e0b5e696fd7f2886258038',
-        'redirect'=>'http://localhost:8000/facebook-callback',
+        'redirect'=>'http://localhost:8000/'.app()->getLocale().'/facebook-callback',
         'version'=>'v2.12'
     ],
     'twitter' => [
       'client_id' => env('TWITTER_KEY','QJTdiXWfewXlyAb2fZQ1c8Enm'),
       'client_secret' => env('TWITTER_SECRET','BecZKf9q2plpzweZiILcKliRvo7FSz8S7BuimGPSTV9SiN9q4O'),
-      'redirect' => env('http://localhost:8000/twitter-callback'),
+      'redirect' => env('http://localhost:8000/'.app()->getLocale().'/twitter-callback'),
     ],
 
 

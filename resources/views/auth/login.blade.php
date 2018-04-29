@@ -54,8 +54,8 @@
                         <div class="form-group">
                             <div class="col-md-12 col-md--offset-4 text-center">
                                 <button type="submit" class="btn btn-primary btn-sm">{{trans ('app.login')}}</button>
-                                <a href="/facebook" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}}</a>
-                                <a href="/twitter" class="btn btn-info btn-sm">{{trans ('app.login twitter')}}</a>
+                                <a href="{{ route('fp.register') }}" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}}</a>
+                                <a href="{{ route('tw.register') }}" class="btn btn-info btn-sm">{{trans ('app.login twitter')}}</a>
 
                                 
                             </div>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="pull-left">
                                 {{trans ('app.new-account')}} ! 
-                                <a href="{{ url('/register') }}" style="padding: 0 10px;"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a>
+                                <a href="{{ route('register') }}" style="padding: 0 10px;"><i class="fa fa-user-plus"></i> {{trans('app.register')}}</a>
                             </div>
                             
                         </div> 

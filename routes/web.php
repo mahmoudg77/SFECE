@@ -43,19 +43,32 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 	// Authentication Routes...
-	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-	Route::post('login', 'Auth\LoginController@login');
-	Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+	Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+	Route::post('/login', 'Auth\LoginController@login');
+	Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 	// Registration Routes...
-	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-	Route::post('register', 'Auth\RegisterController@register');
+	Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('/register', 'Auth\RegisterController@register');
 
 	// Password Reset Routes...
-	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+	Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+	Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
+	
+	Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify')->name('email.verify');
+
+	#Socialite Routes
+	//facebook
+	Route::get('/facebook','Auth\RegisterController@redirectToProvider')->name('fp.register');
+	Route::get('/facebook-callback','Auth\RegisterController@handleProviderCallback')->name('fp.callback');
+	//twitter
+	Route::get('/twitter','Auth\RegisterController@redirectToProviderTwitter')->name('tw.register');
+	Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTwitter')->name('tw.callback');
+
+
 
 });
 Route::get('/', function () {
@@ -73,12 +86,3 @@ Route::get('/', function () {
 
 
 
-Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
-
-#Socialite Routes
-//facebook
-Route::get('/facebook','Auth\RegisterController@redirectToProvider');
-Route::get('/facebook-callback','Auth\RegisterController@handleProviderCallback');
-//twitter
-Route::get('/twitter','Auth\RegisterController@redirectToProviderTwitter');
-Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTwitter');
