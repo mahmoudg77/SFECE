@@ -20,12 +20,12 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
     @endif
-    
+
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    
-    
+
+
 
 </head>
 <body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
@@ -45,7 +45,7 @@
                     <li><a href="#" class=""><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
                   <li><a href="{{ url('/logout') }}">{{trans('app.logout')}}</a></li>
                     <li><a href="{{ url('/dashboard') }}">{{trans('app.control panel')}}</a></li>
-                    
+
                 @endif
                   <li><a href="#" class="">طلب نشر</a></li>
                   <li><a href="#" class="">رئيس المؤسسة</a></li>
@@ -53,7 +53,7 @@
             </div>
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
                 <div class="social-media">
-                    <a href="/{{(app()->getLocale()=='ar')?'en':'ar'}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
+                    <a href="{{route('swichlang',['to'=>(app()->getLocale()=='ar')?'en':'ar'])}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
                     <i class="fa fa-facebook-square fa-lg"></i>
                     <i class="fa fa-twitter-square fa-lg"></i>
                     <i class="fa fa-youtube-square fa-lg"></i>
@@ -140,7 +140,7 @@
         <div style="clear:both;display:block">
         <!-- Footer -->
         <footer class="footer">
-            
+
             <div class="col-sm-6 footer-list">
                 <ul class="list-inline">
                     <li><a href="{{ url('/home') }}">الدورات</a></li>
@@ -149,7 +149,7 @@
                     <li><a href="{{ url('/home') }}">اتصل بنا</a></li>
                 </ul>
             </div>
-            
+
             <div class="col-sm-6">
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
@@ -183,7 +183,7 @@
             // });
         });
     </script>
-    
+
     <script>
         wow = new WOW(
           {

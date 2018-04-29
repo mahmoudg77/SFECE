@@ -19,7 +19,9 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \App\Http\Middleware\AccessMiddleware::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-    ];
+        \App\Http\Middleware\LanguageSwicher::class,
+
+      ];
 
     /**
      * The application's route middleware groups.
@@ -58,5 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'access' => \App\Http\Middleware\AccessMiddleware::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'LanguageSwicher' => \App\Http\Middleware\LanguageSwicher::class,
     ];
 }

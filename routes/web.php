@@ -17,12 +17,13 @@ if (in_array(Request::segment(1), ['ar','en'])) {
  }else{
    App::setLocale('en');
  }
-
-Route::group(['prefix' => app()->getLocale()], function()
+Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], function()
 {
+
   Route::get('/', function () {
       return view('welcome');
   });//->where('lang', '[ar|en]');
+  Route::get('/lang','LanguageController@index')->name('swichlang');
 
   Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
     #Dashboard Routes
@@ -40,7 +41,7 @@ Route::group(['prefix' => app()->getLocale()], function()
     Route::resource('/menu-link','Dashboard\MenuLinkController',['as'=>'cp']);
   });
 
-  
+
 	// Authentication Routes...
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
@@ -58,7 +59,7 @@ Route::group(['prefix' => app()->getLocale()], function()
 
 });
 Route::get('/', function () {
-    return redirect('/ar');
+    return redirect('/ar/');
 });
 
 

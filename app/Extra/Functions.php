@@ -39,5 +39,13 @@ class Functions
       $returned.=Form::close()."\n\r";
       return $returned;
     }
+    public static function langslug($url, $langcode = null, $attributes = array(), $https = null)
+    {
+        $url = URL::to($url, $https);
+
+        if (is_null($langcode)) $langcode = $url;
+
+        return '<a href="'.$url.'"'.static::attributes($attributes).'>'.static::entities($langcode).'</a>';
+    }
 }
 ?>
