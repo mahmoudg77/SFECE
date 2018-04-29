@@ -15,7 +15,7 @@ define('CP_URL', '/dashboard');
 if (in_array(Request::segment(1), ['ar','en'])) {
     App::setLocale(Request::segment(1));
  }else{
-   App::setLocale('en');
+   App::setLocale('ar');
  }
 Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], function()
 {
