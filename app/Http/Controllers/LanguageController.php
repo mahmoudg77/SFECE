@@ -28,9 +28,10 @@ class LanguageController extends Controller
       }else{
 
         if(app()->getLocale()=="en"){
-          $url=preg_replace('/en\//','ar/',$url);
+			 $url=preg_replace('/en\//','ar/',$url);
+          
         }else{
-          $url=preg_replace('/ar\//','en/',$url);
+         $url=preg_replace('/ar\//','en/',$url);
 
         }
       }

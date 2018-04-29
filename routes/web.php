@@ -1,5 +1,5 @@
 <?php
-define('CP_URL', '/dashboard');
+define('CP_URL', 'dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -12,17 +12,24 @@ define('CP_URL', '/dashboard');
 |
 */
 
-if (in_array(Request::segment(1), ['ar','en'])) {
-    App::setLocale(Request::segment(1));
+if (in_array(Request::segment(1), config('translatable.locales'))) {
+   App::setLocale(Request::segment(1));
  }else{
    App::setLocale('ar');
  }
+ 
+/*Route::get('/', function () {
+    return redirect('/ar');
+});*/
+
 Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], function()
 {
 
   Route::get('/', function () {
       return view('welcome');
-  });//->where('lang', '[ar|en]');
+  });
+  
+  
   Route::get('/lang','LanguageController@index')->name('swichlang');
 
   Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
@@ -70,9 +77,6 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 
-});
-Route::get('/', function () {
-    return redirect('/ar/');
 });
 
 

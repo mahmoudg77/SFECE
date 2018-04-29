@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="alert alert-danger">
-{{$data['title']}} - {{$data['name']}}
+404 - File not found !!
 </div>
 @endsection

@@ -11,8 +11,9 @@ return [
     |
     */
     'locales' => [
+		'ar',
         'en',
-        'ar',
+       
         /*'es' => [
             'MX', // mexican spanish
             'CO', // colombian spanish
@@ -78,7 +79,7 @@ return [
     | set it to false.
     |
     */
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------

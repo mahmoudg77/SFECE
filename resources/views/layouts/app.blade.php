@@ -43,8 +43,13 @@
                         <i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
                 @else
                     <li><a href="#" class=""><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
-                  <li><a href="{{ url('/logout') }}">{{trans('app.logout')}}</a></li>
-                    <li><a href="{{ url('/dashboard') }}">{{trans('app.control panel')}}</a></li>
+                  <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">{{trans('app.logout')}}</a>
+					  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						  {{ csrf_field() }}
+					  </form>
+				  </li>
+                    <li><a href="{{ route('cp.dashboard') }}" >{{trans('app.control panel')}}</a></li>
 
                 @endif
                   <li><a href="#" class="">طلب نشر</a></li>
@@ -53,7 +58,7 @@
             </div>
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
                 <div class="social-media">
-                    <a href="{{route('swichlang',['to'=>(app()->getLocale()=='ar')?'en':'ar'])}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
+                    <a href="{{route('swichlang')}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
                     <i class="fa fa-facebook-square fa-lg"></i>
                     <i class="fa fa-twitter-square fa-lg"></i>
                     <i class="fa fa-youtube-square fa-lg"></i>
