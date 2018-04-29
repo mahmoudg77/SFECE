@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use \Dimsav\Translatable\Translatable;
 
-class Menu extends IModel
+class Menu extends Model
 {
     use Translatable;
     protected $fillable=['location'];
