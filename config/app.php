@@ -176,7 +176,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-		Dimsav\Translatable\TranslatableServiceProvider::class,
+		    Dimsav\Translatable\TranslatableServiceProvider::class,
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
         /*
          * Package Service Providers...
          */

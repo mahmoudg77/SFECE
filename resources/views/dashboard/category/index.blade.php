@@ -8,11 +8,12 @@
   <div class="list-group" >
       @foreach($data as $item)
       @if(count($item->Chields)>0)
+      <div>
         <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse">
           <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}}
         </a>
       @else
-        <div class="list-group-item">{{$item->title}} 
+        <div class="list-group-item">{{$item->title}}
           <div class="col col-sm-4 pull-right">
              {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
           </div>
@@ -25,12 +26,16 @@
           <div  class="list-group-item">{{$subitem->title}}
               <div class="col col-sm-4 pull-right">
                 {!!Func::actionLinks('category',$subitem->id,".list-group-item")!!}
-            </div>
+              </div>
               <div class="clearfix"></div>
           </div>
           @endforeach
         </div>
       @endif
+      <div class="col col-sm-4 pull-right">
+        {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+      </div>
+    </div>
       @endforeach
     </div>
 
