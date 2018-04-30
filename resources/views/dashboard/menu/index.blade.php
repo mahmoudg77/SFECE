@@ -7,13 +7,12 @@
 </div>
   <div class="list-group" >
       @foreach($data as $item)
-      @if(count($item->Chields)>0)
+      @if(count($item->Links)>0)
         <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse">
-          <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}} , {{$item->location}}
-        </a>,
-
+          <i class="glyphicon glyphicon-chevron-right"></i>{{$item->name}} , {{$item->location}}
+        </a>
       @else
-        <div class="list-group-item">{{$item->title}}
+        <div class="list-group-item">{{$item->name}}
           <div class="col col-sm-4 pull-right">
              {!!Func::actionLinks('menu',$item->id,".list-group-item")!!}
           </div>
@@ -23,7 +22,7 @@
       @if(count($item->Links)>0)
         <div class="list-group collapse" id="{{$item->id}}">
           @foreach($item->Links as $link)
-          <div  class="list-group-item">{{$link->title}}
+          <div  class="list-group-item">{{$link->name}}
               <div class="col col-sm-4 pull-right">
                 {!!Func::actionLinks('menu-link',$link->id,".list-group-item")!!}
             </div>

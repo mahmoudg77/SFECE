@@ -4,17 +4,41 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
-use App\Models\Category;
+use App\Models\Category as IModel;
 use Auth;
 class CategoryController extends IController
 {
-  protected $model="App\Models\Category";
-
+  protected $viewFolder="dashboard.category";
   public function index()
   {
-    $data=Category::where("id","<>",0)->where("parent_id",0)->get();
-    return view("dashboard.category.index",compact('data'));
+    $data=IModel::where("id","<>",0)->where("parent_id",0)->get();
+    return view($this->viewFolder.".index",compact('data'));
   }
+
+  public function edit($id)
+  {
+    $data=IModel::find($id);
+    return view($this->viewFolder.".edit",compact('data'));
+  }
+  public function create()
+  {
+      return view($this->viewFolder.".create");
+  }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+      //
+      $class=new $this->model;
+      $data=$class->find($id);
+       return view($this->viewFolder.".show", compact('data'));
+  }
+
+
   /**
    * Store a newly created resource in storage.
    *
@@ -26,9 +50,8 @@ class CategoryController extends IController
       //
       $category=$request->except(['_token']);
       $category['created_by']=Auth::user()->id;
-      //print_r($category);
-
-      if(Category::create($category)){
+ 
+      if(IModel::create($category)){
         return  $this->Success("Save Success",$category);
       }else{
         return  $this->Error("Error while save data !!");
@@ -43,11 +66,33 @@ class CategoryController extends IController
       //$category['id']=$id;
       //print_r($category);
 
-      if(Category::findOrFail($id)->update($category)){
+      if(IModel::findOrFail($id)->update($category)){
         return  $this->Success("Save Success",$category);
       }else{
         return  $this->Error("Error while save data !!");
       }
 
   }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+      //
+      $data=IModel::find($id);
+      //$data->deleted_by=Auth::user()->id;
+      //$data->save();
+
+      if($data->destroy($id)){
+        return  $this->Success("Delete Success",$data);
+      }else{
+        return  $this->Error("Error while delete data !!");
+      }
+  }
+
+
 }

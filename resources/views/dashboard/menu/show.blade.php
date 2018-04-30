@@ -4,7 +4,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Title</label>
             <div class="col-md-10">
-              {{$data->title}}
+              {{$data->name}}
             </div>
         </div>
 
@@ -14,7 +14,7 @@
             <div class="col-md-10">
                 <ul>
                   @foreach($data->Links as $link)
-                      <li>{{$link->title}}</li>
+                      <li>{{$link->name}}</li>
                   @endforeach
               </ul>
             </div>
