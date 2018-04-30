@@ -26,7 +26,9 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 {
 
     Route::get('/','PostsController@getLastPosts');	
-    Route::get('/page/{id}','PostsController@getPostsByID');	
+    Route::get('/page/{id}','PostsController@getPostsByCatID')->name('getPostsByCatID');	
+    Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');	
+    
 //  Route::get('/', function () {
 //      return view('welcome');
 //  });
