@@ -25,9 +25,11 @@ if (in_array(Request::segment(1), config('translatable.locales'))) {
 Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], function()
 {
 
-  Route::get('/', function () {
-      return view('welcome');
-  });
+    Route::get('/','PostsController@getLastPosts');	
+    Route::get('/page/{id}','PostsController@getPostsByID');	
+//  Route::get('/', function () {
+//      return view('welcome');
+//  });
   
   
   Route::get('/lang','LanguageController@index')->name('swichlang');
