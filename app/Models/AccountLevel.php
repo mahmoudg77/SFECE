@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AccountLevel extends IModel
+class AccountLevel extends Model
 {
     //
+    
     public function Roles()
     {
       return explode(',', $this->role);

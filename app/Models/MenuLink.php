@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MenuLink extends IModel
+class MenuLink extends Model
 {
     public function Menu()
     {

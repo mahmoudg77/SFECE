@@ -45,11 +45,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url (CP_URL)}}">Dashboard</a>
+          <a class="navbar-brand" href="{{ route('cp.dashboard')}}">Dashboard</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="{{$qmenu==null?'active':''}}"><a href="{{ url (CP_URL)}}">cpanel</a></li>
+            {{--<li class="{{$qmenu==null?'active':''}}"><a href="{{route('cp.dashboard')}}">cpanel</a></li>--}}
             @foreach($mainmenu as $key=>$menu)
               @if(Auth::user()->hasRoles($menu['roles']))
                 <li class="{{$qmenu==$key?'active':''}}"><a  href="{{$menu['url']}}">{{$key}}</a></li>
@@ -77,8 +77,9 @@
                   </form>
                 </li>
             @endif
-
-
+                <li>
+                <a href="{{route('swichlang')}}">{{(app()->getLocale()=='ar')?'en':'ع'}}</a>
+                </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

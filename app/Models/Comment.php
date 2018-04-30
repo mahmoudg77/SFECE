@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends IModel
+class Comment extends Model
 {
     public function Post()
     {

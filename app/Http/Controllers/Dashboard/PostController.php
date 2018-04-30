@@ -20,12 +20,13 @@ class PostController extends IController
   public function index()
   {
       if(request()->has("type")){
+        $post_type_id=request()->get('type');
         $data=IModel::where('post_type_id',request()->get("type"))->get();
       }else{
         $data=IModel::all();
       }
 
-      return view($this->viewFolder.".index",compact('data'));
+      return view($this->viewFolder.".index",compact('data','post_type_id'));
   }
 
   public function edit($id)
@@ -35,7 +36,8 @@ class PostController extends IController
   }
   public function create()
   {
-      return view($this->viewFolder.".create");
+      $post_type_id=request()->get('type');
+      return view($this->viewFolder.".create",compact('post_type_id'));
   }
   /**
    * Display the specified resource.
