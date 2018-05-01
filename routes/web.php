@@ -25,10 +25,15 @@ if (in_array(Request::segment(1), config('translatable.locales'))) {
 Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], function()
 {
 
+<<<<<<< HEAD
     Route::get('/','PostsController@getLastPosts');	
     Route::get('/page/{id}','PostsController@getPostsByCatID')->name('getPostsByCatID');	
     Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');	
  
+=======
+    Route::get('/','PostsController@getLastPosts');
+    Route::get('/page/{id}','PostsController@getPostsByID');
+>>>>>>> 09cab7d5349bf9fb4f3a8e86112430aea0717e83
 //  Route::get('/', function () {
 //      return view('welcome');
 //  });
