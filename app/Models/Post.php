@@ -20,17 +20,14 @@ class Post extends Model
     {
       return $this->belongsTo("App\Models\PostType","post_type_id");
     }
-
     public function Category()
     {
       return $this->belongsTo("App\Models\Category","category_id");
     }
-
     public function Tags()
     {
       return $this->belongsToMany("App\Models\Tag");
     }
-
     public function Files()
     {
       return $this->hasMany("App\Models\File","model_id","id");
