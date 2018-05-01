@@ -79,7 +79,6 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 	Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTwitter')->name('tw.callback');
 
 
-
 });
 
 
