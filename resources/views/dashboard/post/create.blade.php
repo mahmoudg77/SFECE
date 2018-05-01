@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
 {{Form::model(null, ['route'=>["cp.posts.store"],"method"=>"POST"])}}
-<?php //`title`, `body`, `pub_date`,`post_type_id`, `category_id`, `is_published`, `created_by`, `updated_by`, `created_at`, `updated_at` ?>
 <div class="form-horizontal">
         <div class="form-group">
           <ul class="nav nav-tabs">
@@ -34,12 +33,16 @@
               {{Form::select("category_id",App\Models\Category::listsTranslations('title')->pluck('title','id'),null,['class'=>'form-control'])}}
             </div>
         </div>
+        @if($post_type_id==1)
+            {{Form::hidden('post_type_id',$post_type_id)}}
+        @else
         <div class="form-group">
             <label class="control-label col-md-2">Post Type</label>
             <div class="col-md-10">
-              {{Form::select("post_type_id",App\Models\PostType::pluck('name','id'),null,['class'=>'form-control'])}}
+              {{Form::select("post_type_id",App\Models\PostType::pluck('name','id'),$post_type_id,['class'=>'form-control'])}}
             </div>
         </div>
+        @endif
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>

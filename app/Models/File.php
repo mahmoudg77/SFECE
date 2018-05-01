@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends IModel
+class File extends Model
 {
 
     public function RelatedObject()

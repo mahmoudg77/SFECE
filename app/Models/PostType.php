@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PostType extends IModel
+class PostType extends Model
 {
     //
     public function Posts()

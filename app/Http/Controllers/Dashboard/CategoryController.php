@@ -33,8 +33,8 @@ class CategoryController extends IController
   public function show($id)
   {
       //
-      $class=new $this->model;
-      $data=$class->find($id);
+      //$class=new $this->model;
+      $data=IModel::find($id);
        return view($this->viewFolder.".show", compact('data'));
   }
 

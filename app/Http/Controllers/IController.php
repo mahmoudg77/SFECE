@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Auth;
 use View;
+use Redirect;
 class IController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -184,7 +185,7 @@ class IController extends BaseController
 
          $index_route=substr($route,0,-1 * strlen(explode(".", $route)[count(explode(".", $route))-1]))."index";
 
-         return redirect()->route($index_route);
+         return Redirect::back();
          //return "<div class='alert alert-success'>".$message."</div>";
        }
     }

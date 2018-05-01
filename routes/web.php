@@ -17,7 +17,7 @@ if (in_array(Request::segment(1), config('translatable.locales'))) {
  }else{
    App::setLocale('ar');
  }
- 
+
 /*Route::get('/', function () {
     return redirect('/ar');
 });*/
@@ -28,12 +28,12 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::get('/','PostsController@getLastPosts');	
     Route::get('/page/{id}','PostsController@getPostsByCatID')->name('getPostsByCatID');	
     Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');	
-    
+ 
 //  Route::get('/', function () {
 //      return view('welcome');
 //  });
-  
-  
+
+
   Route::get('/lang','LanguageController@index')->name('swichlang');
 
   Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
@@ -65,10 +65,10 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 	// Password Reset Routes...
 	Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 	Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-	Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+	Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
 	Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 
-	
+
 	Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify')->name('email.verify');
 
 	#Socialite Routes
@@ -91,6 +91,3 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 #Auth Routes
 //Auth::routes();
-
-
-

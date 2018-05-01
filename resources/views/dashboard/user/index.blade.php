@@ -2,25 +2,25 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.posts.create',['type'=>$post_type_id])}}">Create New</a>
+  <a class="btn btn-success pull-right" href="{{route('cp.user.create')}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
-        <th>Title</th>
+        <th>Name</th>
         <th>Type</th>
-        <th>Publish Date</th>
-        <th>Author</th>
+        <th>Email</th>
+        <th>Register Date</th>
         <th></th>
       </tr>
     </thead>
-    @foreach($data as $post)
+    @foreach($data as $item)
       <tr>
-          <td>{{$post->title}}</td>
-          <td>{{$post->postType->name}}</td>
-          <td>{{$post->pub_date}}</td>
-          <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
-          <td>
-              {!!Func::actionLinks('posts',$post->id,"")!!}
+          <td>{{$item->name}}</td>
+          <td>{{$item->email}}</td>
+          <td>{{$item->AccountLevel->name}}</td>
+          <td>{{$item->created_at}}</td>
+           <td>
+              {!!Func::actionLinks('user',$item->id,"")!!}
           </td>
       </tr>
     @endforeach

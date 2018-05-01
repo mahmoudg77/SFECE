@@ -9,9 +9,22 @@
       @foreach($data as $item)
       @if(count($item->Chields)>0)
       <div>
-        <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse">
-          <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}}
-        </a>
+
+            <div class="row">
+
+
+            <div class="col col-sm-6 pull-left">
+                <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse"> <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}}</a>
+            </div>
+
+            <div class="col col-sm-6 pull-right">
+                {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+            </div>
+                <div class="clearfix"></div>
+
+        </div>
+
+
       @else
         <div class="list-group-item">{{$item->title}}
           <div class="col col-sm-4 pull-right">
@@ -32,9 +45,7 @@
           @endforeach
         </div>
       @endif
-      <div class="col col-sm-4 pull-right">
-        {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
-      </div>
+
     </div>
       @endforeach
     </div>

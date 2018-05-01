@@ -27,7 +27,6 @@ class Category extends Model
     }
 }
 
-// models/CountryTranslation.php
 class CategoryTranslation extends Model {
 
     public $timestamps = false;
