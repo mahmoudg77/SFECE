@@ -30,7 +30,7 @@
                 <h4>{{trans('app.categories')}}</h4>
                 <ul class="list-group">
                     @foreach($allcats as $cat)
-                        <li class="list-group-item"><a href="{{ $cat->id}}">{{ $cat->title}}</a></li>
+                        <li class="list-group-item"><a href="/ar/page/{{ $cat->id}}">{{ $cat->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -39,7 +39,7 @@
                 <h4>{{trans('app.last articles')}}</h4>
                 <ul class="list-group">
                     @foreach($lastPosts as $lastpost)
-                        <li class="list-group-item"><a href="{{ $lastpost->id}}">{{ $lastpost->title}}</a></li>
+                        <li class="list-group-item"><a href="/ar/single/{{ $lastpost->id}}">{{ $lastpost->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
