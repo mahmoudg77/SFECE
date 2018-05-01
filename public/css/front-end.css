@@ -207,6 +207,14 @@ a.site--login:hover {
 }
 /**end login-page**/
 
+/*start single post */
+.single-box{
+    padding: 10px;
+    border:1px solid #ddd;
+    margin:20px 0;
+}
+/*end single post*/
+
 /*start footer*/
 .footer{
 	background-color: #224668 !important;

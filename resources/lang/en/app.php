@@ -16,5 +16,7 @@ return [
     'name'=>'Name',
     'phone'=>'Phone',
     'control panel'=>'Control Panel',
+    'categories'=>'Categpries',
+    'last articles'=>'Last Articles',
     
 ];

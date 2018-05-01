@@ -16,5 +16,7 @@ return [
     'name'=>'اسمك',
     'phone'=>'تليفونك',
     'control panel'=>'لوحة التحكم',
+    'categories'=>'أقسام الموقع',
+    'last articles'=>'أحدث المقالات',
     
 ];
