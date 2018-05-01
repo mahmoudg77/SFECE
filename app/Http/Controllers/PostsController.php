@@ -12,7 +12,6 @@ class PostsController extends Controller
     public function getLastPosts(){
         
         $lastPosts = Post::orderBy('id', 'desc')->take(6)->get();
-        $lastPostsTrans = 
         
         return view('welcome', compact('lastPosts'));
     }
