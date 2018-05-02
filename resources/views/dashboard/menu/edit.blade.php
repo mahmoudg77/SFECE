@@ -28,6 +28,18 @@
         </div>
       {!! Form::close() !!}
       </div>
+      <div class="row">
+        <h3>Links</h3>
+        <hr/>
+        <div id="divLinks" class="col col-xs-12">
+
+        </div>
+      </div>
     </div>
 </div>
+<script>
+$(function(){
+  $("#divLinks").load("{{route('cp.menu-link.index',['m'=>$data->id])}}");
+});
+</script>
 @stop

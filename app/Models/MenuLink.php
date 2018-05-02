@@ -9,9 +9,15 @@ class MenuLink extends Model
 {
     use Translatable;
     protected $fillable = ['menu_id','customlink','category_id','parent_id','hasSubs'];
+    public $translatedAttributes = ['title'];
+
     public function Menu()
     {
       return $this->belongsTo("App\Models\Menu");
+    }
+    public function Links()
+    {
+      return $this->hasMany('App\Models\MenuLink','parent_id');
     }
 }
 
