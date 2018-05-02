@@ -9,7 +9,7 @@ use Func;
 use Auth;
 class PostController extends IController
 {
-
+  var $permitionname="المقالات";
   protected $viewFolder="dashboard.post";
 
   /**

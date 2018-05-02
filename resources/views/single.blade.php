@@ -13,13 +13,13 @@
             <div class="single-content">
                 <h2>{{ $singlePost->title }}</h2>
                 <div class="bar-data">
-                    <span><i class="fa fa-user"></i> {{ $singlePost->Creator->name }}</span>
+                    <span><i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}</span>
                     <span><i class="fa fa-folder"></i> 
                         <a href="/ar/page/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
                     <span><i class="fa fa-clock"></i> <small>{{ $singlePost->created_at->toDateString() }}</small></span>
                 </div>
                 <div class="uderline" style="padding:10px 0.border:1px solid #ddd;"></div>
-                <p>{{ $singlePost->body }}</p>
+                <p>{!! $singlePost->body !!} </p>
             </div>
         </div>
     </div>

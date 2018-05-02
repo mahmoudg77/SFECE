@@ -72,8 +72,8 @@ class IController extends BaseController
             'url'=>route('cp.post-type.index',['menu'=>'Setting']),
             'roles'=>['admin'],
             'submenu'=>[
-              'Post Type'=>['url'=>route('cp.post-type.index',['menu'=>'Setting']),'roles'=>['admin'],'submenu'=>null],
-              'Account Levels'=>['url'=>route('cp.account-level.index',['menu'=>'Setting']),'roles'=>['admin'],'submenu'=>null],
+              //'Post Type'=>['url'=>route('cp.post-type.index',['menu'=>'Setting']),'roles'=>['admin'],'submenu'=>null],
+              //'Account Levels'=>['url'=>route('cp.account-level.index',['menu'=>'Setting']),'roles'=>['admin'],'submenu'=>null],
             ]];
 
          View::share('cp_menu',$cp_menu);

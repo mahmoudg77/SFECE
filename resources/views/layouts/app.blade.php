@@ -68,7 +68,7 @@
           <div class="clear-fix"></div>
           <div class="header">
               <div class="col-xs-12">
-                <img src="../images/logo.png" class="img-responsive center-block" alt="" title=""/>
+                <img src="{{asset('images/logo.png')}}" class="img-responsive center-block" alt="" title=""/>
                 <h3>المؤسسة العلمية للطفولة المبكرة</ h3>
               </div>
 
