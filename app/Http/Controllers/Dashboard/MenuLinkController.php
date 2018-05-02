@@ -19,6 +19,7 @@ class MenuLinkController extends IController
   public function index()
   {
     if(request()->has("m")){
+
       $m=request()->get('m');
       $data=IModel::where('menu_id',request()->get("m"))->get();
     }else{
