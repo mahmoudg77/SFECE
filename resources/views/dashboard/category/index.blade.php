@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create')}}">Create New</a>
+  <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create',['menu'=>$sel_menu])}}">Create New</a>
   <div class="clearfix"></div>
 </div>
   <div class="list-group" >

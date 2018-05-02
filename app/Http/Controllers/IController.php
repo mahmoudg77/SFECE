@@ -77,6 +77,7 @@ class IController extends BaseController
             ]];
 
          View::share('cp_menu',$cp_menu);
+         View::share('sel_menu',request()->get('menu'));
     }
     // function myview(){
     //   global $request;

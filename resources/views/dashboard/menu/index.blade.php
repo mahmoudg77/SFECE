@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
  <div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.menu.create')}}">Create New</a>
+  <a class="btn btn-success pull-right" href="{{route('cp.menu.create',['menu'=>$sel_menu])}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
