@@ -3,29 +3,35 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\SecPermission;
 class AccountLevel extends Model
 {
     //
-    
+
     public function Roles()
     {
-      return explode(',', $this->role);
+      return $this->belongsToMany('App\Models\SecGroup','account_levels_sec_groups_relationship');
     }
-    public function hasRole($value='')
+    public function hasRole($role)
     {
-      return in_array($value, $this->Roles());
+      return $this->Roles()->where('name',$role)->get()!=null;
     }
     public function hasRoles($arrRoles)
     {
 
-      foreach ((array)$arrRoles as $key => $role) {
-         return in_array($role, $this->Roles());
-      }
-      return false;
-    }
+      //dd($this->Roles()->get());
+         return $this->Roles()->where('groupkey',(array)$arrRoles)->count();
+
+     }
     public function Accounts()
     {
       return $this->hasMany('App\User');
+    }
+    public function allow($ctrl,$action)
+    {
+          $ids=$this->Roles()->pluck('sec_groups.id')->toArray();
+          //dd($ids);
+      //dd(SecPermission::whereIn('sec_group_id',$ids)->where('controller',$ctrl)->where('action',$action)->get());
+        return SecPermission::whereIn('sec_group_id',$ids)->where('controller',$ctrl)->where('action',$action)->count();
     }
 }

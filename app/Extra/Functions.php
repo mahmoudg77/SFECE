@@ -47,5 +47,33 @@ class Functions
 
         return '<a href="'.$url.'"'.static::attributes($attributes).'>'.static::entities($langcode).'</a>';
     }
+
+    public static function controllers(){
+
+        $list=[];
+        foreach (glob(dirname(__FILE__)."/../Http/Controllers/*.php") as $filename)
+          {
+              $name=explode('/',$filename);
+              $name=$name[count($name)-1];
+              include_once $filename;
+          }
+          foreach (glob(dirname(__FILE__)."/../Http/Controllers/Dashboard/*.php") as $filename)
+          {
+              $name=explode('/',$filename);
+              $name=$name[count($name)-1];
+               include_once $filename;
+          }
+
+
+        foreach(get_declared_classes() as $class){
+            if(strpos($class,'App\Http\Controllers\\',0)!==false){
+              $obj=new $class;
+                $list[$class]=property_exists($class,'metaTitle')&&$obj->metaTitle!=null ?$obj->metaTitle:str_replace('App\Http\Controllers\\','',$class);//$obj->metaTitle;
+            }
+        }
+        asort($list);
+        return $list;
+     }
+
 }
 ?>

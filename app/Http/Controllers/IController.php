@@ -15,11 +15,27 @@ use Redirect;
 class IController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    var $metaTitle="";
+    protected $basic_methods=[
+                  'index'=>'Show table data',
+                  'show'=>'Show specific item',
+                  'edit'=>'Modify specific item',
+                  'create'=>'Create new item',
+                  'destroy'=>'Delete specific item',
+                ];
+    protected $post_methods=[
+                'update'=>'edit',
+                'store'=>'create',
+                'destroy'=>'destroy',
+              ];
+    var $methods=[];
+    var $postmethods=[];
 
     public function __construct()
     {
         $this->middleware('access');
-
+        $this->methods=array_merge($this->basic_methods, $this->methods);
+        $this->postmethods=array_merge($this->post_methods, $this->postmethods);
         //Category Menu
         $cp_menu=[
           'Category'=>[

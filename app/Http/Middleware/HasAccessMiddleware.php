@@ -3,25 +3,26 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
-
-class AccessMiddleware
+use Route;
+use Auth;
+class HasAccessMiddleware
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        // if (Auth::check()) {
-        //
-        //     return $request->method;
-        // }
 
+        $route=Route::current()->action['uses'];
+        $ctrl=explode("@",$route)[0];
+        $action=explode("@",$route)[1];
+        if(!Auth::user()->allow($ctrl,$action)){
+          return redirect('/');
+        }
         return $next($request);
     }
 }

@@ -38,4 +38,8 @@ class User extends Authenticatable
     {
       return $this->name;
     }
+    public function allow($ctrl,$action)
+    {
+      return $this->AccountLevel->allow($ctrl,$action);
+    }
 }
