@@ -26,15 +26,15 @@ class SingleController extends Controller
         //$relatedPosts = post::where('category_id', $lastPosts->category_id)->get();
         
         // get the related categories id of the $post
-        $related_category_ids = $singlePost->Category()->pluck('Category.id');
+//        $related_category_ids = $singlePost->Category()->pluck('Category.id');
 
         // get the related post of the categories $related_category_ids
-        $related_posts = Post::whereHas('Category', function ($q) use($related_category_ids) {
-                $q->whereIn('category_id', $related_category_ids)
-            })
-            ->where('id', '<>', $singlePost->id)
-            ->take(3)
-            ->get();
+//        $related_posts = Post::whereHas('Category', function ($q) use($related_category_ids) {
+//                $q->whereIn('category_id', $related_category_ids)
+//            })
+//            ->where('id', '<>', $singlePost->id)
+//            ->take(3)
+//            ->get();
 
         if($singlePost->post_type_id==1){
             return view('page', compact('singlePost', 'lastPosts', 'allcats'));
