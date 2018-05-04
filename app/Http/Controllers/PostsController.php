@@ -15,11 +15,4 @@ class PostsController extends Controller
         
         return view('welcome', compact('lastPosts'));
     }
-    
-    public function getPostsByCatID($id){
-        
-        $allPostsByCat = post::where('category_id', '=', $id)->get();
-        
-        return view('page', compact('allPostsByCat'));
-    }
 }

@@ -11,7 +11,7 @@
 
   <div class="row" style ="padding: 0 15px;margin--bottom: 20px;">
 @foreach($lastPosts as $post)
-    <a href="/ar/single/{{ $post->id }}">
+    <a href="/ar/{{ $post->slug }}">
     <div class="col-sm-4">
         <div class="panel panel-default blog wow fadeInDown">
             <div class="panel-body" style= "padding:0;">

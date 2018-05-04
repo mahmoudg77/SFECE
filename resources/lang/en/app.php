@@ -18,5 +18,5 @@ return [
     'control panel'=>'Control Panel',
     'categories'=>'Categpries',
     'last articles'=>'Last Articles',
-    
+    'related posts'=>'Relaed Posts',
 ];
