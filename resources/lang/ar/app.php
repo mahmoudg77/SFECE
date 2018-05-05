@@ -18,5 +18,6 @@ return [
     'control panel'=>'لوحة التحكم',
     'categories'=>'أقسام الموقع',
     'last articles'=>'أحدث المقالات',
+    'related posts'=>'مقالات ذات صله',
     
 ];

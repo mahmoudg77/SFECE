@@ -79,7 +79,8 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
     Route::get('/','PostsController@getLastPosts');
-    Route::get('/page/{id}','PostsController@getPostsByCatID')->name('getPostsByCatID');
+    Route::get('/category/{id}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    //Route::get('/{slug}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
 
     Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');
     Route::get('/{slug}','SingleController@getPostBySlug')->name('getPostBySlug');
