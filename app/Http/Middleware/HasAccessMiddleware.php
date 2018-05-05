@@ -20,9 +20,15 @@ class HasAccessMiddleware
         $route=Route::current()->action['uses'];
         $ctrl=explode("@",$route)[0];
         $action=explode("@",$route)[1];
+        $obj=new $ctrl;
+        //dd($obj->methods);
+        if(in_array($action,array_keys($obj->postmethods))){
+          $action=$obj->postmethods[$action];
+        }
         if(!Auth::user()->allow($ctrl,$action)){
           return redirect('/');
         }
+
         return $next($request);
     }
 }

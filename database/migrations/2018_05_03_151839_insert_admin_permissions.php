@@ -15,13 +15,21 @@ class InsertAdminPermissions extends Migration
     {
 
         foreach (Func::controllers() as $ctrl => $value) {
-          DB::table('sec_permissions')->insert([
-            ['sec_group_id' => '1','controller' => $ctrl,'action'=>'index','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
-            ['sec_group_id' => '1','controller' => $ctrl,'action'=>'create','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
-            ['sec_group_id' => '1','controller' => $ctrl,'action'=>'edit','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
-            ['sec_group_id' => '1','controller' => $ctrl,'action'=>'show','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
-            ['sec_group_id' => '1','controller' => $ctrl,'action'=>'destroy','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
-          ]);
+          $arr=[];
+          $obj=new $ctrl;
+          if(!property_exists($ctrl,'methods')) continue;
+          foreach ($obj->methods as $key => $value) {
+            $arr[]=['sec_group_id' => '1','controller' => $ctrl,'action'=>$key,'created_by'=>1,'created_at'=>date("Y-m-d H:i:n")];
+          }
+
+             DB::table('sec_permissions')->insert($arr);
+           // DB::table('sec_permissions')->insert([
+          //   ['sec_group_id' => '1','controller' => $ctrl,'action'=>'index','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
+          //   ['sec_group_id' => '1','controller' => $ctrl,'action'=>'create','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
+          //   ['sec_group_id' => '1','controller' => $ctrl,'action'=>'edit','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
+          //   ['sec_group_id' => '1','controller' => $ctrl,'action'=>'show','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
+          //   ['sec_group_id' => '1','controller' => $ctrl,'action'=>'destroy','created_by'=>1,'created_at'=>date("Y-m-d H:i:n")],
+          // ]);
         }
 
     }

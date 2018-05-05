@@ -9,6 +9,7 @@
             @endforeach
 
           </ul>
+        
           <div class="tab-content">
             @foreach(config('translatable.locales') as $key)
             <div id="data_{{$key}}" class="tab-pane fade in {{($key==app()->getLocale())?'active':''}}">
@@ -50,4 +51,6 @@
         </div>
     </div>
 {{Form::close()}}
+
+
 @stop

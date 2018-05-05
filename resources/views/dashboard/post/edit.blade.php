@@ -9,6 +9,12 @@
         @endforeach
 
     </ul>
+    <div class="form-group">
+      <label class="control-label col-md-2">Url</label>
+      <div class="col-md-10">
+        {{Form::text("slug",$data->slug,['class'=>'form-control'])}}
+      </div>
+    </div>
     <div class="tab-content">
         @foreach(config('translatable.locales') as $key)
             <div id="data_{{$key}}" class="tab-pane fade in {{($key==app()->getLocale())?'active':''}}">

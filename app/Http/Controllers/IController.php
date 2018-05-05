@@ -26,7 +26,6 @@ class IController extends BaseController
     protected $post_methods=[
                 'update'=>'edit',
                 'store'=>'create',
-                'destroy'=>'destroy',
               ];
     var $methods=[];
     var $postmethods=[];

@@ -66,6 +66,7 @@ class PostController extends IController
       $category['created_by']=Auth::user()->id;
       $data['pub_date']=date('Y-m-d H:i:n');
       $data['is_published']=1;
+      $data['slug']=str_slug($data[app()->getLocale()]['title'],'_');
 
 
       if(IModel::create($data)){

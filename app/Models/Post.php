@@ -13,7 +13,7 @@ class Post extends Model
 {
     //
     use Translatable;
-    protected $fillable=['pub_date','post_type_id','category_id','is_published','created_by'];
+    protected $fillable=['pub_date','post_type_id','category_id','is_published','created_by','slug'];
     public $translatedAttributes = ['title','body'];
 
     public function PostType()
