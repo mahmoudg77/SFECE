@@ -19,19 +19,25 @@ class PostController extends IController
    */
   public function index()
   {
+
+
+      $data=Func::applyForceFilter(IModel::class);
       if(request()->has("type")){
         $post_type_id=request()->get('type');
-        $data=IModel::where('post_type_id',request()->get("type"))->get();
-      }else{
-        $data=IModel::all();
+        $data=$data->where('post_type_id',request()->get("type"));
       }
+      //$data->get();
 
       return view($this->viewFolder.".index",compact('data','post_type_id'));
   }
 
   public function edit($id)
   {
-    $data=IModel::find($id);
+    $data=Func::applyForceFilter(IModel::class);
+    $data=$data->find($id);
+    if($data==null){
+      return "Unauthorized !";
+    }
     return view($this->viewFolder.".edit",compact('data'));
   }
   public function create()

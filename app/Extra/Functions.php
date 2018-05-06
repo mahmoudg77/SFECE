@@ -75,5 +75,17 @@ class Functions
         return $list;
      }
 
+     public static function applyForceFilter($class)
+     {
+       $data=$class::all();
+       $force_filter=request()->get('force_filter');
+
+       if($force_filter){
+           foreach ($force_filter as $key => $value) {
+            $data=$data->where($value[0],$value[1],$value[2]);
+          }
+        }
+        return $data;
+     }
 }
 ?>

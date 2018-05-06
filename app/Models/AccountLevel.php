@@ -32,6 +32,6 @@ class AccountLevel extends Model
           $ids=$this->Roles()->pluck('sec_groups.id')->toArray();
           //dd($ids);
       //dd(SecPermission::whereIn('sec_group_id',$ids)->where('controller',$ctrl)->where('action',$action)->get());
-        return SecPermission::whereIn('sec_group_id',$ids)->where('controller',$ctrl)->where('action',$action)->count();
+        return SecPermission::whereIn('sec_group_id',$ids)->where('controller',$ctrl)->where('action','Like','%'.$action.'%')->get();
     }
 }
