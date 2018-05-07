@@ -37,7 +37,7 @@
 
         <div class="form-group col-sm-6">
           {!! Form::label('Parent?') !!}
-          {!! Form::select('parent_id', App\Models\Category::listsTranslations('title')->pluck('title','id'), null, array('class'=>'form-control', 'placeholder'=>'Select parent')) !!}
+          {!! Form::select('parent_id', App\Models\Category::listsTranslations('title')->pluck('title','id'), null, array('class'=>'form-control', 'placeholder'=>'Select parent'), 0) !!}
         </div>
 
 

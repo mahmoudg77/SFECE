@@ -236,9 +236,9 @@ a.site--login:hover {
     min--height: 500px;
 }
 .single-cat{
-    border:1px solid #fff;
-    box-shadow: 0px 2px 3px 1px #ddd;
-    min-height: 300px;
+    bord-er:1px solid #fff;
+    box--shadow: 0px 2px 3px 1px #ddd;
+    min-height: 200px;
     margin-bottom: 20px;
 }
 .single-sidebar .single-cat h4{
@@ -249,7 +249,7 @@ a.site--login:hover {
 }
 .single-cat ul{
     margin-top:10px;
-    padding:0 10px;
+    padding:0;
 }
 .single-cat li a{
     text-decoration: none;

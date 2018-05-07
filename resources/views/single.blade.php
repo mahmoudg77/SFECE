@@ -13,10 +13,13 @@
             <div class="single-content">
                 <h2>{{ $singlePost->title }}</h2>
                 <div class="bar-data">
-                    <span><i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}</span>
-                    <span><i class="fa fa-folder"></i>
+                    <small>
+                        <span><i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}</span>
+                        <span><i class="fa fa-folder"></i>
                         <a href="/ar/category/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
-                    <span><i class="fa fa-clock"></i> <small>{{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small></span>
+                        <span><i class="fa fa-clock"></i> 
+                        <small>{{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small></span>
+                    </small>
                 </div>
                 <div class="uderline" style="padding:10px 0.border:1px solid #ddd;"></div>
                 <p>{!! $singlePost->body !!} </p>
@@ -68,7 +71,12 @@
                 </ul>
             </div>
 
-
+            <div class="single-cat">
+                <h4>{{trans('app.follow facebook')}}</h4>
+                <ul class="list-group">
+                    
+                </ul>
+            </div>
         </div>
     </div>
 </section>

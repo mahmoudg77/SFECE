@@ -19,5 +19,6 @@ return [
     'categories'=>'أقسام الموقع',
     'last articles'=>'أحدث المقالات',
     'related posts'=>'مقالات ذات صله',
+    'follow facebook'=>'تابعنا على الفيسبوك',
     
 ];
