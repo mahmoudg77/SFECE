@@ -37,7 +37,12 @@
           {!! Form::label('Link') !!}
           {!! Form::text('customlink', null, array('required', 'class'=>'form-control', 'placeholder'=>'Add location ....')) !!}
         </div>
-        <div class="form-group">
+          <div class="form-group col-sm-6">
+              {!! Form::label('Parent') !!}
+              {!! Form::select('parent_id',App\Models\MenuLink::listsTranslations('title')->pluck('title','id'),null, array( 'class'=>'form-control', 'placeholder'=>'Root')) !!}
+          </div>
+
+          <div class="form-group">
            <label class="control-label col-md-2">Category</label>
            <div class="col-md-10">
              {{Form::select("category_id",App\Models\Category::listsTranslations('title')->pluck('title','id'),null,['class'=>'form-control'])}}

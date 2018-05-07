@@ -69,7 +69,7 @@
           <div class="header">
               <div class="col-xs-12">
                 <img src="{{asset('images/logo.png')}}" class="img-responsive center-block" alt="" title=""/>
-                <h3>المؤسسة العلمية للطفولة المبكرة</ h3>
+                <h3>المؤسسة العلمية للطفولة المبكرة</h3>
               </div>
 
           </div>
@@ -91,30 +91,46 @@
                 <div class="collapse navbar-collapse pull-{{(app()->getLocale()=='ar')?'right':'left'}}" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
-                        <li class="active"><a href="{{ url('/') }}" >الرئيسية</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                من نحن ؟ <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="#" class="">الرؤية والإهداف</a></li>
-                              <li><a href="#" class="">مجلس الامناء</a></li>
-                              <li><a href="#" class="">المجلس الاستشارى</a></li>
-                              <li><a href="#" class="">اصداراتنا</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ url('/home') }}">المركز</a></li>
-                        <li><a href="{{ url('/home') }}">المجلة</a></li>
-                        <li><a href="{{ url('/home') }}">الأكاديمية</a></li>
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                الفعاليات السنوية <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="#" class="">المنتدى</a></li>
-                              <li><a href="#" class="">المؤتمر</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ url('/home') }}">الاباء والامهات</a></li>
-                        <li><a href="{{ url('/home') }}">اتصل بنا</a></li>
+                        @foreach(App\Models\Menu::where("location","main")->first()->Links()->where('parent_id','0')->orWhereNull('parent_id')->get() as $link)
+                            <li class="{{Request::is(app()->getLocale().$link->customlink)?'active':''}}">
+                                @if($link->Links()->count()>0)
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        {{$link->title}} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach($link->Links as $sublink)
+                                        <li class="{{Request::url() === app()->getLocale().'/'.$sublink->title?'active':''}}"><a href="{{$sublink->customlink}}" class="">{{$sublink->title}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <a href="{{$link->customlink}}" >{{$link->title}}</a>
+                                @endif
+                            </li>
+                        @endforeach
+
+                        {{--<li class="active"><a href="{{ url('/') }}" >الرئيسية</a></li>--}}
+                        {{--<li class="dropdown">--}}
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--}}
+                                {{--من نحن ؟ <span class="caret"></span></a>--}}
+                            {{--<ul class="dropdown-menu">--}}
+                              {{--<li><a href="#" class="">الرؤية والإهداف</a></li>--}}
+                              {{--<li><a href="#" class="">مجلس الامناء</a></li>--}}
+                              {{--<li><a href="#" class="">المجلس الاستشارى</a></li>--}}
+                              {{--<li><a href="#" class="">اصداراتنا</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li><a href="{{ url('/home') }}">المركز</a></li>--}}
+                        {{--<li><a href="{{ url('/home') }}">المجلة</a></li>--}}
+                        {{--<li><a href="{{ url('/home') }}">الأكاديمية</a></li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--}}
+                                {{--الفعاليات السنوية <span class="caret"></span></a>--}}
+                            {{--<ul class="dropdown-menu">--}}
+                              {{--<li><a href="#" class="">المنتدى</a></li>--}}
+                              {{--<li><a href="#" class="">المؤتمر</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li><a href="{{ url('/home') }}">الاباء والامهات</a></li>--}}
+                        {{--<li><a href="{{ url('/home') }}">اتصل بنا</a></li>--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

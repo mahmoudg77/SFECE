@@ -55,7 +55,7 @@ class LanguageController extends Controller
 
       // Else, Set Current Locale
       app()->setLocale($segments[0]);
-//echo $url;
+      //echo $url;
       //return Redirect::to(implode('/', $segments));
 
      return redirect(implode('/', $segments));

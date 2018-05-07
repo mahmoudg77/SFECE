@@ -19,13 +19,15 @@ class MenuLinkController extends IController
   public function index()
   {
     if(request()->has("m")){
-
       $m=request()->get('m');
-      $data=IModel::where('menu_id',request()->get("m"))->get();
+
+      $data=IModel::where(function ($query) {
+          $query->where('parent_id', '=', 0)
+              ->orWhereNull('parent_id');
+      })->where('menu_id',request()->get("m"))->get();
     }else{
       return "404 File not found !!";
     }
-
       return view($this->viewFolder.".index",compact('data','m'));
   }
 

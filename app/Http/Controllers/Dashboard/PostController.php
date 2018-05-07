@@ -69,7 +69,7 @@ class PostController extends IController
   {
       //
       $data=$request->except(['_token']);
-      $category['created_by']=Auth::user()->id;
+      $data['created_by']=Auth::user()->id;
       $data['pub_date']=date('Y-m-d H:i:n');
       $data['is_published']=1;
       $data['slug']=str_slug($data[app()->getLocale()]['title'],'_');
@@ -85,8 +85,8 @@ class PostController extends IController
   public function update(Request $request,$id)
   {
       //
-      $category=$request->except(['_token']);
-      $category['updated_by']=Auth::user()->id;
+      $data=$request->except(['_token']);
+      $data['updated_by']=Auth::user()->id;
       //$category['id']=$id;
       //print_r($category);
 
