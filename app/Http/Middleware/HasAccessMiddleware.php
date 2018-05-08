@@ -33,6 +33,7 @@ class HasAccessMiddleware
         //dd($perm);
         //dd(json_encode(Auth::user()));
         $force_filter=$perm[0]->force_filter;
+
         //$userdata=json_decode(json_encode(Auth::user()));
         $variables=[
           '@user_id'=>Auth::user()->id,
@@ -48,6 +49,7 @@ class HasAccessMiddleware
 
 
         $request->attributes->add(['force_filter'=>$whr]);
+        //dd($whr);
         return $next($request);
     }
 }

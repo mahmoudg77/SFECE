@@ -53,8 +53,12 @@ class PostController extends IController
    */
   public function show($id)
   {
-      //
-       $data=IModel::find($id);
+
+    $data=Func::applyForceFilter(IModel::class);
+    $data=$data->find($id);
+    if($data==null){
+      return "Unauthorized !";
+    }
        return view($this->viewFolder.".show", compact('data'));
   }
 
@@ -67,13 +71,23 @@ class PostController extends IController
    */
   public function store(Request $request)
   {
-      //
-      $data=$request->except(['_token']);
+
+      $force_filter=$request->get('force_filter');
+      //dd($request);
+
+      $data=$request->except(['_token','force_filter']);
       $data['created_by']=Auth::user()->id;
       $data['pub_date']=date('Y-m-d H:i:n');
       $data['is_published']=1;
       $data['slug']=str_slug($data[app()->getLocale()]['title'],'_');
 
+      if($force_filter){
+        foreach ($force_filter as $key => $value) {
+          if(Func::checkValue($data[$value[0]],$value[1],$value[2])==false){
+              return "Unauthorized !";
+          }
+        }
+      }
 
       if(IModel::create($data)){
         return  $this->Success("Save Success",$data);
