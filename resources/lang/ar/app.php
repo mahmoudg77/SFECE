@@ -20,5 +20,6 @@ return [
     'last articles'=>'أحدث المقالات',
     'related posts'=>'مقالات ذات صله',
     'follow facebook'=>'تابعنا على الفيسبوك',
+    'read more'=>'أكمل القراءة',
     
 ];

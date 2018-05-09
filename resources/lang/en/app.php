@@ -20,4 +20,5 @@ return [
     'last articles'=>'Last Articles',
     'related posts'=>'Relaed Posts',
     'follow facebook'=>'Follow in facebook',
+    'read more'=>'Read More',
 ];
