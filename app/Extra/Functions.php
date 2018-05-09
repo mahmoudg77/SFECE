@@ -87,5 +87,31 @@ class Functions
         }
         return $data;
      }
+     public static function checkValue($left,$strOperator,$right)
+     {
+
+       switch($strOperator){
+          case "=":
+            return $left == $right;
+            break;
+
+         case ">";
+           return $left > $right;
+           break;
+
+         case "<";
+             return $left < $right;
+             break;
+         case ">=";
+           return $left >= $right;
+           break;
+         case "<=";
+           return $left <= $right;
+           break;
+         case "like";
+           return strpos($left, $right);
+           break;
+        }
+     }
 }
 ?>
