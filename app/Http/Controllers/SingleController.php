@@ -14,7 +14,6 @@ class SingleController extends Controller
         $lastPosts = Post::orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         
-        
         return view('single', compact('singlePost', 'lastPosts', 'allcats'));
     }
     

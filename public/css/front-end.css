@@ -215,6 +215,32 @@ a.site--login:hover {
 }
 /*end single post*/
 
+/*start register-page*/
+.register-page lable{
+    text-align: right !immportant;
+}
+/*end register-page*/
+
+/*start category-page*/
+.category-page .single-sidebar{
+    margin: 20px 0;
+}
+.cat-content{
+    padding: 10px;
+    border: 1px solid #fff;
+    box-shadow: 0px 1px 3px 1px #ddd;
+    margin: 20px 0;
+}
+.cat-content .media-heading{
+    padding:10px;
+    color:#c1272d;
+}
+.cat-content .cat-content-body {
+    padding:10px;
+    font-size:13px
+}
+.cat-content .uderline:last-child{display:none}
+/*end category-page*/
 
 /*start single post */
 .single .single-box{

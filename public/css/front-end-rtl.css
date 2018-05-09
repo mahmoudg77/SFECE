@@ -214,6 +214,9 @@ a.site--login:hover {
 /*end register-page*/
 
 /*start category-page*/
+.category-page .single-sidebar{
+    margin: 20px 0;
+}
 .cat-content{
     padding: 10px;
     border: 1px solid #fff;

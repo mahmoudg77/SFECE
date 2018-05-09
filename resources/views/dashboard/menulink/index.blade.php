@@ -13,7 +13,7 @@
         </a>
       @else
         <div class="list-group-item">{{$item->title}}
-          <div class="col col-sm-4 pull-right">
+          <div class="col col-sm-6 pull-right">
              {!!Func::actionLinks('menu-link',$item->id,".list-group-item")!!}
           </div>
             <div class="clearfix"></div>
@@ -23,7 +23,7 @@
         <div class="list-group collapse" id="{{$item->id}}">
           @foreach($item->Links as $link)
           <div  class="list-group-item">{{$link->title}}
-              <div class="col col-sm-4 pull-right">
+              <div class="col col-sm-6 pull-right">
                 {!!Func::actionLinks('menu-link',$link->id,".list-group-item")!!}
             </div>
               <div class="clearfix"></div>

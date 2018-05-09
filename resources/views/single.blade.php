@@ -56,7 +56,7 @@
                 <ul class="list-group">
                     @foreach($allcats as $cat)
                         <li class="list-group-item">
-                            <a href="/ar/category/{{ $cat->id}}">{{ $cat->title}}</a>
+                            <a href="{{route('getPostsByCatID', $cat->id)}}">{{ $cat->title}}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -66,7 +66,7 @@
                 <h4>{{trans('app.last articles')}}</h4>
                 <ul class="list-group">
                     @foreach($lastPosts as $lastpost)
-                        <li class="list-group-item"><a href="/ar/{{ $lastpost->slug}}">{{ $lastpost->title}}</a></li>
+                        <li class="list-group-item"><a href="{{ route('getPostBySlug', $lastpost->slug)}}">{{ $lastpost->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
