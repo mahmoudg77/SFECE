@@ -1,91 +1,58 @@
 
 @extends('layouts.admin')
 @section('content')
-<div class="">
-  <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create',['menu'=>$sel_menu])}}">Create New</a>
-  <div class="clearfix"></div>
+<div class="panel panel-default" style="margin-bottom:10px">
+    <div class="panel-body" style="padding:7px">
+        <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create',['menu'=>$sel_menu])}}">Create New</a>
+    </div>
 </div>
-  <div class="list-group" >
-      @foreach($data as $item)
-      @if(count($item->Chields)>0)
-      <div>
 
-            <div class="row">
-
-
-            <div class="col col-sm-6 pull-left">
-                <a href="#{{$item->id}}" class="list-group-item" data-toggle="collapse"> <i class="glyphicon glyphicon-chevron-right"></i>{{$item->title}}</a>
+<div class="panel panel-default cat-dashboard">
+    <div class="panel-body">
+        <div class="list-group" >
+          @foreach($data as $item)
+          @if(count($item->Chields)>0)
+            <div class="list-group-item">
+                <div class="row">
+                    <a href="#{{$item->id}}" class="col-sm-8" data-toggle="collapse" style="color: #555;text-decoration: none;"> 
+                        {{$item->title}} <i class="glyphicon glyphicon-chevron-right" style="font-size: 12px;"></i></a>
+                    <div class="col-sm-4 pull-right">
+                        {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+                    </div>
+                </div>
             </div>
-
-            <div class="col col-sm-6 pull-right">
-                {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+          @else
+            <div class="list-group-item">
+                <div class="row">
+                  <div class="col-sm-8">{{$item->title}}</div>
+                  <div class="col-sm-4 pull-right">
+                     {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
+                  </div>
+                </div>
             </div>
-                <div class="clearfix"></div>
+          @endif
 
-        </div>
-
-
-      @else
-        <div class="list-group-item">{{$item->title}}
-          <div class="col col-sm-4 pull-right">
-             {!!Func::actionLinks('category',$item->id,".list-group-item")!!}
-          </div>
-            <div class="clearfix"></div>
-        </div>
-      @endif
-      @if(count($item->Chields)>0)
-        <div class="list-group collapse" id="{{$item->id}}">
-          @foreach($item->Chields as $subitem)
-          <div  class="list-group-item">{{$subitem->title}}
-              <div class="col col-sm-4 pull-right">
-                {!!Func::actionLinks('category',$subitem->id,".list-group-item")!!}
+          @if(count($item->Chields)>0)
+            <div class="list-group collapse" id="{{$item->id}}">
+              @foreach($item->Chields as $subitem)
+              <div  class="list-group-item">
+                  <div class="row">
+                      <div class="col-sm-8">&nbsp;&nbsp; {{$subitem->title}}</div>
+                      <div class="col-sm-4 pull-right">
+                        {!!Func::actionLinks('category',$subitem->id,".list-group-item")!!}
+                      </div>
+                  </div>
               </div>
-              <div class="clearfix"></div>
-          </div>
+              @endforeach
+            </div>
+          @endif
+
           @endforeach
         </div>
-      @endif
+    </div>
+</div>
 
-    </div>
-      @endforeach
-    </div>
 
 @endsection
 @section('css')
-<style>
-.just-padding {
-  padding: 15px;
-}
-
-.list-group.list-group-root {
-  padding: 0;
-  overflow: hidden;
-}
-
-.list-group.list-group-root .list-group {
-  margin-bottom: 0;
-}
-
-.list-group.list-group-root .list-group-item {
-  border-radius: 0;
-  border-width: 1px 0 0 0;
-
-}
-
-.list-group.list-group-root > .list-group-item:first-child {
-  border-top-width: 0;
-}
-
-.list-group.list-group-root > .list-group > .list-group-item {
-  padding-left: 30px;
-}
-
-.list-group.list-group-root > .list-group > .list-group > .list-group-item {
-  padding-left: 45px;
-}
-
-.list-group-item .glyphicon {
-  margin-right: 5px;
-}
-</style>
 @endsection

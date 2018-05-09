@@ -283,3 +283,40 @@ a.site--login:hover {
     color:#fff;
 }
 /*end footer*/
+
+/*start category in dashboard*/
+.cat-dashboard .just-padding {
+  padding: 15px;
+}
+
+.cat-dashboard .list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cat-dashboard .list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.cat-dashboard .list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+
+}
+
+.cat-dashboard .list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.cat-dashboard .list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.cat-dashboard .list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+
+.cat-dashboard .list-group-item .glyphicon {
+  margin-right: 5px;
+}
+/*end category in dashboard*/
