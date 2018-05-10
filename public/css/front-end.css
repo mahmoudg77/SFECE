@@ -288,6 +288,23 @@ a.site--login:hover {
     margin-bottom: 10px;
     border-bottom: 1px solid #fff;
     }
+.related-post{}
+.related-post-heading{
+    background-color: #ddd;
+    padding: 10px;
+    margin: 20px 0;
+}
+.related-post-title{
+    color: #555;
+    padding: 10px 5px;
+    font-size: 14px;
+    background-color: #ddd;
+    margin:0;
+}
+.related-post img{
+    height: 150px;
+    width: 100%;
+}
 /*end single post*/
 
 
