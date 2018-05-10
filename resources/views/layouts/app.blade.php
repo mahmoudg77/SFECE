@@ -11,13 +11,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     @if(app()->getLocale()=='ar')
         <!-- Load Bootstrap RTL theme from RawGit -->
         <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
         <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
     @else
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        
         <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
     @endif
 

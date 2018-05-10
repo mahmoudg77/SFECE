@@ -11,11 +11,11 @@
 
   <div class="row" style ="padding: 0 15px;margin--bottom: 20px;">
 @foreach($lastPosts as $post)
-    <a href="/ar/{{ $post->slug }}">
+    <a href="{{ route('getPostBySlug', $post->slug) }}">
     <div class="col-sm-4">
         <div class="panel panel-default blog wow fadeInDown">
             <div class="panel-body" style= "padding:0;">
-                <div class="blog-header" style= "background-color: #414042;padding: 7px 10px;">
+                <div class="blog-header" style= "background-color: #BA0C2F;padding: 7px 10px;">
                     <h4 class="media-heading" style= "color:#fff;height: 40px;">{{$post->title}}</h4>
                 </div>
                 <div class="blog-content">

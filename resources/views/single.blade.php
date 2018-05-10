@@ -17,35 +17,28 @@
                         <span><i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}</span>
                         <span><i class="fa fa-folder"></i>
                         <a href="/ar/category/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
-                        <span><i class="fa fa-clock"></i> 
-                        <small>{{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small></span>
+                        <small><span class="glyphicon glyphicon-time"></span>
+                        {{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small>
                     </small>
                 </div>
                 <div class="uderline" style="padding:10px 0.border:1px solid #ddd;"></div>
                 <p>{!! $singlePost->body !!} </p>
             </div>
             
-            <h4 style="background-color: #ddd;padding: 10px;margin: 20px 0;">{{ trans('app.related posts')}}</h4>
-<!--
-            <div class="row">
-            
-                <div class="col-sm-4">
-                    <a href="/ar/">
-                        <div class="panel panel-default blog wow fadeInDown">
-                            <div class="panel-body" style="padding:0;box-shadow: 0px 0px 3px 0px #777;border: 3px solid #fff;">
-                                <div class="blog-header" style="background-color: #414042;padding: 7px 10px;">
-                                    <h4 class="media-heading" style="color:#fff;height:40px;"></h4>
-                                </div>
-                                <div class="blog-content">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
+            <div class="related-post">
+            <h4 class="related-post-heading">{{ trans('app.related posts')}}</h4>
+            @foreach($related_posts as $rpost)
+                <a href="{{ route('getPostBySlug', $rpost->slug) }}">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object">
+                            <h4 class="related-post-title">{{$rpost->title}}</h4>
+                        
+                    </div>
+                    </div>
+                </a>
+            @endforeach
             </div>
--->
         </div>
     </div>
 
@@ -56,7 +49,7 @@
                 <ul class="list-group">
                     @foreach($allcats as $cat)
                         <li class="list-group-item">
-                            <a href="/ar/category/{{ $cat->id}}">{{ $cat->title}}</a>
+                            <a href="{{route('getPostsByCatID', $cat->id)}}">{{ $cat->title}}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -66,7 +59,7 @@
                 <h4>{{trans('app.last articles')}}</h4>
                 <ul class="list-group">
                     @foreach($lastPosts as $lastpost)
-                        <li class="list-group-item"><a href="/ar/{{ $lastpost->slug}}">{{ $lastpost->title}}</a></li>
+                        <li class="list-group-item"><a href="{{ route('getPostBySlug', $lastpost->slug)}}">{{ $lastpost->title}}</a></li>
                     @endforeach
                 </ul>
             </div>
