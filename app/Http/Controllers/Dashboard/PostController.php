@@ -99,13 +99,18 @@ class PostController extends IController
   public function update(Request $request,$id)
   {
       //
-      $data=$request->except(['_token']);
-      $data['updated_by']=Auth::user()->id;
+      $reqData=$request->except(['_token']);
+
+      $reqData['updated_by']=Auth::user()->id;
       //$category['id']=$id;
       //print_r($category);
-
-      if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+      $data=Func::applyForceFilter(IModel::class);
+      $data=$data->findOrFail($id);
+      if($data==null){
+          return "Unauthorized !";
+      }
+      if($data->update($reqData)){
+        return  $this->Success("Save Success",$reqData);
       }else{
         return  $this->Error("Error while save data !!");
       }
@@ -121,9 +126,12 @@ class PostController extends IController
   public function destroy($id)
   {
       //
-      $data=IModel::find($id);
-      //$data->deleted_by=Auth::user()->id;
-      //$data->save();
+      $data=Func::applyForceFilter(IModel::class);
+      $data=$data->find($id);
+      if($data==null){
+          return "Unauthorized !";
+      }
+
 
       if($data->destroy($id)){
         return  $this->Success("Delete Success",$data);
