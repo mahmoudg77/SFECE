@@ -52,8 +52,8 @@
                     <li><a href="{{ route('cp.dashboard') }}" >{{trans('app.control panel')}}</a></li>
 
                 @endif
-                  <li><a href="#" class="">طلب نشر</a></li>
-                  <li><a href="#" class="">رئيس المؤسسة</a></li>
+                  <li><a href="#" class="" data-toggle="modal" data-target="#myModal">{{trans('app.request research')}}</a></li>
+                  <li><a href="{{ route('getPostBySlug', 'head_institution') }}" class="">{{trans('app.head institution')}}</a></li>
               </ul>
             </div>
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
@@ -94,11 +94,12 @@
                         @foreach(Func::menu('main') as $link)
                             <li class="{{Request::is(app()->getLocale().$link->customlink)?'active':''}}">
                                 @if($link->Links()->count()>0)
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                                       aria-haspopup="true" aria-expanded="false">
                                         {{$link->title}} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         @foreach($link->Links as $sublink)
-                                            <li class="{{Request::url() === app()->getLocale().'/'.$sublink->title?'active':''}}"><a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
+                                            <li class="{{Request::url() === app()->getLocale().'/'.$sublink->title?'active':''}}">                                              <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
                                         @endforeach
                                     </ul>
                                 @else
@@ -107,7 +108,8 @@
                                             <?php $cat=App\Models\Category::find($link->category_id);?>
 
                                                 @if(count($cat->Chields)>0)
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                                                       aria-haspopup="true" aria-expanded="false">
                                                         {{$link->title}} <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
                                                         @foreach($cat->Chields as $chield)
@@ -127,52 +129,7 @@
                                 @endif
                             </li>
                         @endforeach
-
-                        {{--<li class="active"><a href="{{ url('/') }}" >الرئيسية</a></li>--}}
-                        {{--<li class="dropdown">--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--}}
-                                {{--من نحن ؟ <span class="caret"></span></a>--}}
-                            {{--<ul class="dropdown-menu">--}}
-                              {{--<li><a href="#" class="">الرؤية والإهداف</a></li>--}}
-                              {{--<li><a href="#" class="">مجلس الامناء</a></li>--}}
-                              {{--<li><a href="#" class="">المجلس الاستشارى</a></li>--}}
-                              {{--<li><a href="#" class="">اصداراتنا</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
-                        {{--<li><a href="{{ url('/home') }}">المركز</a></li>--}}
-                        {{--<li><a href="{{ url('/home') }}">المجلة</a></li>--}}
-                        {{--<li><a href="{{ url('/home') }}">الأكاديمية</a></li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">--}}
-                                {{--الفعاليات السنوية <span class="caret"></span></a>--}}
-                            {{--<ul class="dropdown-menu">--}}
-                              {{--<li><a href="#" class="">المنتدى</a></li>--}}
-                              {{--<li><a href="#" class="">المؤتمر</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
-                        {{--<li><a href="{{ url('/home') }}">الاباء والامهات</a></li>--}}
-                        {{--<li><a href="{{ url('/home') }}">اتصل بنا</a></li>--}}
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
-<!--
-                    <ul class="nav navbar-nav navbar-right">
-                        @if (Auth::guest())
-
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-th-large"></i>Control Panel</a></li>
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
--->
                 </div>
             </div>
         </nav>
@@ -199,6 +156,41 @@
     </div>
 </div>
 
+<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{trans('app.request research')}}</h4>
+      </div>
+      <div class="modal-body">
+         <form action="/action_page.php">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                  <label for="usr">Name:</label>
+                  <input type="text" class="form-control" id="usr">
+                </div>
+               <div class="form-group">
+                  <label for="comment">Comment:</label>
+                  <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div> 
+              <button type="submit" class="btn btn-default">Submit</button>
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
  </div>

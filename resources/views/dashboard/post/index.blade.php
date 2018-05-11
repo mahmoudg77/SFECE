@@ -1,31 +1,39 @@
 
 @extends('layouts.admin')
 @section('content')
-<div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.posts.create',['type'=>$post_type_id,'menu'=>$sel_menu])}}">Create New</a>
-  <table class="table datatable">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Type</th>
-        <th>Publish Date</th>
-        <th>Author</th>
-        <th></th>
-      </tr>
-    </thead>
-    @foreach($data as $post)
-      <tr>
-          <td>{{$post->title}}</td>
-          <td>{{$post->postType->name}}</td>
-          <td>{{$post->pub_date}}</td>
-          <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
-          <td>
-              {!!Func::actionLinks('posts',$post->id,"")!!}
-          </td>
-      </tr>
-    @endforeach
-
-  </table>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding: 7px;">
+            <a class="btn btn-success btn-sm pull-right" href="{{route('cp.posts.create',['type'=>$post_type_id,'menu'=>$sel_menu])}}">
+          Create New</a>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-hover table-striped datatable">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Publish Date</th>
+                    <th>Author</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                @foreach($data as $post)
+                  <tr>
+                      <td>{{$post->title}}</td>
+                      <td>{{$post->postType->name}}</td>
+                      <td>{{$post->pub_date}}</td>
+                      <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
+                      <td>
+                          {!!Func::actionLinks('posts',$post->id,"")!!}
+                      </td>
+                  </tr>
+                @endforeach
+              </table>
+        </div>
+    </div>
 </div>
 
 @endsection

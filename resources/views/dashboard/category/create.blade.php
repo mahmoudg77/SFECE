@@ -38,9 +38,7 @@
         <div class="form-group col-sm-6">
           {!! Form::label('Parent?') !!}
           {!! Form::select('parent_id',
-                          App\Models\Category::where('parent_id',0)->orWhereNull('parent_id')->listsTranslations('title')->pluck('title','id'),
-                          null,
-                          ['class'=>'form-control','placeholder'=>'Select one ...']) !!}
+                          App\Models\Category::where('parent_id',0)->orWhereNull('parent_id')->listsTranslations('title')->pluck('title','id'),null,['class'=>'form-control','placeholder'=>'Select one ...']) !!}
         </div>
 
 

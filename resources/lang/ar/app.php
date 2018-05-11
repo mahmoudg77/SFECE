@@ -21,5 +21,7 @@ return [
     'related posts'=>'مقالات ذات صله',
     'follow facebook'=>'تابعنا على الفيسبوك',
     'read more'=>'أكمل القراءة',
+    'request research'=>'طلب نشر',
+    'head institution'=>'رئيس المؤسسة',
     
 ];

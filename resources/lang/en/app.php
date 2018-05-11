@@ -21,4 +21,6 @@ return [
     'related posts'=>'Relaed Posts',
     'follow facebook'=>'Follow in facebook',
     'read more'=>'Read More',
+    'request research'=>'Request Research',
+    'Head Institution'=>'Head Institution',
 ];
