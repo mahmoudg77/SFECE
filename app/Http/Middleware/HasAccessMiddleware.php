@@ -48,9 +48,16 @@ class HasAccessMiddleware
 
         $whr=json_decode($force_filter);
         //dd($obj->model);
-        $data=Func::applyForceFilter($obj->model,$whr);
-        $request->attributes->add(['data'=>$data]);
-        //dd($whr);
-        return $next($request);
+        try{
+            $data=Func::applyForceFilter($obj->model,$whr);
+            $request->attributes->add(['data'=>$data]);
+            //dd($whr);
+        }catch (\Exception $ex){
+
+        }
+        finally{
+            return $next($request);
+        }
+
     }
 }
