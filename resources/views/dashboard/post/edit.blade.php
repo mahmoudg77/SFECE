@@ -38,7 +38,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Category</label>
             <div class="col-md-10">
-                {{Form::select("category_id",App\Models\Category::listsTranslations('title','ar')->pluck('title','id'),$data->category_id,['class'=>'form-control'])}}
+                {{Form::select("category_id",Func::getCategoriesList(),$data->category_id,['class'=>'form-control'])}}
             </div>
         </div>
         <div class="form-group">

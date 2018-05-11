@@ -19,7 +19,7 @@
                     <h4 class="media-heading" style= "color:#fff;height: 40px;">{{$post->title}}</h4>
                 </div>
                 <div class="blog-content">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" 
+                    <img src="{{$post->mainImage()}}"
                          class="media-object" style="width:100%;height: 200px;">
                 </div>
 

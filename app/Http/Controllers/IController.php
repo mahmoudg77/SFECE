@@ -67,12 +67,12 @@ class IController extends BaseController
           ]];
 
           //Comments
-         $cp_menu['Comments']=[
-          'url'=>route('cp.comment.index',['menu'=>'Comments']),
-          'roles'=>['admin'],
-          'submenu'=>[
-            'All Comments'=>['url'=>route('cp.comment.index',['menu'=>'Comments']),'roles'=>['admin'],'submenu'=>null],
-          ]];
+//         $cp_menu['Comments']=[
+//          'url'=>route('cp.comment.index',['menu'=>'Comments']),
+//          'roles'=>['admin'],
+//          'submenu'=>[
+//            'All Comments'=>['url'=>route('cp.comment.index',['menu'=>'Comments']),'roles'=>['admin'],'submenu'=>null],
+//          ]];
 
           //Users
           $cp_menu['Users']=[

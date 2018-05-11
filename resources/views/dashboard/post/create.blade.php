@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-{{Form::model(null, ['route'=>["cp.posts.store"],"method"=>"POST"])}}
+{{Form::model(null, ['route'=>["cp.posts.store"],"method"=>"POST","enctype"=>"multipart/form-data"])}}
 <div class="form-horizontal">
         <div class="form-group">
           <ul class="nav nav-tabs">
@@ -28,22 +28,23 @@
         </div>
       </div>
         @endforeach
-         <div class="form-group">
-            <label class="control-label col-md-2">Category</label>
-            <div class="col-md-10">
-              {{Form::select("category_id",App\Models\Category::listsTranslations('title')->pluck('title','id'),null,['class'=>'form-control'])}}
-            </div>
-        </div>
-        @if($post_type_id==1)
+                @if($post_type_id==1)
+                    {{Form::hidden('category_id',0)}}
+                @else
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Category</label>
+                        <div class="col-md-10">
+                            {{Form::select("category_id",Func::getCategoriesList(),null,['class'=>'form-control'])}}
+                        </div>
+                    </div>
+                @endif
             {{Form::hidden('post_type_id',$post_type_id)}}
-        @else
-        <div class="form-group">
-            <label class="control-label col-md-2">Post Type</label>
-            <div class="col-md-10">
-              {{Form::select("post_type_id",App\Models\PostType::pluck('name','id'),$post_type_id,['class'=>'form-control'])}}
-            </div>
-        </div>
-        @endif
+                <div class="form-group">
+                    <label class="control-label col-md-2">Image</label>
+                    <div class="col-md-10">
+                        {{Form::file("image",['accept'=>'.jpg,.png,.gif'])}}
+                    </div>
+                </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>

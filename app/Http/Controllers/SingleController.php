@@ -11,7 +11,11 @@ class SingleController extends Controller
 {
     public function getPostByID($id){
         $singlePost= post::where('id', '=', $id)->first();
+        if(!$singlePost){
+            return view('errors.404');
+        }
         $lastPosts = Post::orderBy('id', 'desc')->take(4)->get();
+
         $allcats = Category::all();
         
         return view('single', compact('singlePost', 'lastPosts', 'allcats'));
@@ -20,6 +24,9 @@ class SingleController extends Controller
     public function getPostBySlug($slug){
 
         $singlePost= post::where('slug', $slug)->first();
+        if(!$singlePost){
+            return view('errors.404');
+        }
         $lastPosts = Post::orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         

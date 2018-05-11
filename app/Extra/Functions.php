@@ -30,12 +30,28 @@ class Functions
       }
     }
 
-    public static function actionLinks($routeBase,$id,$elm_parent="tr")
+    public static function actionLinks($routeBase,$id,$elm_parent="tr",array $class=[])
     {
+        if(in_array('delete' ,array_keys($class))){
+            $class_del=$class['delete'];
+        }else{
+            $class_del="btn btn-danger btn-sm";
+        }
+        if(in_array('edit' ,array_keys($class))){
+            $class_edit=$class['edit'];
+        }else{
+            $class_edit="btn btn-primary btn-sm";
+        }
+        if(in_array('view' ,array_keys($class))){
+            $class_view=$class['view'];
+        }else{
+            $class_view="btn btn-default btn-sm";
+        }
+
       $returned=Form::open(['route'=>["cp.$routeBase.destroy",$id],"method"=>"DELETE","class"=>"ajax-delete","elm-parent"=>$elm_parent])."\n\r";
-      $returned.=Form::submit("Delete",["class"=>"btn btn-danger btn-sm"])."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.edit",$id).'" class="btn btn-primary btn-sm edit">Edit</a>'."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.show",$id).'" class="btn btn-default btn-sm view">View</a>'."\n\r";
+      $returned.=Form::submit("Delete",["class"=>$class_del])."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.edit",$id).'" class="'.$class_edit.'">Edit</a>'."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.show",$id).'" class="'.$class_view.'">View</a>'."\n\r";
       $returned.=Form::close()."\n\r";
       return $returned;
     }
@@ -75,10 +91,10 @@ class Functions
         return $list;
      }
 
-     public static function applyForceFilter($class)
+     public static function applyForceFilter($class,$force_filter)
      {
        $data=$class::all();
-       $force_filter=request()->get('force_filter');
+      // $force_filter=request()->get('force_filter');
 
        if($force_filter){
            foreach ($force_filter as $key => $value) {
@@ -113,5 +129,42 @@ class Functions
            break;
         }
      }
+     public static function menu($location){
+         return \App\Models\Menu::where("location",$location)->first()->Links()->where('parent_id','0')->orWhereNull('parent_id')->get();
+     }
+     public static function menuLink($menuLink){
+        if(empty($menuLink->customlink)){
+
+            if($menuLink->category_id>0){
+               if($menuLink->hassubs){
+                   return '#';
+               }else{
+                   return route('getPostsByCatID',['id'=>$menuLink->category_id]);
+               }
+            }else{
+                return route('home');
+            }
+
+        }else{
+            if(Functions::link_is_external($menuLink->customlink)){
+                return $menuLink->customlink;
+            }else{
+
+                return '/'.app()->getLocale().$menuLink->customlink;
+            }
+        }
+     }
+     public static function link_is_external($link){
+        return substr($link,0,4)=='http' || substr($link,0,2)=='//';
+     }
+
+    public static function getCategoriesList(){
+        foreach (\App\Models\Category::all() as $cat){
+            foreach ($cat->Chields as $chield){
+                $cats[$cat->title][$chield->id]=$chield->title;
+            }
+        }
+        return $cats;
+    }
 }
 ?>
