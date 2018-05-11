@@ -11,7 +11,7 @@ class CategoryController extends IController
   protected $viewFolder="dashboard.category";
   public function index()
   {
-    $data=IModel::where("id","<>",0)->where("parent_id",0)->get();
+    $data=IModel::where("parent_id",0)->orWhereNull('parent_id')->get();
     return view($this->viewFolder.".index",compact('data'));
   }
 
@@ -49,9 +49,9 @@ class CategoryController extends IController
   {
       //
       $category=$request->except(['_token']);
-      $category['created_by']=Auth::user()->id;
- 
+      $category['slug']=str_slug($category['en']['title'],'_');
       if(IModel::create($category)){
+
         return  $this->Success("Save Success",$category);
       }else{
         return  $this->Error("Error while save data !!");

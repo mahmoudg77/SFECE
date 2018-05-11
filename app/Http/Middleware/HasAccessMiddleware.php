@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Route;
 use Auth;
+use Func;
 class HasAccessMiddleware
 {
     /**
@@ -46,9 +47,9 @@ class HasAccessMiddleware
         $force_filter=str_replace(array_keys($variables),array_values($variables),$force_filter);
 
         $whr=json_decode($force_filter);
-
-
-        $request->attributes->add(['force_filter'=>$whr]);
+        //dd($obj->model);
+        $data=Func::applyForceFilter($obj->model,$whr);
+        $request->attributes->add(['data'=>$data]);
         //dd($whr);
         return $next($request);
     }

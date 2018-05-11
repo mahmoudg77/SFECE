@@ -10,7 +10,7 @@ class Category extends Model
 {
     use softDeletes;
     use Translatable;
-    protected $fillable=['parent_id','created_by'];
+    protected $fillable=['parent_id','created_by','slug'];
     public $translatedAttributes = ['title','description'];
 
     public function Posts()
@@ -19,11 +19,11 @@ class Category extends Model
     }
     public function Parent()
     {
-      return $this->belongsTo(Category::class,"parent_id");
+      return $this->belongsTo(self::class,"parent_id");
     }
     public function Chields()
     {
-      return $this->hasMany(Category::class,"parent_id");
+      return $this->hasMany(self::class,"parent_id");
     }
 }
 

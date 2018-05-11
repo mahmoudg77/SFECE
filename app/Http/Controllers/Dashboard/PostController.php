@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
 use App\Models\Post as IModel;
+use App\Models\MediaFile;
 use Func;
 use Auth;
 class PostController extends IController
 {
   var $permitionname="المقالات";
+  public $model=\App\Models\Post::class;
   protected $viewFolder="dashboard.post";
 
   /**
@@ -21,7 +23,7 @@ class PostController extends IController
   {
 
 
-      $data=Func::applyForceFilter(IModel::class);
+      $data=request()->get('data');
       if(request()->has("type")){
         $post_type_id=request()->get('type');
         $data=$data->where('post_type_id',request()->get("type"));
@@ -33,7 +35,7 @@ class PostController extends IController
 
   public function edit($id)
   {
-    $data=Func::applyForceFilter(IModel::class);
+    $data=request()->get('data');
     $data=$data->find($id);
     if($data==null){
       return "Unauthorized !";
@@ -53,8 +55,7 @@ class PostController extends IController
    */
   public function show($id)
   {
-
-    $data=Func::applyForceFilter(IModel::class);
+      $data=request()->get('data');
     $data=$data->find($id);
     if($data==null){
       return "Unauthorized !";
@@ -81,6 +82,8 @@ class PostController extends IController
       $data['is_published']=1;
       $data['slug']=str_slug($data[app()->getLocale()]['title'],'_');
 
+
+
       if($force_filter){
         foreach ($force_filter as $key => $value) {
           if(Func::checkValue($data[$value[0]],$value[1],$value[2])==false){
@@ -88,8 +91,19 @@ class PostController extends IController
           }
         }
       }
+      $post=IModel::create($data);
 
-      if(IModel::create($data)){
+      if($request->hasfile('image'))
+      {
+          $image=$request->file('image');
+          //dd($image);
+          $imageobj=new MediaFile(['model'=>IModel::class,'id'=>$post->id,'tag'=>'main']);
+
+          //dd($imageobj->upload($image));
+
+      }
+
+      if( $post){
         return  $this->Success("Save Success",$data);
       }else{
         return  $this->Error("Error while save data !!");
@@ -126,7 +140,7 @@ class PostController extends IController
   public function destroy($id)
   {
       //
-      $data=Func::applyForceFilter(IModel::class);
+      $data=\request()->get('data');
       $data=$data->find($id);
       if($data==null){
           return "Unauthorized !";

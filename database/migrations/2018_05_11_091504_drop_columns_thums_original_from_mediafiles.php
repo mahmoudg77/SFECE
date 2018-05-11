@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJoinMenuLinks extends Migration
+class DropColumnsThumsOriginalFromMediafiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateJoinMenuLinks extends Migration
      */
     public function up()
     {
-        Schema::table('menu_links', function (Blueprint $table) {
-            //
-
-
+        Schema::table('media_files', function (Blueprint $table) {
+            $table->dropColumn('path_thumb');
+            $table->dropColumn('path_orignal');
         });
     }
 
@@ -27,9 +26,9 @@ class CreateJoinMenuLinks extends Migration
      */
     public function down()
     {
-        Schema::table('menu_links', function (Blueprint $table) {
-            //
-            //$table->dropForeign('menu_links_menu_id_foreign');
+        Schema::table('media_files', function (Blueprint $table) {
+            $table->string("path_thumb");
+            $table->string("path_orignal");
         });
     }
 }

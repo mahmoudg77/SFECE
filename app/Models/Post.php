@@ -40,6 +40,18 @@ class Post extends Model
     {
         return $this->belongsTo("App\User","created_by","id");
     }
+    public function mainImage($thumb=false){
+        $mf=$this->MediaFiles()->where('model_attribute','main')->first();
+        if(!$mf){
+            return url('images/none.jpg');
+        }
+
+        if($thumb){
+            return url('uploads/_thumbs/Images/'.$mf->name);
+        }else{
+            return url('uploads/images/'.$mf->name);
+        }
+    }
 }
 
 class PostTranslation extends Model {

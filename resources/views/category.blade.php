@@ -23,7 +23,7 @@
                 
                 <div class="row cat-content-body">
                     <div class="col-sm-6">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnOX--EG2IfmT8pYxuOw-xKRnq8g6kdOVJ9g4F8tVWKqjWNOA" class="media-object" style="width:100%;height: 200px;">
+                        <img src="{{$post->mainImage(true)}}" class="media-object" style="width:100%;height: 200px;">
                     </div>
                     <div class="col-sm-6">
                         <p>{!! str_limit($post->body, 200) !!}</p>

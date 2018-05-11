@@ -33,7 +33,7 @@
         <div class="form-group col-sm-6">
           {!! Form::label('Parent?') !!}
           {!! Form::select('parent_id',
-                          App\Models\Category::listsTranslations('title')->where('category_id','<>',$data->id)->pluck('title','id'),
+                          App\Models\Category::where('parent_id',0)->orWhereNull('parent_id')->listsTranslations('title')->pluck('title','id'),
                           ($data->Parent)?$data->Parent->id:null,
                           array('class'=>'form-control')) !!}
         </div>
