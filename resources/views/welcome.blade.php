@@ -30,9 +30,10 @@
 
 
 <section class="about-us wo-w slideInRight" >
+    
     <div class="col-xs-12" style="background-color:#414042;height:150px;">
-      <h2 style="color: #fff;text-align: center;">من نحن ؟</h2>
-      <p style="color: #fff;font-size: 14px;font-weight: bold;line-height: 30px;">الموقع الخاص والرسمي للدكتور/ محمد خليفة إسماعيل متولي، أستاذ وخبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية البريطانية لتربية الطفولة المبكرة (الولادة حتى 8 سنوات)</p>
+      <h2>{{ Func::getPageBySlug('about_us')->title}}</h2>
+      {!! Func::getPageBySlug('about_us')->body !!} 
     </div>
 </section>
 

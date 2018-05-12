@@ -29,6 +29,15 @@
 
 </head>
 <body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.0&appId=255524131659994&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
 <div id="app">
 
 <div class="container">
@@ -52,7 +61,13 @@
                     <li><a href="{{ route('cp.dashboard') }}" >{{trans('app.control panel')}}</a></li>
 
                 @endif
-                  <li><a href="#" class="" data-toggle="modal" data-target="#myModal">{{trans('app.request research')}}</a></li>
+                  <li>
+                      @if(Auth::guest())
+                        <a href="{{ route('login') }}">{{trans('app.request research')}}</a>
+                      @else
+                        <a href="#" data-toggle="modal" data-target="#myModal">{{trans('app.request research')}}</a>
+                      @endif
+                  </li>
                   <li><a href="{{ route('getPostBySlug', 'head_institution') }}" class="">{{trans('app.head institution')}}</a></li>
               </ul>
             </div>
@@ -236,4 +251,5 @@
         };
   </script>
 </body>
+
 </html>

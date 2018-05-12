@@ -68,11 +68,13 @@
             <div class="single-cat">
                 <h4>{{trans('app.follow facebook')}}</h4>
                 <ul class="list-group">
-                    
+                    <div class="fb-page"></div>
                 </ul>
             </div>
         </div>
     </div>
 </section>
+
+
 
 @stop
