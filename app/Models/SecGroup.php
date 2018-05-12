@@ -10,10 +10,10 @@ class SecGroup extends Model
 
     public function Permissions()
     {
-      return belongsToMany('App\Models\SecPermission');
+      return $this->hasMany('App\Models\SecPermission');
     }
     public function Accounts()
     {
-      return belongsToMany('App\Models\User');
+      return $this->belongsToMany('App\Models\User');
     }
 }

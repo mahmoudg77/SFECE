@@ -16,7 +16,7 @@ class SecPermission extends IController
         return "Invalid Request !!";
     }
 
-    $data=IModel::where('sec_group_id',request()->get('group'));
+    $data=IModel::where('sec_group_id',request()->get('group'))->get();
     return view($this->viewFolder.".index",compact('data'));
   }
 

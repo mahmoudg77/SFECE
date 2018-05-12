@@ -72,6 +72,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::resource('/menu-link','Dashboard\MenuLinkController',['as'=>'cp']);
     Route::resource('/secgroup','Dashboard\SecGroup',['as'=>'cp']);
     Route::resource('/secpermission','Dashboard\SecPermission',['as'=>'cp']);
+    Route::resource('/setting','Dashboard\SettingController',['as'=>'cp']);
     Route::post('/secpermission-getactions','Dashboard\SecPermission@getActionsList')->name('cp.secpermission-getactions');
   });
 

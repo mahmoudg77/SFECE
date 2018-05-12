@@ -2,12 +2,13 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.secgroup.create',['menu'=>$sel_menu])}}">Create New</a>
+  <a class="btn btn-success pull-right" href="{{route('cp.secgroup.create',['curr_menu'=>$sel_menu])}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
         <th>Name</th>
         <th>Key</th>
+        <th>Permissions</th>
         <th></th>
       </tr>
     </thead>
@@ -15,8 +16,9 @@
       <tr>
           <td>{{$item->name}}</td>
           <td>{{$item->groupkey}}</td>
+          <td><a href="{{route('cp.secpermission.index',['group'=>$item->id,'curr_menu'=>$sel_menu])}}">{{count($item->Permissions)}}</a></td>
           <td>
-              {!!Func::actionLinks('secgroup',$item->id,"")!!}
+              {!!Func::actionLinks('secgroup',$item->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
           </td>
       </tr>
     @endforeach

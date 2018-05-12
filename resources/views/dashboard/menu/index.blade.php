@@ -5,7 +5,7 @@
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-body" style="padding: 7px;">
-                <a class="btn btn-success pull-right" href="{{route('cp.menu.create',['menu'=>$sel_menu])}}">Create New</a>
+                <a class="btn btn-success pull-right" href="{{route('cp.menu.create',['curr_menu'=>$sel_menu])}}">Create New</a>
             </div>
         </div>
         <div class="panel panel-default">
@@ -23,7 +23,7 @@
                           <td>{{$item->name}}</td>
                           <td>{{$item->location}}</td>
                           <td>
-                              {!!Func::actionLinks('menu',$item->id,"")!!}
+                              {!!Func::actionLinks('menu',$item->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
                           </td>
                       </tr>
                     @endforeach
