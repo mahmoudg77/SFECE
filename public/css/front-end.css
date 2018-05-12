@@ -335,6 +335,17 @@ a.site--login:hover {
 /*end single post*/
 
 
+/*start posts dashboard*/
+.post-dashboard{}
+.post-dashboard .post-heading{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #555;
+    color:#fff;
+    padding: 10px;
+}
+/*end posts dashboard*/
+
 /*start footer*/
 .footer{
 	background-color: #224668 !important;

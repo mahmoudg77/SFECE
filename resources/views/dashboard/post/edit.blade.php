@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
+<section class="post-dashboard">
 <div class="panel panel-default">
     <div class="panel-body">
-        <h2 style="margin-top: 10px;margin-bottom: 20px;background-color: #eee;padding: 10px;">
-            Edit Post: <small>{{$data->title}}</small></h2>
+        <h2 class="post-heading">Edit Post: <small>{{$data->title}}</small></h2>
         {{Form::model($data, ['route'=>["cp.posts.update",$data->id],"method"=>"PUT"])}}
         <div class="form-horizontal">
             <ul class="nav nav-tabs">
@@ -61,5 +61,5 @@
         {{Form::close()}}
     </div>
 </div>
-
+</section>
 @stop

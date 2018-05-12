@@ -142,3 +142,16 @@ body{
     border-color: #e74c3c !important;
   }
 }
+
+
+/*start posts dashboard*/
+.post-dashboard{}
+.post-dashboard .post-heading{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #ddd;
+    color: #555;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+/*end posts dashboard*/

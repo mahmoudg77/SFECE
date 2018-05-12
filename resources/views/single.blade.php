@@ -6,8 +6,7 @@
     <div class="col-xs-12 col-sm-8">
         <div class="single-box">
             <div class="single-img">
-                <img src="{{$singlePost->mainImage()}}"
-                             class="img-responsive center--block img-thumbanail" >
+                <img src="{{$singlePost->mainImage()}}" class="img-responsive center--block img-thumbanail" >
             </div>
 
             <div class="single-content">

@@ -1,10 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
+<section class="post-dashboard">
 <div class="panel panel-default">
     <div class="panel-body">
-        <h2 style="margin-top: 10px;margin-bottom: 20px;background-color: #eee;padding: 10px;">
-            Show Post : <small>{{$data->title}}</small></h2>
+        <h2 class="post-heading">Show Post : <small>{{$data->title}}</small></h2>
         <div class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-md-2">Title</label>
@@ -46,5 +45,5 @@
         </div>
     </div>
 </div>
-
+</section>
 @stop

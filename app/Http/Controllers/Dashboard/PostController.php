@@ -118,8 +118,9 @@ class PostController extends IController
       $reqData['updated_by']=Auth::user()->id;
       //$category['id']=$id;
       //print_r($category);
-      $data=Func::applyForceFilter(IModel::class);
-      $data=$data->findOrFail($id);
+      $data=request()->get('data');
+      //$data=Func::applyForceFilter(IModel::class);
+      $data=$data->find($id);
       if($data==null){
           return "Unauthorized !";
       }

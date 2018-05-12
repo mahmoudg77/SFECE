@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-
+<section class="post-dashboard">
 <div class="panel panel-default">
     <div class="panel-body">
-        <h2 style="margin-top: 10px;margin-bottom: 20px;background-color: #eee;padding: 10px;">Create New Post</h2>
+        <h2 class="post-heading">Create New</h2>
         {{Form::model(null, ['route'=>["cp.posts.store"],"method"=>"POST","enctype"=>"multipart/form-data"])}}
         <div class="form-horizontal">
                 <div class="form--group">
@@ -60,5 +60,5 @@
         {{Form::close()}}
     </div>
 </div>
-
+</section>
 @stop

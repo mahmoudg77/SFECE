@@ -3,9 +3,11 @@
 @section('content')
 
   <div class="panel panel-default" style="width:700px;max-width: 100%;">
+<!--
     <div class="panel-heading main-color-bg">
       <h3 class="panel-title">Add New Category</h3>
     </div>
+-->
 
     <div class="modal-body">
       <div class="row">
