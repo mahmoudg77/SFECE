@@ -32,26 +32,24 @@ class Functions
 
     public static function actionLinks($routeBase,$id,$elm_parent="tr",array $class=[])
     {
+      $class_del="btn btn-danger btn-sm ";
+      $class_edit="btn btn-primary btn-sm ";
+      $class_view="btn btn-default btn-sm ";
+
         if(in_array('delete' ,array_keys($class))){
-            $class_del=$class['delete'];
-        }else{
-            $class_del="btn btn-danger btn-sm";
+             $class_del.= $class['delete'];
         }
         if(in_array('edit' ,array_keys($class))){
-            $class_edit=$class['edit'];
-        }else{
-            $class_edit="btn btn-primary btn-sm";
+            $class_edit.=$class['edit'];
         }
         if(in_array('view' ,array_keys($class))){
-            $class_view=$class['view'];
-        }else{
-            $class_view="btn btn-default btn-sm";
+            $class_view.=$class['view'];
         }
-
+        $sitebarmenu=\request()->get('menu');
       $returned=Form::open(['route'=>["cp.$routeBase.destroy",$id],"method"=>"DELETE","class"=>"ajax-delete","elm-parent"=>$elm_parent])."\n\r";
       $returned.=Form::submit("Delete",["class"=>$class_del])."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.edit",$id).'" class="'.$class_edit.'">Edit</a>'."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.show",$id).'" class="'.$class_view.'">View</a>'."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.edit",['id'=>$id,'menu'=>$sitebarmenu]).'" class="'.$class_edit.'">Edit</a>'."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.show",['id'=>$id,'menu'=>$sitebarmenu]).'" class="'.$class_view.'">View</a>'."\n\r";
       $returned.=Form::close()."\n\r";
       return $returned;
     }

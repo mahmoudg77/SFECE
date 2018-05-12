@@ -41,7 +41,7 @@ class Post extends Model
         return $this->belongsTo("App\User","created_by","id");
     }
     public function mainImage($thumb=false){
-        $mf=$this->MediaFiles()->where('model_attribute','main')->first();
+        $mf=$this->MediaFiles()->where('model_attribute','main')->orderBy('id', 'desc')->first();
         if(!$mf){
             return url('images/none.jpg');
         }

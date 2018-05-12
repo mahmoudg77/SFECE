@@ -27,7 +27,12 @@
               </select>
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="control-label col-md-2">Force Filter</label>
+            <div class="col-md-10">
+              {{Form::text('force_filter')}}
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>
