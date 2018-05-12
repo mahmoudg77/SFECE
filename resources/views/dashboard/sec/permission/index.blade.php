@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.secpermission.create',['menu'=>$sel_menu])}}">Create New</a>
+  <a class="btn btn-success pull-right" href="{{route('cp.secpermission.create',['curr_menu'=>$sel_menu])}}">Create New</a>
   <table class="table datatable">
     <thead>
       <tr>
@@ -18,7 +18,7 @@
           <td>{{$itemt->action}}</td>
           <td>{{$itemt->Creator!=null?$itemt->Creator->name:null}}</td>
           <td>
-              {!!Func::actionLinks('secpermission',$itemtt->id,"")!!}
+              {!!Func::actionLinks('secpermission',$itemt->id,"",["edit"=>"hidden","delete"=>"","view"=>"view"])!!}
           </td>
       </tr>
     @endforeach

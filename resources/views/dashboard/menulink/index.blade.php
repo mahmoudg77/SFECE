@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right addnew" href="{{route('cp.menu-link.create',['m'=>$m,'menu'=>$sel_menu])}}">Create New</a>
+  <a class="btn btn-success pull-right addnew" href="{{route('cp.menu-link.create',['m'=>$m,'curr_menu'=>$sel_menu])}}">Create New</a>
   <div class="clearfix"></div>
 </div>
   <div class="list-group" >
@@ -14,7 +14,7 @@
       @else
         <div class="list-group-item">{{$item->title}}
           <div class="col col-sm-6 pull-right">
-             {!!Func::actionLinks('menu-link',$item->id,".list-group-item")!!}
+             {!!Func::actionLinks('menu-link',$item->id,".list-group-item",["edit"=>"edit","delete"=>"delete","view"=>"view"])!!}
           </div>
             <div class="clearfix"></div>
         </div>
@@ -24,7 +24,7 @@
           @foreach($item->Links as $link)
           <div  class="list-group-item">{{$link->title}}
               <div class="col col-sm-6 pull-right">
-                {!!Func::actionLinks('menu-link',$link->id,".list-group-item")!!}
+                {!!Func::actionLinks('menu-link',$link->id,".list-group-item",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
             </div>
               <div class="clearfix"></div>
           </div>

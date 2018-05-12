@@ -5,7 +5,7 @@
 <div class="panel-group">
     <div class="panel panel-default">
         <div class="panel-body" style="padding: 7px;">
-            <a class="btn btn-success btn-sm pull-right" href="{{route('cp.posts.create',['type'=>$post_type_id,'menu'=>$sel_menu])}}">
+            <a class="btn btn-success btn-sm pull-right" href="{{route('cp.posts.create',['type'=>$post_type_id,'curr_menu'=>$sel_menu])}}">
           Create New</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
                       <td>{{$post->pub_date}}</td>
                       <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
                       <td>
-                          {!!Func::actionLinks('posts',$post->id,"")!!}
+                          {!!Func::actionLinks('posts',$post->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
                       </td>
                   </tr>
                 @endforeach

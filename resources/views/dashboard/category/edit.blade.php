@@ -35,7 +35,7 @@
           {!! Form::select('parent_id',
                           App\Models\Category::where('parent_id',0)->orWhereNull('parent_id')->listsTranslations('title')->pluck('title','id'),
                           ($data->Parent)?$data->Parent->id:null,
-                          array('class'=>'form-control')) !!}
+                          array('class'=>'form-control','placeholder'=>'Root')) !!}
         </div>
 
 

@@ -6,7 +6,7 @@
 
 <?php
   $mainmenu=$cp_menu;
-  $qmenu=app('request')->input('menu');
+  $qmenu=app('request')->input('curr_menu');
   //if(!$qmenu)$qmenu="Category";
   ?>
 

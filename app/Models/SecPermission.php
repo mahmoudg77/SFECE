@@ -10,7 +10,7 @@ class SecPermission extends Model
 
   public function Groups()
   {
-    return belongsToMany('App\Models\SecGroup');
+    return $this->belongsToMany('App\Models\SecGroup');
   }
 
 }

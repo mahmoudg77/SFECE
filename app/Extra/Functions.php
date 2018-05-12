@@ -45,11 +45,11 @@ class Functions
         if(in_array('view' ,array_keys($class))){
             $class_view.=$class['view'];
         }
-        $sitebarmenu=\request()->get('menu');
+        $sitebarmenu=\request()->get('curr_menu');
       $returned=Form::open(['route'=>["cp.$routeBase.destroy",$id],"method"=>"DELETE","class"=>"ajax-delete","elm-parent"=>$elm_parent])."\n\r";
       $returned.=Form::submit("Delete",["class"=>$class_del])."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.edit",['id'=>$id,'menu'=>$sitebarmenu]).'" class="'.$class_edit.'">Edit</a>'."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.show",['id'=>$id,'menu'=>$sitebarmenu]).'" class="'.$class_view.'">View</a>'."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.edit",['id'=>$id,'curr_menu'=>$sitebarmenu]).'" class="'.$class_edit.'">Edit</a>'."\n\r";
+      $returned.='<a href="'.route("cp.$routeBase.show",['id'=>$id,'curr_menu'=>$sitebarmenu]).'" class="'.$class_view.'">View</a>'."\n\r";
       $returned.=Form::close()."\n\r";
       return $returned;
     }

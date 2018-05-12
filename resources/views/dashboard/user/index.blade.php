@@ -5,7 +5,7 @@
 <div class="panel-group">
     <div class="panel panel-default">
         <div class="panel-body" style="padding: 7px;">
-            <a class="btn btn-success pull-right" href="{{route('cp.user.create',['menu'=>$sel_menu])}}">Create New</a>
+            <a class="btn btn-success pull-right" href="{{route('cp.user.create',['curr_menu'=>$sel_menu])}}">Create New</a>
         </div>
     </div>
     <div class="panel panel-default">
@@ -27,7 +27,7 @@
                       <td>{{$item->AccountLevel->name}}</td>
                       <td>{{$item->created_at}}</td>
                        <td>
-                          {!!Func::actionLinks('user',$item->id,"")!!}
+                          {!!Func::actionLinks('user',$item->id,"",["edit"=>"edit","view"=>"view"])!!}
                       </td>
                   </tr>
                 @endforeach
@@ -39,7 +39,7 @@
 @endsection
 
 @section('js')
-<script>
+<!-- <script>
 $(function(){
   $(".ajax-delete").ajaxForm({
     dataType:"json",
@@ -59,5 +59,5 @@ $(function(){
     }
   });
 });
-</script>
+</script> -->
 @endsection
