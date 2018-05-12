@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @section('title',$data->title)
 @section('content')
-
-<div class="panel panel-default" style="width:700px;max-width: 100%;">
+<section class="cat-dashboard">
+<div class="panel panel-default">
 <!--
     <div class="panel-heading main-color-bg">
       <h3 class="panel-title">Edit Category :: {{ $data->title }}</h3>
     </div>
 -->
-
-    <div class="modal-body">
-      <div class="row">
+    <div class="panel-body">
+        <h2 class="post-heading">Edit Category: <small>{{$data->title}}</small></h2>
+      <div class="ro-w">
         {!! Form::open(['method'=>'PATCH', 'route'=>["cp.category.update",$data->id]]) !!}
         <ul class="nav nav-tabs">
           @foreach(config('translatable.locales') as $key)
@@ -47,4 +47,5 @@
       </div>
     </div>
     </div>
+</section>
 @stop
