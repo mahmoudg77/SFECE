@@ -146,9 +146,30 @@ $(function(){
       .toggleClass('glyphicon-chevron-right')
       .toggleClass('glyphicon-chevron-down');
   });
+    $("form.ajax-form").ajaxForm({
+        dataType: "json",
+        beforeSubmit:function() {
+            CKupdate();
+            console.log($(".editor").val());
+            //return false;
+        },
+        success: function (data) {
+            if (data.type == 'success') {
+                Success(data.message);
+            } else {
+                Error(data.message);
+            }
+        },
+        error: function (data, status, xhr) {
+            Error( data.status + " " + xhr);
+
+        }
+    });
+
+
   function applayEditor(elem) {
     if(elem ==undefined) elem='body';
-    console.log(elem);
+
     if ( typeof CKEDITOR == 'undefined' )
     		{
     		// document.write(
@@ -162,18 +183,25 @@ $(function(){
     		{
     			$(elem + " .editor").each(function(){
 
-    				var editor = CKEDITOR.replace($(this).attr("name"));
+    				var editor = CKEDITOR.replace($(this).attr("id"));
 
 
     				// Just call CKFinder.setupCKEditor and pass the CKEditor instance as the first argument.
     				// The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
     				CKFinder.setupCKEditor( editor, '/cpanel/js/ckfinder/' ) ;
+                    //CKFinder.setupCKEditor( editor, '../' ) ;
 
     				// It is also possible to pass an object with selected CKFinder properties as a second argument.
-    				// CKFinder.setupCKEditor( editor, { basePath : 'js/ckfinder/', skin : 'v1' } ) ;
+    				CKFinder.setupCKEditor( editor, { basePath : '/cpanel/js/ckfinder/', skin : 'v1' } ) ;
     			});
     		}
       }
+
+    function CKupdate(){
+        for ( instance in CKEDITOR.instances )
+            CKEDITOR.instances[instance].updateElement();
+    }
+
 applayEditor();
 
 
