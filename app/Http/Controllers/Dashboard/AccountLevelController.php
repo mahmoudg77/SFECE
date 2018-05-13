@@ -47,16 +47,16 @@ class AccountLevelController extends IController
    */
   public function store(Request $request)
   {
-      //
-      $category=$request->except(['_token']);
-      $category['created_by']=Auth::user()->id;
-
-      if(IModel::create($category)){
-        return  $this->Success("Save Success",$category);
-      }else{
-        return  $this->Error("Error while save data !!");
+      $data=$request->except(['_token']);
+      $data['created_by']=Auth::user()->id;
+      DB::beginTransaction();
+      try{
+          IModel::create($data);
+          return  $this->Success("Save Success",$data);
+      }catch (\Exception $ex){
+          DB::rollback();
+          return  $this->Error("Error while save data !! " .$ex->getMessage());
       }
-
   }
   public function update(Request $request,$id)
   {

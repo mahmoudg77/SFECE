@@ -56,7 +56,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 
-  Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
+    Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
     #Dashboard Routes
     Route::get('/','Dashboard\DashboardController@index')->name('cp.dashboard');
     Route::resource('/posts','Dashboard\PostController',['as'=>'cp']);
@@ -73,8 +73,12 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::resource('/secgroup','Dashboard\SecGroup',['as'=>'cp']);
     Route::resource('/secpermission','Dashboard\SecPermission',['as'=>'cp']);
     Route::resource('/setting','Dashboard\SettingController',['as'=>'cp']);
+    Route::post('/post-slug','Dashboard\PostController@getFreeSlug')->name('cp.post-slug');
+
     Route::post('/secpermission-getactions','Dashboard\SecPermission@getActionsList')->name('cp.secpermission-getactions');
-  });
+    Route::post('/secpermission-getfilter','Dashboard\SecPermission@getForceFilter')->name('cp.secpermission-getfilter');
+
+    });
 
 
 

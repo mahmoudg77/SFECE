@@ -28,7 +28,7 @@
                       <td>{{$post->pub_date}}</td>
                       <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
                       <td>
-                          {!!Func::actionLinks('posts',$post->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
+                          {!!Func::actionLinks('posts',$post->id,"",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}
                       </td>
                   </tr>
                 @endforeach

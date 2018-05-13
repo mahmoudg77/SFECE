@@ -47,11 +47,22 @@ class HasAccessMiddleware
         $force_filter=str_replace(array_keys($variables),array_values($variables),$force_filter);
 
         $whr=json_decode($force_filter);
+
+        if($whr){
+            foreach ($whr as $key => $value) {
+                if(!$request->get($value[0]))continue;
+                if(Func::checkValue($request->get($value[0]),$value[1],$value[2])==false){
+                    return "Unauthorized !";
+                }
+            }
+        }
+
         //dd($obj->model);
         try{
             $data=Func::applyForceFilter($obj->model,$whr);
             $request->attributes->add(['data'=>$data]);
-            //dd($whr);
+
+
         }catch (\Exception $ex){
 
         }

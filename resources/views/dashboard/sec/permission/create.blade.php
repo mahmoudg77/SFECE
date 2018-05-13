@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-{{Form::model(null, ['route'=>["cp.secpermission.store"],"method"=>"POST"])}}
+{{Form::model(null, ['route'=>["cp.secpermission.store"],"method"=>"POST",'class'=>'ajax-form'])}}
 <div class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-md-2">Group</label>
                 <div class="col-md-10">
-                  {{Form::select('sec_group_id',App\Models\SecGroup::pluck('name','id'),null,['class'=>'form-control'])}}
+                  {{Form::select('groupid',App\Models\SecGroup::pluck('name','id'),null,['class'=>'form-control'])}}
                 </div>
             </div>
               <div class="form-group">
                 <label class="control-label col-md-2">Controller</label>
                 <div class="col-md-10">
-                  <select id="controller" class="form-control" name="controller">
+                  <select id="ctrl"  class="form-control" name="ctrl">
                     @foreach (Func::controllers() as $key=>$value)
                       <option value="{{$key}}">{{$value}}</option>
                     @endforeach
@@ -20,19 +20,15 @@
             </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Action</label>
+            <label class="control-label col-md-2"></label>
             <div class="col-md-10">
-              <select id="action" class="form-control" name="action">
+             <table class="table" id="actions">
+                 <thead><tr><th>Allow</th><th>Action</th><th>Force Filter</th></tr></thead>
+                 <tbody></tbody>
+             </table>
+            </div>
+        </div>
 
-              </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Force Filter</label>
-            <div class="col-md-10">
-              {{Form::text('force_filter')}}
-            </div>
-        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>
@@ -43,32 +39,45 @@
 
 <script type="text/javascript">
   $(function(){
-    $("#controller").change(function(){
-      var $this=$(this);
-      $("#action").html("<option>Loading....</option>");
+    $("#ctrl,select[name='groupid']").change(function(){
+        $("#actions tbody").html("Loading ...");
       $.ajax({
         type:"post",
         headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},
         url:"{{route('cp.secpermission-getactions')}}",
         dataType:'json',
-        data:{'ctrl':$this.val()},
+        data:{'ctrl':$("#ctrl").val(),'group':$("select[name='groupid']").val()},
         success:function(d){
           $("#action").html("");
           console.log(d);
           if(d.success){
+              $("#actions tbody").html("");
+              var n=0;
             d.data.forEach(function(item){
-              $("#action").append('<option value="'+ item.key +'">' + item.value + '</option>');
+                var tr=$("<tr><input type='hidden' name='"+n+"[controller]' value='" + item.controller + "'/><input type='hidden' name='"+n+"[sec_group_id]' value='" + item.sec_group_id + "'/></tr>");
+                tr.append("<td><input type='checkbox' name='"+n+"[action]' value='" + item.action + "' " + (item.id>0?"checked":"") + " /></td>");
+                tr.append("<td>"+item.action+"</td>");
+                tr.append("<td><input type='text' value='" + item.force_filter + "' class='form-control' placeholder='e.g. [[\"column\",\"=\",\"value\"],...]' name='"+n+"[force_filter]'/></td>");
+
+                $("#actions tbody").append(tr);
+                n++;
             });
           }else{
+              $("#actions tbody").html("");
             Error(d.message);
           }
 
         },
         error: function (data, status, xhr) {
+            $("#actions tbody").html("");
             Error( data.status + " " + xhr);
         }
       });
     });
+
+
+      $("#ctrl").change();
+
   });
 </script>
 @stop
