@@ -18,7 +18,7 @@
           <td>{{$itemt->action}}</td>
           <td>{{$itemt->Creator!=null?$itemt->Creator->name:null}}</td>
           <td>
-              {!!Func::actionLinks('secpermission',$itemt->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
+              {!!Func::actionLinks('secpermission',$itemt->id,"",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]])!!}
           </td>
       </tr>
     @endforeach

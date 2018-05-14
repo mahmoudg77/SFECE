@@ -5,19 +5,21 @@ use Illuminate\Http\Request;
 use Form;
 class Functions
 {
-    public static function Success($message='',$view="",array $sentData=[])
+    public static function Success($message='',array $sentData=[])
     {
         $response['type']='success';
         $response['message']=$message;
         $response['data']=$sentData;
-        $sentData['response']=$response;
+        //$sentData['response']=$response;
+
         //dd($sentData);
        if(\Request::ajax()){
          return json_encode($response);
        }else{
-         if($view!="") return view($view,$sentData);
-
-         return "<div class='alert alert-success'>".$message."</div>";
+           session()->put('response',$response);
+           return redirect()->back();
+//           if($view!="") return view($view,$sentData);
+//         return "<div class='alert alert-success'>".$message."</div>";
        }
     }
     public static function Error($message='',$view="",array $sentData=[])
@@ -25,13 +27,16 @@ class Functions
         $response['type']='error';
         $response['message']=$message;
         $response['data']=$sentData;
-        $sentData['response']=$response;
-        dd($sentData);
-        if(\Request::ajax()){
+
+
+        //dd($sentData);
+      if(\Request::ajax()){
+
         return json_encode($response);
       }else{
+          session()->put('response',$response);
           if($view!="") return view($view,$sentData);
-          return "<div class='alert alert-danger'>".$message."</div>";
+          return redirect()->back();//"<div class='alert alert-danger'>".$message."</div>";
       }
     }
 
@@ -134,7 +139,10 @@ class Functions
         }
      }
      public static function menu($location){
-         return \App\Models\Menu::where("location",$location)->first()->Links()->where('parent_id','0')->orWhereNull('parent_id')->get();
+         return \App\Models\Menu::where("location",$location)->first()->Links()->where(function ($query) {
+             $query->where('parent_id', '=', 0)
+                 ->orWhereNull('parent_id');
+         })->get();
      }
      public static function menuLink($menuLink){
         if(empty($menuLink->customlink)){

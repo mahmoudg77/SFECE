@@ -97,11 +97,3 @@
 
 
 @stop
-@section('js')
-    @if(isset($response) && $response['type']=='success')
-        <script>$(function(){Success("{{$response['message']}}");});</script>
-    @endif
-    @if(isset($response) && $response['type']=='error')
-        <script>$(function(){Error("{{$response['message']}}");});</script>
-    @endif
-@stop

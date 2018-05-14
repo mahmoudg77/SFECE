@@ -12,7 +12,7 @@ use Auth;
 use DB;
 class PostController extends IController
 {
-  var $permitionname="المقالات";
+  var $metaTitle="المقالات والصفحات والأبحاث";
   public $model=\App\Models\Post::class;
   var $methods=['getFreeSlug'=>'Create Free Slug'];
   protected $viewFolder="dashboard.post";
@@ -29,7 +29,6 @@ class PostController extends IController
         $post_type_id=request()->get('type');
         $data=$data->where('post_type_id',request()->get("type"));
       }
-      //$data->get();
 
       return view($this->viewFolder.".index",compact('data','post_type_id'));
   }
@@ -39,7 +38,7 @@ class PostController extends IController
     $data=request()->get('data');
     $data=$data->find($id);
     if($data==null){
-        return  Func::Error( "Unauthorized !" );
+        return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('data') );
     }
     return view($this->viewFolder.".edit",compact('data'));
   }
@@ -59,7 +58,7 @@ class PostController extends IController
         $data=request()->get('data');
         $data=$data->find($id);
         if($data==null){
-            return  Func::Error( "Unauthorized !" );
+            return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('show') );
         }
         return view($this->viewFolder.".show", compact('data'));
   }
@@ -94,10 +93,10 @@ class PostController extends IController
 
           DB::commit();
           $post_type_id=$data['post_type_id'];
-          return  Func::Success("Save Success",$this->viewFolder.".create",compact('data','post_type_id'));
+          return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
-          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create");
+          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create",compact('data','post_type_id'));
       }
 
   }
@@ -112,7 +111,7 @@ class PostController extends IController
 
       $data=$data->find($id);
       if($data==null){
-          return  Func::Error( "Unauthorized !" );
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('data') );
       }
       $post_type_id=$data['post_type_id'];
       DB::beginTransaction();
@@ -125,7 +124,7 @@ class PostController extends IController
               $imageobj->upload($image);
           }
           DB::commit();
-          return  Func::Success("Save Success",$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
+          return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
           return  Func::Error("Error while save data !! " ,$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
@@ -145,15 +144,19 @@ class PostController extends IController
       //
       $data=\request()->get('data');
       $data=$data->find($id);
+
       if($data==null){
-          return  Func::Error( "Unauthorized !" );
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".index" );
+      }
+      DB::beginTransaction();
+      try{
+          $data->destroy($id);
+          return  Func::Success("Delete Success");
+      }catch (\Exception $ex){
+        DB::rollback();
+        return  Func::Error("Error while save data !! ");
       }
 
-      if($data->destroy($id)){
-        return  Func::Success("Delete Success");
-      }else{
-        return  Func::Error("Error while delete data !!");
-      }
   }
 
   public function getFreeSlug(){

@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel panel-default" style="margin-bottom:10px">
     <div class="panel-body" style="padding:7px">
-        <a class="btn btn-success pull-right addnew" href="{{route('cp.category.create',['curr_menu'=>$sel_menu])}}">Create New</a>
+        <a class="btn btn-success pull-right" href="{{route('cp.category.create',['curr_menu'=>$sel_menu])}}">Create New</a>
     </div>
 </div>
 
@@ -17,7 +17,7 @@
                     <a href="#{{$item->id}}" class="col-sm-8" data-toggle="collapse" style="color: #555;text-decoration: none;">
                         {{$item->title}} <i class="glyphicon glyphicon-chevron-right" style="font-size: 12px;"></i></a>
                     <div class="col-sm-4 pull-right">
-                        {!!Func::actionLinks('category',$item->id,".list-group-item",['edit'=>'edit','view'=>'view'])!!}
+                        {!!Func::actionLinks('category',$item->id,".list-group-item",['edit'=>['class'=>'edit'],'view'=>['class'=>'view']])!!}
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="row">
                   <div class="col-sm-8">{{$item->title}}</div>
                   <div class="col-sm-4 pull-right">
-                     {!!Func::actionLinks('category',$item->id,".list-group-item",['edit'=>'edit','view'=>'view'])!!}
+                     {!!Func::actionLinks('category',$item->id,".list-group-item",['edit'=>['class'=>''],'view'=>['class'=>'view']])!!}
                   </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                   <div class="row">
                       <div class="col-sm-8">&nbsp;&nbsp; {{$subitem->title}}</div>
                       <div class="col-sm-4 pull-right">
-                        {!!Func::actionLinks('category',$subitem->id,".list-group-item",['edit'=>'edit','view'=>'view'])!!}
+                        {!!Func::actionLinks('category',$subitem->id,".list-group-item",['edit'=>['class'=>''],'view'=>['class'=>'view']])!!}
                       </div>
                   </div>
               </div>

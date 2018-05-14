@@ -27,7 +27,7 @@
                       <td>{{$item->AccountLevel->name}}</td>
                       <td>{{$item->created_at}}</td>
                        <td>
-                          {!!Func::actionLinks('user',$item->id,"",["edit"=>"edit","view"=>"view"])!!}
+                          {!!Func::actionLinks('user',$item->id,"",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]])!!}
                       </td>
                   </tr>
                 @endforeach

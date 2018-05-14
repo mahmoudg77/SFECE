@@ -202,7 +202,16 @@
     <script src="{{ asset('cpanel/js/ckfinder/ckeditor/ckeditor.js')}}"></script>
     <script src="{{ asset('cpanel/js/ckfinder/ckfinder.js')}}"></script>
     <script src="{{ asset('cpanel/js/script.js')}}"></script>
-
+    <?php if(Session::has('response')){
+        $response=session()->pull('response');
+        //dd($response);
+    }?>
+    @if(isset($response) && $response['type']=='success')
+        <script>$(function(){Success("{{$response['message']}}");});</script>
+    @endif
+    @if(isset($response) && $response['type']=='error')
+        <script>$(function(){Error("{{$response['message']}}");});</script>
+    @endif
 
     @yield('js')
 

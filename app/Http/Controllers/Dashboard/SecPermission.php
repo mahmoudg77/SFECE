@@ -11,6 +11,9 @@ class SecPermission extends IController
 {
   protected $viewFolder="dashboard.sec.permission";
   var $methods=['getActionsList'=>'Get Action List'];
+    var $metaTitle="Security Permissions";
+    public $model=IModel::class;
+
   public function index()
   {
     if(request()->get('group')==null){
@@ -70,9 +73,9 @@ class SecPermission extends IController
       }
     //dd($data_to_save);
       if(IModel::insert($data_to_save)){
-        return  $this->Success("Save Success",$data);
+        return  Func::Success("Save Success",$data);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -85,9 +88,9 @@ class SecPermission extends IController
       //print_r($category);
 
       if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -106,9 +109,9 @@ class SecPermission extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return Func::Error("Error while delete data !!");
       }
   }
   public function getActionsList()
@@ -123,6 +126,7 @@ class SecPermission extends IController
         return json_encode(['success'=>false,'message'=>"Invalid request !!"]);
 
     $obj=new $ctrl;
+    if(!isset($obj->methods)) return json_encode(['success'=>true,'data'=>null]);
     $methods=$obj->methods;
 
       $newarray=[];

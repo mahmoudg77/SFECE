@@ -29,7 +29,7 @@
 
           <div class="form-group col-sm-12">
             {!! Form::label('Description ('.$key.')') !!}
-            {!! Form::textarea($key.'[description]', null, ['required', 'class'=>'form-control editor', 'placeholder'=>'Add description ....']) !!}
+            {!! Form::textarea($key.'[description]', null, ['required', 'class'=>'form-control editor','id'=>$key.'_editor','placeholder'=>'Add description ....']) !!}
           </div>
         </div>
         @endforeach

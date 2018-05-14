@@ -9,10 +9,14 @@ use App\Models\AccountLevel as IModel;
 class AccountLevelController extends IController
 {
   protected $viewFolder="dashboard.account_level";
+  var $metaTitle="انواع العضوية";
+  public $model=IModel::class;
+  var $methods=[];
 
   public function index()
   {
-    $data=IModel::all();
+      $data=request()->get('data');
+    //$data=IModel::all();
     return view($this->viewFolder.".index",compact('data'));
   }
 
@@ -52,10 +56,10 @@ class AccountLevelController extends IController
       DB::beginTransaction();
       try{
           IModel::create($data);
-          return  $this->Success("Save Success",$data);
+          return  Func::Success("Save Success",$data);
       }catch (\Exception $ex){
           DB::rollback();
-          return  $this->Error("Error while save data !! " .$ex->getMessage());
+          return  Func::Error("Error while save data !! " .$ex->getMessage());
       }
   }
   public function update(Request $request,$id)
@@ -67,9 +71,9 @@ class AccountLevelController extends IController
       //print_r($category);
 
       if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -88,9 +92,9 @@ class AccountLevelController extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return  Func::Error("Error while delete data !!");
       }
   }
 }

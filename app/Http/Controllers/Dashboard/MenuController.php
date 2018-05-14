@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
 use App\Models\Menu as IModel;
 use Auth;
-
+use Func;
 class MenuController extends IController
 {
+
   protected $viewFolder="dashboard.menu";
+    var $metaTitle="القوائم";
+    public $model=IModel::class;
+    var $methods=[];
 
   public function index()
   {
@@ -53,9 +57,9 @@ class MenuController extends IController
       $category['created_by']=Auth::user()->id;
 
       if(IModel::create($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -68,9 +72,9 @@ class MenuController extends IController
       //print_r($category);
 
       if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -89,9 +93,9 @@ class MenuController extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return  Func::Error("Error while delete data !!");
       }
   }
 

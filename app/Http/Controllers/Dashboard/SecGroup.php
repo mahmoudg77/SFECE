@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
 use App\Models\SecGroup as IModel;
 use Auth;
+use Func;
 class SecGroup extends IController
 {
   protected $viewFolder="dashboard.sec.group";
-  var $metaTitle="Security Groups";
+
+    var $metaTitle="Security Groups";
+    public $model=IModel::class;
+    var $methods=[];
   public function index()
   {
     $data=IModel::all();
@@ -51,9 +55,9 @@ class SecGroup extends IController
       $category=$request->except(['_token']);
 
       if(IModel::create($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -66,9 +70,9 @@ class SecGroup extends IController
       //print_r($category);
 
       if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -87,9 +91,9 @@ class SecGroup extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return  Func::Error("Error while delete data !!");
       }
   }
 }
