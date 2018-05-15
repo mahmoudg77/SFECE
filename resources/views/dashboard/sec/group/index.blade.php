@@ -18,7 +18,7 @@
           <td>{{$item->groupkey}}</td>
           <td><a href="{{route('cp.secpermission.index',['group'=>$item->id,'curr_menu'=>$sel_menu])}}">{{count($item->Permissions)}}</a></td>
           <td>
-              {!!Func::actionLinks('secgroup',$item->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
+              {!!Func::actionLinks('secgroup',$item->id,"",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]])!!}
           </td>
       </tr>
     @endforeach

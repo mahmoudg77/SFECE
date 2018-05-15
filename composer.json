@@ -8,6 +8,7 @@
     "require": {
         "php": ">=5.6.4",
         "dimsav/laravel-translatable": "7.3",
+        "doctrine/dbal": "^2.5",
         "graham-campbell/exceptions": "^10.1",
         "illuminate/http": "^5.4",
         "intervention/image": "^2.4",

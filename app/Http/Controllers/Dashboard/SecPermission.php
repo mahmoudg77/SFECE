@@ -10,6 +10,10 @@ use Auth;
 class SecPermission extends IController
 {
   protected $viewFolder="dashboard.sec.permission";
+  var $methods=['getActionsList'=>'Get Action List'];
+    var $metaTitle="Security Permissions";
+    public $model=IModel::class;
+
   public function index()
   {
     if(request()->get('group')==null){
@@ -52,13 +56,26 @@ class SecPermission extends IController
   public function store(Request $request)
   {
       //
-      $category=$request->except(['_token']);
-      $category['created_by']=Auth::user()->id;
+      $data=$request->except(['_token']);
+      $data['created_by']=Auth::user()->id;
 
-      if(IModel::create($category)){
-        return  $this->Success("Save Success",$category);
+      //dd($data);
+      IModel::where('controller',$data['ctrl'])->where('sec_group_id',$data['groupid'])->delete();
+
+      $data_to_save=[];
+
+      foreach ($data as $key=>$value){
+          if(is_numeric($key) && in_array('action',array_keys($value))) {
+                $value['created_by']=Auth::user()->id;
+                $value['created_at']=date('Y-m-d H:i:n');
+                $data_to_save[] = $value;
+              }
+      }
+    //dd($data_to_save);
+      if(IModel::insert($data_to_save)){
+        return  Func::Success("Save Success",$data);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -71,9 +88,9 @@ class SecPermission extends IController
       //print_r($category);
 
       if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+        return  Func::Success("Save Success",$category);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -92,25 +109,49 @@ class SecPermission extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return Func::Error("Error while delete data !!");
       }
   }
   public function getActionsList()
   {
+
     $ctrl=request()->get('ctrl');
-    if(!isset($ctrl) || $ctrl=='')
+    $group=request()->get('group');
+
+    if(!isset($ctrl) || $ctrl=='' || !isset($group) || $group=='')
         return json_encode(['success'=>false,'message'=>"Invalid request !!"]);
     if(!in_array($ctrl,array_keys(Func::controllers())))
         return json_encode(['success'=>false,'message'=>"Invalid request !!"]);
 
     $obj=new $ctrl;
+    if(!isset($obj->methods)) return json_encode(['success'=>true,'data'=>null]);
     $methods=$obj->methods;
-    $newarray=[];
-    foreach ($methods as $key => $value) {
-      $newarray[]=['key'=>$key,'value'=>$value];
-    }
+
+      $newarray=[];
+      foreach ($methods as $key => $value) {
+          $obj=IModel::where('action',$key)->where('controller',$ctrl)->where('sec_group_id',$group)->first();
+          if(!$obj){
+              $obj=new IModel();
+              $obj->id=0;
+              $obj->controller=$ctrl;
+              $obj->action=$key;
+              $obj->force_filter="";
+              $obj->sec_group_id=$group;
+          }
+          $obj->force_filter=$obj->force_filter==null?"":$obj->force_filter;
+          $newarray[]=$obj;
+      }
+
     return json_encode(['success'=>true,'data'=>$newarray]);
+  }
+
+  public function getForceFilter(Request $request){
+      $ctrl=$request->get('ctrl');
+      $action=$request->get('action');
+      $data=IModel::where('controller',$ctrl)->where('action',$action)->first();
+
+      return json_encode(['success'=>true,'data'=>$data]);
   }
 }

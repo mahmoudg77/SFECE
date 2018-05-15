@@ -5,53 +5,64 @@ use Illuminate\Http\Request;
 use Form;
 class Functions
 {
-    public static function Success($message='',$object=null,$next="")
+    public static function Success($message='',array $sentData=[])
     {
+        $response['type']='success';
+        $response['message']=$message;
+        $response['data']=$sentData;
+        //$sentData['response']=$response;
+
+        //dd($sentData);
        if(\Request::ajax()){
-         $response['type']='success';
-         $response['message']=$message;
-         $response['data']=$object;
          return json_encode($response);
        }else{
-         if($next!="") return redirect($next);
-         return "<div class='alert alert-success'>".$message."</div>";
+           session()->put('response',$response);
+           return redirect()->back();
+//           if($view!="") return view($view,$sentData);
+//         return "<div class='alert alert-success'>".$message."</div>";
        }
     }
-    public static function Error($message='',$object=null)
+    public static function Error($message='',$view="",array $sentData=[])
     {
-      if(\Request::ajax()){
         $response['type']='error';
         $response['message']=$message;
-        $response['data']=$object;
+        $response['data']=$sentData;
+
+
+        //dd($sentData);
+      if(\Request::ajax()){
+
         return json_encode($response);
       }else{
-
-        return "<div class='alert alert-danger'>".$message."</div>";
+          session()->put('response',$response);
+          if($view!="") return view($view,$sentData);
+          return redirect()->back();//"<div class='alert alert-danger'>".$message."</div>";
       }
     }
 
-    public static function actionLinks($routeBase,$id,$elm_parent="tr",array $class=[])
+    public static function actionLinks($routeBase,$id,$elm_parent="tr",array $attrs=[])
     {
       $class_del="btn btn-danger btn-sm ";
       $class_edit="btn btn-primary btn-sm ";
       $class_view="btn btn-default btn-sm ";
 
-        if(in_array('delete' ,array_keys($class))){
-             $class_del.= $class['delete'];
+        if(in_array('delete' ,array_keys($attrs)) && in_array('class' ,array_keys($attrs['delete']))){
+             $class_del.= $attrs['delete']['class'];
         }
-        if(in_array('edit' ,array_keys($class))){
-            $class_edit.=$class['edit'];
+        if(in_array('edit' ,array_keys($attrs)) && in_array('class' ,array_keys($attrs['edit']))){
+            $class_edit.=$attrs['edit']['class'];
         }
-        if(in_array('view' ,array_keys($class))){
-            $class_view.=$class['view'];
+        if(in_array('view' ,array_keys($attrs)) && in_array('class' ,array_keys($attrs['view']))){
+            $class_view.=$attrs['view']['class'];
         }
         $sitebarmenu=\request()->get('curr_menu');
-      $returned=Form::open(['route'=>["cp.$routeBase.destroy",$id],"method"=>"DELETE","class"=>"ajax-delete","elm-parent"=>$elm_parent])."\n\r";
-      $returned.=Form::submit("Delete",["class"=>$class_del])."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.edit",['id'=>$id,'curr_menu'=>$sitebarmenu]).'" class="'.$class_edit.'">Edit</a>'."\n\r";
-      $returned.='<a href="'.route("cp.$routeBase.show",['id'=>$id,'curr_menu'=>$sitebarmenu]).'" class="'.$class_view.'">View</a>'."\n\r";
-      $returned.=Form::close()."\n\r";
-      return $returned;
+
+        $returned=Form::open(['route'=>["cp.$routeBase.destroy",$id],"method"=>"DELETE","class"=>"ajax-delete","elm-parent"=>$elm_parent])."\n\r";
+        $returned.=Form::submit("Delete",["class"=>$class_del])."\n\r";
+        $returned.='<a href="'.(in_array('edit',array_keys($attrs)) && in_array('href',array_keys($attrs['edit']))?$attrs['edit']['href']:route("cp.$routeBase.edit",['id'=>$id,'curr_menu'=>$sitebarmenu])).'" class="'.$class_edit.'">Edit</a>'."\n\r";
+        $returned.='<a href="'.(in_array('view',array_keys($attrs)) && in_array('href',array_keys($attrs['view']))?$attrs['view']['href']:route("cp.$routeBase.show",['id'=>$id,'curr_menu'=>$sitebarmenu])).'" class="'.$class_view.'">View</a>'."\n\r";
+        $returned.=Form::close()."\n\r";
+        return $returned;
     }
     public static function langslug($url, $langcode = null, $attributes = array(), $https = null)
     {
@@ -128,7 +139,10 @@ class Functions
         }
      }
      public static function menu($location){
-         return \App\Models\Menu::where("location",$location)->first()->Links()->where('parent_id','0')->orWhereNull('parent_id')->get();
+         return \App\Models\Menu::where("location",$location)->first()->Links()->where(function ($query) {
+             $query->where('parent_id', '=', 0)
+                 ->orWhereNull('parent_id');
+         })->get();
      }
      public static function menuLink($menuLink){
         if(empty($menuLink->customlink)){

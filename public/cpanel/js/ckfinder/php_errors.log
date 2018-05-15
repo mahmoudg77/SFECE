@@ -32,3 +32,9 @@
 [05-Mar-2018 15:43:33 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
 [05-Mar-2018 15:43:35 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
 [05-Mar-2018 15:43:36 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[25-Apr-2018 13:01:11 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[25-Apr-2018 19:35:01 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[26-Apr-2018 01:05:34 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[26-Apr-2018 07:30:28 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[26-Apr-2018 10:33:38 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83
+[26-Apr-2018 13:37:26 UTC] PHP Fatal error:  Call to undefined function resolveUrl() in /home/www/current/arabece/arabece.com/templates/default/js/ckfinder/config.php on line 83

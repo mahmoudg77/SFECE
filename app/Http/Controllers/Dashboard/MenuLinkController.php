@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
 use App\Models\MenuLink as IModel;
 use Auth;
-
+use Func;
 class MenuLinkController extends IController
 {
    protected $viewFolder="dashboard.menulink";
-
+   var $metaTitle="عناصر القائمة";
+   public $model=IModel::class;
+   var $methods=[];
   /**
    * Display a listing of the resource.
    *
@@ -21,7 +23,7 @@ class MenuLinkController extends IController
     if(request()->has("m")){
       $m=request()->get('m');
 
-      $data=IModel::where(function ($query) {
+      $data= IModel::where(function ($query) {
           $query->where('parent_id', '=', 0)
               ->orWhereNull('parent_id');
       })->where('menu_id',request()->get("m"))->get();
@@ -71,26 +73,29 @@ class MenuLinkController extends IController
       //
       $data=$request->except(['_token']);
 
+      if($data['type']==0)$data['category_id']=null;
+      if($data['type']==1)$data['customlink']=null;
 
       if(IModel::create($data)){
-        return  $this->Success("Save Success",$data);
+        return  Func::Success("Save Success",$data);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
   public function update(Request $request,$id)
   {
       //
-      $category=$request->except(['_token']);
-      $category['updated_by']=Auth::user()->id;
-      //$category['id']=$id;
-      //print_r($category);
+      $data=$request->except(['_token']);
+      $data['updated_by']=Auth::user()->id;
+      if($data['type']==0)$data['category_id']=null;
+      if($data['type']==1)$data['customlink']=null;
 
-      if(IModel::findOrFail($id)->update($category)){
-        return  $this->Success("Save Success",$category);
+
+      if(IModel::findOrFail($id)->update($data)){
+        return  Func::Success("Save Success",$data);
       }else{
-        return  $this->Error("Error while save data !!");
+        return  Func::Error("Error while save data !!");
       }
 
   }
@@ -103,15 +108,12 @@ class MenuLinkController extends IController
    */
   public function destroy($id)
   {
-      //
       $data=IModel::find($id);
-      //$data->deleted_by=Auth::user()->id;
-      //$data->save();
 
       if($data->destroy($id)){
-        return  $this->Success("Delete Success",$data);
+        return  Func::Success("Delete Success",$data);
       }else{
-        return  $this->Error("Error while delete data !!");
+        return  Func::Error("Error while delete data !!");
       }
   }
 
