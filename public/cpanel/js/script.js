@@ -165,7 +165,7 @@ $(function(){
 
         }
     });
-
+    $(".datatable").dataTable();
 
   function applayEditor(elem) {
     if(elem ==undefined) elem='body';

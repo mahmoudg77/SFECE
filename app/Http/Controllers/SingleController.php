@@ -11,11 +11,11 @@ class SingleController extends Controller
 {
     //get posts by id
     public function getPostByID($id){
-        $singlePost= post::where('id', '=', $id)->first();
+        $singlePost= post::where('id', '=', $id)->where('is_published',1)->first();
         if(!$singlePost){
             return view('errors.404');
         }
-        $lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(4)->get();
+        $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         
         $allcats = Category::all();
         
@@ -24,15 +24,15 @@ class SingleController extends Controller
     //get posts by slug
     public function getPostBySlug($slug){
 
-        $singlePost= post::where('slug', $slug)->first();
+        $singlePost= post::where('slug', $slug)->where('is_published',1)->first();
         if(!$singlePost){
             return view('errors.404');
         }
-        $lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(4)->get();
+        $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         
         //get related posts
-        $related_posts = Post::where('id', '!=', $singlePost->id)
+        $related_posts = Post::where('id', '!=', $singlePost->id)->where('is_published',1)
             ->where('category_id', '=', $singlePost->category_id)->take(3)->get();
         
         if($singlePost->post_type_id==1){
@@ -44,7 +44,7 @@ class SingleController extends Controller
     }
     
     public function getSidebar(){
-        $lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(4)->get();
+        $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         
         return view('sidebar', compact('lastPosts', 'allcats'));

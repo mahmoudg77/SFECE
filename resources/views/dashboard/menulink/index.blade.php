@@ -14,7 +14,7 @@
       @else
         <div class="list-group-item">{{$item->title}} ({!! ($item->category_id>0)?"<span style='color:red'>Category</span>":"<span style='color:blue'>Custom</span>"!!})
           <div class="col col-sm-6 pull-right">
-             {!!Func::actionLinks('menu-link',$item->id,".list-group-item",["edit"=>['class'=>"edit"],"delete"=>['class'=>"delete"],"view"=>['class'=>"view"]])!!}
+             {!!Func::actionLinks('menu-link',$item->id,".list-group-item",["edit"=>['class'=>"edit"],"delete"=>['class'=>""],"view"=>['class'=>"view"]])!!}
           </div>
             <div class="clearfix"></div>
         </div>
@@ -24,7 +24,7 @@
           @foreach($item->Links as $link)
           <div  class="list-group-item">{{$link->title}}  ({!! ($link->category_id>0)?"<span style='color:red'>Category</span>":"<span style='color:blue'>Custom</span>"!!})
               <div class="col col-sm-6 pull-right">
-                {!!Func::actionLinks('menu-link',$link->id,".list-group-item",["edit"=>['class'=>"edit"],"delete"=>['class'=>"delete"],"view"=>['class'=>"view"]])!!}
+                {!!Func::actionLinks('menu-link',$link->id,".list-group-item",["edit"=>['class'=>"edit"],"delete"=>['class'=>""],"view"=>['class'=>"view"]])!!}
             </div>
               <div class="clearfix"></div>
           </div>

@@ -19,7 +19,7 @@
 
         <div class="form-group col-sm-12">
           {!! Form::label('Location') !!}
-          {!! Form::text('description', $data->location, array('required', 'class'=>'form-control')) !!}
+          {!! Form::text('location', $data->location, array('required', 'class'=>'form-control')) !!}
         </div>
 
         <hr/>

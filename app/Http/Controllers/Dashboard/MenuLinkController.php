@@ -111,7 +111,7 @@ class MenuLinkController extends IController
       $data=IModel::find($id);
 
       if($data->destroy($id)){
-        return  Func::Success("Delete Success",$data);
+        return  Func::Success("Delete Success");
       }else{
         return  Func::Error("Error while delete data !!");
       }

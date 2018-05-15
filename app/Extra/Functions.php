@@ -139,10 +139,17 @@ class Functions
         }
      }
      public static function menu($location){
-         return \App\Models\Menu::where("location",$location)->first()->Links()->where(function ($query) {
-             $query->where('parent_id', '=', 0)
-                 ->orWhereNull('parent_id');
-         })->get();
+         $menu= \App\Models\Menu::where("location",$location)->first();
+         if($menu){
+             $menu= $menu->Links()->where(function ($query) {
+                 $query->where('parent_id', '=', 0)
+                     ->orWhereNull('parent_id');
+             })->get();
+         }
+
+         if(!$menu)
+             $menu=[];
+         return $menu;
      }
      public static function menuLink($menuLink){
         if(empty($menuLink->customlink)){
@@ -180,6 +187,19 @@ class Functions
     }
     public static function getPageBySlug($slug){
         return \App\Models\Post::where('slug', $slug)->firstOrFail();
+    }
+
+    public static function getFreeSlug($class,$title){
+        //$title=\request()->get('title');
+        $c_slug=str_slug($title);
+        $slug=$c_slug;
+        $n=1;
+        while($class::where('slug',$slug)->count()>0){
+            $slug=$c_slug."_".$n;
+            $n++;
+        }
+
+        return $slug;
     }
 }
 ?>

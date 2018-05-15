@@ -57,7 +57,7 @@ class MenuController extends IController
       $category['created_by']=Auth::user()->id;
 
       if(IModel::create($category)){
-        return  Func::Success("Save Success",$category);
+        return  Func::Success("Save Success");
       }else{
         return  Func::Error("Error while save data !!");
       }
@@ -93,7 +93,7 @@ class MenuController extends IController
       //$data->save();
 
       if($data->destroy($id)){
-        return  Func::Success("Delete Success",$data);
+        return  Func::Success("Delete Success");
       }else{
         return  Func::Error("Error while delete data !!");
       }

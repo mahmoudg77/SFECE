@@ -14,7 +14,10 @@ class PostController extends IController
 {
   var $metaTitle="المقالات والصفحات والأبحاث";
   public $model=\App\Models\Post::class;
-  var $methods=['getFreeSlug'=>'Create Free Slug'];
+  var $methods=['getFreeSlug'=>'Create Free Slug',
+                'publish'=>'Go to online post',
+                'unpublish'=>'Go to offline post'
+                ];
   protected $viewFolder="dashboard.post";
 
   /**
@@ -161,16 +164,56 @@ class PostController extends IController
 
   public function getFreeSlug(){
       $title=\request()->get('title');
-      $c_slug=str_slug($title);
-      $slug=$c_slug;
-      $n=1;
-      while(IModel::where('slug',$slug)->count()>0){
-          $slug=$c_slug."_".$n;
-          $n++;
-      }
-
-      return Func::Success("Success",null,compact($slug));
+      $slug=Func::getFreeSlug(IModel::class,$title);
+      return Func::Success("Success",compact('slug'));
   }
+    public function publish()
+    {
+        $data=request()->get('data');
+        $id=request()->get('id');
 
+        $data=$data->find($id);
+
+        if($data==null){
+            return  Func::Error( "Unauthorized !");
+        }
+
+        DB::beginTransaction();
+        try{
+            $data->is_published=1;
+            $data->pub_date=date("Y-m-d H:i:n");
+            $data->save();
+
+            DB::commit();
+            return  Func::Success("Save Success");
+        }catch (\Exception $ex){
+            DB::rollback();
+            return  Func::Error("Error while save data !! ");
+        }
+    }
+    public function unpublish()
+    {
+        $data=request()->get('data');
+        $id=request()->get('id');
+
+        $data=$data->find($id);
+
+        if($data==null){
+            return  Func::Error( "Unauthorized !");
+        }
+
+        DB::beginTransaction();
+        try{
+            $data->is_published=0;
+            $data->pub_date=null;
+            $data->save();
+
+            DB::commit();
+            return  Func::Success("Save Success");
+        }catch (\Exception $ex){
+            DB::rollback();
+            return  Func::Error("Error while save data !! ");
+        }
+    }
 
 }
