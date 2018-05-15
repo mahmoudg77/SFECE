@@ -59,7 +59,9 @@ class HasAccessMiddleware
 
         //dd($obj->model);
         try{
-            $data=Func::applyForceFilter($obj->model,$whr);
+        	
+            $data=null;
+            if($obj->model!=null) $data=Func::applyForceFilter($obj->model,$whr);
             $request->attributes->add(['data'=>$data]);
 
 

@@ -19,18 +19,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin | @yield('title', 'cpanel')</title>
+    <title>Admin | @yield('title', 'cp')</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="{{ asset('cpanel/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('cp/css/style.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
-    <link href="{{ asset('cpanel/css/jquery-ui.css')}}" rel="stylesheet" />
-    <link href="{{ asset('cpanel/css/jquery.datetimepicker.css')}}" rel="stylesheet" />
-    <link href="{{ asset('cpanel/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
-    <link href="{{ asset('cpanel/css/buttons.dataTables.min.css')}}" rel="stylesheet" />
-    <link href="{{ asset('cpanel/css/iziToast.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cp/css/jquery-ui.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cp/css/jquery.datetimepicker.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cp/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cp/css/buttons.dataTables.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cp/css/iziToast.min.css')}}" rel="stylesheet" />
 
     @yield('css')
    </head>
@@ -49,7 +49,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            {{--<li class="{{$qmenu==null?'active':''}}"><a href="{{route('cp.dashboard')}}">cpanel</a></li>--}}
+            {{--<li class="{{$qmenu==null?'active':''}}"><a href="{{route('cp.dashboard')}}">cp</a></li>--}}
             @foreach($mainmenu as $key=>$menu)
               @if(Auth::user()->hasRoles($menu['roles']))
                 <li class="{{$qmenu==$key?'active':''}}"><a  href="{{$menu['url']}}">{{$key}}</a></li>
@@ -89,7 +89,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel <small>Manage Your Site</small></h1>
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Cpanel <small>Manage Your Site</small></h1>
           </div>
 {{--           <div class="col-md-2">
             <div class="dropdown create">
@@ -112,7 +112,7 @@
     {{-- <section id="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="active">cpanel</li>
+          <li class="active">Cpanel</li>
         </ol>
       </div>
     </section> --}}
@@ -124,7 +124,7 @@
           <div class="col-md-3">
             <div class="list-group">
               <!-- <a class="list-group-item active main-color-bg">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Cpanel
               </a>
               <a href="{{ route('cp.category.index')}}" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">12</span></a>
               <a href="/admin/customer" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Customers <span class="badge">12</span></a>
@@ -139,7 +139,7 @@
               @endforeach -->
 
               <a class="list-group-item active main-color-bg">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> cpanel
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Cpanel
               </a>
 
               @foreach($mainmenu[$qmenu]['submenu'] as $key=>$menu)
@@ -194,14 +194,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!--Ajax Form library-->
-    <script src="{{ asset('cpanel/js/jquery.form.js')}}"></script>
+    <script src="{{ asset('cp/js/jquery.form.js')}}"></script>
 
-    <script src="{{ asset('cpanel/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('cpanel/js/jquery.datetimepicker.full.js')}}"></script>
-    <script src="{{ asset('cpanel/js/iziToast.min.js')}}"></script>
-    <script src="{{ asset('cpanel/js/ckfinder/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{ asset('cpanel/js/ckfinder/ckfinder.js')}}"></script>
-    <script src="{{ asset('cpanel/js/script.js')}}"></script>
+    <script src="{{ asset('cp/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('cp/js/jquery.datetimepicker.full.js')}}"></script>
+    <script src="{{ asset('cp/js/iziToast.min.js')}}"></script>
+    <script src="{{ asset('cp/js/ckfinder/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{ asset('cp/js/ckfinder/ckfinder.js')}}"></script>
+    <script src="{{ asset('cp/js/script.js')}}"></script>
     <?php if(Session::has('response')){
         $response=session()->pull('response');
         //dd($response);

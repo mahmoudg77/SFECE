@@ -102,7 +102,9 @@ class Functions
 
      public static function applyForceFilter($class,$force_filter)
      {
-       $data=$class::all();
+     	//$c=new $class;
+     	 if(!$class) return null;
+       		$data=$class::all();
       // $force_filter=request()->get('force_filter');
 
        if($force_filter){

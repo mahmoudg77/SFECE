@@ -97,7 +97,14 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 //      return view('welcome');
 //  });
 
-
+Route::get('/dev/clear-cach', function () {
+    chdir('../');
+    $dir =  getcwd();
+    print_r($dir);
+    $cmd  = shell_exec ('php artisan config:cache');
+    $cmd1 = shell_exec ('php artisan config:clear');
+    return $cmd .$cmd1  ;
+});
 
 
 });
