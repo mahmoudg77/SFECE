@@ -13,10 +13,11 @@ class PostsController extends Controller
         
         //$lastPosts = Post::orderBy('id', 'desc')->take(6)->get();
         //$lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(6)->get();
-        $lastPosts = Post::where('is_published',1)->orderBy('id', 'desc')->take(6)->get();
-        //$lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(6)->get();
+        $lastPosts = Post::where('is_published',1)->where('post_type_id', 2)->orderBy('id', 'desc')->take(6)->get();
         
         return view('welcome', compact('lastPosts'));
     }
     
 }
+
+?>

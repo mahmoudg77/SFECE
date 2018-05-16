@@ -10,6 +10,7 @@
 
 
   <div class="row" style ="padding: 0 15px;margin--bottom: 20px;">
+@if (count($lastPosts)>0)
 @foreach($lastPosts as $post)
     <a href="{{ route('getPostBySlug', $post->slug) }}">
     <div class="col-sm-4">
@@ -27,10 +28,9 @@
     </div>
     </a>
 @endforeach
-
+@endif
 
 <section class="about-us wo-w slideInRight" >
-    
     <div class="col-xs-12" style="background-color:#414042;height:150px;">
       <h2>{{ Func::getPageBySlug('about_us')->title}}</h2>
       {!! Func::getPageBySlug('about_us')->body !!} 
