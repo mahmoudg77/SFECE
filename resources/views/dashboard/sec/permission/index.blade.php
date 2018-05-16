@@ -18,7 +18,7 @@
           <td>{{$itemt->action}}</td>
           <td>{{$itemt->Creator!=null?$itemt->Creator->name:null}}</td>
           <td>
-              {!!Func::actionLinks('secpermission',$itemt->id,"",["edit"=>"edit","delete"=>"","view"=>"view"])!!}
+              {!!Func::actionLinks('secpermission',$itemt->id,"",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]])!!}
           </td>
       </tr>
     @endforeach
@@ -29,25 +29,5 @@
 @endsection
 
 @section('js')
-<script>
-$(function(){
-  $(".ajax-delete").ajaxForm({
-    dataType:"json",
-    beforeSubmit:function(){
-      return confirm("Are you sure you wont to delete this item?");
-    },
-    success:function(d, statusText, xhr,form){
-      if(d.type=="success"){
-          Success(d.message);
-          form.closest("tr").remove();
-      }else{
-          Error(d.message);
-      }
-    },
-    error: function (data, status, xhr) {
-        Error( data.status + " " + xhr);
-    }
-  });
-});
-</script>
+
 @endsection

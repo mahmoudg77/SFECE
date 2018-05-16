@@ -19,6 +19,7 @@
                     <th>Publish Date</th>
                     <th>Author</th>
                     <th></th>
+                      <th></th>
                   </tr>
                 </thead>
                 @foreach($data as $post)
@@ -28,8 +29,12 @@
                       <td>{{$post->pub_date}}</td>
                       <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
                       <td>
+                          <a href="#" title="Publish/UnPublish Post" data-id="{{$post->id}}" class="btn btn-default {{($post->is_published)?"unpublish":"publish"}}"><span class="glyphicon glyphicon-globe {{($post->is_published)?"text-success":"text-danger"}}"></span></a>
+                      </td>
+                      <td>
                           {!!Func::actionLinks('posts',$post->id,"",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}
                       </td>
+
                   </tr>
                 @endforeach
               </table>
@@ -42,23 +47,63 @@
 @section('js')
 <script>
 $(function(){
-  $(".ajax-delete").ajaxForm({
-    dataType:"json",
-    beforeSubmit:function(){
-      return confirm("Are you sure you wont to delete this item?");
-    },
-    success:function(d, statusText, xhr,form){
-      if(d.type=="success"){
-          Success(d.message);
-          form.closest("tr").remove();
-      }else{
-          Error(d.message);
-      }
-    },
-    error: function (data, status, xhr) {
-        Error( data.status + " " + xhr);
-    }
+  $("body").on("click",".publish",function(e){
+      e.preventDefault();
+      var $this=$(this);
+      $.ajax({
+            headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},
+            url:"{{route('cp.post-publish')}}",
+            type:"post",
+            dataType:"json",
+            data:{id:$this.data("id")},
+            beforeSubmit:function(){
+              return confirm("Are you sure you want to publish this post?");
+            },
+            success:function(d, statusText, xhr,form){
+              if(d.type=="success"){
+                  Success(d.message);
+                  $this.toggleClass("publish");
+                  $this.toggleClass("unpublish");
+                  $this.find("span").toggleClass("text-danger");
+                  $this.find("span").toggleClass("text-success");
+              }else{
+                  Error(d.message);
+              }
+            },
+            error: function (data, status, xhr) {
+                Error( data.status + " " + xhr);
+            }
+      });
   });
+    $("body").on("click",".unpublish",function(e){
+        e.preventDefault();
+        var $this=$(this);
+        $.ajax({
+            headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},
+            url:"{{route('cp.post-unpublish')}}",
+            type:"post",
+            dataType:"json",
+            data:{id:$this.data("id")},
+            beforeSubmit:function(){
+                return confirm("Are you sure you want to un-publish this post?");
+            },
+            success:function(d, statusText, xhr,form){
+                if(d.type=="success"){
+                    Success(d.message);
+                    $this.toggleClass("publish");
+                    $this.toggleClass("unpublish");
+                    $this.find("span").toggleClass("text-danger");
+                    $this.find("span").toggleClass("text-success");
+                 }else{
+                    Error(d.message);
+                }
+            },
+            error: function (data, status, xhr) {
+                Error( data.status + " " + xhr);
+            }
+        });
+    });
 });
 </script>
+
 @endsection

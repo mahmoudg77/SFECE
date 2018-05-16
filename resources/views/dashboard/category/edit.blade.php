@@ -26,7 +26,7 @@
           </div>
           <div class="form-group col-sm-12">
             {!! Form::label('Description') !!}
-            {!! Form::textarea($key.'[description]',($data->translate($key)!=null?$data->translate($key)->description:null), array('required', 'class'=>'form-control editor ')) !!}
+            {!! Form::textarea($key.'[description]',($data->translate($key)!=null?$data->translate($key)->description:null), array('required', 'class'=>'form-control editor ','id'=>$key.'_editor')) !!}
           </div>
         </div>
         @endforeach

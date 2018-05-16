@@ -70,8 +70,6 @@
     <script>
         $(function(){
             $("input[name='{{app()->getLocale()}}[title]']").change(function(){
-                //console.log($(this).val());
-                //console.log($("input[name='slug']").val());
                 if($("input[name='slug']").val()){
                     return;
                 }
@@ -83,7 +81,7 @@
                    headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},
                    success:function(d){
                        if(d.type=="success"){
-                           $("input[name='slug']").val(d.data);
+                           $("input[name='slug']").val(d.data.slug);
                        }
                    },
                    error: function (data, status, xhr) {
@@ -96,12 +94,4 @@
     </script>
 
 
-@stop
-@section('js')
-    @if(isset($response) && $response['type']=='success')
-        <script>$(function(){Success("{{$response['message']}}");});</script>
-    @endif
-    @if(isset($response) && $response['type']=='error')
-        <script>$(function(){Error("{{$response['message']}}");});</script>
-    @endif
 @stop

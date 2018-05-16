@@ -12,9 +12,12 @@ use Auth;
 use DB;
 class PostController extends IController
 {
-  var $permitionname="المقالات";
+  var $metaTitle="المقالات والصفحات والأبحاث";
   public $model=\App\Models\Post::class;
-  var $methods=['getFreeSlug'=>'Create Free Slug'];
+  var $methods=['getFreeSlug'=>'Create Free Slug',
+                'publish'=>'Go to online post',
+                'unpublish'=>'Go to offline post'
+                ];
   protected $viewFolder="dashboard.post";
 
   /**
@@ -29,7 +32,6 @@ class PostController extends IController
         $post_type_id=request()->get('type');
         $data=$data->where('post_type_id',request()->get("type"));
       }
-      //$data->get();
 
       return view($this->viewFolder.".index",compact('data','post_type_id'));
   }
@@ -39,7 +41,7 @@ class PostController extends IController
     $data=request()->get('data');
     $data=$data->find($id);
     if($data==null){
-        return  Func::Error( "Unauthorized !" );
+        return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('data') );
     }
     return view($this->viewFolder.".edit",compact('data'));
   }
@@ -59,7 +61,7 @@ class PostController extends IController
         $data=request()->get('data');
         $data=$data->find($id);
         if($data==null){
-            return  Func::Error( "Unauthorized !" );
+            return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('show') );
         }
         return view($this->viewFolder.".show", compact('data'));
   }
@@ -94,10 +96,10 @@ class PostController extends IController
 
           DB::commit();
           $post_type_id=$data['post_type_id'];
-          return  Func::Success("Save Success",$this->viewFolder.".create",compact('data','post_type_id'));
+          return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
-          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create");
+          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create",compact('data','post_type_id'));
       }
 
   }
@@ -112,7 +114,7 @@ class PostController extends IController
 
       $data=$data->find($id);
       if($data==null){
-          return  Func::Error( "Unauthorized !" );
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('data') );
       }
       $post_type_id=$data['post_type_id'];
       DB::beginTransaction();
@@ -125,7 +127,7 @@ class PostController extends IController
               $imageobj->upload($image);
           }
           DB::commit();
-          return  Func::Success("Save Success",$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
+          return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
           return  Func::Error("Error while save data !! " ,$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
@@ -145,29 +147,73 @@ class PostController extends IController
       //
       $data=\request()->get('data');
       $data=$data->find($id);
+
       if($data==null){
-          return  Func::Error( "Unauthorized !" );
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".index" );
+      }
+      DB::beginTransaction();
+      try{
+          $data->destroy($id);
+          return  Func::Success("Delete Success");
+      }catch (\Exception $ex){
+        DB::rollback();
+        return  Func::Error("Error while save data !! ");
       }
 
-      if($data->destroy($id)){
-        return  Func::Success("Delete Success");
-      }else{
-        return  Func::Error("Error while delete data !!");
-      }
   }
 
   public function getFreeSlug(){
       $title=\request()->get('title');
-      $c_slug=str_slug($title);
-      $slug=$c_slug;
-      $n=1;
-      while(IModel::where('slug',$slug)->count()>0){
-          $slug=$c_slug."_".$n;
-          $n++;
-      }
-
-      return Func::Success("Success",null,compact($slug));
+      $slug=Func::getFreeSlug(IModel::class,$title);
+      return Func::Success("Success",compact('slug'));
   }
+    public function publish()
+    {
+        $data=request()->get('data');
+        $id=request()->get('id');
 
+        $data=$data->find($id);
+
+        if($data==null){
+            return  Func::Error( "Unauthorized !");
+        }
+
+        DB::beginTransaction();
+        try{
+            $data->is_published=1;
+            $data->pub_date=date("Y-m-d H:i:n");
+            $data->save();
+
+            DB::commit();
+            return  Func::Success("Save Success");
+        }catch (\Exception $ex){
+            DB::rollback();
+            return  Func::Error("Error while save data !! ");
+        }
+    }
+    public function unpublish()
+    {
+        $data=request()->get('data');
+        $id=request()->get('id');
+
+        $data=$data->find($id);
+
+        if($data==null){
+            return  Func::Error( "Unauthorized !");
+        }
+
+        DB::beginTransaction();
+        try{
+            $data->is_published=0;
+            $data->pub_date=null;
+            $data->save();
+
+            DB::commit();
+            return  Func::Success("Save Success");
+        }catch (\Exception $ex){
+            DB::rollback();
+            return  Func::Error("Error while save data !! ");
+        }
+    }
 
 }

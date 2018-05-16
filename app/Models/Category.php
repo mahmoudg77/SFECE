@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+//use Illuminate\Database\Eloquent\softDeletes;
 use \Dimsav\Translatable\Translatable;
 
 class Category extends Model
 {
-    use softDeletes;
+    //use softDeletes;
     use Translatable;
     protected $fillable=['parent_id','created_by','slug'];
     public $translatedAttributes = ['title','description'];

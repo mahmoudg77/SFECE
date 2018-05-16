@@ -75,6 +75,9 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::resource('/setting','Dashboard\SettingController',['as'=>'cp']);
     Route::post('/post-slug','Dashboard\PostController@getFreeSlug')->name('cp.post-slug');
 
+    Route::post('/post-unpublish','Dashboard\PostController@unpublish')->name('cp.post-unpublish');
+    Route::post('/post-publish','Dashboard\PostController@publish')->name('cp.post-publish');
+
     Route::post('/secpermission-getactions','Dashboard\SecPermission@getActionsList')->name('cp.secpermission-getactions');
     Route::post('/secpermission-getfilter','Dashboard\SecPermission@getForceFilter')->name('cp.secpermission-getfilter');
 
@@ -94,7 +97,14 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 //      return view('welcome');
 //  });
 
-
+Route::get('/dev/clear-cach', function () {
+    chdir('../');
+    $dir =  getcwd();
+    print_r($dir);
+    $cmd  = shell_exec ('php artisan config:cache');
+    $cmd1 = shell_exec ('php artisan config:clear');
+    return $cmd .$cmd1  ;
+});
 
 
 });

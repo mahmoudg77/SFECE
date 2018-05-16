@@ -157,10 +157,15 @@
 
             <div class="col-sm-6 footer-list">
                 <ul class="list-inline">
-                    <li><a href="{{ url('/home') }}">الدورات</a></li>
-                    <li><a href="{{ url('/home') }}">المقالات</a></li>
-                    <li><a href="{{ url('/home') }}">اصداراتنا</a></li>
-                    <li><a href="{{ url('/home') }}">اتصل بنا</a></li>
+                    @foreach(Func::menu('footer') as $link)
+                        <li><a href="{{ Func::menuLink($link)}}">{{$link->title}}</a></li>
+
+                        @endforeach
+                    {{----}}
+                    {{--<li><a href="{{ url('/home') }}">الدورات</a></li>--}}
+                    {{--<li><a href="{{ url('/home') }}">المقالات</a></li>--}}
+                    {{--<li><a href="{{ url('/home') }}">اصداراتنا</a></li>--}}
+                    {{--<li><a href="{{ url('/home') }}">اتصل بنا</a></li>--}}
                 </ul>
             </div>
 

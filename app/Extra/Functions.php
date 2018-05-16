@@ -5,19 +5,21 @@ use Illuminate\Http\Request;
 use Form;
 class Functions
 {
-    public static function Success($message='',$view="",array $sentData=[])
+    public static function Success($message='',array $sentData=[])
     {
         $response['type']='success';
         $response['message']=$message;
         $response['data']=$sentData;
-        $sentData['response']=$response;
+        //$sentData['response']=$response;
+
         //dd($sentData);
        if(\Request::ajax()){
          return json_encode($response);
        }else{
-         if($view!="") return view($view,$sentData);
-
-         return "<div class='alert alert-success'>".$message."</div>";
+           session()->put('response',$response);
+           return redirect()->back();
+//           if($view!="") return view($view,$sentData);
+//         return "<div class='alert alert-success'>".$message."</div>";
        }
     }
     public static function Error($message='',$view="",array $sentData=[])
@@ -25,13 +27,16 @@ class Functions
         $response['type']='error';
         $response['message']=$message;
         $response['data']=$sentData;
-        $sentData['response']=$response;
-        dd($sentData);
-        if(\Request::ajax()){
+
+
+        //dd($sentData);
+      if(\Request::ajax()){
+
         return json_encode($response);
       }else{
+          session()->put('response',$response);
           if($view!="") return view($view,$sentData);
-          return "<div class='alert alert-danger'>".$message."</div>";
+          return redirect()->back();//"<div class='alert alert-danger'>".$message."</div>";
       }
     }
 
@@ -97,7 +102,9 @@ class Functions
 
      public static function applyForceFilter($class,$force_filter)
      {
-       $data=$class::all();
+     	//$c=new $class;
+     	 if(!$class) return null;
+       		$data=$class::all();
       // $force_filter=request()->get('force_filter');
 
        if($force_filter){
@@ -134,7 +141,17 @@ class Functions
         }
      }
      public static function menu($location){
-         return \App\Models\Menu::where("location",$location)->first()->Links()->where('parent_id','0')->orWhereNull('parent_id')->get();
+         $menu= \App\Models\Menu::where("location",$location)->first();
+         if($menu){
+             $menu= $menu->Links()->where(function ($query) {
+                 $query->where('parent_id', '=', 0)
+                     ->orWhereNull('parent_id');
+             })->get();
+         }
+
+         if(!$menu)
+             $menu=[];
+         return $menu;
      }
      public static function menuLink($menuLink){
         if(empty($menuLink->customlink)){
@@ -172,6 +189,19 @@ class Functions
     }
     public static function getPageBySlug($slug){
         return \App\Models\Post::where('slug', $slug)->firstOrFail();
+    }
+
+    public static function getFreeSlug($class,$title){
+        //$title=\request()->get('title');
+        $c_slug=str_slug($title);
+        $slug=$c_slug;
+        $n=1;
+        while($class::where('slug',$slug)->count()>0){
+            $slug=$c_slug."_".$n;
+            $n++;
+        }
+
+        return $slug;
     }
 }
 ?>

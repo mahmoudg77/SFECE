@@ -26,10 +26,10 @@ class EditPubDatePostsAllownull extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dateTime('pub_date')->nullable(false)->change();
-            $table->integer('is_published')->nullable(false)->change();
-
-        });
+//        Schema::table('posts', function (Blueprint $table) {
+//            $table->dateTime('pub_date')->nullable(false)->change();
+//            $table->integer('is_published')->nullable(false)->change();
+//
+//        });
     }
 }

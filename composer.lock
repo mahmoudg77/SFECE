@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "d2f2174f2e0e412749fc0865a3238e3e",
+=======
+    "content-hash": "d7c0a4885d1757ccf5370b5f732d3606",
+>>>>>>> 7b19271eb686cd0208de1f75af1d78c579bbe69b
     "packages": [
         {
             "name": "dimsav/laravel-translatable",
@@ -209,81 +213,6 @@
                 "parser"
             ],
             "time": "2018-03-08T01:11:30+00:00"
-        },
-        {
-            "name": "graham-campbell/exceptions",
-            "version": "v10.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GrahamCampbell/Laravel-Exceptions.git",
-                "reference": "aa191a1d5489c6243bd0533aac3d1004bf56ddd3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Exceptions/zipball/aa191a1d5489c6243bd0533aac3d1004bf56ddd3",
-                "reference": "aa191a1d5489c6243bd0533aac3d1004bf56ddd3",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "5.3.*|5.4.*|5.5.*",
-                "illuminate/support": "5.3.*|5.4.*|5.5.*",
-                "php": "^7.0",
-                "psr/log": "^1.0",
-                "symfony/console": "^3.1|^4.0",
-                "symfony/debug": "^3.1|^4.0",
-                "symfony/http-foundation": "^3.1|^4.0"
-            },
-            "require-dev": {
-                "filp/whoops": "^1.1|^2.0",
-                "graham-campbell/analyzer": "^2.0",
-                "graham-campbell/testbench": "^4.0|^5.0",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.5"
-            },
-            "suggest": {
-                "filp/whoops": "Enables use of the debug displayer."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "10.1-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "GrahamCampbell\\Exceptions\\ExceptionsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GrahamCampbell\\Exceptions\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com"
-                }
-            ],
-            "description": "Provides A Powerful Error Response System For Both Development And Production",
-            "keywords": [
-                "Graham Campbell",
-                "GrahamCampbell",
-                "Laravel Exceptions",
-                "Laravel-Exceptions",
-                "error",
-                "errors",
-                "exception",
-                "exceptions",
-                "framework",
-                "laravel",
-                "whoops"
-            ],
-            "time": "2018-01-02T18:20:48+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

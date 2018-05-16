@@ -27,7 +27,7 @@
                       <td>{{$item->AccountLevel->name}}</td>
                       <td>{{$item->created_at}}</td>
                        <td>
-                          {!!Func::actionLinks('user',$item->id,"",["edit"=>"edit","view"=>"view"])!!}
+                          {!!Func::actionLinks('user',$item->id,"",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]])!!}
                       </td>
                   </tr>
                 @endforeach
@@ -39,25 +39,5 @@
 @endsection
 
 @section('js')
-<!-- <script>
-$(function(){
-  $(".ajax-delete").ajaxForm({
-    dataType:"json",
-    beforeSubmit:function(){
-      return confirm("Are you sure you wont to delete this item?");
-    },
-    success:function(d, statusText, xhr,form){
-      if(d.type=="success"){
-          Success(d.message);
-          form.closest("tr").remove();
-      }else{
-          Error(d.message);
-      }
-    },
-    error: function (data, status, xhr) {
-        Error( data.status + " " + xhr);
-    }
-  });
-});
-</script> -->
+
 @endsection

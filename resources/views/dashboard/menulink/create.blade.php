@@ -62,5 +62,21 @@
     </div>
 
   </div>
+<script>
+    $(function(){
+       $("select[name='type']").change(function(){
+           console.log($(this));
+           if($(this).val()==0){
+               $("input[name='customlink']").closest(".form-group").show();
+               $("select[name='category_id']").closest(".form-group").hide();
+           }else{
+               $("input[name='customlink']").closest(".form-group").hide();
+               $("select[name='category_id']").closest(".form-group").show();
 
+           }
+       }) ;
+        $("select[name='type']").change();
+
+    });
+</script>
 @stop

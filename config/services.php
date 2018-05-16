@@ -43,7 +43,7 @@ return [
     'twitter' => [
       'client_id' => env('TWITTER_KEY','QJTdiXWfewXlyAb2fZQ1c8Enm'),
       'client_secret' => env('TWITTER_SECRET','BecZKf9q2plpzweZiILcKliRvo7FSz8S7BuimGPSTV9SiN9q4O'),
-      'redirect' => env('http://localhost:8000/'.app()->getLocale().'/twitter-callback'),
+      'redirect' => 'http://sfece.isdegypt.com/'.app()->getLocale().'/twitter-callback',
     ],
 
 
