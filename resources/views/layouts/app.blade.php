@@ -221,6 +221,7 @@
     <script src="{{ asset('js/camera.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 
     <script>
         $(function(){
