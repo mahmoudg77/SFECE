@@ -23,4 +23,10 @@ return [
     'read more'=>'Read More',
     'request research'=>'Request Research',
     'Head Institution'=>'Head Institution',
+    'contact-us'=>'Contact Us',
+    'contact-name'=>'Type Your Username',
+    'contact-email'=>'Please Type a Valid Email',
+    'contact-tel'=>'Type Your Cell Phone',
+    'contact-message'=>'Your Message!',
+    'contact-send'=>'Send Message',
 ];

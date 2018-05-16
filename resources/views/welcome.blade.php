@@ -29,9 +29,9 @@
     </a>
 @endforeach
 @endif
-@if($page=Func::getPageBySlug('about_us'))
+@if($page=Func::getPageBySlug('about-us'))
 <section class="about-us wo-w slideInRight" >
-    <div class="col-xs-12" style="background-color:#414042;height:150px;">
+    <div class="col-xs-12" style="background-color:#414042;padding:10px 20px;">
       <h2>{{ $page->title}}</h2>
       {!! $page->body !!}
     </div>

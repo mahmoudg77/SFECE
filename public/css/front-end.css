@@ -334,7 +334,6 @@ a.site--login:hover {
 }
 /*end single post*/
 
-
 /*start posts dashboard*/
 .post-dashboard{}
 .post-dashboard .post-heading{
@@ -345,6 +344,75 @@ a.site--login:hover {
     padding: 10px;
 }
 /*end posts dashboard*/
+
+/*start contact page*/
+
+..contact-us{
+    margin:30px 10px;
+}
+.contact-us h1{
+    margin-bottom: 40px;
+}
+.contact-us .panel-body{
+    background-color: #eee;
+    font-weight: bold;
+    color: #224668;
+    line-height: 40px;
+}
+.contact-form {
+    max-width: 450px;
+    margin: 0px auto
+}
+
+.contact-form .form-group {
+    margin-bottom: 0;
+    position: relative
+}
+
+.contact-form input {
+    padding-left: 32px
+}
+
+.contact-form input,
+.contact-form textarea {
+    margin-bottom: 8px
+}
+
+.contact-form textarea {
+    height: 180px !important
+}
+
+.contact-form input:not([type='submit']) + i {
+    height: 0;
+    float: left;
+    position: relative;
+    top: -32px;
+    left: 10px;
+    color: #999;
+}
+
+.contact-form .asterisx {
+    height: 0;
+    font-size: 22px;
+    color: #b90d0d;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+}
+
+.contact-form .send-icon {
+    display: block;
+    position: relative;
+    top: -32px;
+    left: 7px;
+    color: #FFF;
+}
+
+.contact-form .custom-alert {
+    padding: 5px 10px;
+    display: none
+}
+/*end contact page*/
 
 /*start footer*/
 .footer{

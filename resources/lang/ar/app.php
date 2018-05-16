@@ -23,5 +23,11 @@ return [
     'read more'=>'أكمل القراءة',
     'request research'=>'طلب نشر',
     'head institution'=>'رئيس المؤسسة',
+    'contact-us'=>'اتصل بنا',
+    'contact-name'=>'اكتب اسمك',
+    'contact-email'=>'اكتب ايميلك',
+    'contact-tel'=>'اكتب تليفونك',
+    'contact-message'=>'رسالتك',
+    'contact-send'=>'ابعت رسالتك',
     
 ];

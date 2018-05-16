@@ -90,8 +90,10 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::get('/category/{id}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
     //Route::get('/{slug}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
 
-    Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');
+    //Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');
+    Route::get('/contactus','ContactController@index')->name('contactus');
     Route::get('/{slug}','SingleController@getPostBySlug')->name('getPostBySlug');
+    
     Route::get('/download-file/{filename}','Dashboard\FileController@getFile')->name('download');
 
 //  Route::get('/', function () {
