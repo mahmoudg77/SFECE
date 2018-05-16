@@ -33,6 +33,8 @@ class IController extends BaseController
     public function __construct()
     {
         $this->middleware('access');
+        $this->middleware('ViewFilter');
+
         $this->methods=array_merge($this->basic_methods, $this->methods);
         $this->postmethods=array_merge($this->post_methods, $this->postmethods);
         //Category Menu
@@ -97,128 +99,5 @@ class IController extends BaseController
          View::share('cp_menu',$cp_menu);
          View::share('sel_menu',request()->get('curr_menu'));
     }
-    // function myview(){
-    //   global $request;
-    //    $args=func_get_args();
-    //
-    //    if(count($args)==0){
-    //       $view='';
-    //       $arr=[];
-    //     }elseif(count($args)==1){
-    //         if(is_array($args[0])){
-    //             $view='';
-    //             $arr=$args[0];
-    //         }else{
-    //             $view=$args[0];
-    //             $arr=[];
-    //         }
-    //     }else{
-    //         $view=$args[0];
-    //         $arr=$args[1];
-    //     }
-    //
-    //
-    //     if($view==''){
-    //       $trace = debug_backtrace();
-    //       $method = Route::getCurrentRoute()->getActionName();//$trace[1]['function'];
-    //       $method=explode('@',$method)[1];
-    //       // $method = $trace[1]['function'];
-    //       $cntrl= get_called_class();
-    //       $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
-    //       $cntrl=str_replace("\\",".",$cntrl);
-    //       $cntrl=str_replace("Controller","",$cntrl);
-    //       $cntrl=mb_strtolower($cntrl);
-    //
-    //      $view=$cntrl.".$method";
-    //
-    //     }
-    //     elseif(count(explode("/",$view))<2){
-    //       $cntrl= get_called_class();
-    //       $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
-    //       $cntrl=str_replace("\\",".",$cntrl);
-    //       $cntrl=str_replace("Controller","",$cntrl);
-    //       $cntrl=mb_strtolower($cntrl);
-    //         $view=$cntrl.".".$view;
-    //         $view=str_replace("App\\Http\\Controllers\\","",$view);
-    //     }
-    //     $view=str_replace("App\\Http\\Controllers\\","",$view);
-    //     $view=str_replace(".","\\",$view);
-    //
-    //    if(!file_exists(resource_path('views')."/".str_replace("App\\Http\\Controllers\\","",$view).'.blade.php')){
-    //       // $cntrl= get_called_class();
-    //       // $cntrl=str_replace("App\\Http\\Controllers\\","",$cntrl);
-    //       // $cntrl=str_replace("\\",".",$cntrl);
-    //       // $cntrl=str_replace("Controller","",$cntrl);
-    //       // $cntrl=mb_strtolower($cntrl);
-    //       $method = Route::getCurrentRoute()->getActionName();//$trace[1]['function'];
-    //       $method=explode('@',$method)[1];
-    //
-    //       // echo $cntrl;
-    //       // $view=$cntrl."/".$view;
-    //
-    //       $view="base.$method";
-    //   }
-    //
-    //     return view($view,$arr);
-    //  }
-    // public function index()
-    // {
-    //   $class=new $this->model;
-    //   $data=$class->all();
-    //   return $this->myview(compact('data'));
-    // }
-    // public function edit($id)
-    // {
-    //   $class=new $this->model;
-    //   $data=$class->find($id);
-    //   return $this->myview(compact('data'));
-    // }
-    // public function create()
-    // {
-    //     return $this->myview();
-    // }
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    //     $class=new $this->model;
-    //     $data=$class->find($id);
-    //      return $this->myview(compact('data'));
-    // }
-
-//    public static function Success($message='',$object=null)
-//    {
-//       if(\Request::ajax()){
-//         $response['type']='success';
-//         $response['message']=$message;
-//         $response['data']=$object;
-//         return json_encode($response);
-//       }else{
-//         $route = Route::currentRouteName();
-//
-//
-//         $index_route=substr($route,0,-1 * strlen(explode(".", $route)[count(explode(".", $route))-1]))."index";
-//
-//         return Redirect::back();
-//         //return "<div class='alert alert-success'>".$message."</div>";
-//       }
-//    }
-//    public static function Error($message='',$object=null)
-//    {
-//      if(\Request::ajax()){
-//        $response['type']='error';
-//        $response['message']=$message;
-//        $response['data']=$object;
-//        return json_encode($response);
-//      }else{
-//
-//        return "<div class='alert alert-danger'>".$message."</div>";
-//      }
-//    }
 
 }

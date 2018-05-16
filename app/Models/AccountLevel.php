@@ -14,7 +14,7 @@ class AccountLevel extends Model
     }
     public function hasRole($role)
     {
-      return $this->Roles()->where('name',$role)->get()!=null;
+      return $this->Roles()->where('name',$role)->count()>0;
     }
     public function hasRoles($arrRoles)
     {

@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'LanguageSwicher' => \App\Http\Middleware\LanguageSwicher::class,
         'access'=>\App\Http\Middleware\HasAccessMiddleware::class,
+        'ViewFilter'=>\App\Http\Middleware\ViewFilter::class,
     ];
 }

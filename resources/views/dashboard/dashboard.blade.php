@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <!-- Website Overview -->
-<div class="panel panel-default">
+<div class="panel panel-default" groups="admin">
   <div class="panel-heading main-color-bg">
     <h3 class="panel-title">Website Overview</h3>
   </div>
@@ -33,7 +33,7 @@
   </div>
 </div>
   <!-- Latest Users -->
-  <div class="panel panel-default">
+  <div class="panel panel-default" groups="admin">
     <div class="panel-heading">
       <h3 class="panel-title">Latest Users</h3>
     </div>

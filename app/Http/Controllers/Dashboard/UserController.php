@@ -15,7 +15,7 @@ class UserController extends IController
     var $methods=[];
   public function index()
   {
-    $data=IModel::all();
+    $data=request()->get('data');
     return view($this->viewFolder.".index",compact('data'));
   }
 
@@ -65,13 +65,13 @@ class UserController extends IController
   public function update(Request $request,$id)
   {
       //
-      $category=$request->except(['_token']);
-      $category['updated_by']=Auth::user()->id;
+      $data=$request->except(['_token']);
+      $data['updated_by']=Auth::user()->id;
       //$category['id']=$id;
       //print_r($category);
 
-      if(IModel::findOrFail($id)->update($category)){
-        return  Func::Success("Save Success",$category);
+      if(IModel::findOrFail($id)->update($data)){
+        return  Func::Success("Save Success",$data);
       }else{
         return  Func::Error("Error while save data !!");
       }

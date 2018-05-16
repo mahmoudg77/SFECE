@@ -25,7 +25,7 @@
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 
-
+    @yield('css')
 
 </head>
 <body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
@@ -240,5 +240,6 @@
           this.parentNode.insertBefore(section, this);
         };
   </script>
+@yield('js')
 </body>
 </html>

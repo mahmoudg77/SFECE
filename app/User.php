@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','country','city','phone','email_token'
+        'name', 'email', 'password','country','city','phone','email_token','account_level_id'
     ];
 
     /**
@@ -41,5 +41,9 @@ class User extends Authenticatable
     public function allow($ctrl,$action)
     {
       return $this->AccountLevel->allow($ctrl,$action);
+    }
+    public function hasRole($role)
+    {
+        return $this->AccountLevel->hasRole($role);
     }
 }

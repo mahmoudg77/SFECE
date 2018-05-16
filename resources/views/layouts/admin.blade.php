@@ -55,9 +55,7 @@
                 <li class="{{$qmenu==$key?'active':''}}"><a  href="{{$menu['url']}}">{{$key}}</a></li>
               @endif
             @endforeach
-            <!-- <li><a href="{{ route ('cp.category.index')}}">Sections</a></li>
-            <li><a href="{{ route ('cp.posts.index')}}">Posts</a></li>
-            <li><a href="{{ route ('cp.user.index')}}">Users</a></li> -->
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
