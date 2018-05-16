@@ -29,14 +29,14 @@
     </a>
 @endforeach
 @endif
-
+@if($page=Func::getPageBySlug('about_us'))
 <section class="about-us wo-w slideInRight" >
     <div class="col-xs-12" style="background-color:#414042;height:150px;">
-      <h2>{{ Func::getPageBySlug('about_us')->title}}</h2>
-      {!! Func::getPageBySlug('about_us')->body !!} 
+      <h2>{{ $page->title}}</h2>
+      {!! $page->body !!}
     </div>
 </section>
-
+@endif
 <!--
       <section class="contact-us">
         <div class="col-xs-12" style="height:150px;background-color:#008993">

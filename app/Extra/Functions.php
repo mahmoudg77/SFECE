@@ -188,7 +188,7 @@ class Functions
         return $cats;
     }
     public static function getPageBySlug($slug){
-        return \App\Models\Post::where('slug', $slug)->firstOrFail();
+        return \App\Models\Post::where('slug', $slug)->first();
     }
 
     public static function getFreeSlug($class,$title){
