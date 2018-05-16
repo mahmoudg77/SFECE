@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\IController;
 use App\Models\Post as IModel;
 use App\Models\MediaFile;
+use App\Models\File;
 use Func;
 use Auth;
 use DB;
@@ -93,13 +94,19 @@ class PostController extends IController
               $imageobj=new MediaFile(['model'=>IModel::class,'id'=>$post->id,'tag'=>'main']);
               $imageobj->upload($image);
           }
+          if($request->hasfile('attach'))
+          {
+              $file=$request->file('attach');
+              $fileobj=new File(['model'=>IModel::class,'id'=>$post->id,'tag'=>'main']);
+              $fileobj->upload($file);
+          }
 
           DB::commit();
-          $post_type_id=$data['post_type_id'];
+
           return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
-          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create",compact('data','post_type_id'));
+          return  Func::Error("Error while save data !! " .$ex->getMessage(),$this->viewFolder.".create",compact('data'));
       }
 
   }
@@ -126,6 +133,15 @@ class PostController extends IController
               $imageobj=new MediaFile(['model'=>IModel::class,'id'=>$data->id,'tag'=>'main']);
               $imageobj->upload($image);
           }
+
+          if($request->hasfile('attach'))
+          {
+              $file=$request->file('attach');
+              $fileobj=new File(['model'=>IModel::class,'id'=>$data->id,'tag'=>'main']);
+              $fileobj->upload($file);
+          }
+
+
           DB::commit();
           return  Func::Success("Save Success");
       }catch (\Exception $ex){

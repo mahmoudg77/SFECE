@@ -4,7 +4,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <h2 class="post-heading">Create New</h2>
-        {{Form::model(null, ['route'=>["cp.posts.store",'type'=>$post_type_id,'curr_menu'=>$sel_menu],"method"=>"POST","enctype"=>"multipart/form-data","class"=>"ajax--form"])}}
+        {{Form::model(null, ['route'=>["cp.posts.store",'type'=>\request()->get('type'),'curr_menu'=>$sel_menu],"method"=>"POST","enctype"=>"multipart/form-data","class"=>"ajax--form"])}}
         <div class="form-horizontal">
                   <ul class="nav nav-tabs">
                     @foreach(config('translatable.locales') as $key)
@@ -38,7 +38,7 @@
                         {{Form::text("slug",null,['required','class'=>'form-control'])}}
                     </div>
                 </div>
-                @if($post_type_id==1)
+                @if(\request()->get('type')==1)
                     {{Form::hidden('category_id',0)}}
                 @else
                     <div class="form-group">
@@ -48,13 +48,19 @@
                         </div>
                     </div>
                 @endif
-                    {{Form::hidden('post_type_id',$post_type_id)}}
+                    {{Form::hidden('post_type_id',\request()->get('type'))}}
                 <div class="form-group">
                     <label class="control-label col-md-2">Image</label>
                     <div class="col-md-10">
                         {{Form::file("image",['accept'=>'.jpg,.png,.gif'])}}
                     </div>
                 </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Attach</label>
+                            <div class="col-md-10">
+                                {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
+                            </div>
+                        </div>
                       <hr>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">

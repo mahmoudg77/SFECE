@@ -12,4 +12,9 @@ class FileController extends IController
     public $model=IModel::class;
     var $methods=[];
 
+    public function getFile($filename){
+        dd($filename);
+        return Storage::download($filename);
+    }
+
 }
