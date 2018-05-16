@@ -320,6 +320,20 @@ a.site--login:hover {
 }
 /*end single post*/
 
+/*start about-us*/
+.about-us{}
+.about-us h2{
+    color: #fff;
+    text-align: center;
+}
+.about-us p{
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+}
+/*end about-us*/
+
 /*start footer*/
 .footer{
 	background-color: #224668 !important;
