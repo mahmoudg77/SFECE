@@ -106,7 +106,7 @@
         <tr>
           <td>{{$post->title}}</td>
           <td>{{$post->created_at}}</td>
-          <td>@if($post->mainFile())<a href="{{route('download',$post->mainFile())}}">Download</a>@endif</td>
+          <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
           <td>{{$post->is_published}}</td>
 
         </tr>

@@ -16,6 +16,7 @@
                   <tr>
                     <th>Title</th>
                     <th>Type</th>
+                    <th>Created Date</th>
                     <th>Publish Date</th>
                     <th>Author</th>
                     <th></th>
@@ -26,6 +27,7 @@
                   <tr>
                       <td>{{$post->title}}</td>
                       <td>{{$post->postType->name}}</td>
+                      <td>{{$post->created_at}}</td>
                       <td>{{$post->pub_date}}</td>
                       <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
                       <td>

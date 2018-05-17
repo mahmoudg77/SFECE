@@ -37,7 +37,17 @@ class File extends Model
         $this->size=$file->getClientSize();
         $this->file_type=$file->getClientMimeType();
 
-        Storage::put($this->name,$file);
+
+
+        //$extension = $file->getClientOriginalExtension();
+        //$sha1 = sha1($file->getClientOriginalName());
+        //$this->name = date('Y-m-d--h-i-s')."_".$sha1.".".$extension;
+        $path = public_path('uploads/files/');
+        $file->move($path, $this->name);
+
+
+        //Storage::disk('local')->put('uploads/files/'.$this->name, $file, 'public');
+        //Storage::put($this->name,$file);
         //$file->store("attach");
 
 

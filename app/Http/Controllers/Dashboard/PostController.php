@@ -83,6 +83,9 @@ class PostController extends IController
       if(in_array('is_published',$data) && $data['is_published']==1){
           $data['pub_date']=date('Y-m-d H:i:n');
       }
+      if(!in_array('slug',$data) || $data['slug']==""){
+          $data['slug']=Func::getFreeSlug(IModel::class,$data[app()->getLocale()]['title']);
+      }
 
       DB::beginTransaction();
       try{

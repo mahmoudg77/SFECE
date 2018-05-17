@@ -191,7 +191,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Content</label>
                     <div class="col-md-10">
-                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control')}}
+                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control'])}}
                     </div>
                 </div>
           @endforeach
@@ -265,7 +265,15 @@
             // });
         });
     </script>
-
+    <?php if(session()->has('response')){
+        $response=session()->pull('response');
+    }?>
+    @if(isset($response) && $response['type']=='success')
+        <script>$(function(){alert("{{$response['message']}}");});</script>
+    @endif
+    @if(isset($response) && $response['type']=='error')
+        <script>$(function(){alert("{{$response['message']}}");});</script>
+    @endif
     <script>
         wow = new WOW(
           {
@@ -283,7 +291,11 @@
           this.parentNode.insertBefore(section, this);
         };
   </script>
+
+
+
 @yield('js')
+
 </body>
 
 </html>
