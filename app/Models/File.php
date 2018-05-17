@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Http\UploadedFile ;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
@@ -36,7 +37,8 @@ class File extends Model
         $this->size=$file->getClientSize();
         $this->file_type=$file->getClientMimeType();
 
-        $file->store("attach");
+        Storage::put($this->name,$file);
+        //$file->store("attach");
 
 
         $this->save();

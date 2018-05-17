@@ -29,7 +29,7 @@ class HasAccessMiddleware
 
         $perm=Auth::user()->allow($ctrl,$action);
         if($perm==null || count($perm)==0){
-          return redirect('/');
+          return response(view('errors.403'),403);
         }
         //dd($perm);
         //dd(json_encode(Auth::user()));

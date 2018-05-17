@@ -16,7 +16,9 @@ class ViewFilter
     public function handle($request, Closure $next)
     {
         $response= $next($request);
+
         if($request->ajax()) return $response;
+
         if(Auth::user()->hasRole('sys_admin')) return $response;
 
 
@@ -68,9 +70,11 @@ class ViewFilter
         $doc->loadHTML($content);
         libxml_clear_errors();
 
+        loop:
         foreach($doc->getElementsByTagName('*') as $div) {
             if($div->hasAttribute('deleted_element')){
                 $div->parentNode->removeChild($div);
+                goto loop;
             }
         }
 

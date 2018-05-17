@@ -33,7 +33,7 @@ class IController extends BaseController
     public function __construct()
     {
         $this->middleware('access');
-        $this->middleware('ViewFilter');
+        //$this->middleware('ViewFilter');
 
         $this->methods=array_merge($this->basic_methods, $this->methods);
         $this->postmethods=array_merge($this->post_methods, $this->postmethods);
