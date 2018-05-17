@@ -29,15 +29,7 @@
 
 </head>
 <body dir="{{(app()->getLocale()=='ar')?'rtl':'ltr'}}">
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.0&appId=255524131659994&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
+    
 <div id="app">
 
 <div class="container">
@@ -159,8 +151,7 @@
                 <ul class="list-inline">
                     @foreach(Func::menu('footer') as $link)
                         <li><a href="{{ Func::menuLink($link)}}">{{$link->title}}</a></li>
-
-                        @endforeach
+                    @endforeach
                     {{----}}
                     {{--<li><a href="{{ url('/home') }}">الدورات</a></li>--}}
                     {{--<li><a href="{{ url('/home') }}">المقالات</a></li>--}}
@@ -180,7 +171,6 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -188,21 +178,48 @@
         <h4 class="modal-title">{{trans('app.request research')}}</h4>
       </div>
       <div class="modal-body">
-         <form action="/action_page.php">
-              <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="form-group">
-                  <label for="usr">Name:</label>
-                  <input type="text" class="form-control" id="usr">
+      {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "enctype"=>"multipart/form-data", "class"=>"ajax-form"])}}
+          @foreach(config('translatable.locales') as $key)
+                <div class="form-group">
+                    <label class="control-label col-md-2">Title</label>
+                    <div class="col-md-10">
+                      {{Form::text($key."[title]","",["required",'class'=>'form-control'])}}
+                    </div>
                 </div>
-               <div class="form-group">
-                  <label for="comment">Comment:</label>
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
-                </div> 
-              <button type="submit" class="btn btn-default">Submit</button>
-        </form> 
+          @endforeach
+          @foreach(config('translatable.locales') as $key)
+                <div class="form-group">
+                    <label class="control-label col-md-2">Content</label>
+                    <div class="col-md-10">
+                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control')}}
+                    </div>
+                </div>
+          @endforeach
+            {{Form::hidden('post_type_id',3)}}
+            @if(\request()->get('type')==1)
+                {{Form::hidden('category_id',0)}}
+            @else
+                <div class="form-group">
+                    <label class="control-label col-md-2">Category</label>
+                    <div class="col-md-10">
+                        {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
+                    </div>
+                </div>
+            @endif
+          
+            <div class="form-group">
+                <label class="control-label col-md-2">Attach</label>
+                <div class="col-md-10">
+                    {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>
+                </div>
+            </div>
+      {{Form::close()}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -211,7 +228,6 @@
 
   </div>
 </div>
-
 
  </div>
 
@@ -223,6 +239,17 @@
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.0&appId=255524131659994&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    
     <script>
         $(function(){
              $('#camera_wrap_1').camera({
