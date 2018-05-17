@@ -146,17 +146,11 @@
         <div style="clear:both;display:block">
         <!-- Footer -->
         <footer class="footer">
-
             <div class="col-sm-6 footer-list">
                 <ul class="list-inline">
                     @foreach(Func::menu('footer') as $link)
                         <li><a href="{{ Func::menuLink($link)}}">{{$link->title}}</a></li>
                     @endforeach
-                    {{----}}
-                    {{--<li><a href="{{ url('/home') }}">الدورات</a></li>--}}
-                    {{--<li><a href="{{ url('/home') }}">المقالات</a></li>--}}
-                    {{--<li><a href="{{ url('/home') }}">اصداراتنا</a></li>--}}
-                    {{--<li><a href="{{ url('/home') }}">اتصل بنا</a></li>--}}
                 </ul>
             </div>
 
@@ -167,7 +161,6 @@
     </div>
 </div>
 
-<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -177,8 +170,8 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">{{trans('app.request research')}}</h4>
       </div>
+        {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "enctype"=>"multipart/form-data", "class"=>"ajax-form"])}}
       <div class="modal-body">
-      {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "enctype"=>"multipart/form-data", "class"=>"ajax-form"])}}
           <div class="form-horizontal">
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
@@ -197,35 +190,27 @@
                 </div>
           @endforeach
             {{Form::hidden('post_type_id',3)}}
-
                 <div class="form-group">
                     <label class="control-label col-md-3">{{ trans('app.category') }}</label>
                     <div class="col-md-9">
                         {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
                     </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-3">{{ trans('app.attach') }}</label>
-                <div class="col-md-9">
-                    {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
+                <div class="form-group">
+                    <label class="control-label col-md-3">{{ trans('app.attach') }}</label>
+                    <div class="col-md-9">
+                        {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group">
-                <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> {{ trans('app.save') }}</button>
-                </div>
-            </div>
           </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-success create">
+                            <i class="fa fa-save"></i> {{ trans('app.save') }}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('app.close') }}</button>
+          </div>
+      </div>
       {{Form::close()}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('app.close') }}</button>
-      </div>
     </div>
-
   </div>
 </div>
 
@@ -256,13 +241,6 @@
                 thumbnails: true,
                 height: '400px',
             });
-            //new WOW().init();
-            // jQuery('#camera_wrap_2').camera({
-            //     height: '400px',
-            //     loader: 'bar',
-            //     pagination: false,
-            //     thumbnails: true
-            // });
         });
     </script>
     <?php if(session()->has('response')){
