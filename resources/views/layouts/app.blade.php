@@ -196,17 +196,14 @@
                 </div>
           @endforeach
             {{Form::hidden('post_type_id',3)}}
-            @if(\request()->get('type')==1)
-                {{Form::hidden('category_id',0)}}
-            @else
-                <div class="form-group">
-                    <label class="control-label col-md-2">Category</label>
-                    <div class="col-md-10">
-                        {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
-                    </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Category</label>
+                <div class="col-md-10">
+                    {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
                 </div>
-            @endif
-          
+            </div>
+
             <div class="form-group">
                 <label class="control-label col-md-2">Attach</label>
                 <div class="col-md-10">

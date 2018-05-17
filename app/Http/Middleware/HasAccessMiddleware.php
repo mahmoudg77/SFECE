@@ -52,7 +52,7 @@ class HasAccessMiddleware
             foreach ($whr as $key => $value) {
                 if(!$request->get($value[0]))continue;
                 if(Func::checkValue($request->get($value[0]),$value[1],$value[2])==false){
-                    return "Unauthorized !";
+                    return response(view('errors.403'),403);
                 }
             }
         }
