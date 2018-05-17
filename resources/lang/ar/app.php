@@ -29,5 +29,10 @@ return [
     'contact-tel'=>'اكتب تليفونك',
     'contact-message'=>'رسالتك',
     'contact-send'=>'ابعت رسالتك',
-    
+    'title'=>'العنوان',
+    'content'=>'المحتوى',
+    'category'=>'القسم',
+    'attach'=>'المرفقات',
+    'save'=>'حفظ',
+    'close'=>'خروج',
 ];

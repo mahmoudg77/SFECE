@@ -179,19 +179,20 @@
       </div>
       <div class="modal-body">
       {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "enctype"=>"multipart/form-data", "class"=>"ajax-form"])}}
+          <div class="form-horizontal">
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
-                    <label class="control-label col-md-2">Title</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-3">{{ trans('app.title') }} - {{$key}}</label>
+                    <div class="col-md-9">
                       {{Form::text($key."[title]","",["required",'class'=>'form-control'])}}
                     </div>
                 </div>
           @endforeach
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
-                    <label class="control-label col-md-2">Content</label>
-                    <div class="col-md-10">
-                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control')}}
+                    <label class="control-label col-md-3">{{ trans('app.content') }} - {{$key}}</label>
+                    <div class="col-md-9">
+                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control','style'=>'height:120px'])}}
                     </div>
                 </div>
           @endforeach
@@ -200,29 +201,30 @@
                 {{Form::hidden('category_id',0)}}
             @else
                 <div class="form-group">
-                    <label class="control-label col-md-2">Category</label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-3">{{ trans('app.category') }}</label>
+                    <div class="col-md-9">
                         {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
                     </div>
                 </div>
             @endif
           
             <div class="form-group">
-                <label class="control-label col-md-2">Attach</label>
-                <div class="col-md-10">
+                <label class="control-label col-md-3">{{ trans('app.attach') }}</label>
+                <div class="col-md-9">
                     {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
                 </div>
             </div>
             <hr>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> Create</button>
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn btn-success create"><i class="fa fa-save"></i> {{ trans('app.save') }}</button>
                 </div>
             </div>
+          </div>
       {{Form::close()}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('app.close') }}</button>
       </div>
     </div>
 

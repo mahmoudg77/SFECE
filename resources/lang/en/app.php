@@ -29,4 +29,10 @@ return [
     'contact-tel'=>'Type Your Cell Phone',
     'contact-message'=>'Your Message!',
     'contact-send'=>'Send Message',
+    'title'=>'Title',
+    'content'=>'Content',
+    'category'=>'Category',
+    'attach'=>'Attach',
+    'save'=>'Save',
+    'close'=>'Close',
 ];
