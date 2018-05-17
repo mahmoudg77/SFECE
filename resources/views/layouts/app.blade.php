@@ -190,13 +190,20 @@
           @endforeach
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
+<<<<<<< HEAD
                     <label class="control-label col-md-3">{{ trans('app.content') }} - {{$key}}</label>
                     <div class="col-md-9">
                       {{Form::textarea($key."[body]","",["required",'class'=>'form-control','style'=>'height:120px'])}}
+=======
+                    <label class="control-label col-md-2">Content</label>
+                    <div class="col-md-10">
+                      {{Form::textarea($key."[body]","",["required",'class'=>'form-control'])}}
+>>>>>>> 5f6e1114c6158d443020946071e6abc97f5641e3
                     </div>
                 </div>
           @endforeach
             {{Form::hidden('post_type_id',3)}}
+<<<<<<< HEAD
             @if(\request()->get('type')==1)
                 {{Form::hidden('category_id',0)}}
             @else
@@ -205,9 +212,16 @@
                     <div class="col-md-9">
                         {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
                     </div>
+=======
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Category</label>
+                <div class="col-md-10">
+                    {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
+>>>>>>> 5f6e1114c6158d443020946071e6abc97f5641e3
                 </div>
-            @endif
-          
+            </div>
+
             <div class="form-group">
                 <label class="control-label col-md-3">{{ trans('app.attach') }}</label>
                 <div class="col-md-9">
@@ -267,7 +281,15 @@
             // });
         });
     </script>
-
+    <?php if(session()->has('response')){
+        $response=session()->pull('response');
+    }?>
+    @if(isset($response) && $response['type']=='success')
+        <script>$(function(){alert("{{$response['message']}}");});</script>
+    @endif
+    @if(isset($response) && $response['type']=='error')
+        <script>$(function(){alert("{{$response['message']}}");});</script>
+    @endif
     <script>
         wow = new WOW(
           {
@@ -285,7 +307,11 @@
           this.parentNode.insertBefore(section, this);
         };
   </script>
+
+
+
 @yield('js')
+
 </body>
 
 </html>

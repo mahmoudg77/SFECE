@@ -29,7 +29,7 @@ class HasAccessMiddleware
 
         $perm=Auth::user()->allow($ctrl,$action);
         if($perm==null || count($perm)==0){
-          return redirect('/');
+          return response(view('errors.403'),403);
         }
         //dd($perm);
         //dd(json_encode(Auth::user()));
@@ -52,7 +52,7 @@ class HasAccessMiddleware
             foreach ($whr as $key => $value) {
                 if(!$request->get($value[0]))continue;
                 if(Func::checkValue($request->get($value[0]),$value[1],$value[2])==false){
-                    return "Unauthorized !";
+                    return response(view('errors.403'),403);
                 }
             }
         }

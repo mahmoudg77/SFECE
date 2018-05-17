@@ -20,7 +20,7 @@ class AccountLevel extends Model
     {
 
       //dd($this->Roles()->get());
-         return $this->Roles()->where('groupkey',(array)$arrRoles)->count();
+         return $this->Roles()->whereIn('groupkey',(array)$arrRoles)->count();
 
      }
     public function Accounts()

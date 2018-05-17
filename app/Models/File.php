@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Http\UploadedFile ;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
@@ -36,7 +37,18 @@ class File extends Model
         $this->size=$file->getClientSize();
         $this->file_type=$file->getClientMimeType();
 
-        $file->store("attach");
+
+
+        //$extension = $file->getClientOriginalExtension();
+        //$sha1 = sha1($file->getClientOriginalName());
+        //$this->name = date('Y-m-d--h-i-s')."_".$sha1.".".$extension;
+        $path = public_path('uploads/files/');
+        $file->move($path, $this->name);
+
+
+        //Storage::disk('local')->put('uploads/files/'.$this->name, $file, 'public');
+        //Storage::put($this->name,$file);
+        //$file->store("attach");
 
 
         $this->save();

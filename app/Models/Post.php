@@ -52,6 +52,14 @@ class Post extends Model
             return url('uploads/images/'.$mf->name);
         }
     }
+    public function mainFile(){
+        $file=$this->Files()->where('model_attribute','main')->orderBy('id', 'desc')->first();
+        if(!$file){
+            return null;
+        }
+
+        return $file->name;
+    }
 }
 
 class PostTranslation extends Model {
