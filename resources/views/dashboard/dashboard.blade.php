@@ -97,6 +97,7 @@
     <table class="table table-striped table-hover">
       <thead><tr>
         <th>Title</th>
+        <th>Magazine</th>
         <th>Date</th>
         <th>File</th>
         <th>Status</th>
@@ -105,9 +106,14 @@
       @foreach(App\Models\Post::where('post_type_id',3)->orderBy('id','desc')->take(5)->get() as $post)
         <tr>
           <td>{{$post->title}}</td>
+          <td>{{$post->Category->title}}</td>
           <td>{{$post->created_at}}</td>
           <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
-          <td>{{$post->is_published}}</td>
+          <td>@if($post->is_published===0 || $post->is_published===1)
+              <span class="glyphicon glyphicon-thumbs-{{($post->is_published>0)?"up":"down"}} text-{{($post->is_published>0)?"success":"danger"}}"></span>
+                @else
+              <span class="glyphicon">--</span>
+            @endif</td>
 
         </tr>
       @endforeach
