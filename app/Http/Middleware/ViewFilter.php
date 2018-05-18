@@ -67,7 +67,7 @@ class ViewFilter
 
         $doc = new \DOMDocument();
         libxml_use_internal_errors(true);
-        $doc->loadHTML($content);
+        $doc->loadHTML('<?xml encoding="utf-8" ?>' .$content);
         libxml_clear_errors();
 
         loop:
@@ -77,8 +77,9 @@ class ViewFilter
                 goto loop;
             }
         }
-
-        $response->setContent($doc->saveHTML());
+        $content=$doc->saveHTML();
+        //$content=str_replace(["\n","\r"],'',$content);
+        $response->setContent($content);
         return $response;
 
     }

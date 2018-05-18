@@ -101,13 +101,11 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 //      return view('welcome');
 //  });
 
-Route::get('/dev/clear-cach', function () {
+Route::get('/cmd/{command}', function ($command) {
     chdir('../');
-    $dir =  getcwd();
-    print_r($dir);
-    $cmd  = shell_exec ('php artisan config:cache');
-    $cmd1 = shell_exec ('php artisan config:clear');
-    return $cmd .$cmd1  ;
+    //$dir =  getcwd();
+    $cmd  = shell_exec ('php artisan '.$command);
+    return $cmd   ;
 });
 
 

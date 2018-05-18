@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+       // Schema::defaultStrinLocate('utf8_unicode_ci');
+
 
     }
 
