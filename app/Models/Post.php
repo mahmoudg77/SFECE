@@ -30,11 +30,11 @@ class Post extends Model
     }
     public function Files()
     {
-      return $this->hasMany("App\Models\File","model_id","id");
+      return $this->hasMany("App\Models\File","model_id","id")->where('model_name',self::class);;
     }
     public function MediaFiles()
     {
-      return $this->hasMany("App\Models\MediaFile","model_id","id");
+      return $this->hasMany("App\Models\MediaFile","model_id","id")->where('model_name',self::class);;
     }
     public function Creator()
     {
@@ -59,6 +59,9 @@ class Post extends Model
         }
 
         return $file->name;
+    }
+    public function Visits(){
+        return $this->hasMany(\App\Models\Visit::class,"model_id","id")->where('model_name',self::class);
     }
 }
 
