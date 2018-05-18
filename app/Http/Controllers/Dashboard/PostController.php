@@ -164,20 +164,19 @@ class PostController extends IController
   public function destroy($id)
   {
       //
-      $data=\request()->get('data');
-      $data=$data->find($id);
+      //$data=\request()->get('data');
+      $data=IModel::find($id);
 
       if($data==null){
+
           return  Func::Error( "Unauthorized !",$this->viewFolder.".index" );
       }
-      DB::beginTransaction();
-      try{
+       try{
           $data->destroy($id);
-          return  Func::Success("Delete Success");
       }catch (\Exception $ex){
-        DB::rollback();
-        return  Func::Error("Error while save data !! ");
+         return  Func::Error("Error while save data !! ");
       }
+      return  Func::Success("Delete Success");
 
   }
 

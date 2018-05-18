@@ -23,7 +23,7 @@
                           <td>{{$item->name}}</td>
                           <td>{{$item->location}}</td>
                           <td>
-                              {!!Func::actionLinks('menu',$item->id,"",['view'=>['class'=>'view']])!!}
+                              {!!Func::actionLinks('menu',$item->id,"tr",['view'=>['class'=>'view']])!!}
                           </td>
                       </tr>
                     @endforeach
