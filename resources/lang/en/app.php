@@ -35,4 +35,5 @@ return [
     'attach'=>'Attach',
     'save'=>'Save',
     'close'=>'Close',
+    'Copyright'=>'Copyright By',
 ];

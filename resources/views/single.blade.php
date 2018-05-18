@@ -10,7 +10,6 @@
             </div>
 
             <div class="single-content">
-
                 <h2>{{ $singlePost->title }}</h2>
                 <div class="bar-data">
                     <small>
@@ -23,21 +22,17 @@
                 </div>
                 <div class="uderline" style="padding:10px 0.border:1px solid #ddd;"></div>
                 <p>{!! $singlePost->body !!} </p>
-
             </div>
             
             <div class="related-post">
             <h4 class="related-post-heading">{{ trans('app.related posts')}}</h4>
             @foreach($related_posts as $rpost)
+                <div class="col-sm-4">
                 <a href="{{ route('getPostBySlug', $rpost->slug) }}">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img src="{{$rpost->mainImage()}}" class="media-object">
-                            <h4 class="related-post-title">{{$rpost->title}}</h4>
-                        
-                    </div>
-                    </div>
+                    <img src="{{$rpost->mainImage()}}"/>
+                    <h4 class="related-post-title">{{$rpost->title}}</h4>
                 </a>
+                </div>
             @endforeach
             </div>
         </div>

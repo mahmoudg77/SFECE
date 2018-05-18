@@ -17,10 +17,12 @@ class SingleController extends Controller
         }
         $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         
-        $allcats = Category::all();
+        $allcats = Category::where('parent_id', '<>',null)->get();
         
         return view('single', compact('singlePost', 'lastPosts', 'allcats'));
     }
+    
+    
     //get posts by slug
     public function getPostBySlug($slug){
 
@@ -29,7 +31,7 @@ class SingleController extends Controller
             return view('errors.404');
         }
         $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
-        $allcats = Category::all();
+        $allcats = Category::where('parent_id', '<>',null)->get();
         
         //get related posts
         $related_posts = Post::where('id', '!=', $singlePost->id)->where('is_published',1)
@@ -43,10 +45,10 @@ class SingleController extends Controller
 
     }
     
-    public function getSidebar(){
-        $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
-        $allcats = Category::all();
-        
-        return view('sidebar', compact('lastPosts', 'allcats'));
-    }
+//    public function getSidebar(){
+//        $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
+//        $allcats = Category::all();
+//        
+//        return view('sidebar', compact('lastPosts', 'allcats'));
+//    }
 }

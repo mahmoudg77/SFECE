@@ -75,8 +75,13 @@
           <div class="clear-fix"></div>
           <div class="header">
               <div class="col-xs-12">
-                <img src="{{asset('images/logo.png')}}" class="img-responsive center-block" alt="" title=""/>
-                <h3>المؤسسة العلمية للطفولة المبكرة</h3>
+                <div class="pull-left">
+                    <img src="{{asset('images/logo.png')}}" class="img-responsive center-block" alt="" title=""/>
+                </div>
+                <div class="header-title">
+                    <h3>المؤسسة العلمية للطفولة المبكرة</h3>
+                    <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
+                </div>
               </div>
 
           </div>
@@ -85,7 +90,8 @@
             <div class="container">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                            data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -155,7 +161,8 @@
             </div>
 
             <div class="col-sm-6">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+                <p class="m-0 text-center text-white">&copy; {{ trans('app.Copyright') }} 
+                    <a href="http://www.web-egy.com/" target="_blank" style="color:#ccc;text-decoration:none;">WebEgypt</a></p>
             </div>
         </footer>
     </div>

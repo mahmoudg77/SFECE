@@ -36,7 +36,7 @@
                       </td>
                       <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
                       <td>
-                          {!!Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}
+                          <div class="btn-group">{!!Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}</div>
                       </td>
 
                   </tr>

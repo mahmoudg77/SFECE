@@ -119,7 +119,7 @@
                class="btn btn-success" 
                        type="submit" 
                        value="{{ trans('app.contact-send') }}" />
-                <i class="fa fa-send fa-fw send-icon"></i>
+                <i class="fa fa-send fa-fw send-icon send-icon-btn"></i>
             </form>
     </div>
 </div>
