@@ -104,7 +104,7 @@ class Functions
      {
      	//$c=new $class;
      	 if(!$class) return null;
-       		$data=$class::all();
+       		$data=$class::orderBy('id','desc')->get();
       // $force_filter=request()->get('force_filter');
 
        if($force_filter){

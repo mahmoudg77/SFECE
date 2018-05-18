@@ -14,25 +14,27 @@
             <table class="table table-hover table-striped datatable">
                 <thead>
                   <tr>
+                      <th>Image</th>
                     <th>Title</th>
-                    <th>Type</th>
                     <th>Created Date</th>
                     <th>Publish Date</th>
                     <th>Author</th>
+                      <th>File</th>
                     <th></th>
                       <th></th>
                   </tr>
                 </thead>
                 @foreach($data as $post)
                   <tr>
+                      <td><img src="{{$post->mainImage()}}" class="img-responsive" width="100px"/></td>
                       <td>{{$post->title}}</td>
-                      <td>{{$post->postType->name}}</td>
                       <td>{{$post->created_at}}</td>
                       <td>{{$post->pub_date}}</td>
                       <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
                       <td>
                           <a href="#" title="Publish/UnPublish Post" data-id="{{$post->id}}" class="btn btn-default {{($post->is_published)?"unpublish":"publish"}}"><span class="glyphicon glyphicon-globe {{($post->is_published)?"text-success":"text-danger"}}"></span></a>
                       </td>
+                      <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
                       <td>
                           {!!Func::actionLinks('posts',$post->id,"",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}
                       </td>
