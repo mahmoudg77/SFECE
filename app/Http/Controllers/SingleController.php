@@ -15,6 +15,7 @@ class SingleController extends Controller
         if(!$singlePost){
             return view('errors.404');
         }
+        \App\Models\Visit::log(\App\Models\Post::class,$id);
         $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         
         $allcats = Category::all();
@@ -28,6 +29,7 @@ class SingleController extends Controller
         if(!$singlePost){
             return view('errors.404');
         }
+        \App\Models\Visit::log(\App\Models\Post::class,$singlePost->id);
         $lastPosts = Post::where('post_type_id', 2)->where('is_published',1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         

@@ -13,7 +13,8 @@ class CategoryController extends Controller
         
         $allPostsByCat = post::where('category_id', '=', $id)->where('is_published',1)->get();
         $categoryName = category::where('id', $id)->first();
-        
+
+        \App\Models\Visit::log(\App\Models\Category::class,$categoryName->id);
         $lastPosts = Post::where('post_type_id', 2)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::all();
         return view('category', compact('allPostsByCat', 'categoryName', 'lastPosts', 'allcats'));

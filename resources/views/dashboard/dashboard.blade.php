@@ -14,8 +14,8 @@
     </div>
     <div class="col-md-3">
       <div class="well dash-box">
-        <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',1)->count()}}</h2>
-        <h4>Pages</h4>
+        <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',3)->count()}}</h2>
+        <h4>Research</h4>
       </div>
     </div>
     <div class="col-md-3">
@@ -26,8 +26,8 @@
     </div>
     <div class="col-md-3">
       <div class="well dash-box">
-        <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',3)->count()}}</h2>
-        <h4>Research</h4>
+        <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{App\Models\Visit::count()}}</h2>
+        <h4>Visits</h4>
       </div>
     </div>
   </div>

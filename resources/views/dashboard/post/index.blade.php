@@ -19,9 +19,10 @@
                     <th>Created Date</th>
                     <th>Publish Date</th>
                     <th>Author</th>
-                      <th>File</th>
+                    <th>File</th>
+                    <th>Visits</th>
                     <th></th>
-                      <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 @foreach($data as $post)
@@ -34,6 +35,7 @@
                       <td>
                           <a href="#" title="Publish/UnPublish Post" data-id="{{$post->id}}" class="btn btn-default {{($post->is_published)?"unpublish":"publish"}}"><span class="glyphicon glyphicon-globe {{($post->is_published)?"text-success":"text-danger"}}"></span></a>
                       </td>
+                      <td>{{$post->Visits()->count()}}</td>
                       <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
                       <td>
                           {!!Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}
