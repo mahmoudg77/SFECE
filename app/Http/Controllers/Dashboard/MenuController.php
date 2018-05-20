@@ -17,13 +17,17 @@ class MenuController extends IController
 
   public function index()
   {
-    $data=IModel::all();
+      $data=request()->get('data');
     return view($this->viewFolder.".index",compact('data'));
   }
 
   public function edit($id)
   {
-    $data=IModel::find($id);
+      $data=request()->get('data');
+      $data=$data->find($id);
+      if($data==null){
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('data') );
+      }
     return view($this->viewFolder.".edit",compact('data'));
   }
   public function create()
@@ -38,8 +42,11 @@ class MenuController extends IController
    */
   public function show($id)
   {
-      //
-       $data=IModel::find($id);
+      $data=request()->get('data');
+      $data=$data->find($id);
+      if($data==null){
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".edit",compact('show') );
+      }
        return view($this->viewFolder.".show", compact('data'));
   }
 
@@ -87,11 +94,12 @@ class MenuController extends IController
    */
   public function destroy($id)
   {
-      //
       $data=IModel::find($id);
-      //$data->deleted_by=Auth::user()->id;
-      //$data->save();
 
+      if($data==null){
+
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".index" );
+      }
       if($data->destroy($id)){
         return  Func::Success("Delete Success");
       }else{

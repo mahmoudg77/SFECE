@@ -74,16 +74,15 @@
           </div>
           <div class="clear-fix"></div>
           <div class="header">
-              <div class="col-xs-12">
-                <div class="pull-left">
-                    <img src="{{asset('images/logo.png')}}" class="img-responsive center-block" alt="" title=""/>
-                </div>
-                <div class="header-title">
-                    <h3>المؤسسة العلمية للطفولة المبكرة</h3>
-                    <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
-                </div>
+              <div class="col col-xs-12">
+                  <div style="padding: 10px;" class="pull-right">
+                      <img src="http://localhost:8000/images/logo.png" alt="" title="" class="" style="width: 120px;">
+                  </div>
+                  <div style="padding: 10px 0px;text-align: right;" class="header-title pull-right">
+                      <h1>المؤسسة العلمية للطفولة المبكرة</h1>
+                      <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
+                  </div>
               </div>
-
           </div>
 
         <nav class="navbar navbar--default navbar-static-top navbar-inverse">
