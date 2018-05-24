@@ -1,8 +1,11 @@
 
 @extends('layouts.admin')
 @section('content')
-<div class="">
-  <a class="btn btn-success pull-right" href="{{route('cp.secgroup.create',['curr_menu'=>$sel_menu])}}">Create New</a>
+<div class="panel panel-default">
+<div class="panel-body">
+  <div><a class="btn btn-success pull-right" href="{{route('cp.secgroup.create',['curr_menu'=>$sel_menu])}}">Create New</a></div>
+    <div class="clearfix"></div>
+    <hr>
   <table class="table datatable">
     <thead>
       <tr>
@@ -25,7 +28,7 @@
 
   </table>
 </div>
-
+</div>
 @endsection
 
 @section('js')

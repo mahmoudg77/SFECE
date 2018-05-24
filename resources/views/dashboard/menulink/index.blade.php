@@ -2,8 +2,10 @@
 @extends('layouts.admin')
 @section('content')
 <div class="">
-  <a class="btn btn-success pull-right addnew" href="{{route('cp.menu-link.create',['m'=>$m,'curr_menu'=>$sel_menu])}}">Create New</a>
+  <a class="btn btn-success pull-right addnew" 
+     href="{{route('cp.menu-link.create',['m'=>$m,'curr_menu'=>$sel_menu])}}">Create New</a>
   <div class="clearfix"></div>
+    <hr>
 </div>
   <div class="list-group" >
       @foreach($data as $item)

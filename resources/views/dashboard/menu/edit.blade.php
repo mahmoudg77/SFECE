@@ -8,7 +8,7 @@
     </div>
 
     <div class="modal-body">
-      <div class="row">
+      <div class="r-ow" style="display: flow-root;">
         {!! Form::open(['method'=>'PATCH', 'route'=>["cp.menu.update",$data->id]]) !!}
 
         <div class="form-group col-sm-6">
@@ -28,7 +28,7 @@
         </div>
       {!! Form::close() !!}
       </div>
-      <div class="row">
+      <div class="ro-w" style="display: flow-root;">
         <h3>Links</h3>
         <hr/>
         <div id="divLinks" class="col col-xs-12">

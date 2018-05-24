@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function getPostsByCatID($id){
         
-        $allPostsByCat = post::where('category_id', '=', $id)->where('is_published',1)->get();
+        $allPostsByCat = post::where('category_id', '=', $id)->where('is_published',1)->where('post_type_id', 2)->get();
         $categoryName = category::where('id', $id)->first();
 
         $lastPosts = Post::where('post_type_id', 2)->where('is_published', 1)->orderBy('id', 'desc')->take(4)->get();

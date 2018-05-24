@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 @section('content')
 {{Form::model(null, ['route'=>["cp.secpermission.store"],"method"=>"POST",'class'=>'ajax-form'])}}
-<div class="form-horizontal">
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-md-2">Group</label>
                 <div class="col-md-10">
@@ -35,6 +37,9 @@
             </div>
         </div>
     </div>
+    </div>
+</div>
+
 {{Form::close()}}
 
 <script type="text/javascript">

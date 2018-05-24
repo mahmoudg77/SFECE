@@ -78,9 +78,9 @@
                   <div style="padding: 10px;" class="pull-right">
                       <img src="http://localhost:8000/images/logo.png" alt="" title="" class="" style="width: 120px;">
                   </div>
-                  <div style="padding: 10px 0px;text-align: right;" class="header-title pull-right">
-                      <h1>المؤسسة العلمية للطفولة المبكرة</h1>
-                      <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
+                  <div style="padding: 22px 0px;text-align: right;" class="header-title pull-right">
+                      <h1 style="color: #224668;font-weight: bold;font-size: 30px;">المؤسسة العلمية للطفولة المبكرة</h1>
+                      <small style="color: #224668;text-align: center;padding: 0 8px;">تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
                   </div>
               </div>
           </div>
