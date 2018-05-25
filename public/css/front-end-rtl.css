@@ -1,4 +1,11 @@
 @impor-t url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+
+@media only screen and (max-width: 600px) {
+    .header-top{
+        height: 60px !important;
+    }
+}
+
 body{
 	direction: rtl;
     background--color: #f2e6e2;;
@@ -24,8 +31,6 @@ html{
 }
 .navbar-nav > li{
     float:right !important;
-    background--color: #c1272d;
-	margi-n: 0 2px;
 }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
     color: #ff6c40 !important;
@@ -54,7 +59,6 @@ html{
     border-bottom: 0;
 }
 .dropdown-menu> li a{
-    paddi-ng: 3px 10px !important;
     color:#fff;
 }
 .navbar-nav > li > .dropdown-menu{
@@ -64,7 +68,6 @@ html{
     background-color: #BA0C2F;
 }
 .dropdown-menu> li a:hover, .dropdown-menu> li a:focus, .dropdown-menu> li:hover{
-    padd-ing:6px 25px;
     padding-right: 15px;
     background-color: #BA0C2F;
     color:#fff;
@@ -77,39 +80,20 @@ html{
 .header{
 	height: 150px;
 	background: #ddd;
-    posit-ion: relative;
 }
-.header .header-h>h3{
-    position: absolute;
-    top: 50px;
-    left: 260px;
-}
-.header img{
-	/*! width: 120px; */
-    /*! position: absolute; */
-    /*! top: 14px; */
-    /*! left: 70px; */
-    /*! z-index: 9999; */
+.header h1{
+    color: #224668;
+    font-weight: bold;
+    font-size: 30px;
 }
 .header .header-title{
-    /*! position: absolute; */
-    /*! left: 220px; */
-    /*! top: 40px; */
-    /*! color: #1e4e54; */
+    padding: 22px 0px;
+    text-align: right;
 }
-.header h3, .header h5{
-	color: #1e4e54;
-    font-weight: bold;
-    /*! text-align: center; */
-    paddi-ng: 16px 0;
-    margin-top:0;
-}
-.header-h ul{
-	padding:30px;
-}
-.header-h ul a{
-	color:#555;
-	text-decoration: none !important;
+.header small{
+    color: #224668;
+    text-align: center;
+    padding: 0 8px;
 }
 .header-top{
 	background-color: #224668;
@@ -276,18 +260,13 @@ a.site--login:hover {
     padding:0 5px;
 }
 .single .single-sidebar{
-    padd-ing: 10px;
-    bor-der:1px solid #ddd;
     margin:20px 0;
-    min--height: 500px;
 }
 .single-content p img{
     width:100% !important;
     height:100% !important;
 }
 .single-cat{
-    bord-er:1px solid #fff;
-    box--shadow: 0px 2px 3px 1px #ddd;
     min-height: 200px;
     margin-bottom: 20px;
 }
@@ -465,7 +444,6 @@ figure {
 }
 .footer .footer-list a:hover , .footer-list a:focus{
     font-weight: bold;
-    col-or:#ab1323;
     color:#fff;
 }
 /*end footer*/

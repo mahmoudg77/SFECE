@@ -15,7 +15,7 @@
 -->
   </div><!-- #camera_wrap_1 -->
 
-
+    <div class="clearfix"></div>
   <div class="row w-ow fadeInUp" style ="padding: 0 15px;margin--bottom: 20px;" data-w-ow-duration="2s" data-wow-delay="1s">
 @if (count($lastPosts)>0)
 @foreach($lastPosts as $post)

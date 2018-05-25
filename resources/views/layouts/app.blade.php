@@ -7,6 +7,21 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <meta name="description" content="يهدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية.">
+    <meta name="keywords" content="SFECE,الطفولة المبكرة,استشارات,مؤسسة،تربية،اولياء الامور">
+    <meta name="author" content="SFECE">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="SFECE" />
+    <meta property="og:type" content="SFECE" />
+    <meta property="og:url" content="http://www.example.com/" />
+    <meta property="og:image" content="{{ asset('images/logo.png') }}" />
+    <meta property="og:description" content="يهدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية." /> 
+    
     <title>{{ config('app.name', 'SFECE') }}</title>
 
     <!-- Styles -->
@@ -66,9 +81,17 @@
             <div class="pull-{{(app()->getLocale()=='ar')?'left':'right'}}">
                 <div class="social-media">
                     <a href="{{route('swichlang')}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
-                    <i class="fa fa-facebook-square fa-lg"></i>
-                    <i class="fa fa-twitter-square fa-lg"></i>
-                    <i class="fa fa-youtube-square fa-lg"></i>
+                    @foreach(Func::menu('header-social') as $link)
+                        <a href="{{ Func::menuLink($link)}}" target="_blank">
+                            @if($link->title == 'facebook')
+                                <i class="fa fa-facebook-square fa-lg"></i>
+                            @elseif($link->title == 'twitter')
+                                <i class="fa fa-twitter-square fa-lg"></i>
+                            @elseif($link->title == 'youtube')
+                                <i class="fa fa-youtube-square fa-lg"></i>
+                            @endif
+                        </a>
+                    @endforeach
                 </div>
             </div>
           </div>
@@ -76,15 +99,15 @@
           <div class="header">
               <div class="col col-xs-12">
                   <div style="padding: 10px;" class="pull-right">
-                      <img src="http://localhost:8000/images/logo.png" alt="" title="" class="" style="width: 120px;">
+                      <img src="{{ asset('images/logo.png') }}" alt="" title="" class="" style="width: 120px;">
                   </div>
-                  <div style="padding: 22px 0px;text-align: right;" class="header-title pull-right">
-                      <h1 style="color: #224668;font-weight: bold;font-size: 30px;">المؤسسة العلمية للطفولة المبكرة</h1>
-                      <small style="color: #224668;text-align: center;padding: 0 8px;">تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
+                  <div class="header-title pull-right">
+                      <h1>المؤسسة العلمية للطفولة المبكرة</h1>
+                      <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
                   </div>
               </div>
           </div>
-
+          <div class="clearfix"></div>
         <nav class="navbar navbar--default navbar-static-top navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -167,6 +190,11 @@
                 </div>
                 <div class="col-sm-4">
                     <h4>{{trans('app.follow facebook')}}</h4>
+                    <div class="fb-page" data-href="https://www.facebook.com/wwwarabececom/" 
+                         data-small-header="false" data-adapt-container-width="true" 
+                         data-hide-cover="false" data-show-facepile="false">
+                        <blockquote cite="https://www.facebook.com/elradio1/" class="fb-xfbml-parse-ignore"></blockquote>
+                    </div>
                 </div>
                 </div>
             </div>

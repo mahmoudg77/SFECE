@@ -43,7 +43,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-xs-hidden col-sm-4">
+        <div class="hidden-xs col-sm-4">
             @include('sidebar')
         </div>
     </div>
