@@ -4,7 +4,7 @@
   <div class="camera_wrap camera1_azure_skin" id="camera_wrap_1" style ="padding-top:10px;">
       @if (count($allSlider)>0)
       @foreach($allSlider as $slider)
-        <div data-src="{{$slider->mainImage()}}"></div>
+        <div data-src="{{$slider->mainImage()}}" data-thumb="{{$slider->mainImage(true)}}"></div>
       @endforeach
       @endif
 <!--

@@ -263,7 +263,10 @@ class PostController extends IController
             ->addColumn('visits',function ($post) {
                 return $post->Visits()->count();
             })
-            ->rawColumns(['image','file','action'])
+            ->addColumn('status',function ($item){
+                return '<a href="#" title="Publish/UnPublish Post" data-id="'.$item->id.'" class="btn btn-default '.($item->is_published?"unpublish":"publish").'"><span class="glyphicon glyphicon-globe '.($item->is_published?"text-success":"text-danger").'"></span></a>';
+            })
+            ->rawColumns(['image','file','action','status'])
             ->make(true);
     }
 

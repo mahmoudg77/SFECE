@@ -21,8 +21,8 @@
                     <th>Author</th>
                     <th>File</th>
                     <th>Visits</th>
+                    <th>Status</th>
                     <th></th>
-                    {{--<th></th>--}}
                   </tr>
                 </thead>
                 {{--@foreach($data as $post)--}}
@@ -124,6 +124,7 @@ $(function(){
                 { data: 'creator', name: 'creator' },
                 { data: 'file', name: 'file',orderable: false, searchable: false },
                 { data: 'visits', name: 'visits' },
+                { data: 'status', name: 'status' },
                 { data: 'action', name: 'action',orderable: false, searchable: false },
             ],
             buttons: ['csv', 'excel', 'pdf', 'print', 'reset', 'reload'],
