@@ -173,17 +173,18 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
+        /*
+         * Package Service Providers...
+         */
+        Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Dimsav\Translatable\TranslatableServiceProvider::class,
         //GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        /*
-         * Package Service Providers...
-         */
-        Laravel\Tinker\TinkerServiceProvider::class,
-
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -248,6 +249,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Func' => App\Extra\Functions::class,
         'Image'=>Intervention\Image\Facades\Image::class,
+        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

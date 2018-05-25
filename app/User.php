@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->AccountLevel->hasRole($role);
     }
+    public function Posts()
+    {
+        return $this->hasMany('App\Models\Post','created_by','id');
+    }
 }

@@ -58,6 +58,11 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
     Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
     #Dashboard Routes
+
+    #DataTable Routes
+    Route::get('/posts/datatable','Dashboard\PostController@dataTable')->name('cp.posts.datatable');
+    Route::get('/user/datatable','Dashboard\UserController@dataTable')->name('cp.user.datatable');
+
     Route::get('/','Dashboard\DashboardController@index')->name('cp.dashboard');
     Route::resource('/posts','Dashboard\PostController',['as'=>'cp']);
     Route::resource('/account-level','Dashboard\AccountLevelController',['as'=>'cp']);
@@ -75,7 +80,9 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::resource('/setting','Dashboard\SettingController',['as'=>'cp']);
     Route::post('/post-slug','Dashboard\PostController@getFreeSlug')->name('cp.post-slug');
 
-    Route::post('/post-unpublish','Dashboard\PostController@unpublish')->name('cp.post-unpublish');
+
+
+        Route::post('/post-unpublish','Dashboard\PostController@unpublish')->name('cp.post-unpublish');
     Route::post('/post-publish','Dashboard\PostController@publish')->name('cp.post-publish');
 
     Route::post('/secpermission-getactions','Dashboard\SecPermission@getActionsList')->name('cp.secpermission-getactions');

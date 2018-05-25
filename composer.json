@@ -15,7 +15,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "torann/geoip": "^1.0"
+        "torann/geoip": "^1.0",
+        "yajra/laravel-datatables-oracle": "^8.6"
     },
     "require-dev": {
         "crestapps/laravel-code-generator": "^2.2",

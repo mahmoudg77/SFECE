@@ -135,6 +135,9 @@ class Functions
          case "<=";
            return $left <= $right;
            break;
+         case "<>";
+               return $left != $right;
+               break;
          case "like";
            return strpos($left, $right);
            break;

@@ -166,7 +166,14 @@ $(function(){
         }
     });
     $(".datatable").dataTable();
-
+    // $(".datatable").each(function(){$(this).dataTable({
+    //     serverSide: true,
+    //     ajax: {
+    //         url: $(this).data("query"),
+    //         type: 'POST'
+    //     }
+    // });
+    // });
   function applayEditor(elem) {
     if(elem ==undefined) elem='body';
 

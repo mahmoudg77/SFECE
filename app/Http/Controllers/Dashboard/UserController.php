@@ -7,12 +7,13 @@ use App\Http\Controllers\IController;
 use App\User as IModel;
 use Auth;
 use Func;
+use Datatables;
 class UserController extends IController
 {
   protected $viewFolder="dashboard.user";
     var $metaTitle="Users";
     public $model=IModel::class;
-    var $methods=[];
+    var $methods=['dataTable'=>'Data Table'];
   public function index()
   {
     $data=request()->get('data');
@@ -88,13 +89,40 @@ class UserController extends IController
   {
       //
       $data=IModel::find($id);
-      //$data->deleted_by=Auth::user()->id;
-      //$data->save();
 
-      if($data->destroy($id)){
-        return  Func::Success("Delete Success",$data);
-      }else{
-        return  Func::Error("Error while delete data !!");
+      if($data==null){
+
+          return  Func::Error( "Unauthorized !",$this->viewFolder.".index" );
       }
+      try{
+          $data->destroy($id);
+      }catch (\Exception $ex){
+          return  Func::Error("Error while save data !! ");
+      }
+      return  Func::Success("Delete Success");
+
   }
+    public function dataTable()
+    {
+        $data=\request()->get('data');
+
+        $dataTable= Datatables::of($data)
+            ->addColumn('action', function ($item) {
+                return Func::actionLinks('user',$item->id,"tr",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]]);
+            })
+            ->addColumn('account_level', function ($item) {
+                return $item->AccountLevel->name;
+            })
+            ->removeColumn('password');
+        foreach (\App\Models\PostType::all() as $postType){
+            $dataTable=$dataTable->addColumn($postType->name,function ($item) use($postType) {
+                return $item->Posts()->where('post_type_id',$postType->id)->get()->Count();
+            });
+        }
+        //dd($dataTable);
+        $dataTable=$dataTable->rawColumns(['action']);
+
+
+        return $dataTable->make(true);
+    }
 }

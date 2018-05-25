@@ -11,7 +11,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <table class="table table-hover table-striped datatable">
+            <table class="table table-hover table-striped datatable-ajax">
                 <thead>
                   <tr>
                       <th>Image</th>
@@ -22,27 +22,28 @@
                     <th>File</th>
                     <th>Visits</th>
                     <th></th>
-                    <th></th>
+                    {{--<th></th>--}}
                   </tr>
                 </thead>
-                @foreach($data as $post)
-                  <tr>
-                      <td><img src="{{$post->mainImage()}}" class="img-responsive" width="100px"/></td>
-                      <td>{{$post->title}}</td>
-                      <td>{{$post->created_at}}</td>
-                      <td>{{$post->pub_date}}</td>
-                      <td>{{$post->Creator!=null?$post->Creator->name:null}}</td>
-                      <td>
-                          <a href="#" title="Publish/UnPublish Post" data-id="{{$post->id}}" class="btn btn-default {{($post->is_published)?"unpublish":"publish"}}"><span class="glyphicon glyphicon-globe {{($post->is_published)?"text-success":"text-danger"}}"></span></a>
-                      </td>
-                      <td>{{$post->Visits()->count()}}</td>
-                      <td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>
-                      <td>
-                          <div class="btn-group">{!!Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}</div>
-                      </td>
+                {{--@foreach($data as $post)--}}
+                  {{--<tr>--}}
+                      {{--<td><img src="{{$post->mainImage()}}" class="img-responsive" width="100px"/></td>--}}
+                      {{--<td>{{$post->title}}</td>--}}
+                      {{--<td>{{$post->created_at}}</td>--}}
+                      {{--<td>{{$post->pub_date}}</td>--}}
+                      {{--<td>{{$post->Creator!=null?$post->Creator->name:null}}</td>--}}
+                      {{--<td>--}}
+                          {{--<a href="#" title="Publish/UnPublish Post" data-id="{{$post->id}}" class="btn btn-default {{($post->is_published)?"unpublish":"publish"}}"><span class="glyphicon glyphicon-globe {{($post->is_published)?"text-success":"text-danger"}}"></span></a>--}}
+                      {{--</td>--}}
+                      {{--<td>{{$post->Visits()->count()}}</td>--}}
+                      {{--<td>@if($post->mainFile())<a href="/uploads/files/{{$post->mainFile()}}">Download</a>@endif</td>--}}
+                      {{--<td>--}}
+                          {{--<div class="btn-group">{!!Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"view1","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]])!!}</div>--}}
+                      {{--</td>--}}
 
-                  </tr>
-                @endforeach
+                  {{--</tr>--}}
+                {{--@endforeach--}}
+
               </table>
         </div>
     </div>
@@ -109,6 +110,26 @@ $(function(){
             }
         });
     });
+
+    $(".datatable-ajax").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {url:'{{ route('cp.posts.datatable',['type'=>$post_type_id,'curr_menu'=>$sel_menu]) }}',type:"GET"},
+
+            columns: [
+                { data: 'image', name: 'image',orderable: false, searchable: false },
+                { data: 'title', name: 'title' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'pub_date', name: 'pub_date' },
+                { data: 'creator', name: 'creator' },
+                { data: 'file', name: 'file',orderable: false, searchable: false },
+                { data: 'visits', name: 'visits' },
+                { data: 'action', name: 'action',orderable: false, searchable: false },
+            ],
+            buttons: ['csv', 'excel', 'pdf', 'print', 'reset', 'reload'],
+
+        });
+
 });
 </script>
 

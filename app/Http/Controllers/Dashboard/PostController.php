@@ -11,13 +11,15 @@ use App\Models\File;
 use Func;
 use Auth;
 use DB;
+use Datatables;
 class PostController extends IController
 {
   var $metaTitle="المقالات والصفحات والأبحاث";
   public $model=\App\Models\Post::class;
   var $methods=['getFreeSlug'=>'Create Free Slug',
                 'publish'=>'Go to online post',
-                'unpublish'=>'Go to offline post'
+                'unpublish'=>'Go to offline post',
+                'dataTable'=>'Data Table',
                 ];
   protected $viewFolder="dashboard.post";
 
@@ -232,6 +234,37 @@ class PostController extends IController
             DB::rollback();
             return  Func::Error("Error while save data !! ");
         }
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function dataTable()
+    {
+        $data=\request()->get('data');
+        if(request()->has("type")){
+            $data=$data->where('post_type_id',request()->get("type"));
+        }
+        return Datatables::of($data)
+            ->addColumn('action', function ($post) {
+                return Func::actionLinks('posts',$post->id,"tr",["view"=>['class'=>"","target"=>"_blank",'href'=>"/".app()->getLocale()."/".$post->slug]]);
+            })
+            ->addColumn('creator',function ($post) {
+                return $post->Creator->name;
+            })
+            ->addColumn('image',function ($post) {
+                return '<img src="'.$post->mainImage().'" class="img-responsive" width="100px"/>';
+            })
+            ->addColumn('file',function ($post) {
+                return ($post->mainFile()? '<a href="/uploads/files/'.$post->mainFile().'">Download</a>':'');
+            })
+            ->addColumn('visits',function ($post) {
+                return $post->Visits()->count();
+            })
+            ->rawColumns(['image','file','action'])
+            ->make(true);
     }
 
 }
