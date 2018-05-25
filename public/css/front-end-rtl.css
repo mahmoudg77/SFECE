@@ -318,17 +318,31 @@ a.site--login:hover {
     padding: 10px;
     margin: 20px 0;
 }
-.related-post-title{
-    color: #555;
+.related-post-item .related-title{
+    color: #fff;
     padding: 10px 5px;
     font-size: 14px;
-    background-color: #ddd;
-    margin:0;
+    background-color: #224668;
+    margin: 0;
     height: 50px;
 }
-.related-post img{
-    height: 150px;
+
+figure {
+	overflow: hidden;
+}
+ .related-post-item figure img{
     width: 100%;
+    height: 100px;
+}
+.related-post-item figure img{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.related-post-item figure:hover img{
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
 }
 
 /*end single post*/

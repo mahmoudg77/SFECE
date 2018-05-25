@@ -36,4 +36,5 @@ return [
     'save'=>'Save',
     'close'=>'Close',
     'Copyright'=>'Copyright By',
+    'no articles'=>'Sorry !! No articles found',
 ];

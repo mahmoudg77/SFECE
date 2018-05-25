@@ -9,6 +9,7 @@
             <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
                 {{ $categoryName->title }}</h3>
             <div class="cat-content">
+                @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)
                     <a href="/ar/{{ $post->slug }}" style="text-decoration:none">
                         <h3 class="media-heading" >{{ $post->title }}</h3>
@@ -37,6 +38,9 @@
                     <div class="clearfix"></div>
                     <div class="uderline"></div>
                 @endforeach
+                @else
+                    <div class="alert alert-warning text-center"><h5>{{ trans('app.no articles') }}</h5></div>
+                @endif
             </div>
         </div>
         <div class="col-xs-hidden col-sm-4">
