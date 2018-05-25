@@ -114,7 +114,7 @@ $(function(){
     $(".datatable-ajax").DataTable({
             processing: true,
             serverSide: true,
-            ajax: {url:'{{ route('cp.posts.datatable',['type'=>$post_type_id,'curr_menu'=>$sel_menu]) }}',type:"GET"},
+            ajax: {headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},url:'{{ route('cp.posts.datatable',['type'=>$post_type_id,'curr_menu'=>$sel_menu]) }}',type:"POST"},
 
             columns: [
                 { data: 'image', name: 'image',orderable: false, searchable: false },

@@ -57,7 +57,7 @@ class UserController extends IController
       $category['password']=bcrypt(rand( 1,99999));
 
       if(IModel::create($category)){
-        return  Func::Success("Save Success",$category);
+        return  Func::Success("Save Success");
       }else{
         return  Func::Error("Error while save data !!");
       }
@@ -71,8 +71,8 @@ class UserController extends IController
       //$category['id']=$id;
       //print_r($category);
 
-      if(IModel::findOrFail($id)->update($data)){
-        return  Func::Success("Save Success",$data);
+      if(IModel::where('id',$id)->update($data)){
+        return  Func::Success("Save Success");
       }else{
         return  Func::Error("Error while save data !!");
       }

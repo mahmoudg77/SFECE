@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+    <?php $postType=\App\Models\PostType::find(\request()->get('type'));
+    if(!$postType) return;
+    ?>
 <section class="post-dashboard">
 <div class="panel panel-default">
     <div class="panel-body">
@@ -38,29 +41,34 @@
                         {{Form::text("slug",null,['required','class'=>'form-control'])}}
                     </div>
                 </div>
-                @if(\request()->get('type')==1)
-                    {{Form::hidden('category_id',0)}}
+                @if($postType->has_category==1)
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Category</label>
+                                <div class="col-md-10">
+                                    {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
+                                </div>
+                            </div>
                 @else
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Category</label>
-                        <div class="col-md-10">
-                            {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
-                        </div>
-                    </div>
+                            {{Form::hidden('category_id',0)}}
                 @endif
+
                     {{Form::hidden('post_type_id',\request()->get('type'))}}
+                        @if($postType->has_main_image==1)
                 <div class="form-group">
                     <label class="control-label col-md-2">Image</label>
                     <div class="col-md-10">
                         {{Form::file("image",['accept'=>'.jpg,.png,.gif'])}}
                     </div>
                 </div>
+                        @endif
+                        @if($postType->has_main_file==1)
                         <div class="form-group">
                             <label class="control-label col-md-2">Attach</label>
                             <div class="col-md-10">
                                 {{Form::file("attach",['accept'=>'.pdf,.doc,.docx,.xls,.xlsx'])}}
                             </div>
                         </div>
+                        @endif
                       <hr>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">

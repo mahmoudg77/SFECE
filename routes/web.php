@@ -60,8 +60,8 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     #Dashboard Routes
 
     #DataTable Routes
-    Route::get('/posts/datatable','Dashboard\PostController@dataTable')->name('cp.posts.datatable');
-    Route::get('/user/datatable','Dashboard\UserController@dataTable')->name('cp.user.datatable');
+    Route::post('/posts/datatable','Dashboard\PostController@dataTable')->name('cp.posts.datatable');
+    Route::post('/user/datatable','Dashboard\UserController@dataTable')->name('cp.user.datatable');
 
     Route::get('/','Dashboard\DashboardController@index')->name('cp.dashboard');
     Route::resource('/posts','Dashboard\PostController',['as'=>'cp']);
