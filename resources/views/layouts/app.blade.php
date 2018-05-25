@@ -150,16 +150,27 @@
 
         <div style="clear:both;display:block">
         <!-- Footer -->
-        <footer class="footer">
-            <div class="col-sm-6 footer-list">
-                <ul class="list-inline">
-                    @foreach(Func::menu('footer') as $link)
-                        <li><a href="{{ Func::menuLink($link)}}">{{$link->title}}</a></li>
-                    @endforeach
-                </ul>
+        <footer>
+            <div class="r-ow footer">
+                <div class="container">
+                <div class="col-sm-4">
+                    <h4>{{trans('app.categories')}}</h4>
+                    <ul class="li-st-inline" style="list-style: none;">
+                        @foreach(Func::menu('footer') as $link)
+                            <li><a href="{{ Func::menuLink($link)}}">{{$link->title}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <h4>تواصل معنا</h4>
+                    <p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4>{{trans('app.follow facebook')}}</h4>
+                </div>
+                </div>
             </div>
-
-            <div class="col-sm-6">
+            <div class="footer-copyright">
                 <p class="m-0 text-center text-white">&copy; {{ trans('app.Copyright') }} 
                     <a href="http://www.web-egy.com/" target="_blank" style="color:#ccc;text-decoration:none;">WebEgypt</a></p>
             </div>

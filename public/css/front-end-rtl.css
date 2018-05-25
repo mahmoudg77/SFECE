@@ -443,8 +443,17 @@ figure {
 	background-color: #224668 !important;
 	padding: 10px 0;
 	color: #fff;
-    height: 80px;
-    line-height: 70px;
+}
+.footer a{
+    text-decoration: none;
+    color:#ddd;
+}
+.footer-copyright{
+    background: #193a58;
+    border-top: 1px solid #444;
+    color: #ccc;
+    padding: 5px 0;
+    font-size: 12px;
 }
 .footer .footer-list li{
     width: 80px;
