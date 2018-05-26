@@ -26,7 +26,11 @@ class Post extends Model
     }
     public function Tags()
     {
-      return $this->belongsToMany("App\Models\Tag");
+      return $this->belongsToMany("App\Models\Tag","posts_tags_relationship");
+    }
+    public function strTags()
+    {
+        return implode(",", $this->Tags()->pluck('name')->toArray());
     }
     public function Files()
     {

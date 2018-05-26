@@ -206,5 +206,14 @@ class Functions
 
         return $slug;
     }
+    public static function tagLinks($strTags){
+        if(empty($strTags)) return "";
+        $list=explode(",",$strTags);
+        $result=[];
+        foreach ($list as $tag){
+            $result[]="<a href='".route('getPostsByTag',['tag'=>$tag])."' class='label label-primary'>".$tag."</a>";
+        }
+        return implode(" ",$result);
+    }
 }
 

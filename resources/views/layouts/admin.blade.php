@@ -22,7 +22,8 @@
     <title>Admin | @yield('title', 'cp')</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="{{ asset('cp/css/style.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="{{ asset('cp/css/style.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
@@ -31,6 +32,7 @@
     <link href="{{ asset('cp/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('cp/css/buttons.dataTables.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('cp/css/iziToast.min.css')}}" rel="stylesheet" />
+      <link rel="stylesheet" href="{{ asset('cp/css/jquery.tag-editor.css') }}">
 
     @yield('css')
    </head>
@@ -189,6 +191,8 @@
 
     <!-- jQuery library -->
     <script src="{{ asset('js/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
     <!-- Latest compiled JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!--Ajax Form library-->
@@ -199,6 +203,9 @@
     <script src="{{ asset('cp/js/iziToast.min.js')}}"></script>
     <script src="{{ asset('cp/js/ckfinder/ckeditor/ckeditor.js')}}"></script>
     <script src="{{ asset('cp/js/ckfinder/ckfinder.js')}}"></script>
+    <script src="{{ asset('cp/js/jquery.caret.min.js')}}"></script>
+    <script src="{{ asset('cp/js/jquery.tag-editor.min.js')}}"></script>
+
     <script src="{{ asset('cp/js/script.js')}}"></script>
     <?php if(Session::has('response')){
         $response=session()->pull('response');

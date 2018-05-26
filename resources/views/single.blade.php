@@ -19,6 +19,8 @@
                             <a href="/ar/category/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
                             <small><span class="glyphicon glyphicon-time"></span>
                             {{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small>
+                            <span><i class="fa fa-tags"></i> {!! Func::tagLinks($singlePost->strTags())!!}</span>
+
                         </small>
                     </div>
                     <div class="uderline" style="padding:10px 0.border:1px solid #ddd;"></div>

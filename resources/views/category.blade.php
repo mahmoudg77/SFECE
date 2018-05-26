@@ -7,7 +7,7 @@
     <div class="r-ow">
         <div class="col-sm-8">
             <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
-                {{ $categoryName->title }}</h3>
+                {{ $categoryName }}</h3>
             <div class="cat-content">
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)
@@ -22,6 +22,7 @@
                             <i class="fa fa-folder"></i>
                             <a href="/ar/category/{{ $post->category_id }}">{{ $post->Category->title }}</a>
                         </span>
+                        <span><i class="fa fa-tags"></i> {!! Func::tagLinks($post->strTags())!!}</span>
                     </small>
                     <div class="row cat-content-body">
                         <div class="col-sm-6">

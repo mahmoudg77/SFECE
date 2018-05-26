@@ -72,6 +72,14 @@
                     </div>
                 </div>
             @endif
+            @if($postType->has_tags==1)
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tags</label>
+                    <div class="col-md-10">
+                        {{Form::text("tags",$data->strTags(),['class'=>'tag-editor'])}}
+                    </div>
+                </div>
+            @endif
             <hr>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

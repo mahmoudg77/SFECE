@@ -51,7 +51,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
   Route::get('/twitter-callback','Auth\RegisterController@handleProviderCallbackTwitter')->name('tw.callback');
 
 
-  Route::get('/lang','LanguageController@index')->name('swichlang');
+  Route::get('/lang','Front\LanguageController@index')->name('swichlang');
 
 
 
@@ -62,6 +62,8 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     #DataTable Routes
     Route::post('/posts/datatable','Dashboard\PostController@dataTable')->name('cp.posts.datatable');
     Route::post('/user/datatable','Dashboard\UserController@dataTable')->name('cp.user.datatable');
+
+    Route::get('/tags-recommend','Dashboard\TagController@getTags')->name('cp.get-tags');
 
     Route::get('/','Dashboard\DashboardController@index')->name('cp.dashboard');
     Route::resource('/posts','Dashboard\PostController',['as'=>'cp']);
@@ -93,13 +95,13 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 
-    Route::get('/','PostsController@getLastPosts')->name('home');
-    Route::get('/category/{id}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
-    //Route::get('/{slug}','CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    Route::get('/','Front\PostsController@getLastPosts')->name('home');
+    Route::get('/category/{id}','Front\CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    Route::get('/tags/{tag}','Front\CategoryController@getPostsByTag')->name('getPostsByTag');
 
-    //Route::get('/single/{id}','SingleController@getPostByID')->name('getPostByID');
-    Route::get('/contact-us','ContactController@index')->name('contactus');
-    Route::get('/{slug}','SingleController@getPostBySlug')->name('getPostBySlug');
+    //Route::get('/single/{id}','Front\SingleController@getPostByID')->name('getPostByID');
+    Route::get('/contact-us','Front\ContactController@index')->name('contactus');
+    Route::get('/{slug}','Front\SingleController@getPostBySlug')->name('getPostBySlug');
     
     Route::get('/download-file/{filename}','Dashboard\FileController@getFile')->name('download');
 

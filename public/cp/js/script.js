@@ -174,6 +174,13 @@ $(function(){
     //     }
     // });
     // });
+    $('.tag-editor').tagEditor({
+        autocomplete: {
+            delay: 0, // show suggestions immediately
+            position: { collision: 'flip' }, // automatic menu position up/down
+            source: "/en/dashboard/tags-recommend",
+        },
+    });
   function applayEditor(elem) {
     if(elem ==undefined) elem='body';
 

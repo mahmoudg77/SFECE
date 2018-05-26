@@ -106,6 +106,17 @@ class PostController extends IController
               $fileobj->upload($file);
           }
 
+          $tags=$data['tags'];
+          if(isset($tags) && $tags!='' && $tags!=null && !empty($tags)){
+              $list=explode(',',$tags);
+              foreach ($list as $tag){
+                 if(!$dbtag=\App\Models\Tag::where('name',$tag)->first())
+                         $dbtag=\App\Models\Tag::create(['name'=>$tag]);
+                 // dd($tag);
+                  $post->Tags()->attach([$dbtag->id]);
+              }
+
+          }
           DB::commit();
 
           return  Func::Success("Save Success");
@@ -146,6 +157,20 @@ class PostController extends IController
               $fileobj->upload($file);
           }
 
+
+          $tags=$reqData['tags'];
+         // dd($tags);
+          $data->Tags()->delete();
+          if(isset($tags) && $tags!='' && $tags!=null && !empty($tags)){
+              $list=explode(',',$tags);
+              foreach ($list as $tag){
+                  if(!$dbtag=\App\Models\Tag::where('name',$tag)->first())
+                      $dbtag=\App\Models\Tag::create(['name'=>$tag]);
+                  // dd($tag);
+                  $data->Tags()->attach([$dbtag->id]);
+              }
+
+          }
 
           DB::commit();
           return  Func::Success("Save Success");

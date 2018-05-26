@@ -10,5 +10,10 @@ class TagController extends IController
 {
     var $metaTitle="Post Tags";
     public $model=IModel::class;
-    var $methods=[];
- }
+    var $methods=['getTags'=>'Get Recommended Tags'];
+
+    public function getTags(){
+
+        return  \GuzzleHttp\json_encode(IModel::where('name','like','%'.request()->get('term').'%')->pluck('name')->toArray());
+    }
+}

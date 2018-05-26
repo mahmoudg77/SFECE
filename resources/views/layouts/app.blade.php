@@ -83,13 +83,14 @@
                     <a href="{{route('swichlang')}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
                     @foreach(Func::menu('header-social') as $link)
                         <a href="{{ Func::menuLink($link)}}" target="_blank">
-                            @if($link->title == 'facebook')
-                                <i class="fa fa-facebook-square fa-lg"></i>
-                            @elseif($link->title == 'twitter')
-                                <i class="fa fa-twitter-square fa-lg"></i>
-                            @elseif($link->title == 'youtube')
-                                <i class="fa fa-youtube-square fa-lg"></i>
-                            @endif
+                            {{--@if($link->title == 'facebook')--}}
+                                {{--<i class="fa fa-facebook-square fa-lg"></i>--}}
+                            {{--@elseif($link->title == 'twitter')--}}
+                                {{--<i class="fa fa-twitter-square fa-lg"></i>--}}
+                            {{--@elseif($link->title == 'youtube')--}}
+                                {{--<i class="fa fa-youtube-square fa-lg"></i>--}}
+                            {{--@endif--}}
+                            {!! $link->title !!}
                         </a>
                     @endforeach
                 </div>

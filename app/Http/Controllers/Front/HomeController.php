@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Front;
+use App\Http\Controllers\Controller;
 use Torann\GeoIP\Facades\GeoIP;
 class HomeController extends Controller
 {
