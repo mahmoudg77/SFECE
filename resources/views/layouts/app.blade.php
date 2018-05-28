@@ -8,19 +8,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <meta name="description" content="يهدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية.">
-    <meta name="keywords" content="SFECE,الطفولة المبكرة,استشارات,مؤسسة،تربية،اولياء الامور">
-    <meta name="author" content="SFECE">
+    <meta name="description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')">
+    <meta name="keywords" content="@yield('keywords', 'SFECE,الطفولة المبكرة,استشارات,مؤسسة،تربية،اولياء الامور')" />
+    <meta name="author" content="@yield('author', 'SFECE')" />
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" value="summary">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="SFECE" />
-    <meta property="og:type" content="SFECE" />
+    <meta property="og:title" content="@yield('title', 'SFECE')" />
+    <meta property="og:type" content="@yield('type', 'SFECE')" />
     <meta property="og:url" content="http://www.example.com/" />
     <meta property="og:image" content="{{ asset('images/logo.png') }}" />
-    <meta property="og:description" content="يهدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية." /> 
+    <meta property="og:description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')" /> 
     
     <title>{{ config('app.name', 'SFECE') }}</title>
 

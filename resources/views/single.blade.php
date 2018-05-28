@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('content')
 
 <section class="single" style="min-height:500px;">
@@ -9,12 +11,13 @@
                 <div class="single-img">
                     <img src="{{$singlePost->mainImage()}}" class="img-responsive center--block img-thumbanail" >
                 </div>
-
                 <div class="single-content">
                     <h2>{{ $singlePost->title }}</h2>
                     <div class="bar-data">
                         <small>
-                            <span><i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}</span>
+                            <span>
+                                <i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}
+                            </span>
                             <span><i class="fa fa-folder"></i>
                             <a href="/ar/category/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
                             <small><span class="glyphicon glyphicon-time"></span>
@@ -32,7 +35,6 @@
                 @if(count($related_posts)>0)
                 @foreach($related_posts as $rpost)
                     <div class="col-sm-4">
-
                     <a href="{{ route('getPostBySlug', $rpost->slug) }}">
                         <div class="related-post-item">
                             <figure>
