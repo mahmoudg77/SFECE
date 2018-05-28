@@ -1,5 +1,5 @@
-@impor-t url(https://fonts.googleapis.com/css?family=Dosis:300,400);
-
+@import url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+@import url(https://fonts.googleapis.com/css?family=Cairo:300,400);
 @media only screen and (max-width: 600px) {
     .header-top{
         height: 60px !important;
@@ -9,7 +9,7 @@
 body{
 	direction: rtl;
     background--color: #f2e6e2;;
-    font-family: droid arabic kufi,tahoma,verdana,Arial;
+    /*font-family: droid arabic kufi,tahoma,verdana,Arial;*/
 	backgr-ound: url(../images/bk1.png) fixed;
     backgr-ound: -webkit-linear-gradient(#5665AE, #1d1d1d);
 
@@ -21,7 +21,12 @@ body{
   	background--size: cover;*/
   	background--size: 100% 100%;
 
-    font--family: 'Dosis', sans-serif;
+    font-family: 'Dosis', sans-serif;
+    
+
+    /*font-family: 'Cairo', sans-serif;*/
+
+
 }
 html{
 	height: 100%;
@@ -60,6 +65,7 @@ html{
 }
 .dropdown-menu> li a{
     color:#fff;
+    font-family: 'Cairo', sans-serif;
 }
 .navbar-nav > li > .dropdown-menu{
     background-color: #224668;

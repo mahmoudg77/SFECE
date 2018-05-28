@@ -66,7 +66,7 @@ class UserController extends IController
   public function update(Request $request,$id)
   {
       //
-      $data=$request->except(['_token']);
+      $data=$request->except(['_token','_method']);
       $data['updated_by']=Auth::user()->id;
       //$category['id']=$id;
       //print_r($category);
@@ -111,7 +111,7 @@ class UserController extends IController
                 return Func::actionLinks('user',$item->id,"tr",["edit"=>['class'=>"edit"],"view"=>['class'=>"view"]]);
             })
             ->addColumn('account_level', function ($item) {
-                return $item->AccountLevel->name;
+                return ($item->AccountLevel)?$item->AccountLevel->name:"None";
             })
             ->removeColumn('password');
         foreach (\App\Models\PostType::all() as $postType){

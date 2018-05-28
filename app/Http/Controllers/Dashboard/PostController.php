@@ -105,7 +105,7 @@ class PostController extends IController
               $fileobj=new File(['model'=>IModel::class,'id'=>$post->id,'tag'=>'main']);
               $fileobj->upload($file);
           }
-
+	if(in_array('tags',array_keys($data)))
           $tags=$data['tags'];
           if(isset($tags) && $tags!='' && $tags!=null && !empty($tags)){
               $list=explode(',',$tags);
@@ -157,7 +157,7 @@ class PostController extends IController
               $fileobj->upload($file);
           }
 
-
+	if(in_array('tags',array_keys($reqData)))
           $tags=$reqData['tags'];
          // dd($tags);
           $data->Tags()->delete();

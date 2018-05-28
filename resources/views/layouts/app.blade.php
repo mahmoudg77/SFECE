@@ -27,6 +27,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
     @if(app()->getLocale()=='ar')
         <!-- Load Bootstrap RTL theme from RawGit -->
         <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
@@ -39,6 +40,8 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+
+
 
     @yield('css')
 
@@ -83,13 +86,6 @@
                     <a href="{{route('swichlang')}}">{{(app()->getLocale()=='ar')?'English':'عربي'}}</a>
                     @foreach(Func::menu('header-social') as $link)
                         <a href="{{ Func::menuLink($link)}}" target="_blank">
-                            {{--@if($link->title == 'facebook')--}}
-                                {{--<i class="fa fa-facebook-square fa-lg"></i>--}}
-                            {{--@elseif($link->title == 'twitter')--}}
-                                {{--<i class="fa fa-twitter-square fa-lg"></i>--}}
-                            {{--@elseif($link->title == 'youtube')--}}
-                                {{--<i class="fa fa-youtube-square fa-lg"></i>--}}
-                            {{--@endif--}}
                             {!! $link->title !!}
                         </a>
                     @endforeach
@@ -128,14 +124,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
                         @foreach(Func::menu('main') as $link)
-                            <li class="{{Request::is(app()->getLocale().$link->customlink)?'active':''}}">
+                            <li class="{{Request::is($link->category_id>0?ltrim(route('getPostsByCatID',$link->category_id,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
                                 @if($link->Links()->count()>0)
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
                                        aria-haspopup="true" aria-expanded="false">
                                         {{$link->title}} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         @foreach($link->Links as $sublink)
-                                            <li class="{{Request::url() === app()->getLocale().'/'.$sublink->title?'active':''}}">                                              <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
+                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('getPostsByCatID',$sublink->category_id,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">                                              
+                                            <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
                                         @endforeach
                                     </ul>
                                 @else
@@ -149,7 +146,8 @@
                                                         {{$link->title}} <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
                                                         @foreach($cat->Chields as $chield)
-                                                            <li class=""><a href="{{route('getPostsByCatID',['id'=>$chield->id])}}" class="">{{$chield->title}}</a></li>
+                                                            <li class="{{Request::is(ltrim(route('getPostsByCatID',$chield->id,false),'/'))?'active':''}}">
+                                                            <a href="{{route('getPostsByCatID',['id'=>$chield->id])}}" class="">{{$chield->title}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 @else
@@ -191,7 +189,7 @@
                 </div>
                 <div class="col-sm-4">
                     <h4>{{trans('app.follow facebook')}}</h4>
-                    <div class="fb-page" data-href="https://www.facebook.com/wwwarabececom/" 
+                    <div class="fb-page" data-href="https://www.facebook.com/sffece/" 
                          data-small-header="false" data-adapt-container-width="true" 
                          data-hide-cover="false" data-show-facepile="false">
                         <blockquote cite="https://www.facebook.com/elradio1/" class="fb-xfbml-parse-ignore"></blockquote>
@@ -221,7 +219,7 @@
           <div class="form-horizontal">
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
-                    <label class="control-label col-md-3">{{ trans('app.title') }} - {{$key}}</label>
+                    <label class="control-label col-md-3">{{ trans('app.title') }} ({{$key}})</label>
                     <div class="col-md-9">
                       {{Form::text($key."[title]","",["required",'class'=>'form-control'])}}
                     </div>
@@ -229,7 +227,7 @@
           @endforeach
           @foreach(config('translatable.locales') as $key)
                 <div class="form-group">
-                    <label class="control-label col-md-3">{{ trans('app.content') }} - {{$key}}</label>
+                    <label class="control-label col-md-3">{{ trans('app.content') }} ({{$key}})</label>
                     <div class="col-md-9">
                       {{Form::textarea($key."[body]","",["required",'class'=>'form-control','style'=>'height:120px'])}}
                     </div>
@@ -239,7 +237,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">{{ trans('app.category') }}</label>
                     <div class="col-md-9">
-                        {{Form::select("category_id",Func::getCategoriesList(),null,["required",'class'=>'form-control'])}}
+                        {{Form::select("category_id",App\Models\Category::listsTranslations('title')->where('parent_id',2)->pluck('title','id'),null,["required",'class'=>'form-control'])}}
                     </div>
                 </div>
                 <div class="form-group">

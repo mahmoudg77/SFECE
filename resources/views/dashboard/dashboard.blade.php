@@ -50,7 +50,7 @@
         <tr>
             <td>{{$usr->name}}</td>
             <td>{{$usr->email}}</td>
-            <td>{{$usr->AccountLevel->name}}</td>
+            <td>{{$usr->AccountLevel?$usr->AccountLevel->name:'None'}}</td>
             <td>{{$usr->created_at}}</td>
 
         </tr>

@@ -1,5 +1,4 @@
 
-
 function Success(message) {
   iziToast.show({
                 title: 'Success',
@@ -202,11 +201,11 @@ $(function(){
 
     				// Just call CKFinder.setupCKEditor and pass the CKEditor instance as the first argument.
     				// The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
-    				CKFinder.setupCKEditor( editor, '/cpanel/js/ckfinder/' ) ;
+    				CKFinder.setupCKEditor( editor, '/cp/js/ckfinder/' ) ;
                     //CKFinder.setupCKEditor( editor, '../' ) ;
 
     				// It is also possible to pass an object with selected CKFinder properties as a second argument.
-    				CKFinder.setupCKEditor( editor, { basePath : '/cpanel/js/ckfinder/', skin : 'v1' } ) ;
+    				CKFinder.setupCKEditor( editor, { basePath : '/cp/js/ckfinder/', skin : 'v1' } ) ;
     			});
     		}
       }
