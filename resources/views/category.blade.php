@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title'){{ $category->title }}@endsection
+@section('description'){{ $category->description }}@endsection
+
+
 @section('content')
 
 <section class="category-page" style="min-height:500px;">
@@ -7,7 +11,7 @@
     <div class="r-ow">
         <div class="col-sm-8">
             <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
-                {{ $categoryName }}</h3>
+                {{ $category->title }}</h3>
             <div class="cat-content">
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title'){{$singlePost->title}}@endsection
+@section('description'){!! $singlePost->body !!}@endsection
+
 @section('content')
 
 <section class="single" style="min-height:500px;">

@@ -22,7 +22,7 @@
     <meta property="og:image" content="{{ asset('images/logo.png') }}" />
     <meta property="og:description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')" /> 
     
-    <title>{{ config('app.name', 'SFECE') }}</title>
+    <title>@yield('title', 'SFECE')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -184,8 +184,10 @@
                     </ul>
                 </div>
                 <div class="col-sm-4">
-                    <h4>تواصل معنا</h4>
-                    <p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>
+                    @if($page=Func::getPageBySlug('toasl-maana'))
+                        <h4>{{ $page->title}}</h4>
+                        {!! $page->body !!}
+                    @endif
                 </div>
                 <div class="col-sm-4">
                     <h4>{{trans('app.follow facebook')}}</h4>

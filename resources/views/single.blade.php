@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-
+@section('title'){{$singlePost->title}}@endsection
+@section('description'){!! $singlePost->body !!}@endsection
+@section('keywords'){{$singlePost->strTags()}}@endsection
 
 @section('content')
 
