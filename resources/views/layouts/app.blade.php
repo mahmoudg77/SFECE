@@ -124,14 +124,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
                         @foreach(Func::menu('main') as $link)
-                            <li class="{{Request::is($link->category_id>0?ltrim(route('getPostsByCatID',$link->category_id,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
+                            <li class="{{Request::is($link->category_id>0?ltrim(route('categoryBySlug',$link->category_id,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
                                 @if($link->Links()->count()>0)
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
                                        aria-haspopup="true" aria-expanded="false">
                                         {{$link->title}} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         @foreach($link->Links as $sublink)
-                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('getPostsByCatID',$sublink->category_id,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">                                              
+                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('categoryBySlug',$sublink->category_id,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">                                              
                                             <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
                                         @endforeach
                                     </ul>
@@ -146,15 +146,15 @@
                                                         {{$link->title}} <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
                                                         @foreach($cat->Chields as $chield)
-                                                            <li class="{{Request::is(ltrim(route('getPostsByCatID',$chield->id,false),'/'))?'active':''}}">
-                                                            <a href="{{route('getPostsByCatID',['id'=>$chield->id])}}" class="">{{$chield->title}}</a></li>
+                                                            <li class="{{Request::is(ltrim(route('categoryBySlug',$chield->id,false),'/'))?'active':''}}">
+                                                            <a href="{{route('categoryBySlug',['id'=>$chield->id])}}" class="">{{$chield->title}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 @else
-                                                    <a href="{{route('getPostsByCatID',['id'=>$link->category_id])}}" >{{$link->title}}</a>
+                                                    <a href="{{route('categoryBySlug',['id'=>$link->category_id])}}" >{{$link->title}}</a>
                                             @endif
                                             @else
-                                            <a href="{{route('getPostsByCatID',['id'=>$link->category_id])}}" >{{$link->title}}</a>
+                                            <a href="{{route('categoryBySlug',['id'=>$link->category_id])}}" >{{$link->title}}</a>
                                         @endif
                                    @else
 

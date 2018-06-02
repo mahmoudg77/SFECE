@@ -5,7 +5,7 @@
         <ul class="list-group">
             @foreach($allcats as $cat)
                 <li class="list-group-item">
-                    <a href="{{route('getPostsByCatID', $cat->id)}}">{{ $cat->title}}</a>
+                    <a href="{{route('categoryBySlug', $cat->slug)}}">{{ $cat->title}}</a>
                 </li>
             @endforeach
         </ul>

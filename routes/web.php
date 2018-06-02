@@ -84,7 +84,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 
-        Route::post('/post-unpublish','Dashboard\PostController@unpublish')->name('cp.post-unpublish');
+    Route::post('/post-unpublish','Dashboard\PostController@unpublish')->name('cp.post-unpublish');
     Route::post('/post-publish','Dashboard\PostController@publish')->name('cp.post-publish');
 
     Route::post('/secpermission-getactions','Dashboard\SecPermission@getActionsList')->name('cp.secpermission-getactions');
@@ -96,7 +96,8 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
     Route::get('/','Front\PostsController@getLastPosts')->name('home');
-    Route::get('/category/{id}','Front\CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    //Route::get('/category/{id}','Front\CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    Route::get('/category/{slug}','Front\CategoryController@getPostsByCatSlug')->name('categoryBySlug');
     Route::get('/tags/{tag}','Front\CategoryController@getPostsByTag')->name('getPostsByTag');
 
     //Route::get('/single/{id}','Front\SingleController@getPostByID')->name('getPostByID');

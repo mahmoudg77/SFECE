@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title'){{ $category->title }}@endsection
-@section('description'){{ $category->description }}@endsection
-
+@section('title'){{ $categoryName }}@endsection
 
 @section('content')
 
@@ -10,8 +8,8 @@
     
     <div class="r-ow">
         <div class="col-sm-8">
-            <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
-                {{ $category->title }}</h3>
+            <h3 style="background-color: #ddd;padding: 10px;margin-bottom: 20px;">
+                {{ $categoryName }} </h3>
             <div class="cat-content">
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)
@@ -24,7 +22,7 @@
                         </span>
                         <span>
                             <i class="fa fa-folder"></i>
-                            <a href="/ar/category/{{ $post->category_id }}">{{ $post->Category->title }}</a>
+                            <a href="{{route('categoryBySlug', $post->Category->slug)}}">{{ $post->Category->title }}</a>
                         </span>
                         <span><i class="fa fa-tags"></i> {!! Func::tagLinks($post->strTags())!!}</span>
                     </small>
