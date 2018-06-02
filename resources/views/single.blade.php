@@ -22,7 +22,7 @@
                                 <i class="fa fa-user"></i> {{ $singlePost->Creator!=null?$singlePost->Creator->name:null }}
                             </span>
                             <span><i class="fa fa-folder"></i>
-                            <a href="/ar/category/{{ $singlePost->category_id }}">{{ $singlePost->Category->title }}</a></span>
+                            <a href="{{route('categoryBySlug', $singlePost->Category->slug)}}">{{ $singlePost->Category->title }}</a></span>
                             <small><span class="glyphicon glyphicon-time"></span>
                             {{ $singlePost->created_at!=null?$singlePost->created_at->toDateString():'' }}</small>
                             <span><i class="fa fa-tags"></i> {!! Func::tagLinks($singlePost->strTags())!!}</span>

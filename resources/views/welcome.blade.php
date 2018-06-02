@@ -23,11 +23,13 @@
     <div class="col-sm-4">
         <div class="panel panel-default blog ">
             <div class="panel-body" style= "padding:0;">
-                <div class="blog-header" style= "background-color: #BA0C2F;padding: 7px 10px;">
-                    <h4 class="media-heading" style= "color:#fff;height: 40px;">{{$post->title}}</h4>
+                <div class="blog-header">
+                    <h4 class="media-heading">{{$post->title}}</h4>
                 </div>
                 <div class="blog-content">
+                    <figure>
                     <img src="{{$post->mainImage()}}" class="media-object" style="width:100%;height: 200px;">
+                    </figure>
                 </div>
 
             </div>

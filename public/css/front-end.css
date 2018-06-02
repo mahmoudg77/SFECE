@@ -239,6 +239,34 @@ a.site--login:hover {
 }
 /*end register-page*/
 
+/*start post home page*/
+.blog-header{
+    background-color: #BA0C2F;
+    padding: 7px 10px;
+}
+.blog-header h4{
+    color:#fff;
+    height: 40px;
+}
+.blog-header h4:hover{
+    
+}
+ .blog-content figure img{
+    width: 100%;
+    height: 100px;
+}
+.blog-content figure img{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.blog-content figure:hover img{
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+/*end post home page*/
+
 /*start category-page*/
 .category-page .single-sidebar{
     margin: 20px 0;
