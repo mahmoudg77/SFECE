@@ -18,7 +18,7 @@
                     <th>Title</th>
                     <th>Created Date</th>
                     <th>Publish Date</th>
-                    <th>Author</th>
+                    <th >Author</th>
                     <th>File</th>
                     <th>Visits</th>
                     <th>Status</th>
