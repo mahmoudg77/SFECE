@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title'){{ $category->title }}@endsection
-@section('description'){{ $category->description }}@endsection
+@section('title'){{ $title }}@endsection
+@section('description'){{ str_limit(strip_tags($description),100) }}@endsection
 
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="r-ow">
         <div class="col-sm-8">
             <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
-                {{ $category->title }}</h3>
+                {{ $title }}</h3>
             <div class="cat-content">
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)

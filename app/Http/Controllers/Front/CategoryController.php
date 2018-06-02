@@ -17,9 +17,13 @@ class CategoryController extends Controller
         $lastPosts = Post::where('post_type_id', 2)->where('is_published', 1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::where('parent_id', '<>',null)->get();
 
+
+        $title=$category->title;
+        $description=$category->description;
+
         \App\Models\Visit::log(\App\Models\Category::class,$category->id);
 
-        return view('category', compact('allPostsByCat', 'category', 'lastPosts', 'allcats'));
+        return view('category', compact('allPostsByCat', 'title','description', 'lastPosts', 'allcats'));
     }
     
 //    public function getPostsByCatID($slug){
@@ -45,7 +49,10 @@ public function getPostsByTag($tag){
 
     \App\Models\Visit::log(\App\Models\Tag::class,$tagobj->id);
 
-    return view('category', compact('allPostsByCat', 'categoryName', 'lastPosts', 'allcats'));
+    $title=$tag;
+    $description=$tag;
+
+    return view('category', compact('allPostsByCat', 'title','description', 'lastPosts', 'allcats'));
 
 }
 }

@@ -17,9 +17,9 @@
 
     <!-- Open Graph data -->
     <meta property="og:title" content="@yield('title', 'SFECE')" />
-    <meta property="og:type" content="@yield('type', 'SFECE')" />
-    <meta property="og:url" content="http://www.example.com/" />
-    <meta property="og:image" content="{{ asset('images/logo.png') }}" />
+    <meta property="og:type" content="@yield('type', 'Article')" />
+    <meta property="og:url" content="@yield('url', request()->url())" />
+    <meta property="og:image" content="@yield('image', asset('images/logo.png'))" />
     <meta property="og:description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')" /> 
     
     <title>@yield('title', 'SFECE')</title>
