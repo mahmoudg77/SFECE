@@ -26,22 +26,25 @@ class CategoryController extends Controller
     
     public function getPostsByCatSlug($slug){
         
-        $categories = \App\Models\Category::where('slug', $slug)->first();
+        $category = \App\Models\Category::where('slug', $slug)->first();
         
-        $allPostsByCat = $categories->Posts()->where('is_published',1)->where('post_type_id', 2)->get();
+        $allPostsByCat = $category->Posts()->where('is_published',1)->where('post_type_id', 2)->get();
         if(!$allPostsByCat){
             return response(view('errors.404'),404);
         }
         
-        $categoryName= $categories->title;
-        $categoryDesc = $categories->description;
-        
+
         $lastPosts = Post::where('post_type_id', 2)->where('is_published', 1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::where('parent_id', '<>',null)->get();
 
-        \App\Models\Visit::log(\App\Models\Category::class,$categories->id);
 
-        return view('category', compact('allPostsByCat', 'categoryName', 'categories', 'lastPosts', 'allcats'));
+
+        $title=$category->title;
+        $description=$category->description;
+
+        \App\Models\Visit::log(\App\Models\Category::class,$category->id);
+
+        return view('category', compact('allPostsByCat', 'title','description', 'lastPosts', 'allcats'));
     }
 
 
@@ -54,14 +57,16 @@ class CategoryController extends Controller
 
         $allPostsByCat =$tagobj->Posts()->orderBy('id','desc')->get();
         
-        $categoryName =$tag;
 
         $lastPosts = Post::where('post_type_id', 2)->where('is_published', 1)->orderBy('id', 'desc')->take(4)->get();
         $allcats = Category::where('parent_id', '<>',null)->get();
 
         \App\Models\Visit::log(\App\Models\Tag::class,$tagobj->id);
 
-        return view('category', compact('allPostsByCat', 'categoryName', 'lastPosts', 'allcats'));
+     $title=$tag;
+     $description=$tag;
+
+    return view('category', compact('allPostsByCat', 'title','description', 'lastPosts', 'allcats'));
 
     }
 }

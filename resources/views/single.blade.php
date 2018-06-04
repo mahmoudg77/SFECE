@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('title'){{$singlePost->title}}@endsection
-@section('description'){{ $singlePost->body }}@endsection
+@section('description'){{ str_limit(strip_tags($singlePost->body),100) }}@endsection
 @section('keywords'){{$singlePost->strTags()}}@endsection
+@section('image'){{$singlePost->mainImage()}}@endsection
 
 @section('content')
 
