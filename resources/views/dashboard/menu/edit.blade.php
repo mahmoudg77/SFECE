@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('title',$data->name)
 @section('content')
-
-<div class="panel panel-default" style="width:700px;max-width: 100%;">
+<div class="col-md-12">
+<div class="panel panel-default">
     <div class="panel-heading main-color-bg">
       <h3 class="panel-title">Edit Menu :: {{ $data->name }}</h3>
     </div>
@@ -11,7 +11,7 @@
       <div class="r-ow" style="display: flow-root;">
         {!! Form::open(['method'=>'PATCH', 'route'=>["cp.menu.update",$data->id]]) !!}
 
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-12">
             {!! Form::label('Name') !!}
             {!! Form::text('name', $data->name, array('required', 'class'=>'form-control', 'placeholder'=>'Ad new title ....')) !!}
           </div>
@@ -36,6 +36,7 @@
         </div>
       </div>
     </div>
+</div>
 </div>
 <script>
 $(function(){
