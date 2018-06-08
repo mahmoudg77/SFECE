@@ -250,6 +250,7 @@ return [
         'Func' => App\Extra\Functions::class,
         'Image'=>Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+        'Setting'=>App\Models\Setting::class,
     ],
 
 ];

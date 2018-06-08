@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <meta name="description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')">
-    <meta name="keywords" content="@yield('keywords', 'SFECE,الطفولة المبكرة,استشارات,مؤسسة،تربية،اولياء الامور')" />
+    <meta name="description" content="@yield('description',Setting::getIfExists('site_desc'))">
+    <meta name="keywords" content="@yield('keywords',Setting::getIfExists('site_key'))" />
     <meta name="author" content="@yield('author', 'SFECE')" />
 
     <!-- Twitter Card data -->
@@ -20,10 +20,10 @@
     <meta property="og:type" content="@yield('type', 'Article')" />
     <meta property="og:url" content="@yield('url', request()->url())" />
     <meta property="og:image" content="@yield('image', asset('images/logo.png'))" />
-    <meta property="og:description" content="@yield('description', 'هدف الموقع إلى تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة،لتربية شخصية الطفل وبناء مهارات الدماغ ودعم نمو الطفل وتعلمه وفق معاييرالتعلم التربية العالمية')" /> 
+    <meta property="og:description" content="@yield('description',Setting::getIfExists('site_desc'))" />
     
-    <title>@yield('title', 'SFECE')</title>
-
+    <title>@yield('title',Setting::getIfExists('site_name','SFECE'))</title>
+{{--@yield('title', 'SFECE')--}}
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">

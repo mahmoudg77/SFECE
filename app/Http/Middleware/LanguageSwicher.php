@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use Redirect;
 use Closure;
 use App;
+use Setting;
 class LanguageSwicher
 {
     /**
@@ -22,7 +23,8 @@ class LanguageSwicher
         if ( !in_array($locale, config('translatable.locales'))) {
 
             $segments = $request->segments();
-            $segments[0] = config('app.fallback_locale');
+            $segments[0] = Setting::getIfExists('site_lang',config('app.fallback_locale'));//config('app.fallback_locale');
+
 
             return Redirect::to(implode('/', $segments));
         }

@@ -1,5 +1,5 @@
 <?php
-define('CP_URL', 'dashboard');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ define('CP_URL', 'dashboard');
 if (in_array(Request::segment(1), config('translatable.locales'))) {
    App::setLocale(Request::segment(1));
  }else{
-   App::setLocale('ar');
+   App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
  }
 
 /*Route::get('/', function () {
@@ -56,7 +56,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
 
-    Route::group(['prefix'=>CP_URL, 'middleware'=>'auth'],function(){
+    Route::group(['prefix'=>'dashboard', 'middleware'=>'auth'],function(){
     #Dashboard Routes
 
     #DataTable Routes
@@ -80,7 +80,9 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::resource('/secgroup','Dashboard\SecGroup',['as'=>'cp']);
     Route::resource('/secpermission','Dashboard\SecPermission',['as'=>'cp']);
     Route::resource('/setting','Dashboard\SettingController',['as'=>'cp']);
-    Route::post('/post-slug','Dashboard\PostController@getFreeSlug')->name('cp.post-slug');
+        Route::get('/setting/edit','Dashboard\SettingController@editGroup')->name('cp.setting.edit');
+        Route::put('/setting/edit','Dashboard\SettingController@updateGroup')->name('cp.setting.update');
+        Route::post('/post-slug','Dashboard\PostController@getFreeSlug')->name('cp.post-slug');
 
 
 

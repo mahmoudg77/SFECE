@@ -16,7 +16,7 @@
             <div class="cat-content">
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)
-                    <a href="/ar/{{ $post->slug }}" style="text-decoration:none">
+                    <a href="{{route('getPostBySlug', $post->slug) }}" style="text-decoration:none">
                         <h3 class="media-heading" >{{ $post->title }}</h3>
                     </a>
                     <small style="padding: 10px;">
@@ -39,7 +39,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-xs-12 text-right">
-                        <a href="/ar/{{ $post->slug }}" class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
+                        <a href="{{route('getPostBySlug', $post->slug) }}" class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
                     </div>
                     <div class="clearfix"></div>
                     <div class="uderline"></div>

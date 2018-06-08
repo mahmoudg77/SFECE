@@ -192,7 +192,6 @@
     <!-- jQuery library -->
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <!--Ajax Form library-->
