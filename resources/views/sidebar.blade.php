@@ -21,15 +21,17 @@
             @endforeach
         </ul>
     </div>
+     @if(Setting::getIfExists('show_fb_posts_sitebar',false))
+         <div class="single-cat">
+             <h4>{{trans('app.follow facebook')}}</h4>
+             <ul class="list-group">
+                 <div class="fb-page" data-href="{{Setting::getIfExists('facebook','https://www.facebook.com/sffece/')}}"
+                      data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
+                      data-hide-cover="false" data-show-facepile="true">
+                     <blockquote cite="{{Setting::getIfExists('facebook','https://www.facebook.com/sffece/')}}" class="fb-xfbml-parse-ignore"></blockquote></div>
+             </ul>
+         </div>
+     @endif
 
-    <div class="single-cat">
-        <h4>{{trans('app.follow facebook')}}</h4>
-        <ul class="list-group">
-            <div class="fb-page" data-href="https://www.facebook.com/sffece/" 
-                 data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" 
-                 data-hide-cover="false" data-show-facepile="true">
-                <blockquote cite="https://www.facebook.com/elradio1/" class="fb-xfbml-parse-ignore"></blockquote></div>
-        </ul>
-    </div>
 </div>
 </div>

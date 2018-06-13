@@ -15,7 +15,12 @@
 if (in_array(Request::segment(1), config('translatable.locales'))) {
    App::setLocale(Request::segment(1));
  }else{
-   App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
+    try{
+        App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
+    }catch(Exception $ex){
+        App::setLocale('en');
+    }
+
  }
 
 /*Route::get('/', function () {
@@ -98,8 +103,10 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 
 
     Route::get('/','Front\PostsController@getLastPosts')->name('home');
-    //Route::get('/category/{id}','Front\CategoryController@getPostsByCatID')->name('getPostsByCatID');
+
     Route::get('/category/{slug}','Front\CategoryController@getPostsByCatSlug')->name('categoryBySlug');
+    Route::get('/category/{id}','Front\CategoryController@getPostsByCatID')->name('getPostsByCatID');
+    //->where('slug','^([0-9A-Za-z\-]+)?bar([0-9A-Za-z\-]+)?');
     Route::get('/tags/{tag}','Front\CategoryController@getPostsByTag')->name('getPostsByTag');
 
     //Route::get('/single/{id}','Front\SingleController@getPostByID')->name('getPostByID');

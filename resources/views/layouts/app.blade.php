@@ -58,11 +58,13 @@
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}" class="site-login">
                         <i class="fa fa-user"></i> {{trans('app.login')}}</a></li>
-                    <li><a href="{{ route('register') }}" class="site-login">
+                    @if(Setting::getIfExists('allow_register',false))
+                      <li><a href="{{ route('register') }}" class="site-login">
                         <i class="fa fa-user-plus"></i> {{trans('app.register')}}</a></li>
+                      @endif
                 @else
                     <li><a href="#" class=""><i class="fa fa-btn fa-user"></i> {{ Auth::user()->name }}</a></li>
-                  <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                    <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">{{trans('app.logout')}}</a>
 					  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						  {{ csrf_field() }}
@@ -71,13 +73,15 @@
                     <li><a href="{{ route('cp.dashboard') }}" >{{trans('app.control panel')}}</a></li>
 
                 @endif
-                  <li>
+                    @if(Setting::getIfExists('allow_add_research',false))
+                    <li>
                       @if(Auth::guest())
                         <a href="{{ route('login') }}">{{trans('app.request research')}}</a>
                       @else
                         <a href="#" data-toggle="modal" data-target="#myModal">{{trans('app.request research')}}</a>
                       @endif
                   </li>
+                    @endif
                   <li><a href="{{ route('getPostBySlug', 'head_institution') }}" class="">{{trans('app.head institution')}}</a></li>
               </ul>
             </div>
@@ -95,13 +99,17 @@
           <div class="clear-fix"></div>
           <div class="header">
               <div class="col col-xs-12">
+
                   <div style="padding: 10px;" class="pull-right">
-                      <img src="{{ asset('images/logo.png') }}" alt="" title="" class="" style="width: 120px;">
+                      <a href="{{route('home')}}">   <img src="{{ asset('images/logo.png') }}" alt="" title="" class="" style="width: 120px;"></a>
                   </div>
                   <div class="header-title pull-right">
-                      <h1>المؤسسة العلمية للطفولة المبكرة</h1>
-                      <small>تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة</small>
+                      <a href="{{route('home')}}"  style="text-decoration: none">
+                      <h1>{{Setting::getIfExists('site_name','المؤسسة العلمية للطفولة المبكرة')}}</h1>
+                      <small>{{Setting::getIfExists('site_slogan','تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة')}}</small>
+                      </a>
                   </div>
+
               </div>
           </div>
           <div class="clearfix"></div>
@@ -124,14 +132,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
                         @foreach(Func::menu('main') as $link)
-                            <li class="{{Request::is($link->category_id>0?ltrim(route('categoryBySlug',$link->category_id,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
+                            <li class="{{Request::is($link->category_id>0?ltrim(route('categoryBySlug',$link->category->slug,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
                                 @if($link->Links()->count()>0)
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
                                        aria-haspopup="true" aria-expanded="false">
                                         {{$link->title}} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         @foreach($link->Links as $sublink)
-                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('categoryBySlug',$sublink->category_id,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">                                              
+                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('categoryBySlug',$sublink->category->slug,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">
                                             <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
                                         @endforeach
                                     </ul>
@@ -146,15 +154,15 @@
                                                         {{$link->title}} <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
                                                         @foreach($cat->Chields as $chield)
-                                                            <li class="{{Request::is(ltrim(route('categoryBySlug',$chield->id,false),'/'))?'active':''}}">
-                                                            <a href="{{route('categoryBySlug',['id'=>$chield->id])}}" class="">{{$chield->title}}</a></li>
+                                                            <li class="{{Request::is(ltrim(route('categoryBySlug',$chield->slug,false),'/'))?'active':''}}">
+                                                            <a href="{{route('categoryBySlug',['id'=>$chield->slug])}}" class="">{{$chield->title}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 @else
-                                                    <a href="{{route('categoryBySlug',['id'=>$link->category_id])}}" >{{$link->title}}</a>
+                                                    <a href="{{route('categoryBySlug',['id'=>$link->category->slug])}}" >{{$link->title}}</a>
                                             @endif
                                             @else
-                                            <a href="{{route('categoryBySlug',['id'=>$link->category_id])}}" >{{$link->title}}</a>
+                                            <a href="{{route('categoryBySlug',['id'=>$link->category->slug])}}" >{{$link->title}}</a>
                                         @endif
                                    @else
 
@@ -190,23 +198,25 @@
                     @endif
                 </div>
                 <div class="col-sm-4">
+                    @if(Setting::getIfExists('show_fb_posts_footer',false))
                     <h4>{{trans('app.follow facebook')}}</h4>
-                    <div class="fb-page" data-href="https://www.facebook.com/sffece/" 
+                    <div class="fb-page" data-href="{{Setting::getIfExists('facebook','https://www.facebook.com/sffece/')}}"
                          data-small-header="false" data-adapt-container-width="true" 
                          data-hide-cover="false" data-show-facepile="false">
-                        <blockquote cite="https://www.facebook.com/elradio1/" class="fb-xfbml-parse-ignore"></blockquote>
+                        <blockquote cite="{{Setting::getIfExists('facebook','https://www.facebook.com/sffece/')}}" class="fb-xfbml-parse-ignore"></blockquote>
                     </div>
+                    @endif
                 </div>
                 </div>
             </div>
             <div class="footer-copyright">
                 <p class="m-0 text-center text-white">&copy; {{ trans('app.Copyright') }} 
-                    <a href="http://www.web-egy.com/" target="_blank" style="color:#ccc;text-decoration:none;">WebEgypt</a></p>
+                    <a href="http://www.web-egy.com/" target="_blank" style="color:#ccc;text-decoration:none;"> WebEgypt </a></p>
             </div>
         </footer>
     </div>
 </div>
-
+@if(Setting::getIfExists('allow_add_research',false))
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -235,6 +245,7 @@
                     </div>
                 </div>
           @endforeach
+
             {{Form::hidden('post_type_id',3)}}
                 <div class="form-group">
                     <label class="control-label col-md-3">{{ trans('app.category') }}</label>
@@ -259,7 +270,7 @@
     </div>
   </div>
 </div>
-
+@endif
  </div>
 
     <!-- Scripts -->
@@ -270,16 +281,17 @@
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    @if(Setting::getIfExists('fb_app_id','')!='')
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.0&appId=255524131659994&autoLogAppEvents=1';
+      js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v3.0&appId={{Setting::getIfExists('fb_app_id','255524131659994')}}&autoLogAppEvents=1';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-    
+    @endif
     
     <script>
         $(function(){
