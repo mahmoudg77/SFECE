@@ -42,7 +42,10 @@
 <section class="about-us wo-w fadeInUp" data-wow-d-uration="2s" data-wow-delay="2s">
     <div class="col-xs-12" style="background-color:#414042;padding:10px 20px;">
       <h2>{{ $page->title}}</h2>
-      {!! $page->body !!}
+      {!! str_limit($page->body, 450) !!}
+         @if (str_limit($page->body)) > 50)
+              ... <div class="col-xs-12 text-center"><a href="{{ route('getPostBySlug', $page->slug) }}" class="btn btn-default btn-sm">{{trans('app.read more')}}</a></div>
+         @endif
     </div>
 </section>
 @endif
