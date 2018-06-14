@@ -54,6 +54,17 @@
             <div class="panel-body">
                 @if($page=Func::getPageBySlug('contact-us'))
                   {!! $page->body !!}
+                    <div class="social-media pull-{{app()->getLocale()=='en'?'right':'left'}}">
+                        <a href="{{Setting::getIfExists('facebook')}}" class="text-primary" target="_blank">
+                            <i class="fa fa-facebook-square fa-3x"></i>
+                        </a>
+                        <a href="{{Setting::getIfExists('twitter')}}" class="text-success"  target="_blank">
+                            <i class="fa fa-twitter-square fa-3x"></i>
+                        </a>
+                        <a href="{{Setting::getIfExists('instagram')}}" class="text-danger"  target="_blank">
+                            <i class="fa fa-instagram fa-3x"></i>
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>

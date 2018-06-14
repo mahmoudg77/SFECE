@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title'){{$singlePost->title}}@endsection
-@section('description'){!! $singlePost->body !!}@endsection
+@section('description'){{ str_limit(strip_tags($singlePost->body),250) }}@endsection
 
 @section('content')
 

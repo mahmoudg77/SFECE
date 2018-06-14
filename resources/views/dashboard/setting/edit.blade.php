@@ -60,8 +60,8 @@
                                                             <input    type="text" class="date form-control" name="setting[{{$setting->id}}][{{$key}}][value]"  value="<?=$value?>" />
                                                         @elseif($setting->type==3)
                                                             <select  class="form-control"   name="setting[{{$setting->id}}][{{$key}}][value]"  >
-                                                                <option value="Yes" <?=(( $value=="Yes")?"selected":"")?>>Yes</option>
-                                                                <option value="No" <?=(( $value=="No")?"selected":"")?>>No</option>
+                                                                <option value="1" <?=(( $value=="1")?"selected":"")?>>Yes</option>
+                                                                <option value="0" <?=(( $value=="0")?"selected":"")?>>No</option>
                                                             </select>
                                                         @elseif($setting->type==4)
                                                             @php $avs=null;

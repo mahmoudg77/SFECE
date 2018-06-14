@@ -19,6 +19,10 @@ class MenuLink extends Model
     {
       return $this->hasMany('App\Models\MenuLink','parent_id');
     }
+    public function Category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }
 
 
