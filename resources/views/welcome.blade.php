@@ -16,7 +16,7 @@
   </div><!-- #camera_wrap_1 -->
 
     <div class="clearfix"></div>
-  <div class="row w-ow fadeInUp" style ="padding: 0 15px;margin--bottom: 20px;" data-w-ow-duration="2s" data-wow-delay="1s">
+  <div class="row w-ow fadeInUp" style ="padding: 0 15px;min-height:300px;" data-w-ow-duration="2s" data-wow-delay="1s">
 @if (count($lastPosts)>0)
 @foreach($lastPosts as $post)
     <a href="{{ route('getPostBySlug', $post->slug) }}">
@@ -38,6 +38,7 @@
     </a>
 @endforeach
 @endif
+  </div>
 @if($page=Func::getPageBySlug('about-us'))
 <section class="about-us wo-w fadeInUp" data-wow-d-uration="2s" data-wow-delay="2s">
     <div class="col-xs-12" style="background-color:#414042;padding:10px 20px;">
@@ -56,6 +57,6 @@
         </div>
       </section>
 -->
-  </div>
+  
 
 @endsection

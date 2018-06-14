@@ -227,7 +227,10 @@ a.site--login:hover {
 
 /*start post home page*/
 .blog{}
-.blog:hover{box-shadow: 0px 1px 2px 2px #ddd}
+.blog:hover{
+    box-shadow: 0px 1px 1px 1px #ccc;
+    border:2px solid #fff;
+}
 .blog-header{
     background-color: #BA0C2F;
     padding: 7px 10px;
