@@ -15,7 +15,8 @@
 if (in_array(Request::segment(1), config('translatable.locales'))) {
    App::setLocale(Request::segment(1));
  }else{
-   App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
+   //App::setLocale('ar');
+    App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
  }
 
 /*Route::get('/', function () {
