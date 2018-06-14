@@ -21,7 +21,13 @@
     <meta property="og:url" content="@yield('url', request()->url())" />
     <meta property="og:image" content="@yield('image', asset('images/logo.png'))" />
     <meta property="og:description" content="@yield('description',Setting::getIfExists('site_desc'))" />
-    
+    @if(Setting::getIfExists('fb_app_id'))
+    <!-- Facebook -->
+    <meta property="fb:app_id" content="{{Setting::getIfExists('fb_app_id')}}" />
+    @endif
+    @foreach(explode(',',Setting::getIfExists('fb_admins')) as $admin)
+        <meta property="fb:admins" content="{{$admin}}"/>
+    @endforeach
     <title>@yield('title',Setting::getIfExists('site_name','SFECE'))</title>
 {{--@yield('title', 'SFECE')--}}
     <!-- Styles -->
@@ -280,6 +286,7 @@
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    @yield('js')
 
     @if(Setting::getIfExists('fb_app_id','')!='')
     <div id="fb-root"></div>
@@ -330,7 +337,7 @@
 
 
 
-@yield('js')
+
 
 </body>
 

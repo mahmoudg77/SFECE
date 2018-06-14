@@ -7,7 +7,7 @@ return [
     'login-tw' => 'Login with Twitter',
     'logout' =>'Logout',
     'register' =>'Register',
-    'e-mail'=>'E-Mail Address',
+    'email'=>'Email address',
     'password'=>'Password',
     'confirm password'=>'Confirm Password',
     'remember'=>'Remember Me',
@@ -37,4 +37,9 @@ return [
     'close'=>'Close',
     'Copyright'=>'Copyright By',
     'no articles'=>'Sorry !! No articles found',
+    'facebook comments'=>'Facebook Comments',
+    'website comments'=>'Website Comments',
+    'comments'=>'Comments',
+    'not_available_now'=>'is not available now.',
+
 ];
