@@ -15,12 +15,12 @@
 if (in_array(Request::segment(1), config('translatable.locales'))) {
    App::setLocale(Request::segment(1));
  }else{
+
     try{
         App::setLocale(\App\Models\Setting::getIfExists('site_lang'));
     }catch(Exception $ex){
         App::setLocale('en');
     }
-
  }
 
 /*Route::get('/', function () {
