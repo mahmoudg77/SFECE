@@ -64,27 +64,33 @@
   <!-- User area-->
 <div class="panel panel-default" groups="subscribe">
   <div class="panel-heading main-color-bg">
-    <h3 class="panel-title">Website Overview</h3>
+    <h3 class="panel-title">Research Overview</h3>
   </div>
   <div class="panel-body">
     <div class="col-md-4">
       <div class="well dash-box">
-        <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',3)->where('is_published',1)->count()}}</h2>
-        <h4>Approved Research</h4>
+        <h2><i class="fa fa-check" aria-hidden="true"></i> {{App\Models\Post::where('post_type_id',3)->where('is_published',1)->count()}}</h2>
+        <h4>Approved</h4>
       </div>
     </div>
     <div class="col-md-4">
       <div class="well dash-box">
-        <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',3)->where('is_published',0)->count()}}</h2>
-        <h4>Waiting Research</h4>
+        <h2><i class="fa fa-times" aria-hidden="true"></i> {{App\Models\Post::where('post_type_id',3)->where('is_published',0)->count()}}</h2>
+        <h4>Rejected</h4>
       </div>
     </div>
     <div class="col-md-4">
       <div class="well dash-box">
-        <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 22</h2>
-        <h4>Comments</h4>
+        <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{App\Models\Post::where('post_type_id',3)->whereNull('is_published')->count()}}</h2>
+        <h4>Waiting</h4>
       </div>
     </div>
+    <!--<div class="col-md-4">-->
+    <!--  <div class="well dash-box">-->
+    <!--    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 22</h2>-->
+    <!--    <h4>Comments</h4>-->
+    <!--  </div>-->
+    <!--</div>-->
   </div>
 </div>
 

@@ -27,7 +27,7 @@
         // If No Errors Send The Email [ mail(To, Subject, Message, Headers, Parameters) ]
         
         $headers = 'From: ' . $mail . '\r\n';
-        $myEmail = 'sfece@gmail.com';
+        $myEmail = Setting::getIfExists('linkedin');//'sfece@gmail.com';
         $subject = 'Contact Form';
         
         if (empty($formErrors)) {
@@ -63,6 +63,9 @@
                         </a>
                         <a href="{{Setting::getIfExists('instagram')}}" class="text-danger"  target="_blank">
                             <i class="fa fa-instagram fa-3x"></i>
+                        </a>
+                        <a href="{{Setting::getIfExists('linkedin')}}" class="text-defualt"  target="_blank">
+                            <i class="fa fa-linkedin-square fa-3x"></i>
                         </a>
                     </div>
                 @endif
