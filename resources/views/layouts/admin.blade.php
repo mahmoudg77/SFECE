@@ -26,7 +26,7 @@
       <link href="{{ asset('cp/css/style.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
     <link href="{{ asset('cp/css/jquery-ui.css')}}" rel="stylesheet" />
     <link href="{{ asset('cp/css/jquery.datetimepicker.css')}}" rel="stylesheet" />
     <link href="{{ asset('cp/css/jquery.dataTables.min.css')}}" rel="stylesheet" />

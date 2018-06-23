@@ -176,7 +176,7 @@ class PostController extends IController
           return  Func::Success("Save Success");
       }catch (\Exception $ex){
           DB::rollback();
-          return  Func::Error("Error while save data !! " ,$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
+          return  Func::Error("Error while save data !! ".$ex->getMessage() ,$this->viewFolder.".edit",['data'=>$data,'post_type_id'=>$post_type_id]);
       }
 
 
