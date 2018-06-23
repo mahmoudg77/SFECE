@@ -1,5 +1,5 @@
-<div class="">
- <div class="single-sidebar">
+
+ <div class="single-sidebar" style="clear:both;">
     <div class="single-cat">
         <h4>{{trans('app.categories')}}</h4>
         <ul class="list-group">
@@ -22,6 +22,7 @@
         </ul>
     </div>
      @if(Setting::getIfExists('show_fb_posts_sitebar',false))
+        <div class="hidden-xs">
          <div class="single-cat">
              <h4>{{trans('app.follow facebook')}}</h4>
              <ul class="list-group">
@@ -31,7 +32,7 @@
                      <blockquote cite="{{Setting::getIfExists('facebook','https://www.facebook.com/sffece/')}}" class="fb-xfbml-parse-ignore"></blockquote></div>
              </ul>
          </div>
+            </div>
      @endif
 
-</div>
 </div>

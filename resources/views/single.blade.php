@@ -18,7 +18,7 @@
         <div class="col-xs-12 col-sm-8">
             <div class="single-box" >
                 <div class="single-img">
-                    <img src="{{$singlePost->mainImage()}}" class="img-responsive center--block img-thumbanail" >
+                    <img src="{{$singlePost->mainImage()}}" class="img-responsive img-thumbanail" style="width: 100%;"/>
                 </div>
                 <div class="single-content">
                     <h2>{{ $singlePost->title }}</h2>
@@ -49,7 +49,7 @@
                 <h4 class="related-post-heading">{{ trans('app.related posts')}}</h4>
                 @if(count($related_posts)>0)
                 @foreach($related_posts as $rpost)
-                    <div class="col-sm-4">
+                    <div class="col-md-4">
                     <a href="{{ route('getPostBySlug', $rpost->slug) }}">
                         <div class="related-post-item">
                             <figure>
@@ -100,7 +100,7 @@
             </div>
         </div>
 
-        <div class="hidden-xs col-sm-4">
+        <div class="hidden--xs col-xs-12 col-sm-4">
             @include('sidebar')
         </div>
     </div>

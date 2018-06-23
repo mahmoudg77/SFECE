@@ -7,6 +7,13 @@
     .header-top{
         height: 60px !important;
     }
+    .camera_pag{
+        left: 200px !important;
+    }
+    .single-content h2{
+        font-size: 17px;
+        font-weight: bold;
+    }
 }
 
 body{
@@ -180,7 +187,8 @@ a.site--login:hover {
 .camera_pag{
     position: absolute;
     top: 350px;
-    right: 530px;
+    rig-ht: 530px;
+    left: 550px;
 }
 #camera_wrap_1{
     margin-bottom: 30px !important;
@@ -293,6 +301,12 @@ a.site--login:hover {
     margin:20px 0;
 }
 .single-content{overflow: hidden;}
+.single-content h2{
+    color: #fff;
+    margin--bottom: 20px;
+    background-color: #ba0c2f;
+    padding: 10px;
+}
 .single .single-content p{
     text-align: justify;
 }

@@ -39,7 +39,8 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-xs-12 text-right">
-                        <a href="{{route('getPostBySlug', $post->slug) }}" class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
+                        <a href="{{route('getPostBySlug', $post->slug) }}" 
+                           class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
                     </div>
                     <div class="clearfix"></div>
                     <div class="uderline"></div>
@@ -49,7 +50,7 @@
                 @endif
             </div>
         </div>
-        <div class="hidden-xs col-sm-4">
+        <div class="hidden--xs col-xs-12 col-sm-4">
             @include('sidebar')
         </div>
     </div>

@@ -9,7 +9,7 @@
     <div class="col-xs-12 col-sm-8">
         <div class="single-box">
             <div class="single-img">
-                <img src="{{ $singlePost->mainImage() }}" class="img-responsive center--block img-thumbanail" />
+                <img src="{{ $singlePost->mainImage() }}" class="img-responsive img-thumbanail" style="width: 100%;"/>
             </div>
 
             <div class="single-content">
@@ -20,8 +20,8 @@
             </div>
         </div>
     </div>
-
-    <div class="col-xs-hidden col-sm-4">
+    
+    <div class="hidden--xs col-xs-12 col-sm-4">
         @include('sidebar')
     </div>
 </section>
