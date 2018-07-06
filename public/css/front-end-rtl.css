@@ -18,12 +18,12 @@
 
 body{
 	direction: rtl;
-    background--color: #f2e6e2;;
+    /*background--color: #f2e6e2;*/
     font-family: droid arabic kufi,tahoma,verdana,Arial;
-	backgr-ound: url(../images/bk1.png) fixed;
-    backgr-ound: -webkit-linear-gradient(#5665AE, #1d1d1d);
+	/*backgr-ound: url(../images/bk1.png) fixed;
+    backgr-ound: -webkit-linear-gradient(#5665AE, #1d1d1d);*/
 
-    backgrou-nd: url(https://image.slidesharecdn.com/random-131009032238-phpapp02/95/-60-638.jpg?cb=1381289451) no-repeat fixed;
+    /*background: url(https://image.slidesharecdn.com/random-131009032238-phpapp02/95/-60-638.jpg?cb=1381289451) no-repeat fixed;*/
     background: url("../images/bg.png") repeat-x top;
   	/*-webkit-background-size: cover;
   	-moz-background-size: cover;
@@ -35,6 +35,8 @@ body{
     
     /*font-family: 'Cairo', sans-serif;*/
     /*font-family: 'Tajawal', sans-serif;*/
+	font-family: 'Tajawal', sans-serif;
+	line-height: 40px;
 }
 html{
 	height: 100%;
@@ -93,19 +95,23 @@ html{
 /*start header*/
 .header{
 	height: 150px;
-	background: #ddd;
+	background: url('/images/Preview.jpg') #ddd;
 }
 .header h1{
-    color: #224668;
+    color: #fefefe;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 42px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Jomhuria', cursive;
 }
 .header .header-title{
     padding: 22px 0px;
     text-align: right;
 }
 .header small{
-    color: #224668;
+    color: #fff;
     text-align: center;
     padding: 0 8px;
 }
@@ -299,6 +305,7 @@ a.site--login:hover {
     border:1px solid #fff;
     box-shadow: 0px 2px 3px 1px #ddd;
     margin:20px 0;
+    background: #fff;
 }
 .single-content{overflow: hidden;}
 .single-content h2{
@@ -334,7 +341,7 @@ a.site--login:hover {
     margin: 0
 }
 .single-sidebar .list-group-item{
-    background-color: #eee !important;
+    background-color: #fff !important;
 }
 .single-cat ul{
     margin-top:10px;
@@ -342,6 +349,11 @@ a.site--login:hover {
 }
 .single-cat li a{
     text-decoration: none;
+}
+.single-cat li a::before {
+
+    content: '◉ ';
+
 }
 .uderline{
     margin-top: 10px;
@@ -391,9 +403,11 @@ figure {
 }
 .about-us p{
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-    line-height: 30px;
+    /*! line-height: 30px; */
+    font-family: 'Tajawal', sans-serif;
+    line-height: 40px;
 }
 /*end about-us*/
 

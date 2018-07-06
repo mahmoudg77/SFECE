@@ -34,7 +34,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-    @if(app()->getLocale()=='ar')
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Jomhuria|Tajawal" rel="stylesheet">
+
+
+@if(app()->getLocale()=='ar')
         <!-- Load Bootstrap RTL theme from RawGit -->
         <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
         <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
@@ -111,7 +117,7 @@
                   </div>
                   <div class="header-title pull-right">
                       <a href="{{route('home')}}"  style="text-decoration: none">
-                      <h1>{{Setting::getIfExists('site_name','المؤسسة العلمية للطفولة المبكرة')}}</h1>
+                      <h1 >{{Setting::getIfExists('site_name','المؤسسة العلمية للطفولة المبكرة')}}</h1>
                       <small>{{Setting::getIfExists('site_slogan','تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة')}}</small>
                       </a>
                   </div>
