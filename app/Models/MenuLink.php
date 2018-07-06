@@ -17,7 +17,7 @@ class MenuLink extends Model
     }
     public function Links()
     {
-      return $this->hasMany('App\Models\MenuLink','parent_id');
+      return $this->hasMany('App\Models\MenuLink','parent_id')->orderBy('sort');
     }
     public function Category()
     {

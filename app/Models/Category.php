@@ -23,7 +23,7 @@ class Category extends Model
     }
     public function Chields()
     {
-      return $this->hasMany(self::class,"parent_id");
+      return $this->hasMany(self::class,"parent_id")->orderBy('sort');
     }
 }
 

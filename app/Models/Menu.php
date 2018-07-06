@@ -10,7 +10,7 @@ class Menu extends Model
 
     public function Links()
     {
-        return $this->hasMany("App\Models\MenuLink","menu_id");
+        return $this->hasMany("App\Models\MenuLink","menu_id")->orderBy('sort');
     }
 
 }
