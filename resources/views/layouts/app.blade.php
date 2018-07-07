@@ -38,15 +38,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Jomhuria|Tajawal" rel="stylesheet">
+    <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
 
-
-@if(app()->getLocale()=='ar')
+    @if(app()->getLocale()=='ar')
         <!-- Load Bootstrap RTL theme from RawGit -->
         <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
         <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
-    @else
-        
-        <link href="{{ asset('css/front-end.css') }}" rel="stylesheet">
     @endif
 
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -110,12 +107,12 @@
           </div>
           <div class="clear-fix"></div>
           <div class="header">
-              <div class="col col-xs-12">
+              <div class="col col-xs-12" style="margin-top:80px;">
 
-                  <div style="padding: 10px;" class="pull-right">
+                  <div style="padding: 10px;" class="pull-left">
                       <a href="{{route('home')}}">   <img src="{{ asset('images/logo.png') }}" alt="" title="" class="" style="width: 120px;"></a>
                   </div>
-                  <div class="header-title pull-right">
+                  <div class="header-title pull-left">
                       <a href="{{route('home')}}"  style="text-decoration: none">
                       <h1 >{{Setting::getIfExists('site_name','المؤسسة العلمية للطفولة المبكرة')}}</h1>
                       <small>{{Setting::getIfExists('site_slogan','تثقيف وتقديم الاستشارات إلى أولياء الأمور والمعلمات والمختصين في مجال تربية الطفولة المبكرة')}}</small>
@@ -144,45 +141,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-{{(app()->getLocale()=='ar')?'right':'left'}}">
                         @foreach(Func::menu('main') as $link)
-                            <li class="{{Request::is($link->category_id>0?ltrim(route('categoryBySlug',$link->category->slug,false),"/"):app()->getLocale().$link->customlink)?'active':''}}">
-                                @if($link->Links()->count()>0)
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                                       aria-haspopup="true" aria-expanded="false">
-                                        {{$link->title}} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        @foreach($link->Links as $sublink)
-                                            <li class="{{Request::is($sublink->category_id>0?ltrim(route('categoryBySlug',$sublink->category->slug,false),"/"):app()->getLocale().$sublink->customlink)?'active':''}}">
-                                            <a href="{{Func::menuLink($sublink)}}" class="">{{$sublink->title}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    @if($link->category_id>0)
-                                        @if($link->hasSubs)
-                                            <?php $cat=App\Models\Category::find($link->category_id);?>
-
-                                                @if(count($cat->Chields)>0)
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-                                                       aria-haspopup="true" aria-expanded="false">
-                                                        {{$link->title}} <span class="caret"></span></a>
-                                                    <ul class="dropdown-menu">
-                                                        @foreach($cat->Chields as $chield)
-                                                            <li class="{{Request::is(ltrim(route('categoryBySlug',$chield->slug,false),'/'))?'active':''}}">
-                                                            <a href="{{route('categoryBySlug',['id'=>$chield->slug])}}" class="">{{$chield->title}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                @else
-                                                    <a href="{{route('categoryBySlug',['id'=>$link->category->slug])}}" >{{$link->title}}</a>
-                                            @endif
-                                            @else
-                                            <a href="{{route('categoryBySlug',['id'=>$link->category->slug])}}" >{{$link->title}}</a>
-                                        @endif
-                                   @else
-
-                                    <a href="{{Func::menuLink($link)}}" >{{$link->title}}</a>
-                                    @endif
-                                @endif
-                            </li>
-                        @endforeach
+                                    {!!  Func::drowMenuLink($link)!!}
+                         @endforeach
                     </ul>
                 </div>
             </div>

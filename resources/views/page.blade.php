@@ -9,7 +9,7 @@
     <div class="col-xs-12 col-sm-8">
         <div class="single-box">
             <div class="single-img">
-                <img src="{{ $singlePost->mainImage() }}" class="img-responsive img-thumbanail" style="width: 100%;margin: auto;max-height: 500px;"/>
+                <img src="{{ $singlePost->mainImage() }}" class="img-responsive img-thumbanail" style="margin: auto;max-height: 500px;"/>
             </div>
 
             <div class="single-content">

@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jun 22, 2018 at 10:03 AM
--- Server version: 5.6.39-83.1
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Jul 06, 2018 at 10:14 PM
+-- Server version: 5.7.14
+-- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sfeceorg_sfece`
+-- Database: `sfece`
 --
 
 -- --------------------------------------------------------
@@ -88,24 +86,27 @@ CREATE TABLE `categories` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `created_by`, `updated_by`, `parent_id`, `ordering`, `deleted_at`, `created_at`, `updated_at`, `slug`) VALUES
-(2, NULL, NULL, NULL, 0, NULL, '2018-05-11 11:09:31', '2018-05-12 14:48:34', 'magazen'),
-(3, NULL, NULL, 2, 0, NULL, '2018-05-11 11:10:28', '2018-05-11 11:10:28', 'magazen_1'),
-(4, NULL, NULL, 2, 0, NULL, '2018-05-11 11:13:34', '2018-05-11 11:13:34', 'magazen_3'),
-(5, NULL, NULL, NULL, 0, NULL, '2018-05-11 11:41:03', '2018-05-11 11:41:03', 'annual_events'),
-(6, NULL, NULL, 5, 0, NULL, '2018-05-11 11:43:51', '2018-05-11 11:43:51', 'forum'),
-(7, NULL, NULL, 5, 0, NULL, '2018-05-11 11:44:59', '2018-05-11 11:44:59', 'conference'),
-(12, NULL, NULL, NULL, 0, NULL, '2018-05-18 21:29:58', '2018-05-18 21:29:58', 'books'),
-(13, NULL, NULL, NULL, 0, NULL, '2018-05-28 07:55:49', '2018-05-28 07:55:49', 'acadmy'),
-(14, NULL, NULL, 13, 0, NULL, '2018-05-28 07:56:50', '2018-05-28 07:56:50', 'trainning'),
-(15, NULL, NULL, 13, 0, NULL, '2018-05-28 07:57:31', '2018-05-28 07:57:31', 'quality');
+INSERT INTO `categories` (`id`, `created_by`, `updated_by`, `parent_id`, `ordering`, `deleted_at`, `created_at`, `updated_at`, `slug`, `sort`) VALUES
+(2, NULL, NULL, NULL, 0, NULL, '2018-05-11 11:09:31', '2018-05-12 14:48:34', 'magazen', 0),
+(3, NULL, NULL, 2, 0, NULL, '2018-05-11 11:10:28', '2018-05-11 11:10:28', 'magazen_1', 0),
+(4, NULL, NULL, 2, 0, NULL, '2018-05-11 11:13:34', '2018-05-11 11:13:34', 'magazen_3', 0),
+(5, NULL, NULL, NULL, 0, NULL, '2018-05-11 11:41:03', '2018-05-11 11:41:03', 'annual_events', 0),
+(6, NULL, NULL, 5, 0, NULL, '2018-05-11 11:43:51', '2018-05-11 11:43:51', 'forum', 1),
+(7, NULL, NULL, 5, 0, NULL, '2018-05-11 11:44:59', '2018-05-11 11:44:59', 'conference', 0),
+(12, NULL, NULL, NULL, 0, NULL, '2018-05-18 21:29:58', '2018-05-18 21:29:58', 'books', 0),
+(13, NULL, NULL, NULL, 0, NULL, '2018-05-28 07:55:49', '2018-05-28 07:55:49', 'acadmy', 0),
+(14, NULL, NULL, 13, 0, NULL, '2018-05-28 07:56:50', '2018-05-28 07:56:50', 'trainning', 0),
+(15, NULL, NULL, 13, 0, NULL, '2018-05-28 07:57:31', '2018-05-28 07:57:31', 'quality', 0),
+(16, NULL, NULL, 2, 0, NULL, '2018-07-04 15:14:27', '2018-07-04 15:14:27', 'arab_journal_for_early_childhood_education', 0),
+(17, NULL, NULL, NULL, 0, NULL, '2018-07-04 15:34:58', '2018-07-04 15:34:58', 'partners', 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,7 @@ CREATE TABLE `category_translations` (
 --
 
 INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `title`, `description`) VALUES
-(3, 2, 'ar', 'المجلات التعليمية', 'المجلات التعليمية'),
+(3, 2, 'ar', 'المجلات العلمية', 'المجلات التعليمية'),
 (4, 2, 'en', 'Magazen', 'Magazen'),
 (5, 3, 'ar', 'المجلة العربية لتربية الطفولة المبكرة', '<p>المجلة العربية لتربية الطفولة المبكرة</p>'),
 (6, 3, 'en', 'المجلة العربية لتربية الطفولة المبكرة', '<p>المجلة العربية لتربية الطفولة المبكرة</p>'),
@@ -134,9 +135,9 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `title`, `de
 (8, 4, 'en', 'Arab Journal for Early Childhood Education', '<p>Arab Journal for Early Childhood Education</p>'),
 (9, 5, 'ar', 'الفعاليات السنوية', 'الفعاليات السنوية'),
 (10, 5, 'en', 'Annual Events', 'Annual Events'),
-(11, 6, 'ar', 'المنتديات السنوية', '<p>المنتديات</p>'),
+(11, 6, 'ar', 'المنتدى السنوية', '<p>المنتدى السنوي</p>'),
 (12, 6, 'en', 'Anual Forum', '<p>Forum</p>'),
-(13, 7, 'ar', 'المؤتمرات السنوية', '<p>Conference</p>'),
+(13, 7, 'ar', 'المؤتمر السنوية', '<p>Conference</p>'),
 (14, 7, 'en', 'Anual Conference', '<p>Conference</p>'),
 (23, 12, 'ar', 'اصداراتنا', '<p>جميع الكتب التي يصدر المركز العلمي لتربية الطفولة المبكرة</p>'),
 (24, 12, 'en', 'Books', '<p>All books witch we have publihsed it.</p>'),
@@ -145,7 +146,11 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `title`, `de
 (27, 14, 'ar', 'التدريب', '<p>التدريب</p>'),
 (28, 14, 'en', 'Trainning', '<p>Trainning</p>'),
 (29, 15, 'ar', 'الجودة', '<p>الجودة</p>'),
-(30, 15, 'en', 'Quality', '<p>Quality</p>');
+(30, 15, 'en', 'Quality', '<p>Quality</p>'),
+(31, 16, 'ar', 'Arab Journal for Early Childhood Education', '<h2>Arab Journal for Early Childhood Education</h2>'),
+(32, 16, 'en', 'Arab Journal for Early Childhood Education', '<h2>Arab Journal for Early Childhood Education</h2>'),
+(33, 17, 'ar', 'شركائنا', '<p>شركائنا</p>'),
+(34, 17, 'en', 'Partners', '<p>Partners</p>');
 
 -- --------------------------------------------------------
 
@@ -311,34 +316,35 @@ CREATE TABLE `menu_links` (
   `parent_id` int(11) DEFAULT '0',
   `hasSubs` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sort` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `menu_links`
 --
 
-INSERT INTO `menu_links` (`id`, `menu_id`, `customlink`, `category_id`, `parent_id`, `hasSubs`, `created_at`, `updated_at`) VALUES
-(1, 1, '/', 0, 0, 0, '2018-05-02 05:53:20', '2018-05-07 06:45:52'),
-(2, 1, '#', 0, 0, 0, '2018-05-07 06:47:26', '2018-05-07 06:47:26'),
-(3, 1, '/vision', 0, 2, 0, '2018-05-07 06:48:17', '2018-05-07 06:48:17'),
-(4, 1, '/stuff', 0, 2, 0, '2018-05-07 06:49:08', '2018-05-07 06:49:08'),
-(5, 1, '/consult', 0, 2, 0, '2018-05-07 06:54:14', '2018-05-07 06:54:14'),
-(6, 1, NULL, 12, 2, 0, '2018-05-07 06:59:41', '2018-05-28 07:53:38'),
-(7, 1, NULL, 12, NULL, 0, '2018-05-07 07:00:21', '2018-05-28 07:51:19'),
-(8, 1, NULL, 2, NULL, 1, '2018-05-07 07:01:30', '2018-06-13 15:15:13'),
-(9, 1, NULL, 13, NULL, 1, '2018-05-07 07:02:31', '2018-05-28 07:58:15'),
-(10, 1, '/anual_events', 5, NULL, 1, '2018-05-07 07:04:20', '2018-05-11 11:47:05'),
-(13, 1, '//arabece.com', NULL, NULL, 0, '2018-05-07 07:09:21', '2018-06-13 15:21:16'),
-(14, 1, '/contact-us', NULL, NULL, 0, '2018-05-07 07:10:27', '2018-05-28 06:56:05'),
-(16, 2, '/events', NULL, NULL, 0, '2018-05-14 06:17:50', '2018-05-14 06:17:50'),
-(17, 2, '/article', NULL, NULL, 0, '2018-05-14 06:18:45', '2018-05-14 06:18:45'),
-(18, 2, '/versions', NULL, NULL, 0, '2018-05-14 06:19:49', '2018-05-14 06:19:49'),
-(19, 2, '/contact_us', NULL, NULL, 0, '2018-05-14 06:20:37', '2018-05-14 06:20:37'),
-(20, 3, 'https://www.facebook.com/sffece/', NULL, NULL, 0, '2018-05-26 01:01:02', '2018-05-28 08:03:38'),
-(21, 3, 'https://twitter.com/', NULL, NULL, 0, '2018-05-26 01:11:58', '2018-05-26 01:11:58'),
-(22, 3, 'https://youtube.com', NULL, NULL, 0, '2018-05-26 01:13:25', '2018-05-26 01:13:25'),
-(23, 1, '/mrkz-altrjm-oalnshr', NULL, NULL, 0, '2018-06-14 12:55:35', '2018-06-14 12:55:35');
+INSERT INTO `menu_links` (`id`, `menu_id`, `customlink`, `category_id`, `parent_id`, `hasSubs`, `created_at`, `updated_at`, `sort`) VALUES
+(1, 1, '/', 0, 0, 0, '2018-05-02 05:53:20', '2018-05-07 06:45:52', 0),
+(2, 1, '#', 0, 0, 0, '2018-05-07 06:47:26', '2018-05-07 06:47:26', 0),
+(3, 1, '/vision', 0, 2, 0, '2018-05-07 06:48:17', '2018-05-07 06:48:17', 0),
+(4, 1, '/stuff', 0, 2, 0, '2018-05-07 06:49:08', '2018-05-07 06:49:08', 0),
+(5, 1, '/consult', 0, 2, 0, '2018-05-07 06:54:14', '2018-05-07 06:54:14', 0),
+(6, 1, NULL, 12, 2, 0, '2018-05-07 06:59:41', '2018-07-06 18:32:49', 0),
+(7, 1, NULL, 17, NULL, 0, '2018-05-07 07:00:21', '2018-07-04 15:44:40', 0),
+(8, 1, NULL, 2, NULL, 1, '2018-05-07 07:01:30', '2018-06-13 15:15:13', 0),
+(9, 1, NULL, 13, NULL, 1, '2018-05-07 07:02:31', '2018-05-28 07:58:15', 0),
+(10, 1, '/anual_events', 5, NULL, 1, '2018-05-07 07:04:20', '2018-05-11 11:47:05', 0),
+(13, 1, 'http://arabece.com', NULL, NULL, 0, '2018-05-07 07:09:21', '2018-07-06 20:12:16', 0),
+(14, 1, '/contact-us', NULL, NULL, 0, '2018-05-07 07:10:27', '2018-05-28 06:56:05', 99),
+(16, 2, '/events', NULL, NULL, 0, '2018-05-14 06:17:50', '2018-05-14 06:17:50', 0),
+(17, 2, '/article', NULL, NULL, 0, '2018-05-14 06:18:45', '2018-05-14 06:18:45', 0),
+(18, 2, '/versions', NULL, NULL, 0, '2018-05-14 06:19:49', '2018-05-14 06:19:49', 0),
+(19, 2, '/contact_us', NULL, NULL, 0, '2018-05-14 06:20:37', '2018-05-14 06:20:37', 0),
+(20, 3, 'https://www.facebook.com/sffece/', NULL, NULL, 0, '2018-05-26 01:01:02', '2018-05-28 08:03:38', 0),
+(21, 3, 'https://twitter.com/SFECE2', NULL, NULL, 0, '2018-05-26 01:11:58', '2018-06-27 15:51:51', 0),
+(22, 3, 'https://youtube.com', NULL, NULL, 0, '2018-05-26 01:13:25', '2018-05-26 01:13:25', 0),
+(23, 1, '/mrkz-altrjm-oalnshr', NULL, NULL, 0, '2018-06-14 12:55:35', '2018-06-14 12:55:35', 0);
 
 -- --------------------------------------------------------
 
@@ -378,7 +384,7 @@ INSERT INTO `menu_link_translations` (`id`, `menu_link_id`, `locale`, `title`) V
 (18, 9, 'en', 'Academy'),
 (19, 10, 'ar', 'الفعاليات السنوية'),
 (20, 10, 'en', 'Anual Events'),
-(25, 13, 'ar', 'الاباء والامهات'),
+(25, 13, 'ar', 'الأباء والأمهات'),
 (26, 13, 'en', 'Parents'),
 (27, 14, 'ar', 'اتصل بنا'),
 (28, 14, 'en', 'Contact us'),
@@ -390,12 +396,12 @@ INSERT INTO `menu_link_translations` (`id`, `menu_link_id`, `locale`, `title`) V
 (36, 18, 'en', 'Oure Versions'),
 (37, 19, 'ar', 'اتصل بنا'),
 (38, 19, 'en', 'Contact us'),
-(39, 20, 'ar', '<i class=\"fa fa-facebook-square fa-lg\"></i>'),
-(40, 20, 'en', '<i class=\"fa fa-facebook-square fa-lg\"></i>'),
-(41, 21, 'ar', '<i class=\"fa fa-twitter-square fa-lg\"></i>'),
-(42, 21, 'en', '<i class=\"fa fa-twitter-square fa-lg\"></i>'),
-(43, 22, 'ar', '<i class=\"fa fa-youtube-square fa-lg\"></i>'),
-(44, 22, 'en', '<i class=\"fa fa-youtube-square fa-lg\"></i>'),
+(39, 20, 'ar', '<i class="fa fa-facebook-square fa-lg"></i>'),
+(40, 20, 'en', '<i class="fa fa-facebook-square fa-lg"></i>'),
+(41, 21, 'ar', '<i class="fa fa-twitter-square fa-lg"></i>'),
+(42, 21, 'en', '<i class="fa fa-twitter-square fa-lg"></i>'),
+(43, 22, 'ar', '<i class="fa fa-youtube-square fa-lg"></i>'),
+(44, 22, 'en', '<i class="fa fa-youtube-square fa-lg"></i>'),
 (45, 23, 'ar', 'مركز الترجمة والنشر'),
 (46, 23, 'en', 'Publishing Center');
 
@@ -471,7 +477,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (63, '2018_06_02_210318_insert_setting_default_data', 8),
 (64, '2018_06_08_132929_insert_seting_translation_defaults', 8),
 (65, '2018_06_14_100620_add_can_comment_column_in_post_types', 9),
-(66, '2018_06_14_125413_add_can_share_column_in_post_types', 10);
+(66, '2018_06_14_125413_add_can_share_column_in_post_types', 10),
+(67, '2018_07_06_215957_add_sort_column_to_menulinks', 11),
+(68, '2018_07_06_220630_add_sort_column_to_categories', 12);
 
 -- --------------------------------------------------------
 
@@ -520,7 +528,7 @@ INSERT INTO `posts` (`id`, `pub_date`, `post_type_id`, `category_id`, `is_publis
 (88, '2018-05-28 02:00:05', 1, 0, 1, 2, NULL, '2018-05-28 07:00:39', '2018-05-28 07:01:10', 'head_institution'),
 (89, '2018-05-31 12:20:05', 2, 3, 1, 2, NULL, '2018-05-31 17:13:40', '2018-05-31 17:20:40', 'almjl-alaarby-ltrby-altfol-almbkr'),
 (90, '2018-05-31 12:20:05', 2, 4, 1, 2, NULL, '2018-05-31 17:17:37', '2018-05-31 17:20:38', 'almjl-alaarby-ldrsat-altfol'),
-(91, '2018-05-31 12:20:05', 2, 3, 1, 2, NULL, '2018-05-31 17:20:26', '2018-05-31 17:20:37', 'arab-journal-for-early-childhood-education'),
+(91, '2018-05-31 12:20:05', 2, 16, 1, 2, NULL, '2018-05-31 17:20:26', '2018-07-04 15:46:00', 'arab-journal-for-early-childhood-education'),
 (93, '2018-05-31 12:59:05', 1, 0, 1, 2, NULL, '2018-05-31 17:59:25', '2018-05-31 18:00:08', 'parents'),
 (94, '2018-06-14 14:53:06', 1, 0, 1, 2, NULL, '2018-06-14 12:52:52', '2018-06-14 12:53:09', 'mrkz-altrjm-oalnshr'),
 (95, NULL, 3, 3, 0, 7, NULL, '2018-06-22 20:32:46', '2018-06-22 20:35:50', 'albhth-alaol'),
@@ -564,7 +572,19 @@ INSERT INTO `posts_tags_relationship` (`id`, `post_id`, `tag_id`, `created_at`, 
 (17, 92, 12, NULL, NULL),
 (18, 92, 13, NULL, NULL),
 (19, 92, 14, NULL, NULL),
-(20, 92, 15, NULL, NULL);
+(20, 92, 15, NULL, NULL),
+(21, 90, 16, NULL, NULL),
+(22, 90, 17, NULL, NULL),
+(23, 89, 18, NULL, NULL),
+(24, 89, 16, NULL, NULL),
+(25, 91, 16, NULL, NULL),
+(26, 91, 17, NULL, NULL),
+(27, 91, 19, NULL, NULL),
+(28, 91, 20, NULL, NULL),
+(29, 89, 20, NULL, NULL),
+(30, 89, 19, NULL, NULL),
+(31, 90, 19, NULL, NULL),
+(32, 90, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -585,8 +605,8 @@ CREATE TABLE `post_translations` (
 --
 
 INSERT INTO `post_translations` (`id`, `post_id`, `locale`, `title`, `body`) VALUES
-(93, 58, 'ar', 'إتصل بنا', '<p><span dir=\"RTL\">المؤسسة العلمية لتربية الطفولة المبكرة </span></p>\r\n\r\n<p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>\r\n\r\n<p>جروب المؤسسة <a href=\"https://www.facebook.com/groups/aaece/\" target=\"_blank\">https://www.facebook.com/groups/aaece/</a></p>\r\n\r\n<p>صفحة المؤسسة <a href=\"https://www.facebook.com/sffece/\" target=\"_blank\">https://www.facebook.com/sffece/</a></p>\r\n\r\n<p>&nbsp;</p>'),
-(94, 58, 'en', 'Contact us', '<p><span dir=\"RTL\">المؤسسة العلمية لتربية الطفولة المبكرة </span></p>\r\n\r\n<p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>\r\n\r\n<p>جروب المؤسسة <a href=\"https://www.facebook.com/groups/aaece/\" target=\"_blank\">https://www.facebook.com/groups/aaece/</a></p>\r\n\r\n<p>صفحة المؤسسة <a href=\"https://www.facebook.com/sffece/\" target=\"_blank\">https://www.facebook.com/sffece/</a></p>'),
+(93, 58, 'ar', 'إتصل بنا', '<p><span dir="RTL">المؤسسة العلمية لتربية الطفولة المبكرة </span></p>\r\n\r\n<p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>\r\n\r\n<p>جروب المؤسسة <a href="https://www.facebook.com/groups/aaece/" target="_blank">https://www.facebook.com/groups/aaece/</a></p>\r\n\r\n<p>صفحة المؤسسة <a href="https://www.facebook.com/sffece/" target="_blank">https://www.facebook.com/sffece/</a></p>\r\n\r\n<p>&nbsp;</p>'),
+(94, 58, 'en', 'Contact us', '<p><span dir="RTL">المؤسسة العلمية لتربية الطفولة المبكرة </span></p>\r\n\r\n<p>يمكنك التواصل معنا مباشرة عبر ارسال رسالة على صفحات التواصل الإجتماعي على فيسبوك أو تويتر، يسعدنا تواصلكم دائما.</p>\r\n\r\n<p>جروب المؤسسة <a href="https://www.facebook.com/groups/aaece/" target="_blank">https://www.facebook.com/groups/aaece/</a></p>\r\n\r\n<p>صفحة المؤسسة <a href="https://www.facebook.com/sffece/" target="_blank">https://www.facebook.com/sffece/</a></p>'),
 (139, 81, 'ar', 'صورة 1', '<p>صورة 1</p>'),
 (140, 81, 'en', 'Slide 1', '<p><br />\r\nSlide 1</p>'),
 (141, 82, 'ar', 'صورة 2', '<p>صورة 2</p>'),
@@ -599,18 +619,18 @@ INSERT INTO `post_translations` (`id`, `post_id`, `locale`, `title`, `body`) VAL
 (148, 85, 'en', 'من نحن', '<p>المؤسسة العلمية لتربية الطفولة المبكرة هي مؤسسة مهنية غير هادفة للربح تضم مجموعة من المهنيين المختصين من أساتذة الجامعات والخبراء في مجال تربية الطفولة المبكرة، وتعمل على تعزيز التعلم المبكر عالي الجودة لجميع الأطفال من الولادة حتى سن الثامنة، وذلك من خلال الربط بين الممارسات الفعلية والبحوث والسياسات. والعمل على رفع مستوى النمو المهني للمهنيين في مرحلة الطفولة المبكرة ودعم جميع من يهتم بالأطفال في هذه المرحلة من حيث التعليم أو الرعاية.</p>\r\n\r\n<p>وتهدف المؤسسة إلى استقطاب كل المهنيين والخبراء المتميزين في العالم العربي المهتمين بدعم نمو الطفل وتعلمه، لتكون جهة مرجعية أساسية لها مواقف ورؤى علمية واضحة تجاه مجالات نمو الطفل وتعلمه، والعوامل التي تؤثر في ذلك، و ضمان جودة برامج إعداد المعلمات والحاضنات، وبرامج الطفولة المبكرة . والعمل جميعا على تحقيق رؤية جماعية: &quot;أن ينمو ويتعلم الطفل في مجتمعات تكرس كل جهودها لضمان وصول الطفل إلى المستوى الأمثل في النمو والتعلم.</p>'),
 (149, 86, 'ar', 'الرؤية والأهداف', '<p>وتهدف المؤسسة إلى استقطاب كل المهنيين والخبراء المتميزين في العالم العربي المهتمين بدعم نمو الطفل وتعلمه، لتكون جهة مرجعية أساسية لها مواقف ورؤى علمية واضحة تجاه مجالات نمو الطفل وتعلمه، والعوامل التي تؤثر في ذلك، و ضمان جودة برامج إعداد المعلمات والحاضنات، وبرامج الطفولة المبكرة . والعمل جميعا على تحقيق رؤية جماعية: &quot;أن ينمو ويتعلم الطفل في مجتمعات تكرس كل جهودها لضمان وصول الطفل إلى المستوى الأمثل في النمو والتعلم.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>الرؤية</h2>\r\n\r\n<p>أن ينمو ويتعلم الطفل في مجتمعات تكرس كل جهودها لضمان وصول الطفل إلى المستوى الأمثل في النمو والتعلم</p>\r\n\r\n<p>الرسالة</p>\r\n\r\n<p>العمل على الوصول إلى تعلم عالي الجودة لكل الأطفال في العالم العربي من الميلاد وحتى سن الثامنة عن طريق الممارسات والسياسات والبحوث والدعم المهني لكل من يهتم بتربية وتعليم الطفل والعمل على ضمان حقوقه.</p>\r\n\r\n<h2>قيمنا</h2>\r\n\r\n<p>نقدر الطفولة كمرحلة فريدة و لها تأثير قوي في حياة الإنسان.</p>\r\n\r\n<p>نستند في انشطتنا على خصائص نمو الطفل وتعلمه.</p>\r\n\r\n<p>نثمن وندعم العلاقة بين الطفل و الأسرة.</p>\r\n\r\n<p>نؤمن بأن الأطفال يفهمون ويٌدعمون بشكل أفضل في سياق الأسرة والثقافة والمجتمع.</p>\r\n\r\n<p>نحترم هوية الطفل وتفرده .</p>\r\n\r\n<p>نحترم التنوع الثقافي بين الأطفال و الأسر و زميلات العمل.</p>\r\n\r\n<p>ندرك بأن الأطفال و الأسرة والمعلمات يحققون كامل إمكاناتهم في سياق العلاقات القائمة على الثقة والاحترام.</p>\r\n\r\n<h2>معتقداتنا</h2>\r\n\r\n<p>التميز والابداع.</p>\r\n\r\n<p>الشفافية</p>\r\n\r\n<p>التأمل والمراجعة</p>\r\n\r\n<p>المساواة و اتاحة الفرص</p>\r\n\r\n<p>علاقات التعاون مع الآخرين.</p>\r\n\r\n<p>نشارك في المسؤولية في عملنا مع الآخرين.</p>\r\n\r\n<p>نحن نكرس الوقت والجهد لضمان المشاركة المتنوعة والنتائج الأكثر فعالية.</p>\r\n\r\n<h2>أهدافنا الاستراتيجية</h2>\r\n\r\n<p>اتاحة تعلم ملائم نمائياً ذات جودة عالية للطفلفي مرحلة الطفولة المبكرة.</p>\r\n\r\n<p>تميز مهنة تربية الطفولة المبكرة وأن تلعب دور هام في المجتمع.</p>\r\n\r\n<p>وصول المؤسسة العلمية لتربية الطفولة المبكرة إلى مكانة هامة، ومصداقية، ومحط أنظار المهنيين في تربية الطفولة المبكرة.</p>\r\n\r\n<p>أن تغرس المؤسسة القيادة وتحتضن الاستراتيجيات الإبداعية التي تدفع المجال، والمهنة ، وأنظمة التعلم المبكر إلى الأمام.</p>\r\n\r\n<h2>أنشطتنا:</h2>\r\n\r\n<p>البرامج التدريبية الموجه للمهنيين في تربية الطفولة المبكرة لدعم النمو المهني المستدام.</p>\r\n\r\n<p>تطوير أبحاث علمية جديدة في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>تقديم استشارات، و دورات للوالدين بالتعاون مع الجهات الخاصة والعامة ذات الصلة.</p>\r\n\r\n<p>تقديم خدمات استشارية للباحثين في مجال تربية الطفولة المبكرة .</p>\r\n\r\n<p>عقد ملتقى تدريبي سنوي لأعضاء هيئة التدريس والمعلمات، والمهتمين بمرحلة الطفولة المبكرة.</p>\r\n\r\n<p>عقد مؤتمر سنوي دولي يصاحبه معرض للكتاب في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>عقد ندوات علمية متخصصة في مجالات الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية ربع سنوية محكمة لمجال البحث في تربية الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية باللغة الإنجليزية ربع سنوية محكمة لمجال البحث في تربية الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية محكمة ربع سنوية لدراسات الطفولة المرتبطة بنمو وتعلم الطفل( طب الأطفال وأبحاث الدماغ- أدب و فنون الطفل- إعلام وتقنية الطفل)</p>\r\n\r\n<p>اصدار مجلة شهرية تتناول مجالات تربية وتعلم الطفل وأحدث المستجدات في المجال.</p>\r\n\r\n<p>ترجمة المؤلفات العالمية عالية الجودة في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>تقديم الاستشارات والحلول للمؤسسات والهيئات و الشركات التعليمية، والجامعات.</p>\r\n\r\n<p>وضع ميثاق الأخلاق المهني للمهنيين في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>وضع معايير عربية لاعتماد وضمان جودة برامج اعداد معلمات الطفولة المبكرة.</p>\r\n\r\n<p>اعتماد برامج اعداد معلمات الطفولة المبكرة.</p>\r\n\r\n<p>وضع معايير عربية لاعتماد وضمان جودة برامج الأطفال من الميلاد وحتى سن الثامنة.</p>\r\n\r\n<p>اعتماد برامج الطفولة المبكرة.</p>\r\n\r\n<p>انشاء اكاديمية للتدريب و لاعتماد وضمان جودة برامج الطفولة المبكرة.</p>\r\n\r\n<p>نشر المؤلفات المتميزة الموجهة للأطفال، الباحثين، والمعلمات، و الوالدين.</p>\r\n\r\n<p>اقامة شراكة وبرتوكولات تعاون مع المنظمات الدولية المماثلة والحصول على عضويتها لأعضاء المؤسسة.</p>\r\n\r\n<p>التحالف والتوأمة مع الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC</p>\r\n\r\n<p>تشجيع التواصل بين الباحثين العرب لتكوين مجموعات بحثية.</p>'),
 (150, 86, 'en', 'الرؤية والأهداف', '<p>وتهدف المؤسسة إلى استقطاب كل المهنيين والخبراء المتميزين في العالم العربي المهتمين بدعم نمو الطفل وتعلمه، لتكون جهة مرجعية أساسية لها مواقف ورؤى علمية واضحة تجاه مجالات نمو الطفل وتعلمه، والعوامل التي تؤثر في ذلك، و ضمان جودة برامج إعداد المعلمات والحاضنات، وبرامج الطفولة المبكرة . والعمل جميعا على تحقيق رؤية جماعية: &quot;أن ينمو ويتعلم الطفل في مجتمعات تكرس كل جهودها لضمان وصول الطفل إلى المستوى الأمثل في النمو والتعلم.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>الرؤية</h2>\r\n\r\n<p>أن ينمو ويتعلم الطفل في مجتمعات تكرس كل جهودها لضمان وصول الطفل إلى المستوى الأمثل في النمو والتعلم</p>\r\n\r\n<p>الرسالة</p>\r\n\r\n<p>العمل على الوصول إلى تعلم عالي الجودة لكل الأطفال في العالم العربي من الميلاد وحتى سن الثامنة عن طريق الممارسات والسياسات والبحوث والدعم المهني لكل من يهتم بتربية وتعليم الطفل والعمل على ضمان حقوقه.</p>\r\n\r\n<h2>قيمنا</h2>\r\n\r\n<p>نقدر الطفولة كمرحلة فريدة و لها تأثير قوي في حياة الإنسان.</p>\r\n\r\n<p>نستند في انشطتنا على خصائص نمو الطفل وتعلمه.</p>\r\n\r\n<p>نثمن وندعم العلاقة بين الطفل و الأسرة.</p>\r\n\r\n<p>نؤمن بأن الأطفال يفهمون ويٌدعمون بشكل أفضل في سياق الأسرة والثقافة والمجتمع.</p>\r\n\r\n<p>نحترم هوية الطفل وتفرده .</p>\r\n\r\n<p>نحترم التنوع الثقافي بين الأطفال و الأسر و زميلات العمل.</p>\r\n\r\n<p>ندرك بأن الأطفال و الأسرة والمعلمات يحققون كامل إمكاناتهم في سياق العلاقات القائمة على الثقة والاحترام.</p>\r\n\r\n<h2>معتقداتنا</h2>\r\n\r\n<p>التميز والابداع.</p>\r\n\r\n<p>الشفافية</p>\r\n\r\n<p>التأمل والمراجعة</p>\r\n\r\n<p>المساواة و اتاحة الفرص</p>\r\n\r\n<p>علاقات التعاون مع الآخرين.</p>\r\n\r\n<p>نشارك في المسؤولية في عملنا مع الآخرين.</p>\r\n\r\n<p>نحن نكرس الوقت والجهد لضمان المشاركة المتنوعة والنتائج الأكثر فعالية.</p>\r\n\r\n<h2>أهدافنا الاستراتيجية</h2>\r\n\r\n<p>اتاحة تعلم ملائم نمائياً ذات جودة عالية للطفلفي مرحلة الطفولة المبكرة.</p>\r\n\r\n<p>تميز مهنة تربية الطفولة المبكرة وأن تلعب دور هام في المجتمع.</p>\r\n\r\n<p>وصول المؤسسة العلمية لتربية الطفولة المبكرة إلى مكانة هامة، ومصداقية، ومحط أنظار المهنيين في تربية الطفولة المبكرة.</p>\r\n\r\n<p>أن تغرس المؤسسة القيادة وتحتضن الاستراتيجيات الإبداعية التي تدفع المجال، والمهنة ، وأنظمة التعلم المبكر إلى الأمام.</p>\r\n\r\n<h2>أنشطتنا:</h2>\r\n\r\n<p>البرامج التدريبية الموجه للمهنيين في تربية الطفولة المبكرة لدعم النمو المهني المستدام.</p>\r\n\r\n<p>تطوير أبحاث علمية جديدة في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>تقديم استشارات، و دورات للوالدين بالتعاون مع الجهات الخاصة والعامة ذات الصلة.</p>\r\n\r\n<p>تقديم خدمات استشارية للباحثين في مجال تربية الطفولة المبكرة .</p>\r\n\r\n<p>عقد ملتقى تدريبي سنوي لأعضاء هيئة التدريس والمعلمات، والمهتمين بمرحلة الطفولة المبكرة.</p>\r\n\r\n<p>عقد مؤتمر سنوي دولي يصاحبه معرض للكتاب في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>عقد ندوات علمية متخصصة في مجالات الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية ربع سنوية محكمة لمجال البحث في تربية الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية باللغة الإنجليزية ربع سنوية محكمة لمجال البحث في تربية الطفولة المبكرة.</p>\r\n\r\n<p>اصدار دورية علمية محكمة ربع سنوية لدراسات الطفولة المرتبطة بنمو وتعلم الطفل( طب الأطفال وأبحاث الدماغ- أدب و فنون الطفل- إعلام وتقنية الطفل)</p>\r\n\r\n<p>اصدار مجلة شهرية تتناول مجالات تربية وتعلم الطفل وأحدث المستجدات في المجال.</p>\r\n\r\n<p>ترجمة المؤلفات العالمية عالية الجودة في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>تقديم الاستشارات والحلول للمؤسسات والهيئات و الشركات التعليمية، والجامعات.</p>\r\n\r\n<p>وضع ميثاق الأخلاق المهني للمهنيين في مجال تربية الطفولة المبكرة.</p>\r\n\r\n<p>وضع معايير عربية لاعتماد وضمان جودة برامج اعداد معلمات الطفولة المبكرة.</p>\r\n\r\n<p>اعتماد برامج اعداد معلمات الطفولة المبكرة.</p>\r\n\r\n<p>وضع معايير عربية لاعتماد وضمان جودة برامج الأطفال من الميلاد وحتى سن الثامنة.</p>\r\n\r\n<p>اعتماد برامج الطفولة المبكرة.</p>\r\n\r\n<p>انشاء اكاديمية للتدريب و لاعتماد وضمان جودة برامج الطفولة المبكرة.</p>\r\n\r\n<p>نشر المؤلفات المتميزة الموجهة للأطفال، الباحثين، والمعلمات، و الوالدين.</p>\r\n\r\n<p>اقامة شراكة وبرتوكولات تعاون مع المنظمات الدولية المماثلة والحصول على عضويتها لأعضاء المؤسسة.</p>\r\n\r\n<p>التحالف والتوأمة مع الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC</p>\r\n\r\n<p>تشجيع التواصل بين الباحثين العرب لتكوين مجموعات بحثية.</p>'),
-(151, 87, 'ar', 'مجلس الأمناء', '<p>مجلس أمناء المؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<table border=\"1\" cellspacing=\"0\" style=\"height:2331px; width:100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>1</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. محمد خليفة إسماعيل</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مشارك وخبير تربية الطفولة المبكرة</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p><span dir=\"LTR\">Khalifa_ece @arabece.com</span></p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>رئيس مجلس الأمناء</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. محمد خليفة\" src=\"/uploads/images/image001.jpg\" style=\"height:147px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>2</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>أ.د./ فاتن زكريا النمر</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ برامج الطفل- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Fzelnemer@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>النائب و الأمين العام</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"أ.د./ فاتن زكريا النمر\" src=\"/uploads/images/image002.jpg\" style=\"height:139px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>3</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.منى سامح أبوهشيمة</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مشارك رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>mona@ arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>مدير المؤسسة</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.منى سامح أبوهشيمة\" src=\"/uploads/images/image003.jpg\" style=\"height:118px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>4</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. بثينة محمد حسين علي</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال -جامعة المجمعة</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Bm.ali@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. بثينة محمد حسين علي\" src=\"/uploads/images/image004.jpg\" style=\"height:200px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>5</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. ايمان محمد عبد القادر عطوي</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد الصحة النفسية &ndash;جامعة الإمام عبدالرحمن بن فيصل</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>emyatwy@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. ايمان محمد عبد القادر عطوي\" src=\"/uploads/images/image005.jpg\" style=\"height:199px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>6</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. صابرين عبد العاطي لبيب بدر الدين</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة الإسكندرية</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Sabrin@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. صابرين عبد العاطي لبيب بدر الدين\" src=\"/uploads/images/image006.jpg\" style=\"height:267px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>7</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.عزة محمد رزق شرف الدين</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال &ndash; جامعة القصيم</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>azzash@ arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.عزة محمد رزق شرف الدين\" src=\"/uploads/images/image007.jpg\" style=\"height:169px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>8</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.رفقه مكرم برسوم</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد علم نفس تربوي &ndash;جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>rmbarsom@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.رفقه مكرم برسوم\" src=\"/uploads/images/image008.jpg\" style=\"height:150px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>9</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. صفاء سيد عبدالعزيز بسيوني</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>محاضر الصحة النفسية-جامعة بنها</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Safa@rabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. صفاء سيد عبدالعزيز بسيوني\" src=\"/uploads/images/image009.jpg\" style=\"height:196px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>10</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.رشا محمد عبدالدايم</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>rosha@ rabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.رشا محمد عبدالدايم\" src=\"/uploads/images/image010(2).jpg\" style=\"height:197px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>11</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>أ.شيماء رمضان رزق</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أخصائية تقنية المعلومات</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>shimaa@arbece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>أمين الصندوق</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"أ.شيماء رمضان رزق\" src=\"/uploads/images/image011.jpg\" style=\"height:152px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>المجلس الاستشاري العلمي للمؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<table border=\"1\" cellspacing=\"0\" style=\"width:697.4pt\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>1</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/ منى محمد علي جاد</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p><span dir=\"RTL\">أستاذ تربية الطفل العميد الأسبق لكلية التربية للطفولة المبكرة جامعة القاهرة</span></p>\r\n\r\n			<p>&nbsp;</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:143.0pt\">\r\n			<p>mona@arabece.com</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>2</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/.ثناءعبدالودودالشمري</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:143.0pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>3</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ. د/ لمياء ياسين زغير</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>أستاذ علم النفس التربويطفولة</p>\r\n\r\n			<p>الجامعةالمستنصرية</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:143.0pt\">\r\n			<p><a href=\"mailto:Dr.lamya.yassin@hotmail.com\" target=\"_blank\">Dr.lamya.yassin@hotmail.com</a></p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>4</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ. د/ غادة علي هادي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>علم نفس النمو</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:143.0pt\">\r\n			<p>ghada_alhashim@yahoo.com</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>5</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/ انتصار هاشم الزيدي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>استاذ مساعدعلم نفس النمو - كلية التربية ابن رشد &ndash;جامعة بغداد</p>\r\n			</td>\r\n			<td style=\"width:143.0pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>'),
-(152, 87, 'en', 'مجلس الأمناء', '<p>مجلس أمناء المؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<table border=\"1\" cellspacing=\"0\" style=\"height:2335px; width:905px\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>1</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. محمد خليفة إسماعيل</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مشارك وخبير تربية الطفولة المبكرة</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p><span dir=\"LTR\">Khalifa_ece @arabece.com</span></p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>رئيس مجلس الأمناء</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. محمد خليفة\" src=\"/uploads/images/image001.jpg\" style=\"height:147px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>2</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>أ.د./ فاتن زكريا النمر</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ برامج الطفل- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Fzelnemer@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>النائب و الأمين العام</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"أ.د./ فاتن زكريا النمر\" src=\"/uploads/images/image002.jpg\" style=\"height:139px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>3</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.منى سامح أبوهشيمة</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مشارك رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>mona@ arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>مدير المؤسسة</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.منى سامح أبوهشيمة\" src=\"/uploads/images/image003.jpg\" style=\"height:118px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>4</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. بثينة محمد حسين علي</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال -جامعة المجمعة</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Bm.ali@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. بثينة محمد حسين علي\" src=\"/uploads/images/image004.jpg\" style=\"height:200px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>5</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. ايمان محمد عبد القادر عطوي</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد الصحة النفسية &ndash;جامعة الإمام عبدالرحمن بن فيصل</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>emyatwy@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. ايمان محمد عبد القادر عطوي\" src=\"/uploads/images/image005.jpg\" style=\"height:199px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>6</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. صابرين عبد العاطي لبيب بدر الدين</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة الإسكندرية</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Sabrin@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. صابرين عبد العاطي لبيب بدر الدين\" src=\"/uploads/images/image006.jpg\" style=\"height:267px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>7</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.عزة محمد رزق شرف الدين</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال &ndash; جامعة القصيم</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>azzash@ arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.عزة محمد رزق شرف الدين\" src=\"/uploads/images/image007.jpg\" style=\"height:169px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>8</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.رفقه مكرم برسوم</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد علم نفس تربوي &ndash;جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>rmbarsom@arabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.رفقه مكرم برسوم\" src=\"/uploads/images/image008.jpg\" style=\"height:150px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>9</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د. صفاء سيد عبدالعزيز بسيوني</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>محاضر الصحة النفسية-جامعة بنها</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>Safa@rabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د. صفاء سيد عبدالعزيز بسيوني\" src=\"/uploads/images/image009.jpg\" style=\"height:196px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>10</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>د.رشا محمد عبدالدايم</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>rosha@ rabece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"د.رشا محمد عبدالدايم\" src=\"/uploads/images/image010(2).jpg\" style=\"height:197px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:31.45pt\">\r\n			<p>11</p>\r\n			</td>\r\n			<td style=\"width:163.0pt\">\r\n			<p>أ.شيماء رمضان رزق</p>\r\n			</td>\r\n			<td style=\"width:155.95pt\">\r\n			<p>أخصائية تقنية المعلومات</p>\r\n			</td>\r\n			<td style=\"width:127.55pt\">\r\n			<p>shimaa@arbece.com</p>\r\n			</td>\r\n			<td style=\"width:94.05pt\">\r\n			<p>أمين الصندوق</p>\r\n			</td>\r\n			<td style=\"width:125.4pt\">\r\n			<p><span dir=\"LTR\"><img alt=\"أ.شيماء رمضان رزق\" src=\"/uploads/images/image011.jpg\" style=\"height:152px; width:150px\" /> </span></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>المجلس الاستشاري العلمي للمؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<table border=\"1\" cellspacing=\"0\" style=\"height:480px; width:930px\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>1</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/ منى محمد علي جاد</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p><span dir=\"RTL\">أستاذ تربية الطفل العميد الأسبق لكلية التربية للطفولة المبكرة جامعة القاهرة</span></p>\r\n\r\n			<p>&nbsp;</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>2</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/.ثناءعبدالودودالشمري</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>3</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ. د/ لمياء ياسين زغير</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>أستاذ علم النفس التربويطفولة</p>\r\n\r\n			<p>الجامعةالمستنصرية</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>4</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ. د/ غادة علي هادي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>علم نفس النمو</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style=\"width:30.9pt\">\r\n			<p>5</p>\r\n			</td>\r\n			<td style=\"width:128.15pt\">\r\n			<p>أ.د/ انتصار هاشم الزيدي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:182.95pt\">\r\n			<p>استاذ مساعدعلم نفس النمو - كلية التربية ابن رشد &ndash;جامعة بغداد</p>\r\n			</td>\r\n			<td style=\"width:91.1pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style=\"width:121.3pt\">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>'),
-(153, 88, 'ar', 'رئيس المؤسسة', '<p>د.محمد خليفة إسماعيل متولي، خبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية البريطانية لتربية الطفولة المبكرة</p>\r\n\r\n<p><a href=\"http://sfece.isdegypt.com/uploads/files/69f45_%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9%201-2018.doc\">حمل السيرة الذاتية للدكتور محمد خليفة</a></p>'),
-(154, 88, 'en', 'رئيس المؤسسة', '<p>د.محمد خليفة إسماعيل متولي، خبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية</p>\r\n\r\n<p>البريطانية لتربية الطفولة المبكرة</p>\r\n\r\n<p><a href=\"http://sfece.isdegypt.com/uploads/files/69f45_%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9%201-2018.doc\">حمل السيرة الذاتية للدكتور محمد خليفة</a></p>'),
+(151, 87, 'ar', 'مجلس الأمناء', '<p>مجلس أمناء المؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<table border="1" cellspacing="0" style="height:2331px; width:100%">\r\n	<tbody>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>1</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. محمد خليفة إسماعيل</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مشارك وخبير تربية الطفولة المبكرة</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p><span dir="LTR">Khalifa_ece @arabece.com</span></p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>رئيس مجلس الأمناء</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. محمد خليفة" src="/uploads/images/image001.jpg" style="height:147px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>2</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>أ.د./ فاتن زكريا النمر</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ برامج الطفل- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Fzelnemer@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>النائب و الأمين العام</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="أ.د./ فاتن زكريا النمر" src="/uploads/images/image002.jpg" style="height:139px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>3</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.منى سامح أبوهشيمة</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مشارك رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>mona@ arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>مدير المؤسسة</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.منى سامح أبوهشيمة" src="/uploads/images/image003.jpg" style="height:118px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>4</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. بثينة محمد حسين علي</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال -جامعة المجمعة</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Bm.ali@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. بثينة محمد حسين علي" src="/uploads/images/image004.jpg" style="height:200px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>5</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. ايمان محمد عبد القادر عطوي</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد الصحة النفسية &ndash;جامعة الإمام عبدالرحمن بن فيصل</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>emyatwy@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. ايمان محمد عبد القادر عطوي" src="/uploads/images/image005.jpg" style="height:199px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>6</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. صابرين عبد العاطي لبيب بدر الدين</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة الإسكندرية</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Sabrin@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. صابرين عبد العاطي لبيب بدر الدين" src="/uploads/images/image006.jpg" style="height:267px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>7</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.عزة محمد رزق شرف الدين</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال &ndash; جامعة القصيم</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>azzash@ arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.عزة محمد رزق شرف الدين" src="/uploads/images/image007.jpg" style="height:169px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>8</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.رفقه مكرم برسوم</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد علم نفس تربوي &ndash;جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>rmbarsom@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.رفقه مكرم برسوم" src="/uploads/images/image008.jpg" style="height:150px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>9</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. صفاء سيد عبدالعزيز بسيوني</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>محاضر الصحة النفسية-جامعة بنها</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Safa@rabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. صفاء سيد عبدالعزيز بسيوني" src="/uploads/images/image009.jpg" style="height:196px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>10</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.رشا محمد عبدالدايم</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>rosha@ rabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.رشا محمد عبدالدايم" src="/uploads/images/image010(2).jpg" style="height:197px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>11</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>أ.شيماء رمضان رزق</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أخصائية تقنية المعلومات</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>shimaa@arbece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>أمين الصندوق</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="أ.شيماء رمضان رزق" src="/uploads/images/image011.jpg" style="height:152px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>المجلس الاستشاري العلمي للمؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<table border="1" cellspacing="0" style="width:697.4pt">\r\n	<tbody>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>1</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/ منى محمد علي جاد</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p><span dir="RTL">أستاذ تربية الطفل العميد الأسبق لكلية التربية للطفولة المبكرة جامعة القاهرة</span></p>\r\n\r\n			<p>&nbsp;</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:143.0pt">\r\n			<p>mona@arabece.com</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>2</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/.ثناءعبدالودودالشمري</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:143.0pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>3</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ. د/ لمياء ياسين زغير</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>أستاذ علم النفس التربويطفولة</p>\r\n\r\n			<p>الجامعةالمستنصرية</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:143.0pt">\r\n			<p><a href="mailto:Dr.lamya.yassin@hotmail.com" target="_blank">Dr.lamya.yassin@hotmail.com</a></p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>4</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ. د/ غادة علي هادي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>علم نفس النمو</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:143.0pt">\r\n			<p>ghada_alhashim@yahoo.com</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>5</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/ انتصار هاشم الزيدي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>استاذ مساعدعلم نفس النمو - كلية التربية ابن رشد &ndash;جامعة بغداد</p>\r\n			</td>\r\n			<td style="width:143.0pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>'),
+(152, 87, 'en', 'مجلس الأمناء', '<p>مجلس أمناء المؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<table border="1" cellspacing="0" style="height:2335px; width:905px">\r\n	<tbody>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>1</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. محمد خليفة إسماعيل</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مشارك وخبير تربية الطفولة المبكرة</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p><span dir="LTR">Khalifa_ece @arabece.com</span></p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>رئيس مجلس الأمناء</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. محمد خليفة" src="/uploads/images/image001.jpg" style="height:147px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>2</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>أ.د./ فاتن زكريا النمر</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ برامج الطفل- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Fzelnemer@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>النائب و الأمين العام</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="أ.د./ فاتن زكريا النمر" src="/uploads/images/image002.jpg" style="height:139px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>3</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.منى سامح أبوهشيمة</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مشارك رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>mona@ arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>مدير المؤسسة</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.منى سامح أبوهشيمة" src="/uploads/images/image003.jpg" style="height:118px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>4</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. بثينة محمد حسين علي</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال -جامعة المجمعة</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Bm.ali@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. بثينة محمد حسين علي" src="/uploads/images/image004.jpg" style="height:200px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>5</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. ايمان محمد عبد القادر عطوي</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد الصحة النفسية &ndash;جامعة الإمام عبدالرحمن بن فيصل</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>emyatwy@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. ايمان محمد عبد القادر عطوي" src="/uploads/images/image005.jpg" style="height:199px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>6</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. صابرين عبد العاطي لبيب بدر الدين</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة الإسكندرية</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Sabrin@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. صابرين عبد العاطي لبيب بدر الدين" src="/uploads/images/image006.jpg" style="height:267px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>7</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.عزة محمد رزق شرف الدين</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال &ndash; جامعة القصيم</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>azzash@ arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.عزة محمد رزق شرف الدين" src="/uploads/images/image007.jpg" style="height:169px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>8</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.رفقه مكرم برسوم</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد علم نفس تربوي &ndash;جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>rmbarsom@arabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.رفقه مكرم برسوم" src="/uploads/images/image008.jpg" style="height:150px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>9</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د. صفاء سيد عبدالعزيز بسيوني</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>محاضر الصحة النفسية-جامعة بنها</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>Safa@rabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د. صفاء سيد عبدالعزيز بسيوني" src="/uploads/images/image009.jpg" style="height:196px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>10</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>د.رشا محمد عبدالدايم</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أستاذ مساعد رياض الأطفال- جامعة حلوان</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>rosha@ rabece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>عضو</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="د.رشا محمد عبدالدايم" src="/uploads/images/image010(2).jpg" style="height:197px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:31.45pt">\r\n			<p>11</p>\r\n			</td>\r\n			<td style="width:163.0pt">\r\n			<p>أ.شيماء رمضان رزق</p>\r\n			</td>\r\n			<td style="width:155.95pt">\r\n			<p>أخصائية تقنية المعلومات</p>\r\n			</td>\r\n			<td style="width:127.55pt">\r\n			<p>shimaa@arbece.com</p>\r\n			</td>\r\n			<td style="width:94.05pt">\r\n			<p>أمين الصندوق</p>\r\n			</td>\r\n			<td style="width:125.4pt">\r\n			<p><span dir="LTR"><img alt="أ.شيماء رمضان رزق" src="/uploads/images/image011.jpg" style="height:152px; width:150px" /> </span></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>المجلس الاستشاري العلمي للمؤسسة العربية لتربية الطفولة المبكرة</p>\r\n\r\n<table border="1" cellspacing="0" style="height:480px; width:930px">\r\n	<tbody>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>1</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/ منى محمد علي جاد</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p><span dir="RTL">أستاذ تربية الطفل العميد الأسبق لكلية التربية للطفولة المبكرة جامعة القاهرة</span></p>\r\n\r\n			<p>&nbsp;</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>2</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/.ثناءعبدالودودالشمري</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>3</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ. د/ لمياء ياسين زغير</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>أستاذ علم النفس التربويطفولة</p>\r\n\r\n			<p>الجامعةالمستنصرية</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>4</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ. د/ غادة علي هادي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>علم نفس النمو</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="width:30.9pt">\r\n			<p>5</p>\r\n			</td>\r\n			<td style="width:128.15pt">\r\n			<p>أ.د/ انتصار هاشم الزيدي</p>\r\n\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:182.95pt">\r\n			<p>استاذ مساعدعلم نفس النمو - كلية التربية ابن رشد &ndash;جامعة بغداد</p>\r\n			</td>\r\n			<td style="width:91.1pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td style="width:121.3pt">\r\n			<p>&nbsp;</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>'),
+(153, 88, 'ar', 'رئيس المؤسسة', '<p>د.محمد خليفة إسماعيل متولي، خبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية البريطانية لتربية الطفولة المبكرة</p>\r\n\r\n<p><a href="http://sfece.isdegypt.com/uploads/files/69f45_%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9%201-2018.doc">حمل السيرة الذاتية للدكتور محمد خليفة</a></p>'),
+(154, 88, 'en', 'رئيس المؤسسة', '<p>د.محمد خليفة إسماعيل متولي، خبير تربية الطفولة المبكرة، مراجع اعتماد وجودة برامج الطفولة المبكرة، وسفير اللغة لدى الجمعية الوطنية الأمريكية لتربية الأطفال الصغار NAEYC وعضو الجمعية</p>\r\n\r\n<p>البريطانية لتربية الطفولة المبكرة</p>\r\n\r\n<p><a href="http://sfece.isdegypt.com/uploads/files/69f45_%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9%201-2018.doc">حمل السيرة الذاتية للدكتور محمد خليفة</a></p>'),
 (155, 89, 'ar', 'المجلة العربية لتربية الطفولة المبكرة', '<p>دورية علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات في تربية الطفولة المبكرة للأطفال من الميلاد وحتى سن الثامنة.</p>'),
 (156, 89, 'en', 'المجلة العربية لتربية الطفولة المبكرة', '<p>دورية علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات في تربية الطفولة المبكرة للأطفال من الميلاد وحتى سن الثامنة.</p>'),
-(157, 90, 'ar', 'المجلة العربية لدرسات الطفولة', '<p>مجلة علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات المرتبطة بالطفل في شتى المجالات.</p>'),
-(158, 90, 'en', 'المجلة العربية لدرسات الطفولة', '<p>مجلة علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات المرتبطة بالطفل في شتى المجالات.</p>'),
+(157, 90, 'ar', 'المجلة العربية لدراسات الطفولة', '<p>مجلة علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات المرتبطة بالطفل في شتى المجالات.</p>'),
+(158, 90, 'en', 'المجلة العربية لدراسات الطفولة', '<p>مجلة علمية متخصصة محكمة تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة. تهتم بنشر البحوث والدراسات المرتبطة بالطفل في شتى المجالات.</p>'),
 (159, 91, 'ar', 'Arab Journal for Early Childhood Education', '<p>دورية علمية متخصصة محكمة دوليا تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة . تهتم بنشر البحوث والدراسات&nbsp; باللغة الإنجليزية المرتبطة بالطفل</p>'),
 (160, 91, 'en', 'Arab Journal for Early Childhood Education', '<p>دورية علمية متخصصة محكمة دوليا تصدر عن المؤسسة العلمية لتربية الطفولة المبكرة . تهتم بنشر البحوث والدراسات&nbsp; باللغة الإنجليزية المرتبطة بالطفل</p>'),
-(163, 93, 'ar', 'الأباء والأمهات', '<p>متخصصون في تقديم تقديم الحلول، الاستشارات، الخدمات، والتدريب للمؤسسات، والهيئات، الحضانات، الروضات، والوالدين لدعم تربية الطفل وتعلمه من الميلاد وحتى ثماني سنوات.</p>\r\n\r\n<p><a href=\"http://www.arabece.com/ar/\" target=\"_blank\">اضغط هنا لزيارة الموقع</a></p>'),
-(164, 93, 'en', 'Parents', '<p>متخصصون في تقديم تقديم الحلول، الاستشارات، الخدمات، والتدريب للمؤسسات، والهيئات، الحضانات، الروضات، والوالدين لدعم تربية الطفل وتعلمه من الميلاد وحتى ثماني سنوات.</p>\r\n\r\n<p><a href=\"http://www.arabece.com/ar/\" target=\"_blank\">اضغط هنا لزيارة الموقع</a></p>'),
+(163, 93, 'ar', 'الأباء والأمهات', '<p>متخصصون في تقديم تقديم الحلول، الاستشارات، الخدمات، والتدريب للمؤسسات، والهيئات، الحضانات، الروضات، والوالدين لدعم تربية الطفل وتعلمه من الميلاد وحتى ثماني سنوات.</p>\r\n\r\n<p><a href="http://www.arabece.com/ar/" target="_blank">اضغط هنا لزيارة الموقع</a></p>'),
+(164, 93, 'en', 'Parents', '<p>متخصصون في تقديم تقديم الحلول، الاستشارات، الخدمات، والتدريب للمؤسسات، والهيئات، الحضانات، الروضات، والوالدين لدعم تربية الطفل وتعلمه من الميلاد وحتى ثماني سنوات.</p>\r\n\r\n<p><a href="http://www.arabece.com/ar/" target="_blank">اضغط هنا لزيارة الموقع</a></p>'),
 (165, 94, 'ar', 'مركز الترجمة والنشر', '<p>هو مركز تابع للمؤسسة العلمية لتربية الطفولة يهدف إلى نشر وترجمة المؤلفات المتنوعه المرتبطة بمجال تربية الطفولة المبكرة، ويسعى المركز إلى النشر لكافة أعضاء المؤسسة والمختصين بعد تحكيم المؤلفات من قبل لجان التحكيم المختصة</p>'),
 (166, 94, 'en', 'مركز الترجمة والنشر', '<p>هو مركز تابع للمؤسسة العلمية لتربية الطفولة يهدف إلى نشر وترجمة المؤلفات المتنوعه المرتبطة بمجال تربية الطفولة المبكرة، ويسعى المركز إلى النشر لكافة أعضاء المؤسسة والمختصين بعد تحكيم المؤلفات من قبل لجان التحكيم المختصة</p>'),
 (167, 95, 'ar', 'البحث الأول', 'اي محتوى'),
@@ -757,12 +777,12 @@ INSERT INTO `sec_permissions` (`id`, `sec_group_id`, `controller`, `action`, `cr
 (146, 1, 'App\\Http\\Controllers\\Dashboard\\MenuController', 'destroy', 1, '2018-05-14 04:34:05', NULL, NULL),
 (175, 2, 'App\\Http\\Controllers\\Dashboard\\DashboardController', 'index', 2, '2018-05-16 10:58:05', NULL, NULL),
 (176, 2, 'App\\Http\\Controllers\\Dashboard\\FileController', 'getFile', 2, '2018-05-17 13:37:05', NULL, NULL),
-(177, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'index', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
-(178, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'show', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
-(179, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'edit', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
-(180, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'create', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
-(181, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'destroy', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
-(182, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'getFreeSlug', 2, '2018-05-17 19:21:05', NULL, '[[\"post_type_id\",\"=\",\"3\"]]'),
+(177, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'index', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
+(178, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'show', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
+(179, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'edit', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
+(180, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'create', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
+(181, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'destroy', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
+(182, 2, 'App\\Http\\Controllers\\Dashboard\\PostController', 'getFreeSlug', 2, '2018-05-17 19:21:05', NULL, '[["post_type_id","=","3"]]'),
 (183, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'index', 2, '2018-05-28 01:24:05', NULL, NULL),
 (184, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'show', 2, '2018-05-28 01:24:05', NULL, NULL),
 (185, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'edit', 2, '2018-05-28 01:24:05', NULL, NULL),
@@ -772,7 +792,7 @@ INSERT INTO `sec_permissions` (`id`, `sec_group_id`, `controller`, `action`, `cr
 (189, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'publish', 2, '2018-05-28 01:24:05', NULL, NULL),
 (190, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'unpublish', 2, '2018-05-28 01:24:05', NULL, NULL),
 (191, 1, 'App\\Http\\Controllers\\Dashboard\\PostController', 'dataTable', 2, '2018-05-28 01:24:05', NULL, NULL),
-(192, 1, 'App\\Http\\Controllers\\Dashboard\\UserController', 'index', 2, '2018-05-28 01:24:05', NULL, '[[\"account_level_id\",\">\",\"1\"]]'),
+(192, 1, 'App\\Http\\Controllers\\Dashboard\\UserController', 'index', 2, '2018-05-28 01:24:05', NULL, '[["account_level_id",">","1"]]'),
 (193, 1, 'App\\Http\\Controllers\\Dashboard\\UserController', 'show', 2, '2018-05-28 01:24:05', NULL, NULL),
 (194, 1, 'App\\Http\\Controllers\\Dashboard\\UserController', 'edit', 2, '2018-05-28 01:24:05', NULL, NULL),
 (195, 1, 'App\\Http\\Controllers\\Dashboard\\UserController', 'create', 2, '2018-05-28 01:24:05', NULL, NULL),
@@ -871,8 +891,8 @@ INSERT INTO `setting_translations` (`id`, `setting_id`, `locale`, `value`) VALUE
 (14, 13, 'en', NULL),
 (15, 12, 'ar', NULL),
 (16, 12, 'en', NULL),
-(17, 11, 'ar', 'https://twitter.com/SFECE'),
-(18, 11, 'en', 'https://twitter.com/SFECE'),
+(17, 11, 'ar', 'https://twitter.com/SFECE2'),
+(18, 11, 'en', 'https://twitter.com/SFECE2'),
 (19, 10, 'ar', 'https://web.facebook.com/sffece'),
 (20, 10, 'en', 'https://web.facebook.com/sffece'),
 (21, 9, 'ar', NULL),
@@ -930,13 +950,12 @@ CREATE TABLE `tags` (
 --
 
 INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'مجلات علمية', '2018-05-31 17:13:40', '2018-05-31 17:13:40'),
-(3, 'البحوث والدراسات', '2018-05-31 17:13:40', '2018-05-31 17:13:40'),
-(4, 'المجلات التعليمية', '2018-05-31 17:17:37', '2018-05-31 17:17:37'),
 (12, 'تربية الطفولة المبكرة', '2018-05-31 17:29:25', '2018-05-31 17:29:25'),
 (13, 'الحلول المقترحة للوالدين', '2018-05-31 17:29:25', '2018-05-31 17:29:25'),
 (14, 'تربية الأطفال', '2018-05-31 17:29:25', '2018-05-31 17:29:25'),
-(15, 'دليل الوالدين لتربة الأطفال', '2018-05-31 17:29:25', '2018-05-31 17:29:25');
+(15, 'دليل الوالدين لتربة الأطفال', '2018-05-31 17:29:25', '2018-05-31 17:29:25'),
+(19, 'البحوث والدراسات', '2018-07-06 17:48:27', '2018-07-06 17:48:27'),
+(20, 'المجلات العلمية', '2018-07-06 17:48:27', '2018-07-06 17:48:27');
 
 -- --------------------------------------------------------
 
@@ -971,7 +990,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `country`, `city`, `phon
 (2, 'mahmoud gomaa', 'mahmoud_g1977@yahoo.com', '$2y$10$B1NF7Eudg2wxMSYAS.0cGuFNlY8zz/Nsq/eH4kYZ2fwNkr4F5HAq6', 'United States', 'New Haven', NULL, 1, NULL, NULL, 0, 'bWFobW91ZF9nMTk3N0B5YWhvby5jb20=', 'gMVBjYE6uF2FY3JaIGrE2hq72xNNuK9ALnB0Tb8iVobKj23ftRk8z4OMhunC', '2018-05-16 08:10:16', '2018-05-16 08:30:06', 1),
 (4, 'mahmoud', 'mahmoudg77@gmail.com', '$2y$10$jdpH0WxUPwrxrc52Ciwa.uC9tAY2fucunKNtKK1BKU3Jvb7/1AocW', 'United States', 'New Haven', '201143184244', 1, NULL, 2, 1, 'bWFobW91ZGc3N0BnbWFpbC5jb20=', '6aACrhFBQlLpcOqEZPy0DinAixW2LA1lQ3Px9gVDp2FMGkxRlf8dCiIcZFRX', '2018-05-16 11:02:20', '2018-06-22 18:54:47', 1),
 (5, 'AlyHamdy', 'aliit_spider@yahoo.com', '$2y$10$4tq21kzo0HuiFUMyWivHP.WppyKlyjXg1k5hyStf99sERxBR2GKoG', 'Egypt', 'Cairo', '', 1, NULL, NULL, 0, 'YWxpaXRfc3BpZGVyQHlhaG9vLmNvbQ==', 'Z3v2iNrsJZc9RhIbTYRpwqKW9ISMDyFocOed0Khm2SfGHFQxwoHAqFgzj6St', '2018-06-12 20:44:14', '2018-06-12 20:44:14', 2),
-(7, 'Gomaa', 'support@smseg.com', '$2y$10$DE7VtqHKtvd.GIlZ.8TwlO0XK8uS.r0cgfnL35PMkEtzAG9k31I6a', 'Egypt', 'Cairo', '01143184244', 1, NULL, NULL, 1, 'c3VwcG9ydEBzbXNlZy5jb20=', 'RyFawkM8TxBuyaeDKcs9D8yJTUTBiuYCfqk9AbXx25mYmap9rbnR5Uz762IH', '2018-06-22 20:27:02', '2018-06-22 20:28:32', 2);
+(7, 'Gomaa', 'support@smseg.com', '$2y$10$DE7VtqHKtvd.GIlZ.8TwlO0XK8uS.r0cgfnL35PMkEtzAG9k31I6a', 'Egypt', 'Cairo', '01143184244', 1, NULL, NULL, 1, 'c3VwcG9ydEBzbXNlZy5jb20=', 'RyFawkM8TxBuyaeDKcs9D8yJTUTBiuYCfqk9AbXx25mYmap9rbnR5Uz762IH', '2018-06-22 20:27:02', '2018-06-22 20:28:32', 2),
+(8, 'د. محمد', 'sfece.com@gmail.com', '$2y$10$fjrEtkMMrJU8eG1/wro1pOUVaoDH.yah4K68RWXCBT9Ir1xv/57hu', 'Egypt', 'Cairo', '01020556551', 1, NULL, 2, 0, 'c2ZlY2UuY29tQGdtYWlsLmNvbQ==', NULL, '2018-07-04 16:16:02', '2018-07-06 17:41:31', 1);
 
 -- --------------------------------------------------------
 
@@ -1486,7 +1506,600 @@ INSERT INTO `visits` (`id`, `client_ip`, `client_country`, `client_city`, `model
 (488, '197.126.144.55', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-22 20:52:30', '2018-06-22 20:52:30'),
 (489, '197.126.144.55', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-22 20:56:04', '2018-06-22 20:56:04'),
 (490, '197.126.144.55', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-22 20:58:04', '2018-06-22 20:58:04'),
-(491, '197.126.144.55', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-22 20:59:02', '2018-06-22 20:59:02');
+(491, '197.126.144.55', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-22 20:59:02', '2018-06-22 20:59:02'),
+(492, '197.126.144.55', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-22 21:20:50', '2018-06-22 21:20:50'),
+(493, '197.126.144.55', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-22 21:20:51', '2018-06-22 21:20:51'),
+(494, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Tag', 1, '2018-06-22 21:42:06', '2018-06-22 21:42:06'),
+(495, '94.130.167.248', 'Germany', 'Falkenstein', 'HomePage', 0, '2018-06-22 21:52:09', '2018-06-22 21:52:09'),
+(496, '66.249.65.108', 'United States', 'Ashburn', 'App\\Models\\Tag', 3, '2018-06-22 22:04:06', '2018-06-22 22:04:06'),
+(497, '66.249.65.120', 'United States', 'Newark', 'App\\Models\\Tag', 4, '2018-06-22 22:15:06', '2018-06-22 22:15:06'),
+(498, '66.249.65.108', 'United States', 'Ashburn', 'App\\Models\\Post', 85, '2018-06-22 22:26:06', '2018-06-22 22:26:06'),
+(499, '118.24.1.220', 'China', 'Beijing', 'HomePage', 0, '2018-06-22 23:11:07', '2018-06-22 23:11:07'),
+(500, '196.128.4.210', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-22 23:43:45', '2018-06-22 23:43:45'),
+(501, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Post', 85, '2018-06-23 00:26:55', '2018-06-23 00:26:55'),
+(502, '184.154.36.175', 'United States', 'Moline', 'HomePage', 0, '2018-06-23 02:34:29', '2018-06-23 02:34:29'),
+(503, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-23 02:34:36', '2018-06-23 02:34:36'),
+(504, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-06-23 02:34:37', '2018-06-23 02:34:37'),
+(505, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-06-23 02:34:41', '2018-06-23 02:34:41'),
+(506, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 58, '2018-06-23 02:34:43', '2018-06-23 02:34:43'),
+(507, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-23 02:34:45', '2018-06-23 02:34:45'),
+(508, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-23 02:34:47', '2018-06-23 02:34:47'),
+(509, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-06-23 02:34:49', '2018-06-23 02:34:49'),
+(510, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-23 02:34:49', '2018-06-23 02:34:49'),
+(511, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 3, '2018-06-23 02:34:50', '2018-06-23 02:34:50'),
+(512, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-23 02:34:51', '2018-06-23 02:34:51'),
+(513, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-06-23 02:34:52', '2018-06-23 02:34:52'),
+(514, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-06-23 02:34:52', '2018-06-23 02:34:52'),
+(515, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-23 02:34:53', '2018-06-23 02:34:53'),
+(516, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-23 02:34:54', '2018-06-23 02:34:54'),
+(517, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-06-23 02:34:55', '2018-06-23 02:34:55'),
+(518, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-06-23 02:34:56', '2018-06-23 02:34:56'),
+(519, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-23 02:35:01', '2018-06-23 02:35:01'),
+(520, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 58, '2018-06-23 02:35:02', '2018-06-23 02:35:02'),
+(521, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-23 02:35:03', '2018-06-23 02:35:03'),
+(522, '184.154.36.175', 'United States', 'Moline', 'HomePage', 0, '2018-06-23 02:35:05', '2018-06-23 02:35:05'),
+(523, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 3, '2018-06-23 02:35:06', '2018-06-23 02:35:06'),
+(524, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-23 02:35:07', '2018-06-23 02:35:07'),
+(525, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-23 02:35:08', '2018-06-23 02:35:08'),
+(526, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-06-23 02:35:09', '2018-06-23 02:35:09'),
+(527, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-23 02:35:10', '2018-06-23 02:35:10'),
+(528, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-23 02:35:11', '2018-06-23 02:35:11'),
+(529, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-23 02:35:11', '2018-06-23 02:35:11'),
+(530, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-06-23 02:35:12', '2018-06-23 02:35:12'),
+(531, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-06-23 02:35:13', '2018-06-23 02:35:13'),
+(532, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-06-23 02:35:13', '2018-06-23 02:35:13'),
+(533, '184.154.36.175', 'United States', 'Moline', 'HomePage', 0, '2018-06-23 02:35:14', '2018-06-23 02:35:14'),
+(534, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-06-23 02:35:15', '2018-06-23 02:35:15'),
+(535, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-06-23 02:35:16', '2018-06-23 02:35:16'),
+(536, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 4, '2018-06-23 02:35:16', '2018-06-23 02:35:16'),
+(537, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 4, '2018-06-23 02:35:17', '2018-06-23 02:35:17'),
+(538, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-23 02:35:18', '2018-06-23 02:35:18'),
+(539, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 1, '2018-06-23 02:35:18', '2018-06-23 02:35:18'),
+(540, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 4, '2018-06-23 02:35:19', '2018-06-23 02:35:19'),
+(541, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-06-23 02:35:20', '2018-06-23 02:35:20'),
+(542, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-23 02:35:20', '2018-06-23 02:35:20'),
+(543, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-06-23 02:35:21', '2018-06-23 02:35:21'),
+(544, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-06-23 02:35:21', '2018-06-23 02:35:21'),
+(545, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-06-23 02:35:23', '2018-06-23 02:35:23'),
+(546, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-23 02:35:24', '2018-06-23 02:35:24'),
+(547, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 3, '2018-06-23 02:35:26', '2018-06-23 02:35:26'),
+(548, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-06-23 02:35:27', '2018-06-23 02:35:27'),
+(549, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-23 02:35:27', '2018-06-23 02:35:27'),
+(550, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-06-23 02:35:28', '2018-06-23 02:35:28'),
+(551, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-23 02:35:28', '2018-06-23 02:35:28'),
+(552, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 1, '2018-06-23 02:35:29', '2018-06-23 02:35:29'),
+(553, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-23 02:35:30', '2018-06-23 02:35:30'),
+(554, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-06-23 02:35:31', '2018-06-23 02:35:31'),
+(555, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Tag', 1, '2018-06-23 02:35:31', '2018-06-23 02:35:31'),
+(556, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-06-23 02:35:32', '2018-06-23 02:35:32'),
+(557, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-06-23 02:35:32', '2018-06-23 02:35:32'),
+(558, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-06-23 02:35:33', '2018-06-23 02:35:33'),
+(559, '184.154.36.175', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-23 02:35:34', '2018-06-23 02:35:34'),
+(560, '105.86.227.173', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 02:55:34', '2018-06-23 02:55:34'),
+(561, '105.86.227.173', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 02:56:10', '2018-06-23 02:56:10'),
+(562, '105.86.227.173', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 02:56:14', '2018-06-23 02:56:14'),
+(563, '167.114.226.133', 'France', 'Roubaix', 'HomePage', 0, '2018-06-23 04:10:09', '2018-06-23 04:10:09'),
+(564, '34.211.155.119', 'United States', 'Boardman', 'HomePage', 0, '2018-06-23 04:16:59', '2018-06-23 04:16:59'),
+(565, '218.5.21.60', 'China', 'Fuzhou', 'HomePage', 0, '2018-06-23 04:33:35', '2018-06-23 04:33:35'),
+(566, '35.227.71.134', 'United States', 'Newark', 'HomePage', 0, '2018-06-23 07:03:45', '2018-06-23 07:03:45'),
+(567, '35.227.71.134', 'United States', 'Newark', 'HomePage', 0, '2018-06-23 07:03:46', '2018-06-23 07:03:46'),
+(568, '138.197.167.239', 'Canada', 'Toronto', 'HomePage', 0, '2018-06-23 14:26:43', '2018-06-23 14:26:43'),
+(569, '138.197.167.239', 'Canada', 'Toronto', 'HomePage', 0, '2018-06-23 14:26:43', '2018-06-23 14:26:43'),
+(570, '138.197.167.239', 'Canada', 'Toronto', 'HomePage', 0, '2018-06-23 14:26:43', '2018-06-23 14:26:43'),
+(571, '138.197.167.239', 'Canada', 'Toronto', 'HomePage', 0, '2018-06-23 14:26:43', '2018-06-23 14:26:43'),
+(572, '218.5.21.60', 'China', 'Fuzhou', 'HomePage', 0, '2018-06-23 14:48:02', '2018-06-23 14:48:02'),
+(573, '66.249.65.110', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-23 16:08:54', '2018-06-23 16:08:54'),
+(574, '66.249.65.110', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-23 16:10:02', '2018-06-23 16:10:02'),
+(575, '217.55.220.74', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 19:10:26', '2018-06-23 19:10:26'),
+(576, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-06-23 19:10:59', '2018-06-23 19:10:59'),
+(577, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Post', 87, '2018-06-23 19:11:06', '2018-06-23 19:11:06'),
+(578, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Post', 86, '2018-06-23 19:11:29', '2018-06-23 19:11:29'),
+(579, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 3, '2018-06-23 19:11:48', '2018-06-23 19:11:48'),
+(580, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Tag', 1, '2018-06-23 19:11:54', '2018-06-23 19:11:54'),
+(581, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Tag', 3, '2018-06-23 19:11:57', '2018-06-23 19:11:57'),
+(582, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 3, '2018-06-23 19:12:02', '2018-06-23 19:12:02'),
+(583, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Post', 89, '2018-06-23 19:12:05', '2018-06-23 19:12:05'),
+(584, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Post', 91, '2018-06-23 19:12:19', '2018-06-23 19:12:19'),
+(585, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 14, '2018-06-23 19:12:34', '2018-06-23 19:12:34'),
+(586, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 15, '2018-06-23 19:12:38', '2018-06-23 19:12:38'),
+(587, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 6, '2018-06-23 19:12:42', '2018-06-23 19:12:42'),
+(588, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Category', 7, '2018-06-23 19:12:46', '2018-06-23 19:12:46'),
+(589, '217.55.220.74', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-23 19:13:07', '2018-06-23 19:13:07'),
+(590, '217.55.220.74', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 19:13:50', '2018-06-23 19:13:50'),
+(591, '217.55.220.74', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 19:16:06', '2018-06-23 19:16:06'),
+(592, '217.55.220.74', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 19:21:26', '2018-06-23 19:21:26'),
+(593, '217.55.220.74', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-23 20:34:22', '2018-06-23 20:34:22'),
+(594, '218.5.21.60', 'China', 'Fuzhou', 'HomePage', 0, '2018-06-24 00:41:02', '2018-06-24 00:41:02'),
+(595, '197.124.91.118', 'Egypt', 'Heliopolis', 'HomePage', 0, '2018-06-24 01:17:40', '2018-06-24 01:17:40'),
+(596, '104.192.74.31', 'United States', 'Vernon Hills', 'HomePage', 0, '2018-06-24 01:25:47', '2018-06-24 01:25:47'),
+(597, '104.192.74.31', 'United States', 'Vernon Hills', 'HomePage', 0, '2018-06-24 01:25:48', '2018-06-24 01:25:48'),
+(598, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 88, '2018-06-24 01:25:49', '2018-06-24 01:25:49'),
+(599, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 88, '2018-06-24 01:25:49', '2018-06-24 01:25:49'),
+(600, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 86, '2018-06-24 01:25:50', '2018-06-24 01:25:50'),
+(601, '104.192.74.31', 'United States', 'Vernon Hills', 'HomePage', 0, '2018-06-24 01:25:50', '2018-06-24 01:25:50'),
+(602, '104.192.74.31', 'United States', 'Vernon Hills', 'HomePage', 0, '2018-06-24 01:25:51', '2018-06-24 01:25:51'),
+(603, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 86, '2018-06-24 01:25:51', '2018-06-24 01:25:51'),
+(604, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 87, '2018-06-24 01:25:51', '2018-06-24 01:25:51'),
+(605, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 87, '2018-06-24 01:25:52', '2018-06-24 01:25:52'),
+(606, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 12, '2018-06-24 01:25:52', '2018-06-24 01:25:52'),
+(607, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 3, '2018-06-24 01:25:52', '2018-06-24 01:25:52'),
+(608, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 4, '2018-06-24 01:25:53', '2018-06-24 01:25:53'),
+(609, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 12, '2018-06-24 01:25:53', '2018-06-24 01:25:53'),
+(610, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 3, '2018-06-24 01:25:53', '2018-06-24 01:25:53'),
+(611, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 4, '2018-06-24 01:25:53', '2018-06-24 01:25:53'),
+(612, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 14, '2018-06-24 01:25:54', '2018-06-24 01:25:54'),
+(613, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 15, '2018-06-24 01:25:54', '2018-06-24 01:25:54'),
+(614, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 6, '2018-06-24 01:25:54', '2018-06-24 01:25:54'),
+(615, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 14, '2018-06-24 01:25:54', '2018-06-24 01:25:54'),
+(616, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 15, '2018-06-24 01:25:54', '2018-06-24 01:25:54'),
+(617, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 6, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(618, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 7, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(619, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 58, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(620, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 94, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(621, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Category', 7, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(622, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 58, '2018-06-24 01:25:55', '2018-06-24 01:25:55'),
+(623, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 94, '2018-06-24 01:25:56', '2018-06-24 01:25:56'),
+(624, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 91, '2018-06-24 01:25:56', '2018-06-24 01:25:56'),
+(625, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 90, '2018-06-24 01:25:56', '2018-06-24 01:25:56'),
+(626, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 91, '2018-06-24 01:25:56', '2018-06-24 01:25:56'),
+(627, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 89, '2018-06-24 01:25:56', '2018-06-24 01:25:56'),
+(628, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 90, '2018-06-24 01:25:57', '2018-06-24 01:25:57'),
+(629, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 89, '2018-06-24 01:25:57', '2018-06-24 01:25:57'),
+(630, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 85, '2018-06-24 01:25:57', '2018-06-24 01:25:57'),
+(631, '104.192.74.31', 'United States', 'Vernon Hills', 'App\\Models\\Post', 85, '2018-06-24 01:25:58', '2018-06-24 01:25:58'),
+(632, '197.124.91.118', 'Egypt', 'Heliopolis', 'HomePage', 0, '2018-06-24 01:34:04', '2018-06-24 01:34:04'),
+(633, '197.124.91.118', 'Egypt', 'Heliopolis', 'App\\Models\\Post', 90, '2018-06-24 01:34:09', '2018-06-24 01:34:09'),
+(634, '197.124.91.118', 'Egypt', 'Heliopolis', 'App\\Models\\Post', 87, '2018-06-24 01:34:23', '2018-06-24 01:34:23'),
+(635, '197.124.91.118', 'Egypt', 'Heliopolis', 'App\\Models\\Category', 3, '2018-06-24 01:34:41', '2018-06-24 01:34:41'),
+(636, '197.124.91.118', 'Egypt', 'Heliopolis', 'App\\Models\\Tag', 3, '2018-06-24 01:34:45', '2018-06-24 01:34:45'),
+(637, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-24 02:38:33', '2018-06-24 02:38:33'),
+(638, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-24 02:38:36', '2018-06-24 02:38:36'),
+(639, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-24 02:38:41', '2018-06-24 02:38:41'),
+(640, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-24 02:38:42', '2018-06-24 02:38:42'),
+(641, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-06-24 02:38:43', '2018-06-24 02:38:43'),
+(642, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-24 02:38:45', '2018-06-24 02:38:45'),
+(643, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-24 02:38:46', '2018-06-24 02:38:46'),
+(644, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-24 02:38:47', '2018-06-24 02:38:47'),
+(645, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-24 02:38:48', '2018-06-24 02:38:48'),
+(646, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-06-24 02:38:48', '2018-06-24 02:38:48'),
+(647, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-24 02:38:49', '2018-06-24 02:38:49'),
+(648, '35.231.181.138', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-24 06:07:17', '2018-06-24 06:07:17'),
+(649, '35.231.181.138', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-24 06:07:18', '2018-06-24 06:07:18'),
+(650, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-25 02:34:23', '2018-06-25 02:34:23'),
+(651, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-06-25 02:34:30', '2018-06-25 02:34:30'),
+(652, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-25 02:34:30', '2018-06-25 02:34:30'),
+(653, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-06-25 02:34:31', '2018-06-25 02:34:31'),
+(654, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-25 02:34:31', '2018-06-25 02:34:31'),
+(655, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-06-25 02:34:34', '2018-06-25 02:34:34'),
+(656, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-25 02:34:34', '2018-06-25 02:34:34'),
+(657, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Tag', 4, '2018-06-25 02:34:35', '2018-06-25 02:34:35'),
+(658, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-25 02:34:35', '2018-06-25 02:34:35'),
+(659, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-25 02:34:36', '2018-06-25 02:34:36'),
+(660, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-25 02:34:39', '2018-06-25 02:34:39'),
+(661, '35.229.30.18', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-25 06:17:37', '2018-06-25 06:17:37'),
+(662, '35.229.30.18', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-25 06:17:38', '2018-06-25 06:17:38'),
+(663, '180.76.15.143', 'China', 'Shenzhen', 'HomePage', 0, '2018-06-25 10:45:10', '2018-06-25 10:45:10'),
+(664, '66.249.65.106', 'United States', 'Ashburn', 'App\\Models\\Tag', 1, '2018-06-25 12:16:44', '2018-06-25 12:16:44'),
+(665, '207.46.13.147', 'United States', 'Redmond', 'HomePage', 0, '2018-06-25 14:31:06', '2018-06-25 14:31:06'),
+(666, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Tag', 4, '2018-06-25 15:01:22', '2018-06-25 15:01:22'),
+(667, '66.249.65.106', 'United States', 'Ashburn', 'App\\Models\\Post', 86, '2018-06-25 15:04:38', '2018-06-25 15:04:38'),
+(668, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Post', 90, '2018-06-25 15:30:46', '2018-06-25 15:30:46'),
+(669, '66.249.65.108', 'United States', 'Ashburn', 'App\\Models\\Post', 89, '2018-06-25 15:35:20', '2018-06-25 15:35:20'),
+(670, '35.237.69.211', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-25 16:14:33', '2018-06-25 16:14:33'),
+(671, '35.237.69.211', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-25 16:14:34', '2018-06-25 16:14:34'),
+(672, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Category', 4, '2018-06-25 16:19:47', '2018-06-25 16:19:47'),
+(673, '66.249.65.106', 'United States', 'Ashburn', 'App\\Models\\Post', 94, '2018-06-25 16:32:11', '2018-06-25 16:32:11'),
+(674, '180.76.15.19', 'China', 'Shenzhen', 'HomePage', 0, '2018-06-25 20:02:08', '2018-06-25 20:02:08'),
+(675, '156.205.94.206', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-25 20:58:52', '2018-06-25 20:58:52'),
+(676, '41.199.134.187', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-25 22:13:58', '2018-06-25 22:13:58'),
+(677, '41.199.134.187', 'Egypt', 'Cairo', 'App\\Models\\Post', 87, '2018-06-25 22:14:12', '2018-06-25 22:14:12'),
+(678, '41.199.134.187', 'Egypt', 'Cairo', 'App\\Models\\Post', 90, '2018-06-25 22:14:16', '2018-06-25 22:14:16'),
+(679, '34.245.239.63', 'Ireland', 'Dublin', 'HomePage', 0, '2018-06-26 00:54:59', '2018-06-26 00:54:59'),
+(680, '184.154.36.176', 'United States', 'Moline', 'HomePage', 0, '2018-06-26 02:35:11', '2018-06-26 02:35:11'),
+(681, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-26 02:35:14', '2018-06-26 02:35:14'),
+(682, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-26 02:35:15', '2018-06-26 02:35:15'),
+(683, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-26 02:35:19', '2018-06-26 02:35:19'),
+(684, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-06-26 02:35:20', '2018-06-26 02:35:20'),
+(685, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-26 02:35:21', '2018-06-26 02:35:21'),
+(686, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Tag', 3, '2018-06-26 02:35:23', '2018-06-26 02:35:23'),
+(687, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Tag', 1, '2018-06-26 02:35:26', '2018-06-26 02:35:26'),
+(688, '35.237.39.11', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-26 06:14:24', '2018-06-26 06:14:24'),
+(689, '35.237.39.11', 'United States', 'Mountain View', 'HomePage', 0, '2018-06-26 06:14:25', '2018-06-26 06:14:25'),
+(690, '34.242.137.49', 'Ireland', 'Dublin', 'HomePage', 0, '2018-06-26 13:21:21', '2018-06-26 13:21:21'),
+(691, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-27 02:36:23', '2018-06-27 02:36:23'),
+(692, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-27 02:36:26', '2018-06-27 02:36:26'),
+(693, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-06-27 02:36:26', '2018-06-27 02:36:26'),
+(694, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-06-27 02:36:27', '2018-06-27 02:36:27'),
+(695, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-27 02:36:28', '2018-06-27 02:36:28'),
+(696, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-27 02:36:31', '2018-06-27 02:36:31'),
+(697, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Tag', 4, '2018-06-27 02:36:32', '2018-06-27 02:36:32'),
+(698, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-27 02:36:33', '2018-06-27 02:36:33'),
+(699, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-27 02:36:34', '2018-06-27 02:36:34'),
+(700, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-27 02:36:35', '2018-06-27 02:36:35'),
+(701, '149.202.72.198', 'France', 'Gravelines', 'HomePage', 0, '2018-06-27 03:40:11', '2018-06-27 03:40:11'),
+(702, '156.210.119.40', 'Egypt', 'Toukh', 'HomePage', 0, '2018-06-27 05:18:10', '2018-06-27 05:18:10'),
+(703, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Post', 88, '2018-06-27 05:18:47', '2018-06-27 05:18:47'),
+(704, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Post', 58, '2018-06-27 05:24:06', '2018-06-27 05:24:06'),
+(705, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Post', 58, '2018-06-27 05:25:21', '2018-06-27 05:25:21'),
+(706, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Category', 12, '2018-06-27 05:25:42', '2018-06-27 05:25:42'),
+(707, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Post', 87, '2018-06-27 05:26:08', '2018-06-27 05:26:08'),
+(708, '156.210.119.40', 'Egypt', 'Toukh', 'App\\Models\\Post', 87, '2018-06-27 05:27:53', '2018-06-27 05:27:53'),
+(709, '54.91.81.220', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-27 06:49:49', '2018-06-27 06:49:49'),
+(710, '35.196.16.166', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-27 13:05:30', '2018-06-27 13:05:30'),
+(711, '35.196.16.166', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-27 13:05:31', '2018-06-27 13:05:31'),
+(712, '156.179.166.29', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-27 15:19:49', '2018-06-27 15:19:49'),
+(713, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-27 15:23:54', '2018-06-27 15:23:54'),
+(714, '156.179.166.29', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-27 15:26:13', '2018-06-27 15:26:13'),
+(715, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Category', 4, '2018-06-27 15:26:24', '2018-06-27 15:26:24'),
+(716, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Category', 4, '2018-06-27 15:27:13', '2018-06-27 15:27:13'),
+(717, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-06-27 15:28:25', '2018-06-27 15:28:25'),
+(718, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-27 15:51:37', '2018-06-27 15:51:37'),
+(719, '156.179.166.29', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-27 15:51:56', '2018-06-27 15:51:56'),
+(720, '69.58.178.56', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-27 16:32:19', '2018-06-27 16:32:19'),
+(721, '69.58.178.56', 'United States', 'Ashburn', 'App\\Models\\Post', 88, '2018-06-27 16:32:22', '2018-06-27 16:32:22'),
+(722, '156.180.1.83', 'Egypt', 'Imbabah', 'HomePage', 0, '2018-06-28 01:52:20', '2018-06-28 01:52:20'),
+(723, '156.180.1.83', 'Egypt', 'Imbabah', 'App\\Models\\Post', 58, '2018-06-28 01:54:18', '2018-06-28 01:54:18'),
+(724, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-28 02:35:50', '2018-06-28 02:35:50'),
+(725, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-28 02:35:54', '2018-06-28 02:35:54'),
+(726, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-06-28 02:35:56', '2018-06-28 02:35:56'),
+(727, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-06-28 02:35:57', '2018-06-28 02:35:57'),
+(728, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-28 02:35:58', '2018-06-28 02:35:58'),
+(729, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-06-28 02:36:00', '2018-06-28 02:36:00'),
+(730, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 58, '2018-06-28 02:36:01', '2018-06-28 02:36:01'),
+(731, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-28 02:36:03', '2018-06-28 02:36:03'),
+(732, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-28 02:36:04', '2018-06-28 02:36:04'),
+(733, '120.35.38.233', 'China', 'Fuzhou', 'HomePage', 0, '2018-06-28 04:36:19', '2018-06-28 04:36:19'),
+(734, '35.237.186.243', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-28 07:07:42', '2018-06-28 07:07:42'),
+(735, '35.237.186.243', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-28 07:07:43', '2018-06-28 07:07:43'),
+(736, '180.76.15.27', 'China', 'Shenzhen', 'HomePage', 0, '2018-06-28 19:56:05', '2018-06-28 19:56:05'),
+(737, '180.76.15.160', 'China', 'Shenzhen', 'HomePage', 0, '2018-06-28 20:58:11', '2018-06-28 20:58:11'),
+(738, '41.199.130.56', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-28 22:22:56', '2018-06-28 22:22:56'),
+(739, '41.199.130.56', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-06-28 22:23:01', '2018-06-28 22:23:01'),
+(740, '41.199.130.56', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-28 22:23:19', '2018-06-28 22:23:19'),
+(741, '41.199.130.56', 'Egypt', 'Cairo', 'HomePage', 0, '2018-06-28 22:23:26', '2018-06-28 22:23:26'),
+(742, '180.76.15.161', 'China', 'Shenzhen', 'HomePage', 0, '2018-06-29 00:18:41', '2018-06-29 00:18:41'),
+(743, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-06-29 02:37:56', '2018-06-29 02:37:56'),
+(744, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-06-29 02:38:05', '2018-06-29 02:38:05'),
+(745, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-06-29 02:38:07', '2018-06-29 02:38:07'),
+(746, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-06-29 02:38:09', '2018-06-29 02:38:09'),
+(747, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-06-29 02:38:10', '2018-06-29 02:38:10'),
+(748, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Tag', 17, '2018-06-29 02:38:11', '2018-06-29 02:38:11'),
+(749, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Tag', 16, '2018-06-29 02:38:12', '2018-06-29 02:38:12'),
+(750, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-06-29 02:38:13', '2018-06-29 02:38:13'),
+(751, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-06-29 02:38:15', '2018-06-29 02:38:15'),
+(752, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-29 02:38:16', '2018-06-29 02:38:16'),
+(753, '31.13.125.89', 'United States', 'Newark', 'HomePage', 0, '2018-06-29 05:23:38', '2018-06-29 05:23:38'),
+(754, '35.237.163.188', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-29 06:22:17', '2018-06-29 06:22:17'),
+(755, '35.237.163.188', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-29 06:22:20', '2018-06-29 06:22:20'),
+(756, '34.207.74.2', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-29 06:24:50', '2018-06-29 06:24:50'),
+(757, '34.207.74.2', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-29 06:24:51', '2018-06-29 06:24:51'),
+(758, '66.249.65.106', 'United States', 'Ashburn', 'App\\Models\\Post', 87, '2018-06-29 11:24:40', '2018-06-29 11:24:40'),
+(759, '208.80.194.30', 'United States', 'Cannon Falls', 'HomePage', 0, '2018-06-29 14:29:13', '2018-06-29 14:29:13'),
+(760, '184.154.36.173', 'United States', 'Moline', 'HomePage', 0, '2018-06-30 02:55:37', '2018-06-30 02:55:37'),
+(761, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-06-30 02:55:41', '2018-06-30 02:55:41'),
+(762, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-06-30 02:55:44', '2018-06-30 02:55:44'),
+(763, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-06-30 02:55:46', '2018-06-30 02:55:46'),
+(764, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Post', 58, '2018-06-30 02:55:47', '2018-06-30 02:55:47'),
+(765, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-06-30 02:55:51', '2018-06-30 02:55:51'),
+(766, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Category', 6, '2018-06-30 02:55:53', '2018-06-30 02:55:53'),
+(767, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-06-30 02:55:53', '2018-06-30 02:55:53'),
+(768, '184.154.36.173', 'United States', 'Moline', 'HomePage', 0, '2018-06-30 02:55:55', '2018-06-30 02:55:55'),
+(769, '184.154.36.173', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-06-30 02:55:56', '2018-06-30 02:55:56'),
+(770, '35.237.186.243', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-30 06:16:59', '2018-06-30 06:16:59'),
+(771, '35.237.186.243', 'United States', 'Brooklyn', 'HomePage', 0, '2018-06-30 06:17:00', '2018-06-30 06:17:00'),
+(772, '66.249.65.108', 'United States', 'Ashburn', 'HomePage', 0, '2018-06-30 06:20:33', '2018-06-30 06:20:33'),
+(773, '93.179.69.161', 'Russia', 'Stavropol', 'HomePage', 0, '2018-06-30 19:27:47', '2018-06-30 19:27:47'),
+(774, '184.154.36.176', 'United States', 'Moline', 'HomePage', 0, '2018-07-01 02:35:39', '2018-07-01 02:35:39'),
+(775, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-07-01 02:35:42', '2018-07-01 02:35:42'),
+(776, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-07-01 02:35:43', '2018-07-01 02:35:43'),
+(777, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-07-01 02:35:44', '2018-07-01 02:35:44'),
+(778, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-07-01 02:35:45', '2018-07-01 02:35:45'),
+(779, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-07-01 02:35:46', '2018-07-01 02:35:46'),
+(780, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-07-01 02:35:47', '2018-07-01 02:35:47'),
+(781, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-07-01 02:35:47', '2018-07-01 02:35:47'),
+(782, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Tag', 17, '2018-07-01 02:35:50', '2018-07-01 02:35:50'),
+(783, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-07-01 02:35:52', '2018-07-01 02:35:52'),
+(784, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-07-01 02:35:53', '2018-07-01 02:35:53'),
+(785, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-07-01 02:35:54', '2018-07-01 02:35:54'),
+(786, '35.237.135.149', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-01 06:18:39', '2018-07-01 06:18:39'),
+(787, '35.237.135.149', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-01 06:18:40', '2018-07-01 06:18:40'),
+(788, '180.76.15.29', 'China', 'Shenzhen', 'App\\Models\\Category', 15, '2018-07-01 07:31:07', '2018-07-01 07:31:07'),
+(789, '66.249.65.110', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-01 10:16:43', '2018-07-01 10:16:43'),
+(790, '180.76.15.153', 'China', 'Shenzhen', 'App\\Models\\Category', 14, '2018-07-01 11:06:25', '2018-07-01 11:06:25'),
+(791, '183.66.230.22', 'China', 'Chongqing', 'HomePage', 0, '2018-07-01 14:16:24', '2018-07-01 14:16:24'),
+(792, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-07-02 02:38:32', '2018-07-02 02:38:32'),
+(793, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-07-02 02:38:34', '2018-07-02 02:38:34'),
+(794, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-07-02 02:38:35', '2018-07-02 02:38:35'),
+(795, '184.154.36.174', 'United States', 'Moline', 'HomePage', 0, '2018-07-02 02:38:36', '2018-07-02 02:38:36'),
+(796, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-07-02 02:38:37', '2018-07-02 02:38:37'),
+(797, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-07-02 02:38:37', '2018-07-02 02:38:37'),
+(798, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-07-02 02:38:43', '2018-07-02 02:38:43'),
+(799, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 90, '2018-07-02 02:38:45', '2018-07-02 02:38:45'),
+(800, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-07-02 02:38:46', '2018-07-02 02:38:46'),
+(801, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 85, '2018-07-02 02:38:47', '2018-07-02 02:38:47'),
+(802, '184.154.36.174', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-07-02 02:38:50', '2018-07-02 02:38:50'),
+(803, '180.76.15.154', 'China', 'Shenzhen', 'App\\Models\\Category', 3, '2018-07-02 03:12:10', '2018-07-02 03:12:10'),
+(804, '35.237.133.10', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-02 06:15:59', '2018-07-02 06:15:59'),
+(805, '35.237.133.10', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-02 06:16:00', '2018-07-02 06:16:00'),
+(806, '180.76.15.7', 'China', 'Shenzhen', 'HomePage', 0, '2018-07-02 10:40:17', '2018-07-02 10:40:17'),
+(807, '180.76.15.135', 'China', 'Shenzhen', 'App\\Models\\Post', 88, '2018-07-02 18:58:43', '2018-07-02 18:58:43'),
+(808, '180.76.15.156', 'China', 'Shenzhen', 'HomePage', 0, '2018-07-02 21:00:15', '2018-07-02 21:00:15'),
+(809, '66.249.65.108', 'United States', 'Ashburn', 'App\\Models\\Category', 15, '2018-07-02 21:29:36', '2018-07-02 21:29:36'),
+(810, '69.58.178.59', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-03 01:59:24', '2018-07-03 01:59:24'),
+(811, '69.58.178.59', 'United States', 'Ashburn', 'App\\Models\\Post', 88, '2018-07-03 01:59:26', '2018-07-03 01:59:26'),
+(812, '184.154.36.172', 'United States', 'Moline', 'HomePage', 0, '2018-07-03 02:36:10', '2018-07-03 02:36:10'),
+(813, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Post', 91, '2018-07-03 02:36:13', '2018-07-03 02:36:13'),
+(814, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-07-03 02:36:14', '2018-07-03 02:36:14'),
+(815, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Category', 3, '2018-07-03 02:36:16', '2018-07-03 02:36:16'),
+(816, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Tag', 1, '2018-07-03 02:36:17', '2018-07-03 02:36:17'),
+(817, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Post', 96, '2018-07-03 02:36:18', '2018-07-03 02:36:18'),
+(818, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Post', 86, '2018-07-03 02:36:22', '2018-07-03 02:36:22'),
+(819, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-07-03 02:36:23', '2018-07-03 02:36:23'),
+(820, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-07-03 02:36:23', '2018-07-03 02:36:23'),
+(821, '184.154.36.172', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-07-03 02:36:24', '2018-07-03 02:36:24'),
+(822, '104.196.189.205', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-03 06:16:51', '2018-07-03 06:16:51'),
+(823, '104.196.189.205', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-03 06:16:52', '2018-07-03 06:16:52'),
+(824, '66.249.65.106', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-03 06:20:36', '2018-07-03 06:20:36'),
+(825, '180.76.15.151', 'China', 'Shenzhen', 'HomePage', 0, '2018-07-03 06:41:58', '2018-07-03 06:41:58'),
+(826, '66.249.65.110', 'United States', 'Ashburn', 'App\\Models\\Category', 15, '2018-07-03 09:43:37', '2018-07-03 09:43:37'),
+(827, '180.76.15.7', 'China', 'Shenzhen', 'App\\Models\\Post', 58, '2018-07-03 15:07:00', '2018-07-03 15:07:00'),
+(828, '66.249.65.110', 'United States', 'Ashburn', 'HomePage', 0, '2018-07-03 21:22:46', '2018-07-03 21:22:46'),
+(829, '184.154.36.176', 'United States', 'Moline', 'HomePage', 0, '2018-07-04 02:46:33', '2018-07-04 02:46:33'),
+(830, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 7, '2018-07-04 02:46:41', '2018-07-04 02:46:41'),
+(831, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 14, '2018-07-04 02:46:41', '2018-07-04 02:46:41'),
+(832, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 94, '2018-07-04 02:46:48', '2018-07-04 02:46:48'),
+(833, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 15, '2018-07-04 02:46:48', '2018-07-04 02:46:48'),
+(834, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 12, '2018-07-04 02:46:51', '2018-07-04 02:46:51'),
+(835, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 88, '2018-07-04 02:46:51', '2018-07-04 02:46:51'),
+(836, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 89, '2018-07-04 02:46:52', '2018-07-04 02:46:52'),
+(837, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Category', 4, '2018-07-04 02:46:53', '2018-07-04 02:46:53'),
+(838, '184.154.36.176', 'United States', 'Moline', 'App\\Models\\Post', 87, '2018-07-04 02:46:54', '2018-07-04 02:46:54'),
+(839, '35.237.230.96', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-04 08:06:03', '2018-07-04 08:06:03'),
+(840, '35.237.230.96', 'United States', 'Mountain View', 'HomePage', 0, '2018-07-04 08:06:04', '2018-07-04 08:06:04'),
+(841, '180.76.15.149', 'China', 'Shenzhen', 'App\\Models\\Post', 91, '2018-07-04 09:22:30', '2018-07-04 09:22:30'),
+(842, '180.76.15.141', 'China', 'Shenzhen', 'HomePage', 0, '2018-07-04 11:39:03', '2018-07-04 11:39:03'),
+(843, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 14:58:29', '2018-07-04 14:58:29'),
+(844, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 88, '2018-07-04 14:59:18', '2018-07-04 14:59:18'),
+(845, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 88, '2018-07-04 15:02:05', '2018-07-04 15:02:05'),
+(846, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 15:03:15', '2018-07-04 15:03:15'),
+(847, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 15:04:04', '2018-07-04 15:04:04'),
+(848, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 91, '2018-07-04 15:04:48', '2018-07-04 15:04:48'),
+(849, '31.13.125.208', 'United States', 'Newark', 'App\\Models\\Post', 91, '2018-07-04 15:04:53', '2018-07-04 15:04:53'),
+(850, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 91, '2018-07-04 15:09:34', '2018-07-04 15:09:34'),
+(851, '31.13.126.77', 'United States', 'Newark', 'App\\Models\\Post', 91, '2018-07-04 15:09:47', '2018-07-04 15:09:47'),
+(852, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 15:14:54', '2018-07-04 15:14:54'),
+(853, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 96, '2018-07-04 15:16:10', '2018-07-04 15:16:10'),
+(854, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 15:23:44', '2018-07-04 15:23:44'),
+(855, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 86, '2018-07-04 15:25:05', '2018-07-04 15:25:05'),
+(856, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 87, '2018-07-04 15:27:42', '2018-07-04 15:27:42'),
+(857, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 86, '2018-07-04 15:28:10', '2018-07-04 15:28:10'),
+(858, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 87, '2018-07-04 15:29:08', '2018-07-04 15:29:08'),
+(859, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 87, '2018-07-04 15:30:10', '2018-07-04 15:30:10'),
+(860, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-07-04 15:33:08', '2018-07-04 15:33:08'),
+(861, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-07-04 15:35:34', '2018-07-04 15:35:34'),
+(862, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-07-04 15:37:45', '2018-07-04 15:37:45'),
+(863, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-07-04 15:42:58', '2018-07-04 15:42:58'),
+(864, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-07-04 15:43:14', '2018-07-04 15:43:14'),
+(865, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 12, '2018-07-04 15:44:44', '2018-07-04 15:44:44'),
+(866, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 17, '2018-07-04 15:44:48', '2018-07-04 15:44:48'),
+(867, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 3, '2018-07-04 15:44:58', '2018-07-04 15:44:58'),
+(868, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 4, '2018-07-04 15:45:32', '2018-07-04 15:45:32'),
+(869, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 16, '2018-07-04 15:45:38', '2018-07-04 15:45:38'),
+(870, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 16, '2018-07-04 15:46:13', '2018-07-04 15:46:13'),
+(871, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 16, '2018-07-04 15:46:54', '2018-07-04 15:46:54'),
+(872, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 3, '2018-07-04 15:47:08', '2018-07-04 15:47:08'),
+(873, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 3, '2018-07-04 15:47:36', '2018-07-04 15:47:36');
+INSERT INTO `visits` (`id`, `client_ip`, `client_country`, `client_city`, `model_name`, `model_id`, `created_at`, `updated_at`) VALUES
+(874, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 14, '2018-07-04 15:48:13', '2018-07-04 15:48:13'),
+(875, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 15, '2018-07-04 15:48:20', '2018-07-04 15:48:20'),
+(876, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 6, '2018-07-04 15:50:25', '2018-07-04 15:50:25'),
+(877, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 6, '2018-07-04 15:50:32', '2018-07-04 15:50:32'),
+(878, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 15:52:47', '2018-07-04 15:52:47'),
+(879, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 94, '2018-07-04 15:53:01', '2018-07-04 15:53:01'),
+(880, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-07-04 15:54:20', '2018-07-04 15:54:20'),
+(881, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-07-04 15:55:12', '2018-07-04 15:55:12'),
+(882, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Post', 58, '2018-07-04 15:55:19', '2018-07-04 15:55:19'),
+(883, '154.188.98.34', 'Egypt', 'Cairo', 'App\\Models\\Category', 17, '2018-07-04 15:57:13', '2018-07-04 15:57:13'),
+(884, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 16:08:37', '2018-07-04 16:08:37'),
+(885, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 16:14:28', '2018-07-04 16:14:28'),
+(886, '154.188.98.34', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-04 16:16:33', '2018-07-04 16:16:33'),
+(887, '180.76.15.139', 'China', 'Shenzhen', 'App\\Models\\Post', 86, '2018-07-04 16:37:51', '2018-07-04 16:37:51'),
+(888, '157.55.39.63', 'United States', 'Redmond', 'HomePage', 0, '2018-07-04 18:43:15', '2018-07-04 18:43:15'),
+(889, '154.185.109.48', 'Egypt', 'Cairo', 'HomePage', 0, '2018-07-05 00:46:04', '2018-07-05 00:46:04'),
+(890, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-04 17:00:08', '2018-07-04 17:00:08'),
+(891, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 17, '2018-07-04 17:00:19', '2018-07-04 17:00:19'),
+(892, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-04 17:00:46', '2018-07-04 17:00:46'),
+(893, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-04 17:00:53', '2018-07-04 17:00:53'),
+(894, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-04 17:02:38', '2018-07-04 17:02:38'),
+(895, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 09:46:40', '2018-07-05 09:46:40'),
+(896, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:17:58', '2018-07-05 10:17:58'),
+(897, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:17:59', '2018-07-05 10:17:59'),
+(898, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:34:49', '2018-07-05 10:34:49'),
+(899, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:39:12', '2018-07-05 10:39:12'),
+(900, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:51:37', '2018-07-05 10:51:37'),
+(901, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:55:25', '2018-07-05 10:55:25'),
+(902, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:55:41', '2018-07-05 10:55:41'),
+(903, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:58:05', '2018-07-05 10:58:05'),
+(904, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:58:59', '2018-07-05 10:58:59'),
+(905, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 10:59:04', '2018-07-05 10:59:04'),
+(906, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:01:49', '2018-07-05 11:01:49'),
+(907, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:05:24', '2018-07-05 11:05:24'),
+(908, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:06:08', '2018-07-05 11:06:08'),
+(909, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:10:17', '2018-07-05 11:10:17'),
+(910, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:10:17', '2018-07-05 11:10:17'),
+(911, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:10:18', '2018-07-05 11:10:18'),
+(912, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 11:10:18', '2018-07-05 11:10:18'),
+(913, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-05 11:14:23', '2018-07-05 11:14:23'),
+(914, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-05 11:14:58', '2018-07-05 11:14:58'),
+(915, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-05 11:15:59', '2018-07-05 11:15:59'),
+(916, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-05 11:31:23', '2018-07-05 11:31:23'),
+(917, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-05 11:31:32', '2018-07-05 11:31:32'),
+(918, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-05 11:32:11', '2018-07-05 11:32:11'),
+(919, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-05 11:32:19', '2018-07-05 11:32:19'),
+(920, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-05 12:12:06', '2018-07-05 12:12:06'),
+(921, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 14:33:43', '2018-07-06 14:33:43'),
+(922, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 14:33:52', '2018-07-06 14:33:52'),
+(923, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 15:02:49', '2018-07-06 15:02:49'),
+(924, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 15:32:43', '2018-07-06 15:32:43'),
+(925, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-06 15:33:34', '2018-07-06 15:33:34'),
+(926, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 3, '2018-07-06 15:33:43', '2018-07-06 15:33:43'),
+(927, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 15:33:53', '2018-07-06 15:33:53'),
+(928, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 3, '2018-07-06 15:36:45', '2018-07-06 15:36:45'),
+(929, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 3, '2018-07-06 15:37:00', '2018-07-06 15:37:00'),
+(930, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 1, '2018-07-06 15:37:14', '2018-07-06 15:37:14'),
+(931, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 15:37:40', '2018-07-06 15:37:40'),
+(932, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-06 15:37:43', '2018-07-06 15:37:43'),
+(933, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-06 15:38:08', '2018-07-06 15:38:08'),
+(934, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-06 15:40:42', '2018-07-06 15:40:42'),
+(935, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-06 15:41:02', '2018-07-06 15:41:02'),
+(936, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-06 15:42:31', '2018-07-06 15:42:31'),
+(937, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 6, '2018-07-06 15:43:21', '2018-07-06 15:43:21'),
+(938, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 17, '2018-07-06 15:43:24', '2018-07-06 15:43:24'),
+(939, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-06 15:43:27', '2018-07-06 15:43:27'),
+(940, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 17, '2018-07-06 15:43:30', '2018-07-06 15:43:30'),
+(941, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-06 15:43:37', '2018-07-06 15:43:37'),
+(942, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 15:43:44', '2018-07-06 15:43:44'),
+(943, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 85, '2018-07-06 15:44:35', '2018-07-06 15:44:35'),
+(944, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 15:44:51', '2018-07-06 15:44:51'),
+(945, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-06 15:44:53', '2018-07-06 15:44:53'),
+(946, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 15:44:58', '2018-07-06 15:44:58'),
+(947, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 15:48:22', '2018-07-06 15:48:22'),
+(948, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 17, '2018-07-06 15:49:30', '2018-07-06 15:49:30'),
+(949, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 15:50:14', '2018-07-06 15:50:14'),
+(950, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 15:51:39', '2018-07-06 15:51:39'),
+(951, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 15:53:42', '2018-07-06 15:53:42'),
+(952, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:14:33', '2018-07-06 16:14:33'),
+(953, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 85, '2018-07-06 16:15:04', '2018-07-06 16:15:04'),
+(954, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 85, '2018-07-06 16:15:08', '2018-07-06 16:15:08'),
+(955, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:15:19', '2018-07-06 16:15:19'),
+(956, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:22:33', '2018-07-06 16:22:33'),
+(957, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:22:39', '2018-07-06 16:22:39'),
+(958, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:24:08', '2018-07-06 16:24:08'),
+(959, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:24:39', '2018-07-06 16:24:39'),
+(960, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:25:16', '2018-07-06 16:25:16'),
+(961, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:25:36', '2018-07-06 16:25:36'),
+(962, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 16:25:54', '2018-07-06 16:25:54'),
+(963, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 85, '2018-07-06 16:26:01', '2018-07-06 16:26:01'),
+(964, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 17, '2018-07-06 16:26:14', '2018-07-06 16:26:14'),
+(965, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 90, '2018-07-06 16:26:21', '2018-07-06 16:26:21'),
+(966, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 90, '2018-07-06 16:34:29', '2018-07-06 16:34:29'),
+(967, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 90, '2018-07-06 17:26:08', '2018-07-06 17:26:08'),
+(968, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 91, '2018-07-06 17:26:19', '2018-07-06 17:26:19'),
+(969, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 91, '2018-07-06 17:26:24', '2018-07-06 17:26:24'),
+(970, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 14, '2018-07-06 17:26:39', '2018-07-06 17:26:39'),
+(971, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 7, '2018-07-06 17:26:42', '2018-07-06 17:26:42'),
+(972, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 17:26:51', '2018-07-06 17:26:51'),
+(973, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 17:27:56', '2018-07-06 17:27:56'),
+(974, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 17:31:03', '2018-07-06 17:31:03'),
+(975, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 17:32:08', '2018-07-06 17:32:08'),
+(976, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 3, '2018-07-06 17:32:25', '2018-07-06 17:32:25'),
+(977, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-06 17:32:28', '2018-07-06 17:32:28'),
+(978, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-06 17:33:53', '2018-07-06 17:33:53'),
+(979, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 94, '2018-07-06 17:34:08', '2018-07-06 17:34:08'),
+(980, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:34:18', '2018-07-06 17:34:18'),
+(981, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:35:32', '2018-07-06 17:35:32'),
+(982, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:35:37', '2018-07-06 17:35:37'),
+(983, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:36:42', '2018-07-06 17:36:42'),
+(984, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:36:58', '2018-07-06 17:36:58'),
+(985, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:38:26', '2018-07-06 17:38:26'),
+(986, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:38:39', '2018-07-06 17:38:39'),
+(987, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 4, '2018-07-06 17:39:35', '2018-07-06 17:39:35'),
+(988, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 90, '2018-07-06 17:39:54', '2018-07-06 17:39:54'),
+(989, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 16, '2018-07-06 17:39:57', '2018-07-06 17:39:57'),
+(990, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 17, '2018-07-06 17:40:04', '2018-07-06 17:40:04'),
+(991, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 16, '2018-07-06 17:40:09', '2018-07-06 17:40:09'),
+(992, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 17:40:18', '2018-07-06 17:40:18'),
+(993, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 1, '2018-07-06 17:40:26', '2018-07-06 17:40:26'),
+(994, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:42:26', '2018-07-06 17:42:26'),
+(995, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 17:42:31', '2018-07-06 17:42:31'),
+(996, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:45:32', '2018-07-06 17:45:32'),
+(997, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 17:46:50', '2018-07-06 17:46:50'),
+(998, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 17:47:24', '2018-07-06 17:47:24'),
+(999, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 18, '2018-07-06 17:47:28', '2018-07-06 17:47:28'),
+(1000, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 16, '2018-07-06 17:47:43', '2018-07-06 17:47:43'),
+(1001, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:49:15', '2018-07-06 17:49:15'),
+(1002, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:50:28', '2018-07-06 17:50:28'),
+(1003, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:51:02', '2018-07-06 17:51:02'),
+(1004, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:51:42', '2018-07-06 17:51:42'),
+(1005, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:55:00', '2018-07-06 17:55:00'),
+(1006, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 20, '2018-07-06 17:55:17', '2018-07-06 17:55:17'),
+(1007, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 20, '2018-07-06 17:55:25', '2018-07-06 17:55:25'),
+(1008, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 20, '2018-07-06 17:56:24', '2018-07-06 17:56:24'),
+(1009, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:56:28', '2018-07-06 17:56:28'),
+(1010, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:57:40', '2018-07-06 17:57:40'),
+(1011, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 17:57:51', '2018-07-06 17:57:51'),
+(1012, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 89, '2018-07-06 17:57:59', '2018-07-06 17:57:59'),
+(1013, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 17:58:13', '2018-07-06 17:58:13'),
+(1014, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 18:11:11', '2018-07-06 18:11:11'),
+(1015, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 18:20:49', '2018-07-06 18:20:49'),
+(1016, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Tag', 19, '2018-07-06 18:23:50', '2018-07-06 18:23:50'),
+(1017, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 91, '2018-07-06 18:24:33', '2018-07-06 18:24:33'),
+(1018, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-06 18:24:41', '2018-07-06 18:24:41'),
+(1019, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 18:25:44', '2018-07-06 18:25:44'),
+(1020, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 86, '2018-07-06 18:28:01', '2018-07-06 18:28:01'),
+(1021, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 87, '2018-07-06 18:28:06', '2018-07-06 18:28:06'),
+(1022, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 14, '2018-07-06 18:28:37', '2018-07-06 18:28:37'),
+(1023, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 12, '2018-07-06 18:29:23', '2018-07-06 18:29:23'),
+(1024, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 12, '2018-07-06 18:29:27', '2018-07-06 18:29:27'),
+(1025, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 12, '2018-07-06 18:30:35', '2018-07-06 18:30:35'),
+(1026, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:32:54', '2018-07-06 18:32:54'),
+(1027, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:37:35', '2018-07-06 18:37:35'),
+(1028, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:39:58', '2018-07-06 18:39:58'),
+(1029, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:40:17', '2018-07-06 18:40:17'),
+(1030, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:41:33', '2018-07-06 18:41:33'),
+(1031, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:42:49', '2018-07-06 18:42:49'),
+(1032, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 18:57:18', '2018-07-06 18:57:18'),
+(1033, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:00:19', '2018-07-06 19:00:19'),
+(1034, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:01:10', '2018-07-06 19:01:10'),
+(1035, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:03:06', '2018-07-06 19:03:06'),
+(1036, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:03:25', '2018-07-06 19:03:25'),
+(1037, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:03:48', '2018-07-06 19:03:48'),
+(1038, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:04:14', '2018-07-06 19:04:14'),
+(1039, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:04:33', '2018-07-06 19:04:33'),
+(1040, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:04:45', '2018-07-06 19:04:45'),
+(1041, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:05:44', '2018-07-06 19:05:44'),
+(1042, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:06:15', '2018-07-06 19:06:15'),
+(1043, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:06:32', '2018-07-06 19:06:32'),
+(1044, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:06:52', '2018-07-06 19:06:52'),
+(1045, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:10:21', '2018-07-06 19:10:21'),
+(1046, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:10:36', '2018-07-06 19:10:36'),
+(1047, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:18:19', '2018-07-06 19:18:19'),
+(1048, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:19:28', '2018-07-06 19:19:28'),
+(1049, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:20:14', '2018-07-06 19:20:14'),
+(1050, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:24:21', '2018-07-06 19:24:21'),
+(1051, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:24:55', '2018-07-06 19:24:55'),
+(1052, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:25:23', '2018-07-06 19:25:23'),
+(1053, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:25:56', '2018-07-06 19:25:56'),
+(1054, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:28:13', '2018-07-06 19:28:13'),
+(1055, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 58, '2018-07-06 19:28:24', '2018-07-06 19:28:24'),
+(1056, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:31:17', '2018-07-06 19:31:17'),
+(1057, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:31:26', '2018-07-06 19:31:26'),
+(1058, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:35:02', '2018-07-06 19:35:02'),
+(1059, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:35:19', '2018-07-06 19:35:19'),
+(1060, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:35:51', '2018-07-06 19:35:51'),
+(1061, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:36:32', '2018-07-06 19:36:32'),
+(1062, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:38:48', '2018-07-06 19:38:48'),
+(1063, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:39:41', '2018-07-06 19:39:41'),
+(1064, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:39:48', '2018-07-06 19:39:48'),
+(1065, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:42:34', '2018-07-06 19:42:34'),
+(1066, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:43:41', '2018-07-06 19:43:41'),
+(1067, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:51:57', '2018-07-06 19:51:57'),
+(1068, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:52:37', '2018-07-06 19:52:37'),
+(1069, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 6, '2018-07-06 19:52:51', '2018-07-06 19:52:51'),
+(1070, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Category', 7, '2018-07-06 19:52:57', '2018-07-06 19:52:57'),
+(1071, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:53:12', '2018-07-06 19:53:12'),
+(1072, '127.0.0.1', 'United States', 'New Haven', 'HomePage', 0, '2018-07-06 19:54:13', '2018-07-06 19:54:13'),
+(1073, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 19:54:32', '2018-07-06 19:54:32'),
+(1074, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 19:54:42', '2018-07-06 19:54:42'),
+(1075, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 19:54:48', '2018-07-06 19:54:48'),
+(1076, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 19:57:45', '2018-07-06 19:57:45'),
+(1077, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:03:47', '2018-07-06 20:03:47'),
+(1078, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:04:21', '2018-07-06 20:04:21'),
+(1079, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:04:36', '2018-07-06 20:04:36'),
+(1080, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:04:40', '2018-07-06 20:04:40'),
+(1081, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:05:25', '2018-07-06 20:05:25'),
+(1082, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:09:48', '2018-07-06 20:09:48'),
+(1083, '127.0.0.1', 'United States', 'New Haven', 'App\\Models\\Post', 88, '2018-07-06 20:12:18', '2018-07-06 20:12:18');
 
 --
 -- Indexes for dumped tables
@@ -1650,133 +2263,111 @@ ALTER TABLE `visits`
 --
 ALTER TABLE `account_levels`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `account_levels_sec_groups_relationship`
 --
 ALTER TABLE `account_levels_sec_groups_relationship`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `category_translations`
 --
 ALTER TABLE `category_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
 --
 -- AUTO_INCREMENT for table `media_files`
 --
 ALTER TABLE `media_files`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `menu_links`
 --
 ALTER TABLE `menu_links`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
 --
 -- AUTO_INCREMENT for table `menu_link_translations`
 --
 ALTER TABLE `menu_link_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
 --
 -- AUTO_INCREMENT for table `posts_tags_relationship`
 --
 ALTER TABLE `posts_tags_relationship`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `post_translations`
 --
 ALTER TABLE `post_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
-
 --
 -- AUTO_INCREMENT for table `post_types`
 --
 ALTER TABLE `post_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `sec_groups`
 --
 ALTER TABLE `sec_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `sec_permissions`
 --
 ALTER TABLE `sec_permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
-
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
 --
 -- AUTO_INCREMENT for table `setting_translations`
 --
 ALTER TABLE `setting_translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=492;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1084;
 --
 -- Constraints for dumped tables
 --
@@ -1810,7 +2401,6 @@ ALTER TABLE `post_translations`
 --
 ALTER TABLE `setting_translations`
   ADD CONSTRAINT `setting_translations_setting_id_foreign` FOREIGN KEY (`setting_id`) REFERENCES `settings` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

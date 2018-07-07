@@ -215,5 +215,58 @@ class Functions
         }
         return implode(" ",$result);
     }
+    public static function drowMenuLink($link){
+        $result='<li class="'.(request()->is($link->category_id>0?ltrim(route('categoryBySlug',$link->category->slug,false),""):app()->getLocale().$link->customlink)?'active':'').'">';
+
+        if($link->Links()->count()>0) {
+            $result .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">
+                                        '.$link->title.' <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">';
+            foreach ($link->Links as $sublink) {
+                $result .=self::drowMenuLink($sublink);
+            }
+            $result .= ' </ul>';
+        }else {
+            if ($link->category_id > 0) {
+                if ($link->hasSubs) {
+                    $cat = \App\Models\Category::find($link->category_id);
+                    $result .=self::drowMenuCat($cat);
+                } else {
+                    $result .= '<a href="' . route('categoryBySlug', $link->category->slug) . '" >' . $link->title . '</a>';
+                }
+            } else {
+                $result .= ' <a href="' . self::menuLink($link) . '" >' . $link->title . '</a>';
+            }
+        }
+        $result .= ' </li>';
+       return  $result;
+    }
+
+    public static function drowMenuCat($cat){
+        $result='<li class="'.(request()->is(ltrim(route('categoryBySlug',$cat->slug,false),"")?'active':'')).'">';
+
+
+
+                    //$cat = \App\Models\Category::find($link->category_id);
+
+                    if (count($cat->Chields) > 0) {
+                        $result .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                           aria-haspopup="true" aria-expanded="false">
+                            ' . $cat->title . ' <span class="caret"></span></a>
+                        <ul class="dropdown-menu">';
+                        foreach ($cat->Chields as $chield) {
+                            $result .= '
+                               <li class="' . (request()->is(ltrim(route('categoryBySlug', $chield->slug, false), ' / ')) ? 'active' : '') . '">
+                                <a href="' . route('categoryBySlug', $chield->slug) . '" class="">' . $chield->title . '</a></li>';
+                        }
+                        $result .= '</ul>';
+                    } else {
+                        $result .= '<a href="' . route('categoryBySlug', $cat->slug) . '" >' . $cat->title . '</a>';
+                    }
+
+        $result .= ' </li>';
+        return  $result;
+    }
 }
 

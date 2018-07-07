@@ -13,11 +13,13 @@
         <div class="col-sm-8">
              <h3 style="background-color: #ddd;padding: 10px;border--top: 5px solid #224668;margin-bottom: 20px;">
                 {{ $title }}</h3>
-            <div class="cat-content">
+
                 @if(count($allPostsByCat)>0)
                 @foreach($allPostsByCat as $post)
+                    <div class="cat-content">
                     <a href="{{route('getPostBySlug', $post->slug) }}" style="text-decoration:none">
                         <h3 class="media-heading" >{{ $post->title }}</h3>
+                        <hr/>
                     </a>
                     <small style="padding: 10px;">
                         <span>
@@ -31,24 +33,30 @@
                     </small>
                     <div class="row cat-content-body">
                         <div class="col-sm-6">
+                            <a href="{{route('getPostBySlug', $post->slug) }}" style="text-decoration:none">
                             <img src="{{$post->mainImage()}}" class="media-object" style="width:100%;height: 200px;">
+                            </a>
                         </div>
                         <div class="col-sm-6">
+
                             {!! str_limit($post->body, 200) !!}
+                            <div class="" style="float: left">
+                                <a href="{{route('getPostBySlug', $post->slug) }}"
+                                   class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="col-xs-12 text-right">
-                        <a href="{{route('getPostBySlug', $post->slug) }}" 
-                           class="btn btn-danger btn-sm">{{trans('app.read more')}}</a>
-                    </div>
+
                     <div class="clearfix"></div>
                     <div class="uderline"></div>
+                    </div>
                 @endforeach
                 @else
                     <div class="alert alert-warning text-center"><h5>{{ trans('app.no articles') }}</h5></div>
+
                 @endif
-            </div>
+
         </div>
         <div class="hidden--xs col-xs-12 col-sm-4">
             @include('sidebar')
