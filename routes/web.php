@@ -110,11 +110,11 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
     Route::get('/tags/{tag}','Front\CategoryController@getPostsByTag')->name('getPostsByTag');
 
     //Route::get('/single/{id}','Front\SingleController@getPostByID')->name('getPostByID');
-//    Route::get('/contact-us','Front\ContactController@index')->name('contactus');
+//    Route::get('/contact-us','Front\ContactController@index')->name('contactus.blade.php');
 //    Route::get('/sendemail','Front\ContactController@sendEmail')->name('sendemail');
     
     Route::get('contact-us', 'Front\ContactController@index');
-    Route::post('contact-us', ['as'=>'contact.sennd','uses'=>'ContactController@send']);
+    Route::post('contact-us', ['as'=>'contact.sennd','uses'=>'Front\ContactController@send']);
     
     Route::get('/{slug}','Front\SingleController@getPostBySlug')->name('getPostBySlug');
     

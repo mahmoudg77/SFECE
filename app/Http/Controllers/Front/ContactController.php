@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Func;
+use Setting;
+use Mail;
 class ContactController extends Controller
 {
     public function index(){
@@ -49,7 +51,7 @@ class ContactController extends Controller
 //
 //            }
 //        
-//        return view('contactus');
+//        return view('contactus.blade.php');
 //    }
     
     public function send(Request $request)
@@ -63,7 +65,7 @@ class ContactController extends Controller
             
             $user = $request->get('username');
             $mail = $request->get('email'); 
-            $cell = $request->get('username'); 
+            $cell = $request->get('cellphone');
             $msg  = $request->get('message'); 
            // Creating Array of Errors
             $formErrors = array();
@@ -77,23 +79,28 @@ class ContactController extends Controller
             // If No Errors Send The Email [ mail(To, Subject, Message, Headers, Parameters) ]
 
             $headers = 'From: ' . $mail . '\r\n';
-            $myEmail = Setting::getIfExists('linkedin');//'sfece@gmail.com';
+            $myEmail = Setting::getIfExists('emails_noreplay');//'sfece@gmail.com';
             $subject = 'Contact Form';
 
             if (empty($formErrors)) {
-                alert ('OK');
-                //mail($myEmail, $subject, $msg, $headers);
+               // dd ($user,$mail,$cell,$msg);
 
-                $user = '';
-                $mail = '';
-                $cell = '';
-                $msg = '';
+                    Mail::send('email.contactus', compact('user' ,'mail','msg','cell'), function ($m) use ($user,$mail,$myEmail,$subject) {
+                        //$m->from($mail, $user);
+                        $m->to($myEmail, 'SFECE.ORG')->subject($subject);
+                    });
+               // mail($myEmail, $subject, $msg, $headers);
+
+//                $user = '';
+//                $mail = '';
+//                $cell = '';
+//                $msg = '';
 
                 $success = '<div class="alert alert-success">We Have Recieved Your Message</div>';
 
             }
 
            //return back()->with('success', 'Thanks for contacting us!');
-            return view('contactus');
+            return view('contactus',compact('success'));
        }
 }
