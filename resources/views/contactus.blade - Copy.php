@@ -32,8 +32,8 @@
     </div>
     
     <div class="col-sm-6 wo-w slideInRight">
-       
-        {!! Form::open(['method'=>'POST', 'route'=>["contact.sennd"], "class"=>"contact-form"]) !!}
+        {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "class"=>"ajax-form contact-form"])}}
+        
             <?php if (! empty($formErrors)) { ?>
             <div class="alert alert-danger alert-dismissible" role="start">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -47,42 +47,57 @@
             </div>
             <?php } ?>
             <?php if (isset($success)) { echo $success; } ?>
-            
-        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-            {!! Form::text('username', old('username'), ['class'=>'username form-control', 'placeholder'=>trans('app.contact-name')]) !!}
-            <i class="fa fa-user fa-fw"></i>
+            <div class="form-group">
+                {{Form::text($key."[username]","",["required",'class'=>'form-control'])}}
+                <input 
+                       class="username form-control" 
+                       type="text" 
+                       name="username" 
+                       placeholder="{{ trans('app.contact-name') }}"
+                       value="<?php if (isset($user)) { echo $user; } ?>" />
+                <i class="fa fa-user fa-fw"></i>
                 <span class="asterisx">*</span>
                 <div class="alert alert-danger custom-alert">
                     Username Must Be Larger Than <strong>3</strong> Characters
                 </div>
-        </div>
-        
-            
+            </div>
             <div class="form-group">
-                {!! Form::text('email', old('email'), ['class'=>'email form-control', 'placeholder'=>trans('app.contact-email')]) !!}
+                <input 
+                       class="email form-control" 
+                       type="email" 
+                       name="email" 
+                       placeholder="{{ trans('app.contact-email') }}" 
+                       value="<?php if (isset($mail)) { echo $mail; } ?>" />
                 <i class="fa fa-envelope fa-fw"></i>
                 <span class="asterisx">*</span>
                 <div class="alert alert-danger custom-alert">
                     Email Can't Be <strong>Empty</strong>
                 </div>
             </div>
-            {!! Form::text('cellphone', old('cellphone'), ['class'=>'cellphone form-control', 'placeholder'=>trans('app.contact-tel')]) !!}
+            <input 
+                   class="form-control" 
+                   type="text" 
+                   name="cellphone" 
+                   placeholder="{{ trans('app.contact-tel') }}" 
+                   value="<?php if (isset($cell)) { echo $cell; } ?>" />
             <i class="fa fa-phone fa-fw"></i>
             <div class="form-group">
-                {!! Form::textarea('message', old('message'), ['class'=>'message form-control', 'placeholder'=>trans('app.contact-message')]) !!}
+                <textarea 
+                      class="message form-control" 
+                      name="message"
+                      placeholder="{{ trans('app.contact-message') }}"><?php if (isset($msg)) { echo $msg; } ?></textarea>
                 <span class="asterisx">*</span>
                 <div class="alert alert-danger custom-alert">
                     Message Can\'t Be Less Than <strong>10</strong> Characters
                 </div>
             </div>
-<!--            <button class="btn btn-success">Contact US!</button>-->
             <input 
                class="btn btn-success" 
                        type="submit" 
                        value="{{ trans('app.contact-send') }}" />
                 <i class="fa fa-send fa-fw send-icon send-icon-btn"></i>
             
-        {!! Form::close() !!}
+        {{Form::close()}}
     </div>
 </div>
         
