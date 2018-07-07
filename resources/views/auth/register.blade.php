@@ -78,8 +78,8 @@
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2 text-center">
                                 <button type="submit" class="btn btn-primary btn-sm">{{trans ('app.register')}}</button>
-                                <a href="/facebook" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}}</a>
-                                <a href="/twitter" class="btn btn-info btn-sm">{{trans ('app.login twitter')}}</a>
+                                <a href="{{ route('fp.register') }}" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}} <i class="fa fa-facebook"></i></a>
+                                <a href="{{ route('tw.register') }}" class="btn btn-info btn-sm">{{trans ('app.login twitter')}} <i class="fa fa-twitter"></i></a>
                             </div>
                         </div>
                         

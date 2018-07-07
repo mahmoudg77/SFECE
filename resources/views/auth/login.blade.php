@@ -54,8 +54,8 @@
                         <div class="form-group">
                             <div class="col-md-12 col-md--offset-4 text-center">
                                 <button type="submit" class="btn btn-primary btn-sm">{{trans ('app.login')}}</button>
-                                <a href="{{ route('fp.register') }}" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}}</a>
-                                <a href="{{ route('tw.register') }}" class="btn btn-info btn-sm">{{trans ('app.login twitter')}}</a>
+                                <a href="{{ route('fp.register') }}" class="btn btn-primary btn-sm">{{trans ('app.login facebook')}} <i class="fa fa-facebook"></i></a>
+                                <a href="{{ route('tw.register') }}" class="btn btn-info btn-sm">{{trans ('app.login twitter')}} <i class="fa fa-twitter"></i></a>
 
                                 
                             </div>
