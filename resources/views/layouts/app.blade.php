@@ -42,11 +42,12 @@
 
     @if(app()->getLocale()=='ar')
         <!-- Load Bootstrap RTL theme from RawGit -->
-        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.min.css')}}">
         <link href="{{ asset('css/front-end-rtl.css') }}" rel="stylesheet">
     @endif
 
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">--}}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ asset('css/camera.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 

@@ -249,11 +249,13 @@ a.site--login:hover {
 }
 .blog-header{
     background-color: #BA0C2F;
-    padding: 7px 10px;
+    padding: 10px 10px;
+    height: 50px;
+    text-align: center;
 }
 .blog-header h4{
     color:#fff;
-    height: 40px;
+    /*! height: 40px; */
 }
 .blog-header h4:hover{
 
