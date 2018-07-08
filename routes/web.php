@@ -114,7 +114,7 @@ Route::group(['prefix' => app()->getLocale(),'middleware'=>'LanguageSwicher'], f
 //    Route::get('/sendemail','Front\ContactController@sendEmail')->name('sendemail');
     
     Route::get('contact-us', 'Front\ContactController@index');
-    Route::post('contact-us', ['as'=>'contact.sennd','uses'=>'Front\ContactController@send']);
+    Route::post('contact-us', ['as'=>'contact.send','uses'=>'Front\ContactController@send']);
     
     Route::get('/{slug}','Front\SingleController@getPostBySlug')->name('getPostBySlug');
     

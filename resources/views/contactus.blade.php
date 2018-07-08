@@ -32,7 +32,7 @@
     </div>
     
     <div class="col-sm-6 wo-w slideInRight">
-        {{Form::model(null, ['route'=>["cp.posts.store",'type'=>3], "method"=>"POST", "class"=>"ajax-form contact-form"])}}
+        {!!Form::open(['route'=>["contact.send"], "method"=>"POST", "class"=>"contact-form"])!!}
         
             <?php if (! empty($formErrors)) { ?>
             <div class="alert alert-danger alert-dismissible" role="start">
@@ -48,13 +48,8 @@
             <?php } ?>
             <?php if (isset($success)) { echo $success; } ?>
             <div class="form-group">
-                {{Form::text($key."[username]","",["required",'class'=>'form-control'])}}
-                <input 
-                       class="username form-control" 
-                       type="text" 
-                       name="username" 
-                       placeholder="{{ trans('app.contact-name') }}"
-                       value="<?php if (isset($user)) { echo $user; } ?>" />
+                {{Form::text("username","",["required",'class'=>'form-control','placeholder'=>trans('app.contact-name')])}}
+
                 <i class="fa fa-user fa-fw"></i>
                 <span class="asterisx">*</span>
                 <div class="alert alert-danger custom-alert">
@@ -97,7 +92,7 @@
                        value="{{ trans('app.contact-send') }}" />
                 <i class="fa fa-send fa-fw send-icon send-icon-btn"></i>
             
-        {{Form::close()}}
+        {!!Form::close()!!}
     </div>
 </div>
         

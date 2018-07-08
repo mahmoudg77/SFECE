@@ -78,16 +78,16 @@ $(function () {
    
     // Submit Form Validation
     
-    $('.contact-form').submit(function (e) {
-        
-        if (userError === true || emailError === true || msgError === true) {
-            
-            e.preventDefault();
-            
-            $('.username, .email, .message').blur();
-            
-        }
-        
-    });
+    // $('.contact-form').submit(function (e) {
+    //
+    //     if (userError === true || emailError === true || msgError === true) {
+    //
+    //         e.preventDefault();
+    //
+    //         $('.username, .email, .message').blur();
+    //
+    //     }
+    //
+    // });
     
 });
